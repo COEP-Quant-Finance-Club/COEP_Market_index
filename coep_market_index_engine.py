@@ -261,7 +261,10 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                         df_s.sort_index(inplace=True)
                         base_price = float(df_s["Close"].iloc[0])
                         if base_price > 0:
-                            # Outstanding shares Q_i = (Base Market Cap in Cr * 10^7) / Base Price_0
+                            # Split-Adjusted Outstanding Shares Derivation (Q_i):
+                            # Since run_split_adjuster() runs BEFORE index calculation, base_price (P_0) is split-adjusted.
+                            # Q_i = (Base Market Cap_0 in Cr * 10^7) / P_0(split-adjusted).
+                            # If a 2:1 split occurred, P_0 halved, so Q_i automatically doubled (Q_i * 2).
                             shares = (mcap_cr * 1e7) / base_price
                             stock_dfs[sym] = {"df": df_s, "shares": shares}
                 except Exception:
