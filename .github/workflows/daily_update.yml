@@ -29,15 +29,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas numpy requests yfinance
 
-      - name: Run EOD Stock Update & Sector Index Rebuild
+      - name: Run Master Market Index Engine
         run: |
-          python auto_update_and_rebuild.py
+          python coep_market_index_engine.py
 
       - name: Commit and Push Updated Data
         run: |
           git config --global user.name "COEP Quant Club Automation"
           git config --global user.email "quantclub@coep.ac.in"
-          git add OHLCV/ update_summary.json corporate_action_adjustments.csv fixes_applied.json
+          git add OHLCV/ base_market_caps.json todays_sector_weights.json update_summary.json fixes_applied.json
           git status
           git diff-index --quiet HEAD || git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push origin main || git push origin HEAD:main

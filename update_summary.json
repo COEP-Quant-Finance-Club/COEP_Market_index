@@ -1,11 +1,12 @@
 {
-  "timestamp": "2026-08-03 23:30:28 IST",
-  "execution_time_sec": 18.1,
-  "stocks_summary": {
+  "timestamp": "2026-08-03 23:41:24 IST",
+  "execution_time_sec": 11.74,
+  "downloader_stats": {
     "total": 1425,
     "updated": 0,
     "up_to_date": 1423,
     "failed": 2
   },
+  "sectors_built": 102,
   "status": "SUCCESS"
 }
