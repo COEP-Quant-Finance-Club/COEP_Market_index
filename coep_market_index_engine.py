@@ -538,6 +538,59 @@ def calculate_sector_indices() -> tuple[dict, dict]:
 
 # ── MAIN PIPELINE EXECUTION ───────────────────────────────────────────────────
 
+def update_readme_leaderboard(summary: dict) -> None:
+    readme_path = os.path.join(BASE_DIR, "README.md")
+    if not os.path.exists(readme_path):
+        log.warning("README.md not found, skipping leaderboard update.")
+        return
+
+    try:
+        # Sort sectors by total return descending
+        sorted_sectors = sorted(
+            summary.items(),
+            key=lambda x: x[1]["total_return_pct"],
+            reverse=True
+        )
+
+        # Build markdown table
+        lines = [
+            "| Rank | Sector | Index Level | Total Return | Constituents |",
+            "|:---:|:---|:---:|:---:|:---:|",
+        ]
+        for i, (sec_name, stats) in enumerate(sorted_sectors, 1):
+            medals = {1: "🥇 ", 2: "🥈 ", 3: "🥉 "}.get(i, "")
+            name = sec_name.replace("_", " ").title().replace("Ems", "EMS").replace("It", "IT")
+            idx_val = stats["latest_index_val"]
+            ret_val = stats["total_return_pct"]
+            consts = stats["constituents"]
+            lines.append(f"| {medals}{i} | {name} | {idx_val:,.1f} | {ret_val:+,.1f}% | {consts} |")
+
+        table_content = "\n".join(lines)
+
+        with open(readme_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        # Find position to insert table bounded by header marker and separator
+        header_marker = "## 📊 Live Sector Leaderboard\n\n> All indices base-100 from **Jan 2015**. Rebuilt daily via YFinance."
+        
+        if header_marker in content:
+            parts = content.split(header_marker, 1)
+            after = parts[1]
+            if "---" in after:
+                sub_parts = after.split("---", 1)
+                new_content = parts[0] + header_marker + "\n\n" + table_content + "\n\n---" + sub_parts[1]
+            else:
+                new_content = parts[0] + header_marker + "\n\n" + table_content
+            
+            with open(readme_path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            log.info("Successfully updated README.md live sector leaderboard table.")
+        else:
+            log.warning("Could not find sector leaderboard section marker in README.md.")
+    except Exception as e:
+        log.error(f"Failed to update README.md leaderboard: {e}")
+
+
 def main():
     start_time = time.time()
     log.info("="*70)
@@ -552,6 +605,9 @@ def main():
 
     # 3. Rebuild clean master sector indices & export today's weights
     sec_summary, sector_weights = calculate_sector_indices()
+
+    # 4. Automatically update README.md sector leaderboard table
+    update_readme_leaderboard(sec_summary)
 
     elapsed = round(time.time() - start_time, 2)
     summary_data = {
