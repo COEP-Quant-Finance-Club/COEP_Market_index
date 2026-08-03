@@ -1,0 +1,15 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary log & cache files
+*.log
+scrip_master_cache.json
+unified_progress.json
+screener_progress.json
+scored_csv_test/
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quant Club - Institutional Sector Index Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <!-- Lightweight Charts v4 -->
+  <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body class="dark-theme">
+  <div class="app-container">
+    <!-- Header Navbar -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="logo-icon">📊</div>
+        <div class="brand-text">
+          <h1>QUANT CLUB</h1>
+          <span class="sub-brand">Institutional Sector Index Terminal</span>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="timeframe-selector">
+          <button class="tf-btn active" data-tf="daily">DAILY</button>
+          <button class="tf-btn" data-tf="fourhour">4-HOUR</button>
+        </div>
+
+        <label class="custom-file-upload btn-secondary">
+          <input type="file" id="csv-file-input" accept=".csv" />
+          <span>📁 Load Custom Local CSV</span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Sidebar / Sector Leaderboard -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h3>SECTOR BASKETS</h3>
+          <span class="sector-count" id="sector-count-badge">44 Baskets</span>
+        </div>
+        <div class="search-box">
+          <input type="text" id="sector-search" placeholder="Filter sectors (e.g. Defence, EMS, Real Estate)..." />
+        </div>
+        <div class="sector-list" id="sector-list-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </aside>
+
+      <!-- Main Chart Area -->
+      <main class="chart-area">
+        <!-- Sector Header Info Card -->
+        <div class="sector-info-card">
+          <div class="sector-title-group">
+            <h2 id="active-sector-name">ELECTRONICS_EMS</h2>
+            <span class="badge" id="active-timeframe-badge">DAILY OHLCV</span>
+          </div>
+
+          <div class="sector-metrics">
+            <div class="metric-item">
+              <span class="metric-label">Current Value</span>
+              <span class="metric-val" id="metric-current-val">1,936.50</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Base Value</span>
+              <span class="metric-val">100.00</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Total Return</span>
+              <span class="metric-val positive" id="metric-return-val">+1836.50%</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Constituents</span>
+              <span class="metric-val" id="metric-constituents-val">17 Stocks</span>
+            </div>
+          </div>
+
+          <div class="chart-toggles">
+            <button class="toggle-btn active" id="btn-toggle-sma20">SMA 20</button>
+            <button class="toggle-btn active" id="btn-toggle-sma50">SMA 50</button>
+            <button class="toggle-btn active" id="btn-toggle-ema200">EMA 200</button>
+          </div>
+        </div>
+
+        <!-- Candlestick Chart Container -->
+        <div class="chart-wrapper">
+          <!-- Floating TradingView Style Scale Toolbar -->
+          <div class="tv-scale-toolbar">
+            <button class="tv-tool-btn" id="btn-zoom-in" title="Zoom In (+)">🔍 +</button>
+            <button class="tv-tool-btn" id="btn-zoom-out" title="Zoom Out (-)">🔍 -</button>
+            <button class="tv-tool-btn" id="btn-scale-auto" title="Auto Scale Y-Axis">↕️ Auto Scale</button>
+            <button class="tv-tool-btn" id="btn-scale-log" title="Toggle Log Scale">📈 Log Scale</button>
+            <button class="tv-tool-btn" id="btn-fit-content" title="Reset View To Fit All Data">🔄 Fit All</button>
+          </div>
+
+          <div id="tv-chart-container"></div>
+
+          <div class="drag-drop-overlay" id="drag-drop-overlay">
+            <div class="drop-message">
+              <span>📥 Drop any local OHLCV CSV file here to view immediately</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Pre-baked local sector data script -->
+  <script src="dashboard_data.js"></script>
+  <!-- Main Dashboard logic -->
+  <script src="dashboard.js"></script>
+</body>
+</html>

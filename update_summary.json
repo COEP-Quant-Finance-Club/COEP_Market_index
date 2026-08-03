@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-08-03 23:20:21 IST",
+  "execution_time_sec": 178.9,
+  "stocks_summary": {
+    "total": 1425,
+    "updated": 1424,
+    "up_to_date": 0,
+    "failed": 1
+  },
+  "status": "SUCCESS"
+}
