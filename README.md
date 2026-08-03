@@ -170,27 +170,6 @@ flowchart TD
 | 💰 Valuation | 12% | **22%** | 14% |
 | 👥 Ownership | 8% | 10% | 10% |
 | ✅ Quality Flags | 12% | 13% | 12% |
-
-> 🏦 **Financial Profile** (Banks, NBFCs): Uses ROE + ROA instead of OPM; skips debt/leverage/Altman red flags — borrowing is the business model.
->
-> ⚙️ **Asset-Heavy Profile** (Infra, Power, Metals, Real Estate): D/E threshold relaxed to 3.0×; Altman Z-score disabled; interest coverage threshold lowered to 0.6× for greenfield commissioning phase.
-
-### 🚩 Red Flag System
-
-```
-FLAG                                        CAP    FINANCIAL   ASSET-HEAVY
-─────────────────────────────────────────────────────────────────────────
-Negative Net Worth                          15     applied      applied
-Losses in >60% reported periods             30     applied      applied
-Promoters dumping (>3% quarter drop)        35     applied      applied
-Chronic negative operating cash flow        20     SKIPPED      0.15 threshold
-Altman Z-Score distress zone               20     SKIPPED      SKIPPED
-Debt trap (D/E > 1.5x AND FCF < 0)        25     SKIPPED      D/E > 3.0x
-Cannot cover interest from EBIT            25     SKIPPED      0.6x threshold
-Heavy dilution with weak ROCE              35     applied      applied
-Double working capital drain               30     applied      applied
-```
-
 ### 🏅 Top 10 Global Rankings
 
 | Rank | Stock | Symbol | Sector | HF Score | LLM Score | **Combined** |
