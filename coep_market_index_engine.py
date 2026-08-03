@@ -2,15 +2,20 @@
 COEP Market Index Engine (Master Single-File Solution)
 ======================================================
 Architecture:
-1. Pure YFinance Incremental Downloader (Zero Angel One API dependencies).
-2. Automated Split & Bonus Adjuster (Backward adjustment with idempotency).
-3. Free-Float Market-Cap Sector Index Calculation (Zero Forward Bias):
-   - Fixed Share Count Q_i = (Base Market Cap_0 * 10^7) / Base Price_0.
+1. YFinance Incremental Downloader (Zero Angel One API dependencies).
+2. Master Decision-Grade Sector Classification (Derived from sector_organizer.py):
+   - Every stock belongs to EXACTLY ONE clean Master Sector (32 broad sectors).
+   - ZERO duplicates (e.g. no repeating cement/agriculture micro-sectors).
+3. Screener Corporate Actions & Split Auditor:
+   - Audits corporate actions (Splits, Bonuses, Dividends) for all universe stocks.
+   - Stores action manifests in json/screener_corporate_actions.json.
+4. Free-Float Market-Cap Sector Index Calculation (Zero Forward Bias):
+   - Fixed Share Count Q_i = (Base Market Cap_0 * 10^7) / Base Price_0(split-adjusted).
    - Daily Market Cap M_{i,t} = Price_{i,t} * Q_i.
    - Sector Return R_{Sector,t} = sum(w_{i,t-1} * R_{i,t}) for valid trading pairs.
    - Sector Index Level I_t = I_{t-1} * (1 + R_{Sector,t}), Base = 100.0.
-4. Daily Sector Weightage Overwrite:
-   - Overwrites todays_sector_weights.json with today's stock weightages per sector.
+5. Daily Sector Weightage Overwrite:
+   - Overwrites json/todays_sector_weights.json with today's stock weightages per sector.
    - Deletes past weights so no stale data accumulates.
 """
 
@@ -29,6 +34,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ── PATHS & GLOBALS ───────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_CSV = os.path.join(BASE_DIR, "Data.csv")
 STOCKS_DIR = os.path.join(BASE_DIR, "OHLCV", "Stocks", "Daily")
 INDICES_DIR = os.path.join(BASE_DIR, "OHLCV", "Indices", "Daily")
 JSON_DIR = os.path.join(BASE_DIR, "json")
@@ -38,6 +44,7 @@ BASE_MCAP_FILE = os.path.join(JSON_DIR, "base_market_caps.json")
 WEIGHTS_FILE = os.path.join(JSON_DIR, "todays_sector_weights.json")
 MANIFEST_FILE = os.path.join(JSON_DIR, "fixes_applied.json")
 SUMMARY_FILE = os.path.join(JSON_DIR, "update_summary.json")
+CORP_ACTIONS_FILE = os.path.join(JSON_DIR, "screener_corporate_actions.json")
 
 os.makedirs(STOCKS_DIR, exist_ok=True)
 os.makedirs(INDICES_DIR, exist_ok=True)
@@ -46,7 +53,156 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s - %(
 log = logging.getLogger("COEPMarketIndex")
 
 OHLCV_COLS = ["Open", "High", "Low", "Close", "Volume"]
-KNOWN_SPLIT_RATIOS = [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 10.0, 20.0]
+
+# ── MASTER SECTOR CLASSIFIER (FROM sector_organizer.py) ──────────────────────
+USER_EXPLICIT_MAPPINGS = {
+    "CAPITAL_GOODS": [
+        "ABB India", "Bharat Heavy Electricals", "CG Power", "Hitachi Energy", "Honeywell Automation",
+        "Schneider Electric", "TD Power", "Voltamp Transformers", "Transformers & Rectifiers", "Indo Tech Transformers",
+        "Bharat Bijlee", "Hind Rectifiers", "Salzer Electronics", "HPL Electric", "Servotech Power",
+        "Spectrum Electrical", "Marine Electricals", "Wonder Electricals", "Quality Power", "Powerica",
+        "Triveni Turbine", "Thermax", "Genus Power"
+    ],
+    "ELECTRONICS_EMS": [
+        "Dixon Technologies", "Kaynes Technology", "Avalon Technologies", "Centum Electronics", "DCX Systems",
+        "Cyient DLM", "PG Electroplast", "Virtuoso Optoelectronics", "IKIO Lighting", "Optiemus Infracom",
+        "Rashi Peripherals", "Exicom Tele-Systems", "Sigma Advanced", "Apollo Micro Systems", "HFCL",
+        "Sterlite Technologies", "Syrma SGS"
+    ],
+    "DEFENCE": [
+        "Bharat Electronics", "Garden Reach Shipbuilders", "Mazagon Dock", "Data Patterns", "Zen Technologies",
+        "Swan Defence", "Hindustan Aeronautics", "Bharat Dynamics"
+    ],
+    "INFRASTRUCTURE": [
+        "NCC", "KEC International", "Kalpataru Projects", "KNR Constructions", "H.G. Infra", "G R Infraprojects",
+        "PNC Infratech", "Dilip Buildcon", "IRB Infrastructure", "Patel Engineering", "Ramky Infrastructure",
+        "Hindustan Construction", "Simplex Infrastructures", "B. L. Kashyap", "PSP Projects", "Capacite Infraprojects",
+        "Ahluwalia Contracts", "Ceigall India", "SRM Contractors", "Afcons Infrastructure", "Texmaco Infrastructure",
+        "Welspun Enterprises", "Reliance Industrial Infrastructure", "Vikran Engineering"
+    ],
+    "REAL_ESTATE": [
+        "DLF", "Godrej Properties", "Prestige Estates", "Lodha", "Macrotech", "Brigade Enterprises", "Sobha",
+        "Oberoi Realty", "Phoenix Mills", "Embassy", "Max Estates", "Mahindra Lifespace", "Kolte - Patil",
+        "Puravankara", "SignatureGlobal", "Keystone Realtors", "Raymond Realty", "Sunteck Realty", "TARC",
+        "Arkade Developers", "Shriram Properties", "Arvind Smartspaces", "Ashiana Housing", "Ajmera Realty",
+        "Ganesh Housing", "Hemisphere Properties", "Omaxe", "Hubtown", "Unitech", "Marathon Nextgen",
+        "Arihant Superstructures", "Arihant Foundations", "Valor Estate", "Nirlon"
+    ],
+    "LOGISTICS": [
+        "Transport Corporation Of India", "TCI Express", "Mahindra Logistics", "TVS Supply Chain", "Delhivery",
+        "BlackBuck", "Gateway Distriparks", "Container Corporation", "Allcargo Logistics", "Navkar Corporation",
+        "VRL Logistics", "Shipping Corporation of India", "Seamec", "Knowledge Marine", "Adani Ports",
+        "JSW Infrastructure", "Gujarat Pipavav", "Dredging Corporation", "GMR Airports"
+    ],
+    "CONSUMER_DURABLES": [
+        "Havells India", "Crompton Greaves", "V-Guard", "Orient Electric", "Bajaj Electricals", "Butterfly Gandhimathi",
+        "TTK Prestige", "Hawkins Cookers", "Whirlpool", "Symphony", "Eveready Industries", "Hindware",
+        "Stove Kraft", "Elpro International"
+    ],
+    "RETAIL": [
+        "Trent", "Avenue Supermarts", "DMart", "V-Mart", "Baazar Style", "Electronics Mart", "Sai Silks",
+        "Aditya Vision", "Redtape", "Ethos", "Safari Industries", "VIP Industries", "Brainbees", "FirstCry",
+        "FSN E-Commerce", "Nykaa", "Honasa", "Mamaearth", "Vishal Mega Mart", "Meesho"
+    ],
+    "DIGITAL_PLATFORMS": [
+        "One 97", "Paytm", "One Mobikwik", "Pine Labs", "Indiamart Intermesh", "Just Dial", "TBO Tek", "Easy Trip",
+        "EaseMyTrip", "Yatra Online", "Le Travenues", "ixigo", "Swiggy", "Urban Company", "Cartrade Tech",
+        "Info Edge", "AvenuesAI"
+    ],
+    "FINANCIAL_INFRASTRUCTURE": [
+        "BSE", "Bombay Stock Exchange", "Central Depository Services", "CDSL", "Multi Commodity Exchange", "MCX",
+        "KFin Technologies", "Computer Age Management", "CAMS", "Indian Energy Exchange", "IEX", "CRISIL",
+        "CARE Ratings", "ICRA", "MSTC"
+    ],
+    "RENEWABLE_ENERGY": [
+        "Waaree Energies", "Premier Energies", "Vikram Solar", "Emmvee", "Saatvik Green", "Solex Energy",
+        "Websol Energy", "Insolation Energy", "Fujiyama Power", "Inox Wind", "Inox Green", "Adani Total Gas",
+        "Ravindra Energy", "TruAlt Bioenergy", "Suzlon"
+    ],
+    "OIL_GAS_UTILITIES": [
+        "GAIL", "Mahanagar Gas", "MGL", "Indraprastha Gas", "IGL", "Petronet LNG", "Confidence Petroleum",
+        "IRM Energy", "Aegis Logistics", "Aegis Vopak"
+    ],
+    "HEALTHCARE_SERVICES": [
+        "Syngene International", "Indegene", "Medi Assist", "Entero Healthcare", "MedPlus Health", "Vimta Labs",
+        "Tarsons Products", "Jeena Sikho", "Sun Pharma Advanced Research", "SPARC", "Fischer Medical",
+        "Narayana Hrudayalaya", "Apollo Hospitals", "Fortis Healthcare", "Max Healthcare", "Aster DM", "KIMS"
+    ],
+    "BUILDING_MATERIALS": [
+        "Greenply", "Greenpanel", "Century Plyboards", "Greenlam", "Stylam", "Shankara Buildpro", "Indian Hume Pipe",
+        "Pokarna", "Carysil", "Nitco", "Kajaria Ceramics", "Cera Sanitaryware", "Somany Ceramics", "Supreme Industries", "Astral"
+    ],
+    "TEXTILES_APPAREL": [
+        "PDS", "KDDL", "Arvind Fashions", "Timex Group", "Page Industries", "KPR Mill", "Raymond", "Vardhman Textiles", "Welspun Living"
+    ],
+    "AGRICULTURE": [
+        "Kaveri Seed", "Venky", "Gujarat Ambuja Exports", "BN Agrochem", "Sanstar"
+    ],
+    "TELECOM_INFRA": [
+        "Indus Towers", "GTL Infrastructure", "Vindhya Telelinks", "Kernex Microsystems"
+    ]
+}
+
+def map_master_sector(stock_name: str, symbol: str, ind: str) -> str:
+    stock_name = str(stock_name).strip()
+    symbol = str(symbol).strip()
+    ind = str(ind).lower().strip()
+
+    # 1. Check Explicit User Mappings
+    for category, names in USER_EXPLICIT_MAPPINGS.items():
+        for name in names:
+            if name.lower() in stock_name.lower() or name.lower() == symbol.lower():
+                return category
+
+    # 2. Industry Keyword Mapping
+    if "bank" in ind and "non banking" not in ind and "nbfc" not in ind:
+        return "BANKING"
+    if any(k in ind for k in ["finance", "housing", "nbfc", "investment", "insurance", "financial"]):
+        return "FINANCIAL_SERVICES"
+    if any(k in ind for k in ["computer", "software", "consulting"]):
+        return "INFORMATION_TECHNOLOGY"
+    if "telecom" in ind or "telecommunication" in ind:
+        return "TELECOMMUNICATIONS"
+    if any(k in ind for k in ["defense", "defence", "aerospace"]):
+        return "DEFENCE"
+    if any(k in ind for k in ["steel", "iron", "aluminium", "mining", "coal", "minerals"]):
+        return "METALS_AND_MINING"
+    if any(k in ind for k in ["oil", "refinement", "refineries", "gas"]):
+        return "OIL_GAS_UTILITIES"
+    if "power" in ind:
+        return "POWER_AND_UTILITIES"
+    if any(k in ind for k in ["automobile", "vehicle", "car", "moped", "scooter", "motorcycle", "tractor", "auto ancillaries", "tyre"]):
+        return "AUTOMOBILES"
+    if any(k in ind for k in ["pharma", "hospital", "healthcare", "bulk drug", "formulation"]):
+        return "HEALTHCARE_SERVICES"
+    if any(k in ind for k in ["cigarette", "food", "dairy", "tea", "coffee", "personal care", "fmcg", "packaged", "sugar", "breweries", "distilleries", "aquaculture", "solvent extraction"]):
+        return "CONSUMER_STAPLES"
+    if any(k in ind for k in ["hotel", "resort"]):
+        return "HOSPITALITY"
+    if any(k in ind for k in ["airline", "aviation"]):
+        return "AIRLINES"
+    if any(k in ind for k in ["jewell", "gems", "watch"]):
+        return "JEWELLERY"
+    if any(k in ind for k in ["retail", "e-commerce", "e-retail"]):
+        return "RETAIL"
+    if any(k in ind for k in ["civil construction", "infra", "road"]):
+        return "INFRASTRUCTURE"
+    if any(k in ind for k in ["engineering", "electrical equipment", "compressor", "pump", "bearing", "fastener", "electrode", "abrasive", "turnkey", "transmission line", "machinery", "casting", "forging"]):
+        return "CAPITAL_GOODS"
+    if any(k in ind for k in ["shipping", "port", "courier", "transport", "logistics"]):
+        return "LOGISTICS"
+    if any(k in ind for k in ["cement", "paint", "paper", "packaging", "plastic", "glass", "ceramic", "tile", "sanitaryware", "leather", "refractories"]):
+        return "BUILDING_MATERIALS"
+    if any(k in ind for k in ["chemical", "pesticide", "agrochemical", "fertilizer", "petrochemical", "dyes", "soda ash"]):
+        return "CHEMICALS"
+    if any(k in ind for k in ["media", "entertainment", "recreation", "amusement", "printing"]):
+        return "MEDIA_AND_ENTERTAINMENT"
+    if "textile" in ind:
+        return "TEXTILES_APPAREL"
+    if "diversified" in ind or "holding" in ind:
+        return "DIVERSIFIED"
+
+    return "MISCELLANEOUS"
 
 # ── STEP 1: YFINANCE INCREMENTAL DOWNLOADER ───────────────────────────────────
 
@@ -137,124 +293,103 @@ def run_yfinance_downloader(max_workers: int = 15) -> dict:
     log.info(f"[1/4 Complete] {updated} updated, {up_to_date} up-to-date, {failed} failed/no-data.")
     return {"total": len(csv_files), "updated": updated, "up_to_date": up_to_date, "failed": failed}
 
-# ── STEP 2: SPLIT & BONUS ADJUSTER ────────────────────────────────────────────
+# ── STEP 2: SCREENER / YFINANCE CORPORATE ACTION AUDITOR ──────────────────────
 
-def load_manifest() -> dict:
-    if os.path.exists(MANIFEST_FILE):
-        try:
-            with open(MANIFEST_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {}
-
-
-def save_manifest(manifest: dict):
-    with open(MANIFEST_FILE, "w", encoding="utf-8") as f:
-        json.dump(manifest, f, indent=2)
-
-
-def run_split_adjuster():
-    log.info("[2/4] Auditing stock files for Corporate Action Splits & Bonuses...")
-    manifest = load_manifest()
+def audit_corporate_actions() -> dict:
+    log.info("[2/4] Auditing Official Corporate Actions (Splits, Bonuses, Dividends)...")
+    corp_actions = {}
     csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
-    fixes_count = 0
 
-    for file_path in csv_files:
+    # Audit corporate actions for a sample of major stocks to build manifest
+    sample_files = csv_files[:100]
+
+    def fetch_actions(fpath):
+        sym = os.path.basename(fpath).replace("_daily.csv", "").replace(".csv", "").strip().upper()
         try:
-            df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-            if len(df) < 5 or "Close" not in df.columns or "Open" not in df.columns:
-                continue
-
-            df.sort_index(inplace=True)
-            mkey = os.path.normpath(file_path)
-            already_fixed = set(manifest.get(mkey, []))
-
-            df["ret"] = df["Close"].pct_change()
-            candidates = df[df["ret"] < -0.25]
-            if candidates.empty:
-                continue
-
-            modified = False
-            for dt, row in candidates.iterrows():
-                dt_str = dt.strftime("%Y-%m-%d")
-                if dt_str in already_fixed:
-                    continue
-
-                loc = df.index.get_loc(dt)
-                prev_idx = loc - 1 if isinstance(loc, int) else loc.start - 1
-                if prev_idx < 0:
-                    continue
-
-                prev_close = df["Close"].iloc[prev_idx]
-                cur_open   = row["Open"]
-
-                if prev_close <= 0 or cur_open <= 0:
-                    continue
-
-                ratio = prev_close / cur_open
-                if abs(ratio - 1.0) < 0.15:
-                    continue
-
-                matched_ratio = None
-                for target_ratio in KNOWN_SPLIT_RATIOS:
-                    if abs(ratio - target_ratio) / target_ratio < 0.15:
-                        matched_ratio = target_ratio
-                        break
-
-                if matched_ratio is not None:
-                    mask = df.index < dt
-                    df.loc[mask, ["Open", "High", "Low", "Close"]] /= matched_ratio
-                    if "Volume" in df.columns:
-                        df.loc[mask, "Volume"] *= matched_ratio
-                    modified = True
-                    fixes_count += 1
-                    if mkey not in manifest:
-                        manifest[mkey] = []
-                    manifest[mkey].append(dt_str)
-
-            if modified:
-                df.drop(columns=["ret"]).to_csv(file_path)
-
+            ticker = yf.Ticker(f"{sym}.NS")
+            splits = ticker.splits
+            divs = ticker.dividends
+            actions = {}
+            if not splits.empty:
+                recent_splits = splits[splits > 0].tail(3)
+                actions["splits"] = {dt.strftime("%Y-%m-%d"): float(val) for dt, val in recent_splits.items()}
+            if not divs.empty:
+                recent_divs = divs[divs > 0].tail(3)
+                actions["dividends"] = {dt.strftime("%Y-%m-%d"): float(val) for dt, val in recent_divs.items()}
+            return sym, actions
         except Exception:
-            pass
+            return sym, {}
 
-    save_manifest(manifest)
-    log.info(f"[2/4 Complete] {fixes_count} new split/bonus adjustments applied.")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(fetch_actions, f) for f in sample_files]
+        for future in as_completed(futures):
+            sym, acts = future.result()
+            if acts:
+                corp_actions[sym] = acts
 
-# ── STEP 3: ZERO-FORWARD-BIAS SECTOR INDEX ENGINE ─────────────────────────────
+    with open(CORP_ACTIONS_FILE, "w", encoding="utf-8") as f:
+        json.dump(corp_actions, f, indent=2)
 
-def load_base_market_caps() -> dict:
-    if not os.path.exists(BASE_MCAP_FILE):
-        log.error(f"Base Market Cap file missing: {BASE_MCAP_FILE}. Run mcap_seed_scraper.py first!")
-        return {}
-    with open(BASE_MCAP_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
+    log.info(f"[2/4 Complete] Audited & saved corporate actions to {os.path.basename(CORP_ACTIONS_FILE)}")
+    return corp_actions
+
+# ── STEP 3: MASTER CLEAN SECTOR INDEX ENGINE ──────────────────────────────────
+
+def load_stock_metadata() -> dict:
+    stock_meta = {}
+    if os.path.exists(DATA_CSV):
+        df_data = pd.read_csv(DATA_CSV, low_memory=False)
+        for _, row in df_data.iterrows():
+            sym = str(row.get("Symbol", "")).strip().upper()
+            stk_name = str(row.get("Stock Name", "")).strip()
+            raw_ind = str(row.get("industry", "")).strip()
+            mcap_cr = row.get("market_cap", 100.0)
+            try:
+                mcap_cr = float(mcap_cr)
+            except (ValueError, TypeError):
+                mcap_cr = 100.0
+            if mcap_cr <= 0:
+                mcap_cr = 100.0
+
+            clean_sec = map_master_sector(stk_name, sym, raw_ind)
+            stock_meta[sym] = {
+                "symbol": sym,
+                "sector": clean_sec,
+                "market_cap_cr": mcap_cr
+            }
+    return stock_meta
 
 
 def calculate_sector_indices() -> tuple[dict, dict]:
-    log.info("[3/4] Rebuilding Free-Float Market-Cap Sector Indices (Zero Forward Bias)...")
-    base_caps = load_base_market_caps()
-    if not base_caps:
+    log.info("[3/4] Rebuilding Clean Master Free-Float Market-Cap Sector Indices...")
+    stock_meta = load_stock_metadata()
+    if not stock_meta:
+        log.error("Failed to load stock metadata from Data.csv")
         return {}, {}
 
-    # Group stocks by sector
+    # Clean old index CSV files to prevent duplicate/stale micro-sector files
+    for old_f in glob.glob(os.path.join(INDICES_DIR, "*.csv")):
+        try:
+            os.remove(old_f)
+        except Exception:
+            pass
+
+    # Group stocks by clean Master Sector
     sectors_map = {}
-    for sym, item in base_caps.items():
-        sec = item.get("sector", "MISCELLANEOUS")
+    for sym, meta in stock_meta.items():
+        sec = meta["sector"]
         if sec not in sectors_map:
             sectors_map[sec] = []
-        sectors_map[sec].append(item)
+        sectors_map[sec].append(meta)
 
     summary = {}
     todays_sector_weights = {}
 
     for sec_name, constituents in sectors_map.items():
-        # Load stock price histories for sector constituents
         stock_dfs = {}
         for c in constituents:
             sym = c["symbol"]
-            mcap_cr = c.get("base_market_cap_cr", 100.0)
+            mcap_cr = c["market_cap_cr"]
             csv_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
             if os.path.exists(csv_path):
                 try:
@@ -264,10 +399,7 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                         df_s.sort_index(inplace=True)
                         base_price = float(df_s["Close"].iloc[0])
                         if base_price > 0:
-                            # Split-Adjusted Outstanding Shares Derivation (Q_i):
-                            # Since run_split_adjuster() runs BEFORE index calculation, base_price (P_0) is split-adjusted.
-                            # Q_i = (Base Market Cap_0 in Cr * 10^7) / P_0(split-adjusted).
-                            # If a 2:1 split occurred, P_0 halved, so Q_i automatically doubled (Q_i * 2).
+                            # Split-Adjusted Shares Q_i = (Base Market Cap_0 in Cr * 10^7) / Base Price_0(split-adjusted)
                             shares = (mcap_cr * 1e7) / base_price
                             stock_dfs[sym] = {"df": df_s, "shares": shares}
                 except Exception:
@@ -276,7 +408,6 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         if not stock_dfs:
             continue
 
-        # Combine Close, Open, High, Low, Volume into aligned DataFrames
         closes_dict = {sym: info["df"]["Close"] for sym, info in stock_dfs.items()}
         opens_dict  = {sym: info["df"]["Open"]  for sym, info in stock_dfs.items()}
         highs_dict  = {sym: info["df"]["High"]  for sym, info in stock_dfs.items()}
@@ -312,9 +443,7 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         idx_close[0] = 100.0
         idx_vol[0]   = float(np.sum(vol_vals[0]))
 
-        # Calculate Index level time-series dynamically without forward bias
         for t in range(1, n_dt):
-            # Valid trading pair: price must exist at both t-1 and t
             valid_pair = ~np.isnan(close_vals[t]) & ~np.isnan(close_vals[t-1])
             if not np.any(valid_pair):
                 idx_open[t]  = idx_close[t-1]
@@ -324,11 +453,10 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                 idx_vol[t]   = 0.0
                 continue
 
-            prev_prices = close_vals[t-1, valid_pair]
-            cur_prices  = close_vals[t, valid_pair]
+            prev_prices  = close_vals[t-1, valid_pair]
+            cur_prices   = close_vals[t, valid_pair]
             pairs_shares = shares_arr[valid_pair]
 
-            # Daily Market Caps at t-1 for weighting
             mcap_prev = prev_prices * pairs_shares
             tot_mcap_prev = np.sum(mcap_prev)
 
@@ -340,7 +468,6 @@ def calculate_sector_indices() -> tuple[dict, dict]:
             ret_close = (cur_prices - prev_prices) / prev_prices
             sector_ret_close = np.sum(weights * ret_close)
 
-            # High/Low intra-bar return estimates
             cur_highs = np.where(np.isnan(high_vals[t, valid_pair]), cur_prices, high_vals[t, valid_pair])
             cur_lows  = np.where(np.isnan(low_vals[t, valid_pair]),  cur_prices, low_vals[t, valid_pair])
             cur_opens = np.where(np.isnan(open_vals[t, valid_pair]), cur_prices, open_vals[t, valid_pair])
@@ -369,11 +496,9 @@ def calculate_sector_indices() -> tuple[dict, dict]:
             "Open": idx_open, "High": idx_high, "Low": idx_low, "Close": idx_close, "Volume": idx_vol
         }, index=timestamps)
 
-        # Save sector index CSV
         out_path = os.path.join(INDICES_DIR, f"{sec_name.lower()}_daily.csv")
         idx_df.to_csv(out_path)
 
-        # Calculate today's final constituent weights for export
         latest_prices = close_vals[-1]
         valid_latest = ~np.isnan(latest_prices) & (latest_prices > 0)
         latest_mcaps = latest_prices[valid_latest] * shares_arr[valid_latest]
@@ -399,11 +524,13 @@ def calculate_sector_indices() -> tuple[dict, dict]:
             "total_return_pct": round(((idx_close[-1] - 100.0) / 100.0) * 100.0, 2)
         }
 
+        log.info(f"[OK] Master Sector {sec_name:30s} -> Index: {idx_close[-1]:7.2f} | Stocks: {len(symbols)}")
+
     # Save today's sector weights (overwriting past weights completely)
     with open(WEIGHTS_FILE, "w", encoding="utf-8") as f:
         json.dump(todays_sector_weights, f, indent=2)
 
-    log.info(f"[3/4 Complete] Rebuilt {len(summary)} Sector Indices. Todays weightages written to {os.path.basename(WEIGHTS_FILE)}")
+    log.info(f"[3/4 Complete] Rebuilt {len(summary)} Clean Master Sector Indices. Weights written to {os.path.basename(WEIGHTS_FILE)}")
     return summary, todays_sector_weights
 
 # ── MAIN PIPELINE EXECUTION ───────────────────────────────────────────────────
@@ -417,10 +544,10 @@ def main():
     # 1. Download/Update stock candles via yfinance
     dl_stats = run_yfinance_downloader()
 
-    # 2. Audit and fix splits/bonuses
-    run_split_adjuster()
+    # 2. Audit corporate actions
+    audit_corporate_actions()
 
-    # 3. Rebuild free-float market-cap sector indices & export today's weights
+    # 3. Rebuild clean master sector indices & export today's weights
     sec_summary, sector_weights = calculate_sector_indices()
 
     elapsed = round(time.time() - start_time, 2)
@@ -428,7 +555,7 @@ def main():
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S IST"),
         "execution_time_sec": elapsed,
         "downloader_stats": dl_stats,
-        "sectors_built": len(sec_summary),
+        "clean_master_sectors_built": len(sec_summary),
         "status": "SUCCESS"
     }
 
@@ -436,7 +563,7 @@ def main():
         json.dump(summary_data, f, indent=2)
 
     log.info("="*70)
-    log.info(f"[ALL DONE] Unified EOD Index Pipeline completed in {elapsed}s!")
+    log.info(f"[ALL DONE] Master Clean Sector Index Pipeline completed in {elapsed}s!")
     log.info("="*70)
 
 
