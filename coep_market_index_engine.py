@@ -31,10 +31,13 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 STOCKS_DIR = os.path.join(BASE_DIR, "OHLCV", "Stocks", "Daily")
 INDICES_DIR = os.path.join(BASE_DIR, "OHLCV", "Indices", "Daily")
-BASE_MCAP_FILE = os.path.join(BASE_DIR, "base_market_caps.json")
-WEIGHTS_FILE = os.path.join(BASE_DIR, "todays_sector_weights.json")
-MANIFEST_FILE = os.path.join(BASE_DIR, "fixes_applied.json")
-SUMMARY_FILE = os.path.join(BASE_DIR, "update_summary.json")
+JSON_DIR = os.path.join(BASE_DIR, "json")
+os.makedirs(JSON_DIR, exist_ok=True)
+
+BASE_MCAP_FILE = os.path.join(JSON_DIR, "base_market_caps.json")
+WEIGHTS_FILE = os.path.join(JSON_DIR, "todays_sector_weights.json")
+MANIFEST_FILE = os.path.join(JSON_DIR, "fixes_applied.json")
+SUMMARY_FILE = os.path.join(JSON_DIR, "update_summary.json")
 
 os.makedirs(STOCKS_DIR, exist_ok=True)
 os.makedirs(INDICES_DIR, exist_ok=True)
