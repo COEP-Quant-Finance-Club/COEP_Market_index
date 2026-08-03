@@ -8,6 +8,15 @@
       <stop offset="50%" style="stop-color:#0d1b3e"/>
       <stop offset="100%" style="stop-color:#0a0a1a"/>
     </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0"/>
+      <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#7b2ff7;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
     <filter id="glow2">
       <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
       <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
@@ -68,24 +77,40 @@
 
 > All indices base-100 from **Jan 2015**. Rebuilt daily via YFinance.
 
-```
-╔══════════════════════════════════╦══════════╦═══════════════╦══════════╗
-║  SECTOR                          ║  INDEX   ║  TOTAL RETURN ║  STOCKS  ║
-╠══════════════════════════════════╬══════════╬═══════════════╬══════════╣
-║  🏆 Electronics & EMS            ║  4,345.5 ║   +4,245.5%   ║    17    ║
-║  🏦 Financial Infrastructure     ║  2,500.1 ║   +2,400.1%   ║    11    ║
-║  ⚡ Power & Utilities            ║  2,275.7 ║   +2,175.7%   ║    35    ║
-║  🛡️ Defence                      ║  1,975.5 ║   +1,875.5%   ║     8    ║
-║  🧪 Chemicals                    ║  1,736.1 ║   +1,636.1%   ║   106    ║
-║  💎 Jewellery                    ║  1,712.6 ║   +1,612.6%   ║    18    ║
-║  💰 Financial Services           ║  1,617.8 ║   +1,517.8%   ║   128    ║
-║  🛍️ Retail                       ║  1,533.6 ║   +1,433.6%   ║    16    ║
-║  ⛏️ Metals & Mining              ║  1,123.1 ║   +1,023.1%   ║    86    ║
-║  🚗 Automobiles                  ║    876.3 ║     +776.3%   ║   114    ║
-║  💻 Information Technology       ║    762.4 ║     +662.4%   ║    92    ║
-║  🏗️ Infrastructure               ║    694.2 ║     +594.2%   ║    24    ║
-╚══════════════════════════════════╩══════════╩═══════════════╩══════════╝
-```
+| Rank | Sector | Index Level | Total Return | Constituents |
+|:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 4,345.5 | +4,245.5% | 17 |
+| 🥈 2 | Financial Infrastructure | 2,500.1 | +2,400.1% | 11 |
+| 🥉 3 | Power And Utilities | 2,275.7 | +2,175.7% | 35 |
+| 4 | Miscellaneous | 2,103.7 | +2,003.7% | 109 |
+| 5 | Defence | 1,975.5 | +1,875.5% | 8 |
+| 6 | Chemicals | 1,736.1 | +1,636.1% | 106 |
+| 7 | Jewellery | 1,712.6 | +1,612.6% | 18 |
+| 8 | Financial Services | 1,617.8 | +1,517.8% | 128 |
+| 9 | Retail | 1,533.6 | +1,433.6% | 16 |
+| 10 | Metals And Mining | 1,123.1 | +1,023.1% | 86 |
+| 11 | Agriculture | 968.9 | +868.9% | 5 |
+| 12 | Capital Goods | 957.4 | +857.4% | 134 |
+| 13 | Consumer Staples | 867.0 | +767.0% | 60 |
+| 14 | Automobiles | 840.2 | +740.2% | 114 |
+| 15 | Digital Platforms | 778.7 | +678.7% | 14 |
+| 16 | Diversified | 777.3 | +677.3% | 10 |
+| 17 | Real Estate | 729.9 | +629.9% | 33 |
+| 18 | Healthcare Services | 729.7 | +629.7% | 104 |
+| 19 | Information Technology | 658.1 | +558.1% | 92 |
+| 20 | Oil Gas Utilities | 653.5 | +553.5% | 26 |
+| 21 | Airlines | 651.0 | +551.0% | 2 |
+| 22 | Building Materials | 628.4 | +528.4% | 138 |
+| 23 | Telecommunications | 600.9 | +500.9% | 16 |
+| 24 | Textiles Apparel | 544.9 | +444.9% | 9 |
+| 25 | Renewable Energy | 542.8 | +442.8% | 15 |
+| 26 | Logistics | 539.7 | +439.7% | 25 |
+| 27 | Infrastructure | 533.4 | +433.4% | 24 |
+| 28 | Hospitality | 492.9 | +392.9% | 25 |
+| 29 | Consumer Durables | 397.3 | +297.3% | 14 |
+| 30 | Banking | 329.5 | +229.5% | 41 |
+| 31 | Telecom Infra | 298.8 | +198.8% | 4 |
+| 32 | Media And Entertainment | 177.6 | +77.6% | 6 |
 
 ---
 
@@ -133,8 +158,6 @@ flowchart TD
 ---
 
 ## 🎯 Hedge Fund Scoring System
-
-A fully **deterministic, peer-relative** scoring engine — no black box. Every score is explainable.
 
 ### Weight Profiles by Sector Type
 
@@ -209,10 +232,9 @@ Index Level:      Iₜ   = Iₜ₋₁ × (1 + Rₛ,ₜ)     [I₀ = 100, Jan 201
 
 | Source | What | When |
 |:---|:---|:---:|
-| **YFinance** | OHLCV candles, official splits & dividends | Daily |
-| **Screener.in** | P&L · Balance Sheet · Cash Flow · Key Ratios · Shareholding | Quarterly |
-| **Screener Filings** | Bonus · Rights · Splits · Buyback · Dividend actions | On-demand |
-| **OpenAI GPT-4o** | Qualitative score review and narrative rationale | On-demand |
+| **YFinance** | OHLCV daily data, corporate actions | Daily |
+| **Screener.in** | Fundamental financials, key ratios | Quarterly |
+| **OpenAI GPT-4o** | Qualitative review and logic auditing | On-demand |
 
 ---
 
