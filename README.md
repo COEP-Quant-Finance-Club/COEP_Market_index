@@ -1,70 +1,50 @@
 <div align="center">
 
 <!-- ANIMATED SVG BANNER -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 200" width="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 150" width="100%">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0a0a1a"/>
       <stop offset="50%" style="stop-color:#0d1b3e"/>
       <stop offset="100%" style="stop-color:#0a0a1a"/>
     </linearGradient>
-    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0"/>
-      <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#7b2ff7;stop-opacity:0"/>
-    </linearGradient>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
     <filter id="glow2">
       <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
       <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <rect width="900" height="200" fill="url(#bg)" rx="12"/>
-  <rect width="900" height="200" fill="none" rx="12" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.3"/>
-  <line x1="0" y1="50" x2="900" y2="50" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
-  <line x1="0" y1="100" x2="900" y2="100" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
-  <line x1="0" y1="150" x2="900" y2="150" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+  <rect width="900" height="150" fill="url(#bg)" rx="12"/>
+  <rect width="900" height="150" fill="none" rx="12" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.3"/>
+  <line x1="0" y1="40" x2="900" y2="40" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="80" x2="900" y2="80" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+  <line x1="0" y1="120" x2="900" y2="120" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
   <!-- Candlesticks -->
-  <rect x="590" y="95" width="12" height="35" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="596" y1="85" x2="596" y2="135" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
-  <rect x="615" y="80" width="12" height="40" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="621" y1="70" x2="621" y2="125" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
-  <rect x="640" y="90" width="12" height="30" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="646" y1="78" x2="646" y2="125" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
-  <rect x="665" y="65" width="12" height="50" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="671" y1="52" x2="671" y2="120" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
-  <rect x="690" y="55" width="12" height="55" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="696" y1="42" x2="696" y2="115" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
-  <rect x="715" y="68" width="12" height="40" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="721" y1="55" x2="721" y2="115" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
-  <rect x="740" y="48" width="12" height="60" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="746" y1="35" x2="746" y2="115" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
-  <rect x="765" y="38" width="12" height="65" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="771" y1="25" x2="771" y2="110" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
-  <rect x="790" y="50" width="12" height="50" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="796" y1="38" x2="796" y2="108" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
-  <rect x="815" y="32" width="12" height="70" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
-  <line x1="821" y1="20" x2="821" y2="108" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="590" y="75" width="12" height="35" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="596" y1="65" x2="596" y2="115" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
+  <rect x="615" y="60" width="12" height="40" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="621" y1="50" x2="621" y2="105" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="640" y="70" width="12" height="30" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="646" y1="58" x2="646" y2="105" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
+  <rect x="665" y="45" width="12" height="50" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="671" y1="32" x2="671" y2="100" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="690" y="35" width="12" height="55" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="696" y1="22" x2="696" y2="95" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="715" y="48" width="12" height="40" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="721" y1="35" x2="721" y2="95" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
+  <rect x="740" y="28" width="12" height="60" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="746" y1="15" x2="746" y2="95" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="765" y="18" width="12" height="65" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="771" y1="5" x2="771" y2="90" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
+  <rect x="790" y="30" width="12" height="50" fill="#ff4466" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="796" y1="18" x2="796" y2="88" stroke="#ff4466" stroke-width="1.5" opacity="0.7"/>
+  <rect x="815" y="12" width="12" height="70" fill="#00ff88" rx="1" opacity="0.9" filter="url(#glow)"/>
+  <line x1="821" y1="2" x2="821" y2="88" stroke="#00ff88" stroke-width="1.5" opacity="0.7"/>
   <!-- Moving average -->
-  <polyline points="590,110 615,100 640,100 665,85 690,75 715,82 740,68 765,60 790,68 821,55"
+  <polyline points="590,90 615,80 640,80 665,65 690,55 715,62 740,48 765,40 790,48 821,35"
     fill="none" stroke="#ffd700" stroke-width="2" stroke-opacity="0.8" filter="url(#glow)" stroke-dasharray="4,2"/>
-  <line x1="80" y1="160" x2="820" y2="160" stroke="url(#lineGrad)" stroke-width="1" opacity="0.6"/>
-  <text x="50" y="58" font-family="monospace" font-size="11" fill="#00d4ff" opacity="0.7" letter-spacing="4">COEP QUANT FINANCE CLUB</text>
-  <text x="48" y="100" font-family="monospace" font-weight="bold" font-size="32" fill="#ffffff" filter="url(#glow2)" letter-spacing="2">MARKET INDEX ENGINE</text>
-  <text x="50" y="128" font-family="monospace" font-size="13" fill="#7b8ab8" letter-spacing="1">Institutional-Grade Sector Intelligence · 1,447 Stocks · 32 Sectors</text>
-  <text x="50" y="180" font-family="monospace" font-size="10" fill="#00ff88" opacity="0.9">▲ ELECTRONICS +4245%</text>
-  <text x="220" y="180" font-family="monospace" font-size="10" fill="#00ff88" opacity="0.9">▲ DEFENCE +1875%</text>
-  <text x="370" y="180" font-family="monospace" font-size="10" fill="#00ff88" opacity="0.9">▲ CHEMICALS +1636%</text>
-  <text x="530" y="180" font-family="monospace" font-size="10" fill="#ffd700" opacity="0.9">◆ TOP SCORE 93.0 · DIXON</text>
-  <text x="720" y="180" font-family="monospace" font-size="10" fill="#00d4ff" opacity="0.7">BASE = 100 · 2015</text>
-  <circle cx="855" cy="35" r="5" fill="#00ff88" filter="url(#glow2)">
-    <animate attributeName="r" values="4;7;4" dur="2s" repeatCount="indefinite"/>
-    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <text x="865" y="39" font-family="monospace" font-size="9" fill="#00ff88">LIVE</text>
+  <text x="50" y="48" font-family="monospace" font-size="11" fill="#00d4ff" opacity="0.7" letter-spacing="4">COEP QUANT FINANCE CLUB</text>
+  <text x="48" y="90" font-family="monospace" font-weight="bold" font-size="32" fill="#ffffff" filter="url(#glow2)" letter-spacing="2">MARKET INDEX ENGINE</text>
+  <text x="50" y="118" font-family="monospace" font-size="13" fill="#7b8ab8" letter-spacing="1">Institutional-Grade Sector Intelligence · 1,447 Stocks · 32 Sectors</text>
 </svg>
 
 <br/>
@@ -156,16 +136,6 @@ flowchart TD
 
 A fully **deterministic, peer-relative** scoring engine — no black box. Every score is explainable.
 
-### Scoring Formula
-
-$$\text{Peer}_{i,\text{pillar}} = 50 + \left(\text{rank\_pct}_i - 0.5\right) \times 100 \times \min\!\left(1,\ \frac{N}{15}\right)$$
-
-$$\text{RawScore}_i = \sum_k w_k \cdot \text{Peer}_{i,k}$$
-
-$$\text{HFScore}_i = \text{clip}\!\left(50 + \left(50 + (\text{RawScore}_i - 50)\cdot\sqrt{\text{Confidence}_i} - 50\right) \times 1.75,\ 0,\ 100\right)$$
-
-$$\text{where}\ \ \text{Confidence}_i = \sqrt{\dfrac{\text{Available Features}_i}{N_\text{features}} \times \min\!\left(1,\ \dfrac{\text{History Years}_i}{5}\right)}$$
-
 ### Weight Profiles by Sector Type
 
 | Pillar | 🏭 Standard | 🏦 Financial | ⚙️ Asset-Heavy |
@@ -215,28 +185,6 @@ Double working capital drain               30     applied      applied
 
 ---
 
-## 🤖 ML Validation Layer
-
-A stacking ensemble validates scores against quantitative expert anchors:
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      ML SCORING PIPELINE                         │
-├──────────────────────┬────────────────────┬─────────────────────┤
-│   FEATURE EXTRACTOR  │   BASE LEARNERS    │    META LEARNER     │
-│                      │                    │                     │
-│  50 per-stock ratios │  GBM               │                     │
-│  • EPS, CAGR         │  GradientBoosting  │  Ridge Regression   │
-│  • Growth metrics    │  Regressor         │  stacked ensemble   │
-│  • Dynamic column    │                    │                     │
-│    scanner for all   │  DNN: 6-Layer      │  Expert Validation  │
-│    Screener CSVs     │  Residual Network  │  27 anchor stocks   │
-│                      │  Huber loss        │  MAE ≈ 9.2          │
-└──────────────────────┴────────────────────┴─────────────────────┘
-```
-
----
-
 ## 🔬 Index Methodology
 
 **Zero-forward-bias free-float market-cap weighted** sector indices:
@@ -254,96 +202,6 @@ Index Level:      Iₜ   = Iₜ₋₁ × (1 + Rₛ,ₜ)     [I₀ = 100, Jan 201
 ```
 
 > Share counts are **fixed at base date** — index moves purely from price changes, not dilution events.
-
----
-
-## 📁 Project Structure
-
-```
-Portfolio Management/
-│
-├── 🚀 coep_market_index_engine.py    Master pipeline (single entry point)
-├── 🌐 screener_scraper.py            Screener.in fundamentals harvester
-├── 🗂️  sector_organizer.py           Master sector classification (32 sectors)
-├── 📈 unified_ohlcv_downloader.py    Historical OHLCV bootstrapper
-│
-├── 🖥️  dashboard.html                Interactive sector terminal (LightweightCharts)
-│
-├── json/                             Persistent manifests (git-tracked)
-│   ├── base_market_caps.json         Fixed share counts for index calculation
-│   ├── todays_sector_weights.json    Daily market-cap weights per sector
-│   ├── fixes_applied.json            Split/bonus adjustment audit log
-│   ├── screener_corporate_actions.json
-│   └── update_summary.json
-│
-├── OHLCV/
-│   ├── Stocks/Daily/                 1,447 × daily OHLCV CSVs
-│   └── Indices/Daily/                32 × sector index CSVs (base=100)
-│
-└── Industries/
-    ├── *_enhanced.csv                32 sector fundamental datasets
-    └── hedge_fund_scoring/
-        ├── score_industries.py       Scoring engine (deterministic + LLM)
-        ├── ml_scorer_v2.py           ML validation pipeline
-        ├── scoring_config.json       Sector profiles & weights
-        └── scored_csv/
-            ├── global_ranking.csv    1,447 stocks, globally ranked
-            ├── top_bottom_20.csv     Best & worst 20 stocks
-            └── *_scored.csv          Per-sector scored outputs
-```
-
----
-
-## ⚡ Quick Start
-
-### 1. Clone & Install
-
-```bash
-git clone https://github.com/COEP-Quant-Finance-Club/COEP_Market_index.git
-cd COEP_Market_index
-pip install yfinance pandas numpy scikit-learn torch openai requests beautifulsoup4
-```
-
-### 2. Daily Update (Full Pipeline)
-
-```bash
-python coep_market_index_engine.py
-# Downloads OHLCV, audits corporate actions, rebuilds 32 sector indices
-```
-
-### 3. Score All Sectors — No LLM
-
-```bash
-python Industries/hedge_fund_scoring/score_industries.py \
-  --input-dir Industries \
-  --output-dir Industries/hedge_fund_scoring/scored_csv \
-  --no-llm
-```
-
-### 4. Score with LLM Review
-
-```bash
-# Add OPENAI_API_KEY to Industries/hedge_fund_scoring/.env
-python Industries/hedge_fund_scoring/score_industries.py \
-  --input-dir Industries \
-  --output-dir Industries/hedge_fund_scoring/scored_csv \
-  --llm --max-llm-stocks 50
-```
-
-### 5. Run ML Validation
-
-```bash
-python Industries/hedge_fund_scoring/ml_scorer_v2.py
-# → ml_scores_v2.csv · expert_validation_v2.csv · model_comparison_v2.csv
-```
-
-### 6. Open Dashboard
-
-```bash
-# No server needed — just open in browser
-start dashboard.html    # Windows
-open dashboard.html     # macOS
-```
 
 ---
 
@@ -367,27 +225,6 @@ open dashboard.html     # macOS
 | 🏦 **Financial** | Banking · Financial Services · Financial Infrastructure |
 | ⚙️ **Asset-Heavy** | Infrastructure · Power & Utilities · Real Estate · Telecom · Oil & Gas · Capital Goods · Renewable Energy · Metals & Mining · Building Materials · Airlines · Hospitality · Logistics · Healthcare Services |
 | 🏭 **Standard** | Automobiles · Chemicals · IT · Consumer Staples · Consumer Durables · Defence · Electronics EMS · Retail · Textiles · Jewellery · Digital Platforms · Media & Entertainment · Agriculture · Diversified · Miscellaneous |
-
----
-
-## 🤝 Contributing
-
-```bash
-# 1. Fork and create a feature branch
-git checkout -b feature/add-new-stocks
-
-# 2. Add stocks to Data.csv (Symbol, Stock Name, industry, market_cap)
-# 3. Download OHLCV history
-python unified_ohlcv_downloader.py
-
-# 4. Scrape Screener fundamentals
-python screener_scraper.py
-
-# 5. Re-score with fixes
-python Industries/hedge_fund_scoring/score_industries.py --no-llm
-
-# 6. Open a PR with updated scored_csv/ outputs
-```
 
 ---
 
