@@ -114,16 +114,16 @@ def clean_stock_df(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-BASE_DIR          = r"C:\Users\Yash\Desktop\Quant Club\Portfolio Management"
+BASE_DIR          = os.path.dirname(os.path.abspath(__file__))
 DATA_CSV          = os.path.join(BASE_DIR, "Data.csv")
 INDUSTRIES_DIR    = os.path.join(BASE_DIR, "Industries")
-OHLCV_BASE        = os.path.join(BASE_DIR, "OHLCV", "OHLCV")
+OHLCV_BASE        = os.path.join(BASE_DIR, "OHLCV")
 STOCKS_DAILY_DIR  = os.path.join(OHLCV_BASE, "Stocks", "Daily")
 STOCKS_4H_DIR     = os.path.join(OHLCV_BASE, "Stocks", "4Hour")
 
 # Output Index Directories
-OHLCV_SECTOR_DAILY = os.path.join(OHLCV_BASE, "Sector_Indices", "Daily")
-OHLCV_SECTOR_4H    = os.path.join(OHLCV_BASE, "Sector_Indices", "4Hour")
+OHLCV_SECTOR_DAILY = os.path.join(OHLCV_BASE, "Indices", "Daily")
+OHLCV_SECTOR_4H    = os.path.join(OHLCV_BASE, "Indices", "4Hour")
 IND_SECTOR_DAILY   = os.path.join(INDUSTRIES_DIR, "Sector_Indices", "Daily")
 IND_SECTOR_4H      = os.path.join(INDUSTRIES_DIR, "Sector_Indices", "4Hour")
 

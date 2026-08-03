@@ -1,15 +1,29 @@
-# Python bytecode
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Temporary log & cache files
+# Ignore non-essential project folders and large artifacts
+Data.csv
+Data_Enhanced.csv
+Industries/
+dashboard_data.js
+quant_club_sector_terminal.html
+dashboard.css
+dashboard.html
+dashboard.js
+lightweight-charts.min.js
+generate_terminal.py
+launch_dashboard.py
+screener_scraper.py
+sector_organizer.py
+unified_ohlcv_downloader.py
+corporate_action_adjustments.csv
+test_out.csv
 *.log
-scrip_master_cache.json
-unified_progress.json
-screener_progress.json
-scored_csv_test/
-
-# OS files
+*.zip
+*.pth
+*.pt
+__pycache__/
 .DS_Store
 Thumbs.db
+
+# Keep persistent manifests
+!fixes_applied.json
+!update_summary.json
+!official_splits_cache.json

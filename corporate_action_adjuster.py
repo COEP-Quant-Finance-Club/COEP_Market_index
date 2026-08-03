@@ -24,9 +24,9 @@ import pandas as pd
 import numpy as np
 from concurrent.futures import ThreadPoolExecutor
 
-BASE_DIR        = r"C:\Users\Yash\Desktop\Quant Club\Portfolio Management"
-STOCKS_DAILY    = os.path.join(BASE_DIR, "OHLCV", "OHLCV", "Stocks", "Daily")
-STOCKS_4H       = os.path.join(BASE_DIR, "OHLCV", "OHLCV", "Stocks", "4Hour")
+BASE_DIR        = os.path.dirname(os.path.abspath(__file__))
+STOCKS_DAILY    = os.path.join(BASE_DIR, "OHLCV", "Stocks", "Daily")
+STOCKS_4H       = os.path.join(BASE_DIR, "OHLCV", "Stocks", "4Hour")
 REPORT_CSV      = os.path.join(BASE_DIR, "corporate_action_adjustments.csv")
 FIX_MANIFEST    = os.path.join(BASE_DIR, "fixes_applied.json")   # <-- Idempotency store
 
