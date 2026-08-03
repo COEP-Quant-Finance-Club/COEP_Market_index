@@ -300,8 +300,11 @@ def audit_corporate_actions() -> dict:
     corp_actions = {}
     csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
 
-    # Audit corporate actions for a sample of major stocks to build manifest
-    sample_files = csv_files[:100]
+    # Audit corporate actions for ALL stocks (cap at 500 for performance;
+    # increases each run via shuffle so full universe is covered over time)
+    import random
+    random.shuffle(csv_files)
+    sample_files = csv_files[:500]
 
     def fetch_actions(fpath):
         sym = os.path.basename(fpath).replace("_daily.csv", "").replace(".csv", "").strip().upper()
