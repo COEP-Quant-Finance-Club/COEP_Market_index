@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-08-05 16:54:52 IST",
-  "execution_time_sec": 206.91,
+  "timestamp": "2026-08-05 17:54:38 IST",
+  "execution_time_sec": 39.76,
   "downloader_stats": {
     "total": 1447,
-    "updated": 1446,
-    "up_to_date": 0,
-    "failed": 1
+    "updated": 0,
+    "up_to_date": 1445,
+    "failed": 2
   },
   "clean_master_sectors_built": 0,
   "status": "SUCCESS"

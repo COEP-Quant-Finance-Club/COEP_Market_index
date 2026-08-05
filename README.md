@@ -79,6 +79,8 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+
+---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,133.3 | +2,033.3% | 17 |
 | 🥈 2 | Retail | 1,185.4 | +1,085.4% | 16 |
 | 🥉 3 | Jewellery | 1,052.2 | +952.2% | 18 |
