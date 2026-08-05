@@ -42,8 +42,8 @@ jobs:
             git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
             # Pull with rebase. If a conflict occurs, resolve it using the runner's EOD calculated files.
             git pull --rebase origin main || {
-              git checkout --theirs json/ OHLCV/ README.md
-              git add json/ OHLCV/ README.md
+              git diff --name-only --diff-filter=U | xargs -r git checkout --theirs
+              git diff --name-only --diff-filter=U | xargs -r git add
               git -c core.editor=true rebase --continue
             }
             git push origin main || git push origin HEAD:main
