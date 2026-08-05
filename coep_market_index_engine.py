@@ -400,10 +400,12 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                     df_s = normalize_cols(df_s)
                     if not df_s.empty and len(df_s) >= 1:
                         df_s.sort_index(inplace=True)
-                        base_price = float(df_s["Close"].iloc[0])
-                        if base_price > 0:
-                            # Split-Adjusted Shares Q_i = (Base Market Cap_0 in Cr * 10^7) / Base Price_0(split-adjusted)
-                            shares = (mcap_cr * 1e7) / base_price
+                        latest_price = float(df_s["Close"].iloc[-1])
+                        if latest_price > 0:
+                            # Outstanding Shares Q_i = (Current Market Cap in Cr * 10^7) / Current Price
+                            # Since YFinance historical prices are split-adjusted, Q_i is the split-adjusted share count
+                            # that remains constant throughout history.
+                            shares = (mcap_cr * 1e7) / latest_price
                             stock_dfs[sym] = {"df": df_s, "shares": shares}
                 except Exception:
                     pass
