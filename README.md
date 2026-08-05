@@ -82,6 +82,40 @@
 
 ---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,133.3 | +2,033.3% | 17 |
+| 🥈 2 | Defence | 1,619.2 | +1,519.2% | 8 |
+| 🥉 3 | Retail | 1,199.8 | +1,099.8% | 16 |
+| 4 | Jewellery | 1,052.2 | +952.2% | 18 |
+| 5 | Financial Infrastructure | 806.0 | +706.0% | 11 |
+| 6 | Miscellaneous | 734.8 | +634.8% | 109 |
+| 7 | Power And Utilities | 724.9 | +624.9% | 35 |
+| 8 | Metals And Mining | 700.3 | +600.3% | 86 |
+| 9 | Chemicals | 670.8 | +570.8% | 106 |
+| 10 | Airlines | 651.1 | +551.1% | 2 |
+| 11 | Diversified | 583.1 | +483.1% | 10 |
+| 12 | Real Estate | 530.0 | +430.0% | 33 |
+| 13 | Capital Goods | 515.9 | +415.9% | 134 |
+| 14 | Financial Services | 497.0 | +397.0% | 128 |
+| 15 | Oil Gas Utilities | 484.6 | +384.6% | 26 |
+| 16 | Renewable Energy | 441.5 | +341.5% | 15 |
+| 17 | Automobiles | 423.4 | +323.4% | 114 |
+| 18 | Textiles Apparel | 397.3 | +297.3% | 9 |
+| 19 | Logistics | 396.5 | +296.5% | 25 |
+| 20 | Building Materials | 389.6 | +289.6% | 138 |
+| 21 | Healthcare Services | 387.1 | +287.1% | 105 |
+| 22 | Consumer Staples | 376.6 | +276.6% | 61 |
+| 23 | Hospitality | 376.1 | +276.1% | 25 |
+| 24 | Information Technology | 331.0 | +231.0% | 92 |
+| 25 | Digital Platforms | 306.5 | +206.5% | 14 |
+| 26 | Consumer Durables | 302.2 | +202.2% | 14 |
+| 27 | Agriculture | 278.0 | +178.0% | 5 |
+| 28 | Infrastructure | 203.2 | +103.2% | 24 |
+| 29 | Banking | 185.5 | +85.5% | 41 |
+| 30 | Telecom Infra | 180.4 | +80.4% | 4 |
+| 31 | Media And Entertainment | 120.5 | +20.5% | 6 |
+| 32 | Telecommunications | 112.2 | +12.2% | 16 |
+
+---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,133.3 | +2,033.3% | 17 |
 | 🥈 2 | Retail | 1,185.4 | +1,085.4% | 16 |
 | 🥉 3 | Jewellery | 1,052.2 | +952.2% | 18 |
 | 4 | Financial Infrastructure | 806.0 | +706.0% | 11 |
