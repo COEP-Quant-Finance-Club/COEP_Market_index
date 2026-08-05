@@ -593,6 +593,49 @@ def update_readme_leaderboard(summary: dict) -> None:
         log.error(f"Failed to update README.md leaderboard: {e}")
 
 
+def fix_empirical_splits() -> int:
+    log.info("[2.5] Scanning & fixing empirical split/bonus gaps in stock files...")
+    csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
+    total_fixed = 0
+    split_ratios = [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 10.0, 20.0]
+
+    for f in csv_files:
+        sym = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").strip().upper()
+        try:
+            df = pd.read_csv(f, index_col=0, parse_dates=True)
+            if len(df) < 5:
+                continue
+
+            # Calculate returns to check for large price drops
+            df["ret"] = df["Close"].pct_change()
+            split_bars = df[df["ret"] < -0.30]
+
+            if not split_bars.empty:
+                modified = False
+                for dt, row in split_bars.iterrows():
+                    loc = df.index.get_loc(dt)
+                    prev_idx = loc - 1 if isinstance(loc, int) else loc.start - 1
+                    if prev_idx >= 0:
+                        prev_close = df["Close"].iloc[prev_idx]
+                        cur_open   = row["Open"]
+                        if prev_close > 0 and cur_open > 0:
+                            ratio = prev_close / cur_open
+                            for target_ratio in split_ratios:
+                                if abs(ratio - target_ratio) / target_ratio < 0.20:
+                                    log.info(f"  [FIXED SPLIT] {sym:15s} on {dt.strftime('%Y-%m-%d')} -> Ratio {target_ratio}x (Price: {prev_close:.2f} -> {cur_open:.2f})")
+                                    mask = df.index < dt
+                                    df.loc[mask, ["Open", "High", "Low", "Close"]] /= target_ratio
+                                    modified = True
+                                    total_fixed += 1
+                                    break
+                if modified:
+                    df.drop(columns=["ret"]).to_csv(f)
+        except Exception:
+            pass
+    log.info(f"[2.5 Complete] Fixed {total_fixed} split/bonus gaps across the stock database.")
+    return total_fixed
+
+
 def main():
     start_time = time.time()
     log.info("="*70)
@@ -604,6 +647,9 @@ def main():
 
     # 2. Audit corporate actions
     audit_corporate_actions()
+
+    # 2.5. Empirically scan and fix split/bonus gaps in historical stock files
+    fixed_splits = fix_empirical_splits()
 
     # 3. Rebuild clean master sector indices & export today's weights
     sec_summary, sector_weights = calculate_sector_indices()
