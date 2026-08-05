@@ -40,6 +40,11 @@ jobs:
           git status
           git diff-index --quiet HEAD || {
             git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git pull --rebase origin main
+            # Pull with rebase. If a conflict occurs, resolve it using the runner's EOD calculated files.
+            git pull --rebase origin main || {
+              git checkout --theirs json/ OHLCV/ README.md
+              git add json/ OHLCV/ README.md
+              git -c core.editor=true rebase --continue
+            }
             git push origin main || git push origin HEAD:main
           }
