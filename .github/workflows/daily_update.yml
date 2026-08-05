@@ -36,7 +36,10 @@ jobs:
         run: |
           git config --global user.name "COEP Quant Club Automation"
           git config --global user.email "quantclub@coep.ac.in"
-          git add OHLCV/ json/
+          git add OHLCV/ json/ README.md
           git status
-          git diff-index --quiet HEAD || git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push origin main || git push origin HEAD:main
+          git diff-index --quiet HEAD || {
+            git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --rebase origin main
+            git push origin main || git push origin HEAD:main
+          }
