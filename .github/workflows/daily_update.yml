@@ -40,11 +40,7 @@ jobs:
           git status
           git diff-index --quiet HEAD || {
             git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
-            # Pull with rebase. If a conflict occurs, resolve it using the runner's EOD calculated files.
-            git pull --rebase origin main || {
-              git diff --name-only --diff-filter=U | xargs -r git checkout --theirs
-              git diff --name-only --diff-filter=U | xargs -r git add
-              git -c core.editor=true rebase --continue
-            }
-            git push origin main || git push origin HEAD:main
+            # Merge remote changes, auto-resolving conflicts in favor of runner's fresh EOD data
+            git pull origin main --no-rebase -X ours --no-edit || true
+            git push origin main
           }
