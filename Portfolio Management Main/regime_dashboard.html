@@ -33,13 +33,13 @@
         <input type="range" id="kRangeSlider" min="1" max="50" value="9" step="1" class="custom-slider">
       </div>
 
-      <!-- 3 REGIME FILTER OPTIONS -->
+      <!-- 3 REGIME FILTER OPTIONS WITH DYNAMIC COUNTS -->
       <div class="header-controls">
         <div class="regime-filter-group" id="regimeFilterButtons">
-          <button class="rf-btn active" data-regime="ALL">ALL (32)</button>
-          <button class="rf-btn bull-rf" data-regime="2">🟢 Bullish (State 2)</button>
-          <button class="rf-btn neutral-rf" data-regime="1">🟡 Neutral (State 1)</button>
-          <button class="rf-btn bear-rf" data-regime="0">🔴 Bearish (State 0)</button>
+          <button class="rf-btn active" id="rfBtnAll" data-regime="ALL">ALL (32)</button>
+          <button class="rf-btn bull-rf" id="rfBtnBull" data-regime="2">🟢 Bullish (0)</button>
+          <button class="rf-btn neutral-rf" id="rfBtnNeutral" data-regime="1">🟡 Neutral (0)</button>
+          <button class="rf-btn bear-rf" id="rfBtnBear" data-regime="0">🔴 Bearish (0)</button>
         </div>
       </div>
     </header>

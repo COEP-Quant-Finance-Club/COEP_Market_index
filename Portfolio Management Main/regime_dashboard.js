@@ -1,7 +1,7 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
  * Dynamic Client-Side Rolling Median Hysteresis Smoothing (k = 1..50)
- * 3 Regime Filter Options (ALL, Bullish State 2, Neutral State 1, Bearish State 0)
+ * Live Dynamic Regime Filter Button Counts & Filter Badges
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,6 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const kRangeSlider = document.getElementById('kRangeSlider');
   const kSliderVal = document.getElementById('kSliderVal');
+
+  const rfBtnAll = document.getElementById('rfBtnAll');
+  const rfBtnBull = document.getElementById('rfBtnBull');
+  const rfBtnNeutral = document.getElementById('rfBtnNeutral');
+  const rfBtnBear = document.getElementById('rfBtnBear');
 
   // Dynamic Fast Rolling Median Filtering (Window k = 1 to 50)
   function computeSmoothedRegimes(sectorName, kWindow) {
@@ -171,11 +176,30 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSectorList(e.target.value.trim().toLowerCase());
   });
 
-  // Render Sidebar Sector List filtered by Search AND Active Regime Filter
+  // Render Sidebar Sector List & Update Dynamic Button Counts
   function renderSectorList(filterText = '') {
     sectorListContainer.innerHTML = '';
     const summaryList = data.sector_summaries || [];
 
+    // Calculate dynamic counts across all 32 sectors for activeK
+    let bullCount = 0;
+    let neutralCount = 0;
+    let bearCount = 0;
+
+    summaryList.forEach(item => {
+      const state = getSectorCurrentState(item.sector, activeK);
+      if (state === 2) bullCount++;
+      else if (state === 1) neutralCount++;
+      else if (state === 0) bearCount++;
+    });
+
+    // Update Button Labels Live
+    rfBtnAll.innerText = `ALL (${summaryList.length})`;
+    rfBtnBull.innerText = `🟢 Bullish (${bullCount})`;
+    rfBtnNeutral.innerText = `🟡 Neutral (${neutralCount})`;
+    rfBtnBear.innerText = `🔴 Bearish (${bearCount})`;
+
+    // Filter list for active regime & search filter
     const filtered = summaryList.filter(item => {
       const nameMatch = item.sector.toLowerCase().includes(filterText);
       if (!nameMatch) return false;
@@ -185,7 +209,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return currentState.toString() === activeRegimeFilter;
     });
 
-    sectorCountBadge.innerText = `${filtered.length} Baskets`;
+    // Update Badge Text
+    if (activeRegimeFilter === 'ALL') {
+      sectorCountBadge.innerText = `${filtered.length} Baskets`;
+    } else if (activeRegimeFilter === '2') {
+      sectorCountBadge.innerText = `${filtered.length} Bullish Baskets`;
+    } else if (activeRegimeFilter === '1') {
+      sectorCountBadge.innerText = `${filtered.length} Neutral Baskets`;
+    } else if (activeRegimeFilter === '0') {
+      sectorCountBadge.innerText = `${filtered.length} Bearish Baskets`;
+    }
 
     if (filtered.length > 0 && !filtered.some(i => i.sector === activeSector)) {
       activeSector = filtered[0].sector;
