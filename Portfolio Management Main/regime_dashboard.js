@@ -1,7 +1,7 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
  * Candle Locking (ENTER to Lock, ESC to Unlock / Click to Lock)
- * 1-Day & 2-Day Stock Return Sync with Closest Date Fallback for Gap & Data Anomaly Inspection
+ * 1-Day & 2-Day Stock Return Sync with Actual Trading Bar Sequence Lookup
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -165,16 +165,28 @@ document.addEventListener('DOMContentLoaded', () => {
     return smoothed.length > 0 ? smoothed[smoothed.length - 1] : 1;
   }
 
-  // Robust Closest Price Lookup Fallback for Stock Price History
-  function getClosestPrice(pDict, targetDate) {
-    if (!pDict || Object.keys(pDict).length === 0 || !targetDate) return undefined;
-    if (pDict[targetDate] !== undefined) return pDict[targetDate];
-
-    const dates = Object.keys(pDict).filter(d => d <= targetDate).sort();
-    if (dates.length > 0) {
-      return pDict[dates[dates.length - 1]];
+  // Robust Stock Trading Bar Sequence Extraction (Prevents Duplicate Date Fallbacks)
+  function getStock3DayPrices(pDict, targetDate) {
+    if (!pDict || Object.keys(pDict).length === 0 || !targetDate) {
+      return { priceT: undefined, priceT1: undefined, priceT2: undefined };
     }
-    return undefined;
+
+    const validDates = Object.keys(pDict).filter(d => d <= targetDate).sort();
+    const n = validDates.length;
+
+    if (n === 0) {
+      return { priceT: undefined, priceT1: undefined, priceT2: undefined };
+    }
+
+    const dateT = validDates[n - 1];
+    const dateT1 = n >= 2 ? validDates[n - 2] : null;
+    const dateT2 = n >= 3 ? validDates[n - 3] : null;
+
+    return {
+      priceT: pDict[dateT],
+      priceT1: dateT1 ? pDict[dateT1] : undefined,
+      priceT2: dateT2 ? pDict[dateT2] : undefined
+    };
   }
 
   // Sensitivity Slider Event Listener (k = 1 to 50)
@@ -400,9 +412,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const processedRows = filteredStocks.map(stk => {
       const pDict = stk.prices || {};
-      const priceT = getClosestPrice(pDict, curDate);
-      const priceT1 = getClosestPrice(pDict, prevDate);
-      const priceT2 = getClosestPrice(pDict, prev2Date);
+      const pricesInfo = getStock3DayPrices(pDict, curDate);
+      
+      const priceT = pricesInfo.priceT;
+      const priceT1 = pricesInfo.priceT1;
+      const priceT2 = pricesInfo.priceT2;
 
       let chg1D = null;
       if (priceT !== undefined && priceT1 !== undefined && priceT1 > 0) {
