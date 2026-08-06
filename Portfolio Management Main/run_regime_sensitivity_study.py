@@ -2,8 +2,7 @@
 Real-Time 3-State Macro Regime & Sector Constituents Data Builder
 ===================================================================
 1. Master Sector Index OHLCV & 3-State Macro Regimes (k = 1..50)
-2. All 32 Sector Constituent Stock Daily Prices for 2-Day Return Calculations
-   Robust Date Formatting: 'YYYY-MM-DD'
+2. All 32 Sector Constituent Stock Daily Prices with Zero-Volume Placeholder Bar Purging
 """
 
 import os
@@ -32,7 +31,7 @@ JS_OUT_FILE   = os.path.join(SCRIPT_DIR, "regime_dashboard_data.js")
 
 def run_study():
     print("="*80)
-    print("BUILDING 32-SECTOR OHLCV, MICRO REGIME & CONSTITUENT STOCK DATASET")
+    print("BUILDING 32-SECTOR OHLCV, MICRO REGIME & CLEANED CONSTITUENT STOCK DATASET")
     print("="*80)
 
     # Index Stock CSV files
@@ -120,10 +119,20 @@ def run_study():
                                 stk_df = pd.read_csv(stk_file)
                                 s_date_cols = [c for c in stk_df.columns if 'date' in c.lower() or 'time' in c.lower()]
                                 s_close_cols = [c for c in stk_df.columns if 'close' in c.lower()]
+                                s_vol_cols = [c for c in stk_df.columns if 'vol' in c.lower()]
                                 
                                 if s_date_cols and s_close_cols:
                                     sdcol = s_date_cols[0]
                                     sccol = s_close_cols[0]
+                                    
+                                    # Purge zero-volume flat placeholder bars
+                                    if s_vol_cols:
+                                        svcol = s_vol_cols[0]
+                                        s_open_cols = [c for c in stk_df.columns if 'open' in c.lower()]
+                                        if s_open_cols:
+                                            socol = s_open_cols[0]
+                                            stk_df = stk_df[~((stk_df[svcol] == 0) & (stk_df[socol] == stk_df[sccol]))].copy()
+
                                     stk_df[sdcol] = pd.to_datetime(stk_df[sdcol]).dt.strftime('%Y-%m-%d')
                                     sub_stk = stk_df.tail(1250)
                                     p_dict = dict(zip(sub_stk[sdcol], sub_stk[sccol].round(2)))
