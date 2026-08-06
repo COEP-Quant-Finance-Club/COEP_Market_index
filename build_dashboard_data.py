@@ -20,8 +20,10 @@ def main():
         try:
             with open(WEIGHTS_FILE, "r", encoding="utf-8") as f:
                 weights = json.load(f)
-                for sec, stk_map in weights.items():
-                    stock_counts[sec] = len(stk_map)
+                for sec, sec_obj in weights.items():
+                    if isinstance(sec_obj, dict):
+                        cnt = sec_obj.get("constituents_count", len(sec_obj.get("weights_percentage", {})))
+                        stock_counts[sec] = cnt
         except Exception as e:
             print(f"Warning loading weights file: {e}")
 
