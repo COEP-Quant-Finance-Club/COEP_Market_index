@@ -3,6 +3,7 @@ Real-Time 3-State Macro Regime & Sector Constituents Data Builder
 ===================================================================
 1. Master Sector Index OHLCV & 3-State Macro Regimes (k = 1..50)
 2. All 32 Sector Constituent Stock Daily Prices for 2-Day Return Calculations
+   Robust Date Formatting: 'YYYY-MM-DD'
 """
 
 import os
@@ -34,42 +35,50 @@ def run_study():
     print("BUILDING 32-SECTOR OHLCV, MICRO REGIME & CONSTITUENT STOCK DATASET")
     print("="*80)
 
-    # 1. Index Stock CSV files
+    # Index Stock CSV files
     stock_files = glob.glob(os.path.join(STOCKS_DIR, "**", "*.csv"), recursive=True)
     stock_file_map = {}
     for f in stock_files:
-        fname = os.path.basename(f).replace(".csv", "").upper()
+        fname = os.path.basename(f).replace(".csv", "").replace("_daily", "").strip().upper()
         stock_file_map[fname] = f
         clean_sym = fname.replace(".NS", "")
         stock_file_map[clean_sym] = f
 
     print(f"Indexed {len(stock_files)} stock files.")
 
-    # 2. Build Sector Indices & Constituents
     csv_files = glob.glob(os.path.join(INDICES_DIR, "*.csv"))
     print(f"Processing {len(csv_files)} master sector index daily CSV files...")
 
     all_sector_details = {}
     sector_summaries = []
-    sector_constituents_map = {}
 
     for fpath in csv_files:
         sec_name = os.path.basename(fpath).replace("_daily.csv", "").replace(".csv", "").strip().upper()
         
         try:
-            df = pd.read_csv(fpath, index_col=0, parse_dates=True)
-            if df.empty or len(df) < 10 or "Close" not in df.columns:
+            df = pd.read_csv(fpath)
+            if df.empty or len(df) < 10:
                 continue
                 
-            df.sort_index(inplace=True)
+            date_cols = [c for c in df.columns if 'date' in c.lower() or 'time' in c.lower()]
+            close_cols = [c for c in df.columns if 'close' in c.lower()]
+            if not date_cols or not close_cols:
+                continue
+                
+            dcol = date_cols[0]
+            ccol = close_cols[0]
+            
+            df[dcol] = pd.to_datetime(df[dcol])
+            df.sort_values(by=dcol, inplace=True)
+            df.set_index(dcol, inplace=True)
             
             for c in ["Open", "High", "Low", "Close"]:
                 if c not in df.columns:
-                    df[c] = df["Close"]
+                    df[c] = df[ccol]
             if "Volume" not in df.columns:
                 df["Volume"] = 0
 
-            res_df = compute_3state_macro(df, close_col="Close", smoothing_window=1)
+            res_df = compute_3state_macro(df, close_col=ccol, smoothing_window=1)
             
             bars = []
             sub_df = res_df.tail(1250)
@@ -80,7 +89,7 @@ def run_study():
                     "o": round(float(row["Open"]), 2),
                     "h": round(float(row["High"]), 2),
                     "l": round(float(row["Low"]), 2),
-                    "c": round(float(row["Close"]), 2),
+                    "c": round(float(row[ccol]), 2),
                     "v": int(row["Volume"]),
                     "m": int(row["state"])
                 })
@@ -104,16 +113,20 @@ def run_study():
                         clean_sym = raw_sym.replace(".NS", "")
                         name = str(row[name_col]).strip()
                         
-                        stk_file = stock_file_map.get(raw_sym) or stock_file_map.get(clean_sym) or stock_file_map.get(clean_sym + ".NS")
+                        stk_file = stock_file_map.get(raw_sym) or stock_file_map.get(clean_sym) or stock_file_map.get(clean_sym + "_DAILY")
                         p_dict = {}
                         if stk_file:
                             try:
-                                stk_df = pd.read_csv(stk_file, index_col=0, parse_dates=True)
-                                stk_df.sort_index(inplace=True)
-                                if not stk_df.empty and "Close" in stk_df.columns:
-                                    # Tail 1250 dates to sync with index bars
+                                stk_df = pd.read_csv(stk_file)
+                                s_date_cols = [c for c in stk_df.columns if 'date' in c.lower() or 'time' in c.lower()]
+                                s_close_cols = [c for c in stk_df.columns if 'close' in c.lower()]
+                                
+                                if s_date_cols and s_close_cols:
+                                    sdcol = s_date_cols[0]
+                                    sccol = s_close_cols[0]
+                                    stk_df[sdcol] = pd.to_datetime(stk_df[sdcol]).dt.strftime('%Y-%m-%d')
                                     sub_stk = stk_df.tail(1250)
-                                    p_dict = {dt.strftime("%Y-%m-%d"): round(float(p), 2) for dt, p in sub_stk["Close"].items()}
+                                    p_dict = dict(zip(sub_stk[sdcol], sub_stk[sccol].round(2)))
                             except Exception:
                                 pass
                                 

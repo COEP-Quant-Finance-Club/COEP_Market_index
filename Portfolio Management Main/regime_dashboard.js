@@ -1,7 +1,7 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
  * Candle Locking (ENTER to Lock, ESC to Unlock / Click to Lock)
- * 1-Day & 2-Day Stock Return Sync for Chart Gap & Data Anomaly Inspection
+ * 1-Day & 2-Day Stock Return Sync with Closest Date Fallback for Gap & Data Anomaly Inspection
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -163,6 +163,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function getSectorCurrentState(sectorName, kWindow) {
     const smoothed = computeSmoothedRegimes(sectorName, kWindow);
     return smoothed.length > 0 ? smoothed[smoothed.length - 1] : 1;
+  }
+
+  // Robust Closest Price Lookup Fallback for Stock Price History
+  function getClosestPrice(pDict, targetDate) {
+    if (!pDict || Object.keys(pDict).length === 0 || !targetDate) return undefined;
+    if (pDict[targetDate] !== undefined) return pDict[targetDate];
+
+    const dates = Object.keys(pDict).filter(d => d <= targetDate).sort();
+    if (dates.length > 0) {
+      return pDict[dates[dates.length - 1]];
+    }
+    return undefined;
   }
 
   // Sensitivity Slider Event Listener (k = 1 to 50)
@@ -388,9 +400,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const processedRows = filteredStocks.map(stk => {
       const pDict = stk.prices || {};
-      const priceT = pDict[curDate];
-      const priceT1 = pDict[prevDate];
-      const priceT2 = pDict[prev2Date];
+      const priceT = getClosestPrice(pDict, curDate);
+      const priceT1 = getClosestPrice(pDict, prevDate);
+      const priceT2 = getClosestPrice(pDict, prev2Date);
 
       let chg1D = null;
       if (priceT !== undefined && priceT1 !== undefined && priceT1 > 0) {
@@ -413,7 +425,6 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     });
 
-    // Sort by 1-day return descending
     processedRows.sort((a, b) => {
       if (a.chg1D === null) return 1;
       if (b.chg1D === null) return -1;
@@ -536,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // CROSSHAIR MOVE HANDLER (Updates dates if NOT locked)
     chart.subscribeCrosshairMove((param) => {
-      if (isCandleLocked) return; // Freeze selection when locked!
+      if (isCandleLocked) return;
 
       if (param.time) {
         const secDetail = data.sector_details[activeSector];
