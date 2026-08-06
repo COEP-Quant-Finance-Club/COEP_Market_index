@@ -110,22 +110,38 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSectorList(e.target.value.trim().toLowerCase());
   });
 
+  // Helper to extract key values regardless of schema
+  function getItemSecName(item) { return item['Sector Name'] || item['sector'] || ''; }
+  function getItemCurrentVal(item) { return item['Current Index Value'] || item['current_val'] || 100.0; }
+  function getItemRetPct(item) { 
+    if (item['Total Sector Return %']) return String(item['Total Sector Return %']);
+    const val = item['total_return_pct'];
+    if (val === undefined || val === null) return "+0.00%";
+    const str = typeof val === 'number' ? `${val >= 0 ? '+' : ''}${val.toFixed(2)}%` : String(val);
+    return str;
+  }
+  function getItemStockCount(item) { return item['Constituents Count'] || item['stock_count'] || 0; }
+
   // Render Sector List
   function renderSectorList(filterText = '') {
     sectorListContainer.innerHTML = '';
     const summaryList = data.summary || [];
     
     const filtered = summaryList.filter(item => {
-      return item['Sector Name'].toLowerCase().includes(filterText);
+      return getItemSecName(item).toLowerCase().includes(filterText);
     });
 
     sectorCountBadge.innerText = `${filtered.length} Baskets`;
 
+    if (filtered.length > 0 && !filtered.some(i => getItemSecName(i) === activeSector)) {
+      activeSector = getItemSecName(filtered[0]);
+    }
+
     filtered.forEach(item => {
-      const secName = item['Sector Name'];
-      const currentVal = item['Current Index Value'];
-      const retPct = item['Total Sector Return %'];
-      const stocksCount = item['Constituents Count'];
+      const secName = getItemSecName(item);
+      const currentVal = getItemCurrentVal(item);
+      const retPct = getItemRetPct(item);
+      const stocksCount = getItemStockCount(item);
       const isPos = !retPct.includes('-');
 
       const itemEl = document.createElement('div');
@@ -150,14 +166,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
       sectorListContainer.appendChild(itemEl);
     });
+
+    if (summaryList.length > 0) {
+      const activeItem = summaryList.find(i => getItemSecName(i) === activeSector) || summaryList[0];
+      updateHeaderMetrics(activeItem);
+    }
   }
 
   function updateHeaderMetrics(item) {
-    activeSectorTitle.innerText = item['Sector Name'];
-    metricCurrentVal.innerText = item['Current Index Value'].toLocaleString('en-IN', { minimumFractionDigits: 2 });
-    metricReturnVal.innerText = item['Total Sector Return %'];
-    metricReturnVal.className = `metric-val ${!item['Total Sector Return %'].includes('-') ? 'positive' : 'negative'}`;
-    metricConstituentsVal.innerText = `${item['Constituents Count']} Stocks`;
+    if (!item) return;
+    const secName = getItemSecName(item);
+    const currentVal = getItemCurrentVal(item);
+    const retPct = getItemRetPct(item);
+    const stocksCount = getItemStockCount(item);
+
+    activeSectorTitle.innerText = secName;
+    metricCurrentVal.innerText = (typeof currentVal === 'number' ? currentVal : parseFloat(currentVal)).toLocaleString('en-IN', { minimumFractionDigits: 2 });
+    metricReturnVal.innerText = retPct;
+    metricReturnVal.className = `metric-val ${!retPct.includes('-') ? 'positive' : 'negative'}`;
+    metricConstituentsVal.innerText = `${stocksCount} Stocks`;
   }
 
   // Init Chart with Full TradingView Scale & Zooming Controls
