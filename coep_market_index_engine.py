@@ -226,7 +226,12 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
     keep = [c for c in OHLCV_COLS if c in df.columns]
     if not keep:
         return pd.DataFrame()
-    return df[keep].dropna(how="all")
+    df = df[keep].dropna(how="all")
+    for pcol in ["Open", "High", "Low", "Close"]:
+        if pcol in df.columns:
+            df[pcol] = pd.to_numeric(df[pcol], errors="coerce")
+            df = df[df[pcol] > 0]
+    return df.dropna(subset=["Close"])
 
 
 def update_single_stock(file_path: str) -> tuple[str, bool, str]:

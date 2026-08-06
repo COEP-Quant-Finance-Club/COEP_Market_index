@@ -179,7 +179,7 @@
   "POWER_AND_UTILITIES": {
     "sector": "POWER_AND_UTILITIES",
     "constituents_count": 35,
-    "latest_index_value": 658.3,
+    "latest_index_value": 658.34,
     "weights_percentage": {
       "ADANIPOWER": 16.925,
       "NTPC": 13.8292,
@@ -221,7 +221,7 @@
   "CONSUMER_DURABLES": {
     "sector": "CONSUMER_DURABLES",
     "constituents_count": 14,
-    "latest_index_value": 308.92,
+    "latest_index_value": 308.7,
     "weights_percentage": {
       "HAVELLS": 50.5297,
       "CROMPTON": 10.5709,
@@ -242,7 +242,7 @@
   "HEALTHCARE_SERVICES": {
     "sector": "HEALTHCARE_SERVICES",
     "constituents_count": 104,
-    "latest_index_value": 382.2,
+    "latest_index_value": 382.24,
     "weights_percentage": {
       "SUNPHARMA": 14.6871,
       "DIVISLAB": 6.0682,
@@ -821,7 +821,7 @@
   "CONSUMER_STAPLES": {
     "sector": "CONSUMER_STAPLES",
     "constituents_count": 60,
-    "latest_index_value": 292.81,
+    "latest_index_value": 292.44,
     "weights_percentage": {
       "ITC": 20.5414,
       "NESTLEIND": 16.0996,
@@ -1138,7 +1138,7 @@
   "FINANCIAL_SERVICES": {
     "sector": "FINANCIAL_SERVICES",
     "constituents_count": 127,
-    "latest_index_value": 499.89,
+    "latest_index_value": 499.81,
     "weights_percentage": {
       "BAJFINANCE": 11.778,
       "LICI": 9.9546,
@@ -1343,7 +1343,7 @@
   "DIVERSIFIED": {
     "sector": "DIVERSIFIED",
     "constituents_count": 10,
-    "latest_index_value": 524.77,
+    "latest_index_value": 524.81,
     "weights_percentage": {
       "3MINDIA": 40.8239,
       "NAVA": 16.0423,
@@ -1360,7 +1360,7 @@
   "OIL_GAS_UTILITIES": {
     "sector": "OIL_GAS_UTILITIES",
     "constituents_count": 26,
-    "latest_index_value": 486.94,
+    "latest_index_value": 486.98,
     "weights_percentage": {
       "RELIANCE": 60.1438,
       "ONGC": 10.8831,
@@ -1622,7 +1622,7 @@
   "ELECTRONICS_EMS": {
     "sector": "ELECTRONICS_EMS",
     "constituents_count": 17,
-    "latest_index_value": 2119.31,
+    "latest_index_value": 2119.08,
     "weights_percentage": {
       "DIXON": 31.3095,
       "HFCL": 11.1534,
