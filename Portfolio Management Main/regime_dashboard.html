@@ -1,102 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quant Club - Institutional 3-State HMM Sector Terminal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="regime_dashboard.css">
-    <script src="lightweight-charts.min.js"></script>
-    <script src="regime_dashboard_data.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quant Club - Institutional Sector Index Terminal & HMM Regimes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="regime_dashboard.css">
+  <!-- Local Lightweight Charts v4 -->
+  <script src="lightweight-charts.min.js"></script>
+  <script src="regime_dashboard_data.js"></script>
 </head>
 <body class="dark-theme">
-    <div class="app-container">
-        <!-- HEADER NAVBAR -->
-        <header class="navbar">
-            <div class="brand">
-                <div class="logo-icon">📊</div>
-                <div class="brand-text">
-                    <h1>QUANT CLUB <span>SECTOR REGIME TERMINAL</span></h1>
-                    <div class="sub-brand">3-STATE OUT-OF-SAMPLE MARKOV REGIME FILTERING</div>
-                </div>
+  <div class="app-container">
+    <!-- Header Navbar -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="logo-icon">📊</div>
+        <div class="brand-text">
+          <h1>QUANT CLUB</h1>
+          <span class="sub-brand">Institutional Sector Index Terminal & HMM Regimes</span>
+        </div>
+      </div>
+
+      <!-- SENSITIVITY SLIDER (IMAGE 2 REPLICA) -->
+      <div class="sensitivity-slider-box">
+        <div class="slider-header">
+          <span class="slider-title">🎛️ 3-State Macro Sensitivity (Smoothing Candles)</span>
+          <span class="slider-val" id="kSliderVal">5</span>
+        </div>
+        <input type="range" id="kRangeSlider" min="1" max="21" value="5" step="1" class="custom-slider">
+      </div>
+
+      <div class="header-controls">
+        <div class="legend-pill bull-pill"><span class="dot"></span> State 0: Bullish</div>
+        <div class="legend-pill neutral-pill"><span class="dot"></span> State 1: Neutral</div>
+        <div class="legend-pill bear-pill"><span class="dot"></span> State 2: Bearish</div>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Sidebar / Sector Leaderboard -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h3>SECTOR BASKETS</h3>
+          <span class="sector-count" id="sector-count-badge">32 Baskets</span>
+        </div>
+        <div class="search-box">
+          <input type="text" id="sector-search" placeholder="Filter sectors (e.g. Defence, EMS, Real Estate)..." />
+        </div>
+        <div class="sector-list" id="sector-list-container">
+          <!-- Rendered dynamically -->
+        </div>
+      </aside>
+
+      <!-- Main Chart Area -->
+      <main class="chart-area">
+        <!-- Sector Header Info Card -->
+        <div class="sector-info-card">
+          <div class="sector-title-group">
+            <h2 id="active-sector-name">ELECTRONICS_EMS</h2>
+            <span class="badge" id="active-timeframe-badge">DAILY OHLCV</span>
+          </div>
+
+          <div class="sector-metrics">
+            <div class="metric-item">
+              <span class="metric-label">Current Value</span>
+              <span class="metric-val" id="metric-current-val">1,936.50</span>
             </div>
-
-            <!-- SENSITIVITY SLIDER (IMAGE 2 REPLICA) -->
-            <div class="sensitivity-slider-box">
-                <div class="slider-header">
-                    <span class="slider-title">🎛️ 3-State Macro Sensitivity (Smoothing Candles)</span>
-                    <span class="slider-val" id="kSliderVal">5</span>
-                </div>
-                <input type="range" id="kRangeSlider" min="1" max="21" value="5" step="1" class="custom-slider">
+            <div class="metric-item">
+              <span class="metric-label">Base Value</span>
+              <span class="metric-val">100.00</span>
             </div>
-
-            <!-- STATE LEGEND BADGES -->
-            <div class="header-controls">
-                <div class="legend-pill bull-pill"><span class="dot"></span> State 0: Bullish</div>
-                <div class="legend-pill neutral-pill"><span class="dot"></span> State 1: Neutral</div>
-                <div class="legend-pill bear-pill"><span class="dot"></span> State 2: Bearish</div>
+            <div class="metric-item">
+              <span class="metric-label">Total Return</span>
+              <span class="metric-val positive" id="metric-return-val">+1836.50%</span>
             </div>
-        </header>
+            <div class="metric-item">
+              <span class="metric-label">Active State</span>
+              <span class="metric-val highlight" id="metric-state-val">State 0: Bullish</span>
+            </div>
+          </div>
 
-        <!-- MAIN TERMINAL CONTENT GRID -->
-        <main class="terminal-body">
-            <!-- LEFT SIDEBAR: SECTOR BASKETS (IMAGE 3 REPLICA) -->
-            <aside class="sidebar">
-                <div class="sidebar-header">
-                    <span class="sb-title">SECTOR BASKETS</span>
-                    <span class="sb-count" id="sbCount">32 Baskets</span>
-                </div>
-                <div class="search-box">
-                    <input type="text" id="sectorSearch" placeholder="Filter sectors (e.g. Defence, EMS, Real Estate)...">
-                </div>
-                <div class="sector-list" id="sectorListContainer">
-                    <!-- Dynamic Sector List Items -->
-                </div>
-            </aside>
+          <div class="chart-toggles">
+            <button class="toggle-btn active" id="btn-toggle-sma20">SMA 20</button>
+            <button class="toggle-btn active" id="btn-toggle-sma50">SMA 50</button>
+            <button class="toggle-btn active" id="btn-toggle-ema200">EMA 200</button>
+          </div>
+        </div>
 
-            <!-- MAIN CHART PANEL (IMAGE 1 & IMAGE 3 REPLICA) -->
-            <section class="chart-panel">
-                <div class="chart-header-strip">
-                    <div class="stock-title-group">
-                        <h2 id="currentSectorTitle">ELECTRONICS_EMS</h2>
-                        <span class="badge-tag">DAILY OHLCV</span>
-                    </div>
+        <!-- Candlestick Chart Container with HMM Background Canvas Overlay -->
+        <div class="chart-wrapper" id="chart-wrapper">
+          <!-- Floating TradingView Style Scale Toolbar -->
+          <div class="tv-scale-toolbar">
+            <button class="tv-tool-btn" id="btn-zoom-in" title="Zoom In (+)">🔍 +</button>
+            <button class="tv-tool-btn" id="btn-zoom-out" title="Zoom Out (-)">🔍 -</button>
+            <button class="tv-tool-btn" id="btn-scale-auto" title="Auto Scale Y-Axis">↕️ Auto Scale</button>
+            <button class="tv-tool-btn" id="btn-scale-log" title="Toggle Log Scale">📈 Log Scale</button>
+            <button class="tv-tool-btn" id="btn-fit-content" title="Reset View To Fit All Data">🔄 Fit All</button>
+          </div>
 
-                    <div class="stats-group">
-                        <div class="stat-item">
-                            <span class="stat-lbl">Current Value</span>
-                            <span class="stat-val" id="statCurVal">0.00</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-lbl">Base Value</span>
-                            <span class="stat-val">100.00</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-lbl">Total Return</span>
-                            <span class="stat-val green" id="statTotReturn">+0.00%</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-lbl">Constituents</span>
-                            <span class="stat-val" id="statStockCount">0 Stocks</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-lbl">Active State</span>
-                            <span class="stat-val highlight" id="statActiveState">State 0: Bullish</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAIN TRADINGVIEW CANDLESTICK CHART CONTAINER WITH HMM STATE BACKGROUND OVERLAY -->
-                <div class="chart-viewport" id="chartViewport">
-                    <canvas id="hmmBackgroundCanvas" class="hmm-canvas-overlay"></canvas>
-                    <div id="tvChartContainer" class="tv-chart"></div>
-                </div>
-            </section>
-        </main>
+          <!-- Canvas Overlay for HMM Background Color Bands (Image 1 Replica) -->
+          <canvas id="hmmBackgroundCanvas" class="hmm-canvas-overlay"></canvas>
+          <div id="tv-chart-container"></div>
+        </div>
+      </main>
     </div>
+  </div>
 
-    <script src="regime_dashboard.js"></script>
+  <script src="regime_dashboard.js"></script>
 </body>
 </html>
