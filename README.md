@@ -79,6 +79,42 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,135.7 | +2,035.7% | 17 |
+| 🥈 2 | Defence | 1,661.2 | +1,561.2% | 8 |
+| 🥉 3 | Retail | 1,201.5 | +1,101.5% | 16 |
+| 4 | Jewellery | 1,051.3 | +951.3% | 18 |
+| 5 | Financial Infrastructure | 806.8 | +706.8% | 11 |
+| 6 | Miscellaneous | 722.2 | +622.2% | 109 |
+| 7 | Power And Utilities | 709.9 | +609.9% | 35 |
+| 8 | Metals And Mining | 695.2 | +595.2% | 86 |
+| 9 | Chemicals | 664.7 | +564.7% | 106 |
+| 10 | Airlines | 641.4 | +541.4% | 2 |
+| 11 | Diversified | 577.0 | +476.9% | 10 |
+| 12 | Real Estate | 520.0 | +420.0% | 33 |
+| 13 | Capital Goods | 508.8 | +408.8% | 134 |
+| 14 | Financial Services | 488.9 | +388.9% | 128 |
+| 15 | Oil Gas Utilities | 488.7 | +388.7% | 26 |
+| 16 | Renewable Energy | 429.8 | +329.8% | 15 |
+| 17 | Automobiles | 418.7 | +318.7% | 114 |
+| 18 | Textiles Apparel | 392.3 | +292.3% | 9 |
+| 19 | Logistics | 389.4 | +289.4% | 25 |
+| 20 | Healthcare Services | 383.2 | +283.2% | 105 |
+| 21 | Building Materials | 381.9 | +281.9% | 138 |
+| 22 | Hospitality | 381.3 | +281.3% | 25 |
+| 23 | Consumer Staples | 375.1 | +275.1% | 61 |
+| 24 | Information Technology | 324.3 | +224.3% | 92 |
+| 25 | Consumer Durables | 306.7 | +206.7% | 14 |
+| 26 | Digital Platforms | 300.6 | +200.6% | 14 |
+| 27 | Agriculture | 275.1 | +175.2% | 5 |
+| 28 | Infrastructure | 200.1 | +100.0% | 24 |
+| 29 | Banking | 184.4 | +84.4% | 41 |
+| 30 | Telecom Infra | 165.1 | +65.1% | 4 |
+| 31 | Media And Entertainment | 122.2 | +22.2% | 6 |
+| 32 | Telecommunications | 111.0 | +11.0% | 16 |
+
+---:|:---|:---:|:---:|:---:|
+
+---:|:---|:---:|:---:|:---:|
 
 ---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,133.3 | +2,033.3% | 17 |

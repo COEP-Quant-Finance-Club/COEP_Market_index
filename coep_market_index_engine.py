@@ -232,12 +232,21 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
 def update_single_stock(file_path: str) -> tuple[str, bool, str]:
     sym = os.path.basename(file_path).replace("_daily.csv", "").replace(".csv", "").strip().upper()
     try:
-        df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-        if df.empty:
+        if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
+            df = pd.DataFrame()
             latest_dt = datetime(2015, 1, 1)
         else:
-            df.index = pd.to_datetime(df.index)
-            latest_dt = df.index.max()
+            try:
+                df = pd.read_csv(file_path, index_col=0, parse_dates=True)
+                if df is None or df.empty:
+                    df = pd.DataFrame()
+                    latest_dt = datetime(2015, 1, 1)
+                else:
+                    df.index = pd.to_datetime(df.index)
+                    latest_dt = df.index.max()
+            except Exception:
+                df = pd.DataFrame()
+                latest_dt = datetime(2015, 1, 1)
 
         today_dt = datetime.now()
         if latest_dt.date() >= today_dt.date():
@@ -260,7 +269,7 @@ def update_single_stock(file_path: str) -> tuple[str, bool, str]:
         if new_df.empty:
             return sym, False, "Empty after norm"
 
-        if not df.empty:
+        if df is not None and not df.empty:
             df = normalize_cols(df)
             combined = pd.concat([df, new_df])
             combined = combined[~combined.index.duplicated(keep="last")].sort_index()
@@ -274,7 +283,17 @@ def update_single_stock(file_path: str) -> tuple[str, bool, str]:
         return sym, False, str(e)
 
 
-def run_yfinance_downloader(max_workers: int = 15) -> dict:
+def run_yfinance_downloader(max_workers: int = 20) -> dict:
+    # Ensure all symbols from Data.csv exist as daily CSV targets in STOCKS_DIR
+    if os.path.exists(DATA_CSV):
+        df_data = pd.read_csv(DATA_CSV, low_memory=False)
+        symbols = set(df_data["Symbol"].dropna().astype(str).str.strip().str.upper())
+        for sym in symbols:
+            if sym:
+                target_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+                if not os.path.exists(target_path):
+                    open(target_path, "w").close()
+
     csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
     log.info(f"[1/4] Running YFinance Incremental Downloader for {len(csv_files)} stocks...")
     updated, up_to_date, failed = 0, 0, 0

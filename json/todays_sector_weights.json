@@ -2,7 +2,7 @@
   "BUILDING_MATERIALS": {
     "sector": "BUILDING_MATERIALS",
     "constituents_count": 138,
-    "latest_index_value": 389.59,
+    "latest_index_value": 381.91,
     "weights_percentage": {
       "ULTRACEMCO": 17.6246,
       "ASIANPAINT": 12.7751,
@@ -147,7 +147,7 @@
   "LOGISTICS": {
     "sector": "LOGISTICS",
     "constituents_count": 25,
-    "latest_index_value": 396.54,
+    "latest_index_value": 389.44,
     "weights_percentage": {
       "ADANIPORTS": 51.184,
       "GMRAIRPORT": 14.2101,
@@ -179,7 +179,7 @@
   "POWER_AND_UTILITIES": {
     "sector": "POWER_AND_UTILITIES",
     "constituents_count": 35,
-    "latest_index_value": 724.86,
+    "latest_index_value": 709.94,
     "weights_percentage": {
       "ADANIPOWER": 16.925,
       "NTPC": 13.8292,
@@ -221,7 +221,7 @@
   "CONSUMER_DURABLES": {
     "sector": "CONSUMER_DURABLES",
     "constituents_count": 14,
-    "latest_index_value": 302.17,
+    "latest_index_value": 306.67,
     "weights_percentage": {
       "HAVELLS": 50.5297,
       "CROMPTON": 10.5709,
@@ -242,7 +242,7 @@
   "HEALTHCARE_SERVICES": {
     "sector": "HEALTHCARE_SERVICES",
     "constituents_count": 104,
-    "latest_index_value": 387.06,
+    "latest_index_value": 383.22,
     "weights_percentage": {
       "SUNPHARMA": 14.6871,
       "DIVISLAB": 6.0682,
@@ -353,7 +353,7 @@
   "CHEMICALS": {
     "sector": "CHEMICALS",
     "constituents_count": 106,
-    "latest_index_value": 670.84,
+    "latest_index_value": 664.66,
     "weights_percentage": {
       "SOLARINDS": 11.8171,
       "PIDILITIND": 11.2896,
@@ -466,7 +466,7 @@
   "AUTOMOBILES": {
     "sector": "AUTOMOBILES",
     "constituents_count": 114,
-    "latest_index_value": 423.37,
+    "latest_index_value": 418.68,
     "weights_percentage": {
       "HINDUNILVR": 11.2706,
       "MARUTI": 9.451,
@@ -587,7 +587,7 @@
   "METALS_AND_MINING": {
     "sector": "METALS_AND_MINING",
     "constituents_count": 86,
-    "latest_index_value": 700.3,
+    "latest_index_value": 695.17,
     "weights_percentage": {
       "JSWSTEEL": 11.6619,
       "COALINDIA": 10.1232,
@@ -680,7 +680,7 @@
   "CAPITAL_GOODS": {
     "sector": "CAPITAL_GOODS",
     "constituents_count": 134,
-    "latest_index_value": 515.9,
+    "latest_index_value": 508.79,
     "weights_percentage": {
       "LT": 22.6151,
       "ABB": 6.7869,
@@ -821,7 +821,7 @@
   "CONSUMER_STAPLES": {
     "sector": "CONSUMER_STAPLES",
     "constituents_count": 60,
-    "latest_index_value": 376.6,
+    "latest_index_value": 375.09,
     "weights_percentage": {
       "ITC": 20.5414,
       "NESTLEIND": 16.0996,
@@ -888,7 +888,7 @@
   "INFORMATION_TECHNOLOGY": {
     "sector": "INFORMATION_TECHNOLOGY",
     "constituents_count": 92,
-    "latest_index_value": 331.01,
+    "latest_index_value": 324.34,
     "weights_percentage": {
       "TCS": 27.5341,
       "INFY": 14.2579,
@@ -987,7 +987,7 @@
   "MISCELLANEOUS": {
     "sector": "MISCELLANEOUS",
     "constituents_count": 109,
-    "latest_index_value": 734.77,
+    "latest_index_value": 722.21,
     "weights_percentage": {
       "ADANIENT": 17.5268,
       "ETERNAL": 11.5597,
@@ -1103,7 +1103,7 @@
   "AGRICULTURE": {
     "sector": "AGRICULTURE",
     "constituents_count": 5,
-    "latest_index_value": 278.02,
+    "latest_index_value": 275.15,
     "weights_percentage": {
       "GAEL": 38.1246,
       "KSCL": 23.5575,
@@ -1115,7 +1115,7 @@
   "RETAIL": {
     "sector": "RETAIL",
     "constituents_count": 16,
-    "latest_index_value": 1199.76,
+    "latest_index_value": 1201.53,
     "weights_percentage": {
       "DMART": 36.5163,
       "TRENT": 21.4718,
@@ -1137,112 +1137,112 @@
   },
   "FINANCIAL_SERVICES": {
     "sector": "FINANCIAL_SERVICES",
-    "constituents_count": 128,
-    "latest_index_value": 496.96,
+    "constituents_count": 127,
+    "latest_index_value": 488.9,
     "weights_percentage": {
-      "BAJFINANCE": 11.775,
-      "LICI": 9.9521,
-      "BAJAJFINSV": 5.6091,
-      "SHRIRAMFIN": 4.4162,
-      "SBILIFE": 3.482,
-      "JIOFIN": 2.8941,
-      "ICICIAMC": 2.8848,
-      "CHOLAFIN": 2.7454,
-      "TATACAP": 2.7102,
-      "PFC": 2.5384,
-      "GROWW": 2.3682,
-      "HDFCLIFE": 2.2517,
-      "MUTHOOTFIN": 2.2391,
-      "BAJAJHLDNG": 2.2194,
-      "IRFC": 2.1383,
-      "ABCAPITAL": 2.0109,
-      "HDFCAMC": 2.0057,
-      "RECLTD": 1.7781,
-      "ICICIGI": 1.5493,
-      "LTF": 1.4148,
-      "ICICIPRULI": 1.3561,
-      "NAM-INDIA": 1.3281,
-      "BAJAJHFL": 1.31,
-      "GICRE": 1.1712,
-      "SBICARD": 1.0995,
-      "HDBFS": 1.0723,
-      "MOTILALOFS": 0.9805,
-      "M&MFIN": 0.9253,
-      "SUNDARMFIN": 0.9228,
-      "AIIL": 0.8422,
-      "360ONE": 0.8371,
-      "POONAWALLA": 0.7559,
-      "HUDCO": 0.731,
-      "NUVAMA": 0.6749,
-      "STARHEALTH": 0.6384,
-      "ANANDRATHI": 0.6332,
-      "IREDA": 0.632,
-      "MANAPPURAM": 0.6191,
-      "TATAINVEST": 0.5959,
-      "LICHSGFIN": 0.5536,
-      "TVSHLTD": 0.5528,
-      "ABSLAMC": 0.5485,
-      "NIACL": 0.533,
-      "CHOLAHLDNG": 0.5318,
-      "ANGELONE": 0.5253,
-      "PNBHOUSING": 0.5148,
-      "CREDITACC": 0.4542,
-      "GODIGIT": 0.4424,
-      "IIFL": 0.442,
-      "CGCL": 0.428,
-      "AADHARHFC": 0.4043,
-      "IFCI": 0.3528,
-      "SAMMAANCAP": 0.3493,
-      "CHOICEIN": 0.3316,
-      "NIVABUPA": 0.2992,
-      "FIVESTAR": 0.295,
-      "MAHSCOOTER": 0.2704,
-      "CANHLIFE": 0.2613,
+      "BAJFINANCE": 11.778,
+      "LICI": 9.9546,
+      "BAJAJFINSV": 5.6106,
+      "SHRIRAMFIN": 4.4173,
+      "SBILIFE": 3.4828,
+      "JIOFIN": 2.8948,
+      "ICICIAMC": 2.8856,
+      "CHOLAFIN": 2.7461,
+      "TATACAP": 2.7109,
+      "PFC": 2.539,
+      "GROWW": 2.3688,
+      "HDFCLIFE": 2.2523,
+      "MUTHOOTFIN": 2.2397,
+      "BAJAJHLDNG": 2.2199,
+      "IRFC": 2.1388,
+      "ABCAPITAL": 2.0114,
+      "HDFCAMC": 2.0062,
+      "RECLTD": 1.7785,
+      "ICICIGI": 1.5497,
+      "LTF": 1.4152,
+      "ICICIPRULI": 1.3564,
+      "NAM-INDIA": 1.3284,
+      "BAJAJHFL": 1.3103,
+      "GICRE": 1.1715,
+      "SBICARD": 1.0998,
+      "HDBFS": 1.0725,
+      "MOTILALOFS": 0.9807,
+      "M&MFIN": 0.9256,
+      "SUNDARMFIN": 0.923,
+      "AIIL": 0.8424,
+      "360ONE": 0.8373,
+      "POONAWALLA": 0.756,
+      "HUDCO": 0.7312,
+      "NUVAMA": 0.6751,
+      "STARHEALTH": 0.6385,
+      "ANANDRATHI": 0.6333,
+      "IREDA": 0.6322,
+      "MANAPPURAM": 0.6193,
+      "TATAINVEST": 0.5961,
+      "LICHSGFIN": 0.5537,
+      "TVSHLTD": 0.553,
+      "ABSLAMC": 0.5486,
+      "NIACL": 0.5331,
+      "CHOLAHLDNG": 0.532,
+      "ANGELONE": 0.5255,
+      "PNBHOUSING": 0.515,
+      "CREDITACC": 0.4543,
+      "GODIGIT": 0.4425,
+      "IIFL": 0.4421,
+      "CGCL": 0.4281,
+      "AADHARHFC": 0.4044,
+      "IFCI": 0.3529,
+      "SAMMAANCAP": 0.3494,
+      "CHOICEIN": 0.3317,
+      "NIVABUPA": 0.2993,
+      "FIVESTAR": 0.2951,
+      "MAHSCOOTER": 0.2705,
+      "CANHLIFE": 0.2614,
       "APTUS": 0.2592,
       "HOMEFIRST": 0.2292,
-      "JSWHL": 0.2252,
+      "JSWHL": 0.2253,
       "PRUDENT": 0.2211,
-      "JMFINANCIL": 0.2181,
-      "UTIAMC": 0.2115,
-      "EDELWEISS": 0.2068,
+      "JMFINANCIL": 0.2182,
+      "UTIAMC": 0.2116,
+      "EDELWEISS": 0.2069,
       "AAVAS": 0.2042,
       "CANFINHOME": 0.2024,
-      "IIFLCAPS": 0.1991,
-      "SBFC": 0.1906,
-      "TSFINV": 0.1795,
-      "RELIGARE": 0.1644,
+      "IIFLCAPS": 0.1992,
+      "SBFC": 0.1907,
+      "TSFINV": 0.1796,
+      "RELIGARE": 0.1645,
       "KAMAHOLD": 0.1515,
-      "INDIASHLTR": 0.1471,
+      "INDIASHLTR": 0.1472,
       "BENGALASM": 0.1321,
       "PAISALO": 0.1192,
       "KISSHT": 0.107,
-      "MASFIN": 0.1062,
+      "MASFIN": 0.1063,
       "FEDFINA": 0.1054,
       "CRAMC": 0.0968,
       "NORTHARC": 0.0904,
-      "PILANIINVS": 0.0891,
-      "SGFIN": 0.0856,
+      "PILANIINVS": 0.0892,
+      "SGFIN": 0.0857,
       "RTNINDIA": 0.0816,
       "MUTHOOTMF": 0.0796,
       "AYE": 0.0793,
       "INDOSTAR": 0.0786,
       "SHAREINDIA": 0.0783,
-      "TFCILTD": 0.0754,
-      "KIRLOSIND": 0.0743,
+      "TFCILTD": 0.0755,
+      "KIRLOSIND": 0.0744,
       "FUSION": 0.0655,
       "ARSSBL": 0.0598,
       "SATIN": 0.0555,
       "MONARCH": 0.053,
       "INDOTHAI": 0.0524,
       "NSIL": 0.0523,
-      "RANEHOLDIN": 0.0463,
+      "RANEHOLDIN": 0.0464,
       "MUFIN": 0.046,
       "REPCOHOME": 0.0454,
       "SPANDANA": 0.0433,
       "KICL": 0.0432,
       "ELCIDIN": 0.0409,
       "GEOJITFSL": 0.0397,
-      "ARMANFIN": 0.0376,
+      "ARMANFIN": 0.0377,
       "GRANDOAK": 0.0363,
       "ALGOQUANT": 0.0359,
       "PFS": 0.0351,
@@ -1251,9 +1251,8 @@
       "SUMMITSEC": 0.0302,
       "SMCGLOBAL": 0.0295,
       "BLIL": 0.029,
-      "PNBGILTS": 0.0287,
+      "PNBGILTS": 0.0288,
       "UGROCAP": 0.0269,
-      "ZSARACOM": 0.0253,
       "GCSL": 0.024,
       "DOLATALGO": 0.0226,
       "AKCAPIT": 0.0217,
@@ -1265,7 +1264,7 @@
       "JPOLYINVST": 0.0202,
       "CREST": 0.0201,
       "MASTERTR": 0.0195,
-      "STEL": 0.0191,
+      "STEL": 0.0192,
       "AFSL": 0.0191,
       "WEALTH": 0.0187
     }
@@ -1273,7 +1272,7 @@
   "INFRASTRUCTURE": {
     "sector": "INFRASTRUCTURE",
     "constituents_count": 24,
-    "latest_index_value": 203.16,
+    "latest_index_value": 200.05,
     "weights_percentage": {
       "IRB": 15.6858,
       "KPIL": 14.7015,
@@ -1304,7 +1303,7 @@
   "REAL_ESTATE": {
     "sector": "REAL_ESTATE",
     "constituents_count": 33,
-    "latest_index_value": 529.99,
+    "latest_index_value": 520.03,
     "weights_percentage": {
       "DLF": 23.521,
       "LODHA": 16.8345,
@@ -1344,7 +1343,7 @@
   "DIVERSIFIED": {
     "sector": "DIVERSIFIED",
     "constituents_count": 10,
-    "latest_index_value": 583.1,
+    "latest_index_value": 576.95,
     "weights_percentage": {
       "3MINDIA": 40.8239,
       "NAVA": 16.0423,
@@ -1361,7 +1360,7 @@
   "OIL_GAS_UTILITIES": {
     "sector": "OIL_GAS_UTILITIES",
     "constituents_count": 26,
-    "latest_index_value": 484.56,
+    "latest_index_value": 488.73,
     "weights_percentage": {
       "RELIANCE": 60.1438,
       "ONGC": 10.8831,
@@ -1394,7 +1393,7 @@
   "FINANCIAL_INFRASTRUCTURE": {
     "sector": "FINANCIAL_INFRASTRUCTURE",
     "constituents_count": 11,
-    "latest_index_value": 805.96,
+    "latest_index_value": 806.75,
     "weights_percentage": {
       "BSE": 43.3318,
       "MCX": 20.8338,
@@ -1412,7 +1411,7 @@
   "TELECOM_INFRA": {
     "sector": "TELECOM_INFRA",
     "constituents_count": 4,
-    "latest_index_value": 180.41,
+    "latest_index_value": 165.11,
     "weights_percentage": {
       "INDUSTOWER": 93.2769,
       "KERNEX": 3.3202,
@@ -1423,7 +1422,7 @@
   "DIGITAL_PLATFORMS": {
     "sector": "DIGITAL_PLATFORMS",
     "constituents_count": 14,
-    "latest_index_value": 306.53,
+    "latest_index_value": 300.58,
     "weights_percentage": {
       "PAYTM": 24.9884,
       "NAUKRI": 22.9829,
@@ -1444,7 +1443,7 @@
   "TEXTILES_APPAREL": {
     "sector": "TEXTILES_APPAREL",
     "constituents_count": 9,
-    "latest_index_value": 397.33,
+    "latest_index_value": 392.26,
     "weights_percentage": {
       "PAGEIND": 41.9234,
       "VTL": 16.6035,
@@ -1460,7 +1459,7 @@
   "MEDIA_AND_ENTERTAINMENT": {
     "sector": "MEDIA_AND_ENTERTAINMENT",
     "constituents_count": 6,
-    "latest_index_value": 120.53,
+    "latest_index_value": 122.2,
     "weights_percentage": {
       "DOMS": 50.6227,
       "NAVNETEDUL": 11.9612,
@@ -1473,7 +1472,7 @@
   "RENEWABLE_ENERGY": {
     "sector": "RENEWABLE_ENERGY",
     "constituents_count": 15,
-    "latest_index_value": 441.47,
+    "latest_index_value": 429.84,
     "weights_percentage": {
       "WAAREEENER": 22.1765,
       "SUZLON": 20.4999,
@@ -1495,7 +1494,7 @@
   "HOSPITALITY": {
     "sector": "HOSPITALITY",
     "constituents_count": 25,
-    "latest_index_value": 376.14,
+    "latest_index_value": 381.31,
     "weights_percentage": {
       "INDHOTEL": 31.3578,
       "ITCHOTELS": 10.0877,
@@ -1527,7 +1526,7 @@
   "TELECOMMUNICATIONS": {
     "sector": "TELECOMMUNICATIONS",
     "constituents_count": 16,
-    "latest_index_value": 112.25,
+    "latest_index_value": 111.02,
     "weights_percentage": {
       "BHARTIARTL": 75.9589,
       "IDEA": 9.3405,
@@ -1550,7 +1549,7 @@
   "BANKING": {
     "sector": "BANKING",
     "constituents_count": 41,
-    "latest_index_value": 185.47,
+    "latest_index_value": 184.42,
     "weights_percentage": {
       "HDFCBANK": 20.9238,
       "ICICIBANK": 18.8003,
@@ -1598,7 +1597,7 @@
   "JEWELLERY": {
     "sector": "JEWELLERY",
     "constituents_count": 18,
-    "latest_index_value": 1052.21,
+    "latest_index_value": 1051.28,
     "weights_percentage": {
       "TITAN": 73.494,
       "KALYANKJIL": 10.4843,
@@ -1623,7 +1622,7 @@
   "ELECTRONICS_EMS": {
     "sector": "ELECTRONICS_EMS",
     "constituents_count": 17,
-    "latest_index_value": 2133.26,
+    "latest_index_value": 2135.66,
     "weights_percentage": {
       "DIXON": 31.3095,
       "HFCL": 11.1534,
@@ -1647,7 +1646,7 @@
   "AIRLINES": {
     "sector": "AIRLINES",
     "constituents_count": 2,
-    "latest_index_value": 651.06,
+    "latest_index_value": 641.39,
     "weights_percentage": {
       "INDIGO": 99.3868,
       "TAALTECH": 0.6132
@@ -1656,7 +1655,7 @@
   "DEFENCE": {
     "sector": "DEFENCE",
     "constituents_count": 8,
-    "latest_index_value": 1619.19,
+    "latest_index_value": 1661.17,
     "weights_percentage": {
       "HAL": 37.1271,
       "BEL": 35.9361,
