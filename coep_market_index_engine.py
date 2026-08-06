@@ -232,52 +232,24 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
 def update_single_stock(file_path: str) -> tuple[str, bool, str]:
     sym = os.path.basename(file_path).replace("_daily.csv", "").replace(".csv", "").strip().upper()
     try:
-        if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
-            df = pd.DataFrame()
-            latest_dt = datetime(2015, 1, 1)
-        else:
-            try:
-                df = pd.read_csv(file_path, index_col=0, parse_dates=True)
-                if df is None or df.empty:
-                    df = pd.DataFrame()
-                    latest_dt = datetime(2015, 1, 1)
-                else:
-                    df.index = pd.to_datetime(df.index)
-                    latest_dt = df.index.max()
-            except Exception:
-                df = pd.DataFrame()
-                latest_dt = datetime(2015, 1, 1)
-
-        today_dt = datetime.now()
-        if latest_dt.date() >= today_dt.date():
-            return sym, False, "Already up to date"
-
-        start_str = (latest_dt + timedelta(days=1)).strftime("%Y-%m-%d")
-        end_str = (today_dt + timedelta(days=1)).strftime("%Y-%m-%d")
-
+        # Fetch clean, 100% officially split-adjusted full history directly from yfinance
         yf_ticker = f"{sym}.NS"
-        new_df = yf.download(yf_ticker, start=start_str, end=end_str, progress=False)
+        df = yf.download(yf_ticker, start="2015-01-01", progress=False)
 
-        if new_df is None or new_df.empty:
+        if df is None or df.empty:
             yf_ticker_bse = f"{sym}.BO"
-            new_df = yf.download(yf_ticker_bse, start=start_str, end=end_str, progress=False)
+            df = yf.download(yf_ticker_bse, start="2015-01-01", progress=False)
 
-        if new_df is None or new_df.empty:
-            return sym, False, "No new data"
+        if df is None or df.empty:
+            return sym, False, "No data found on NSE/BSE"
 
-        new_df = normalize_cols(new_df)
-        if new_df.empty:
+        df = normalize_cols(df)
+        if df.empty:
             return sym, False, "Empty after norm"
 
-        if df is not None and not df.empty:
-            df = normalize_cols(df)
-            combined = pd.concat([df, new_df])
-            combined = combined[~combined.index.duplicated(keep="last")].sort_index()
-        else:
-            combined = new_df.sort_index()
-
-        combined.to_csv(file_path)
-        return sym, True, f"Updated {len(new_df)} rows"
+        df = df.sort_index()
+        df.to_csv(file_path)
+        return sym, True, f"Updated {len(df)} rows"
 
     except Exception as e:
         return sym, False, str(e)
@@ -295,7 +267,7 @@ def run_yfinance_downloader(max_workers: int = 20) -> dict:
                     open(target_path, "w").close()
 
     csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
-    log.info(f"[1/4] Running YFinance Incremental Downloader for {len(csv_files)} stocks...")
+    log.info(f"[1/4] Running YFinance Clean Full-History Downloader for {len(csv_files)} stocks...")
     updated, up_to_date, failed = 0, 0, 0
 
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -304,13 +276,11 @@ def run_yfinance_downloader(max_workers: int = 20) -> dict:
             sym, was_updated, msg = future.result()
             if was_updated:
                 updated += 1
-            elif "Already" in msg:
-                up_to_date += 1
             else:
                 failed += 1
 
-    log.info(f"[1/4 Complete] {updated} updated, {up_to_date} up-to-date, {failed} failed/no-data.")
-    return {"total": len(csv_files), "updated": updated, "up_to_date": up_to_date, "failed": failed}
+    log.info(f"[1/4 Complete] {updated} updated/refreshed, {failed} failed/no-data.")
+    return {"total": len(csv_files), "updated": updated, "failed": failed}
 
 # ── STEP 2: SCREENER / YFINANCE CORPORATE ACTION AUDITOR ──────────────────────
 
@@ -612,63 +582,17 @@ def update_readme_leaderboard(summary: dict) -> None:
         log.error(f"Failed to update README.md leaderboard: {e}")
 
 
-def fix_empirical_splits() -> int:
-    log.info("[2.5] Scanning & fixing empirical split/bonus gaps in stock files...")
-    csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
-    total_fixed = 0
-    split_ratios = [1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 10.0, 20.0]
-
-    for f in csv_files:
-        sym = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").strip().upper()
-        try:
-            df = pd.read_csv(f, index_col=0, parse_dates=True)
-            if len(df) < 5:
-                continue
-
-            # Calculate returns to check for large price drops
-            df["ret"] = df["Close"].pct_change()
-            split_bars = df[df["ret"] < -0.30]
-
-            if not split_bars.empty:
-                modified = False
-                for dt, row in split_bars.iterrows():
-                    loc = df.index.get_loc(dt)
-                    prev_idx = loc - 1 if isinstance(loc, int) else loc.start - 1
-                    if prev_idx >= 0:
-                        prev_close = df["Close"].iloc[prev_idx]
-                        cur_open   = row["Open"]
-                        if prev_close > 0 and cur_open > 0:
-                            ratio = prev_close / cur_open
-                            for target_ratio in split_ratios:
-                                if abs(ratio - target_ratio) / target_ratio < 0.20:
-                                    log.info(f"  [FIXED SPLIT] {sym:15s} on {dt.strftime('%Y-%m-%d')} -> Ratio {target_ratio}x (Price: {prev_close:.2f} -> {cur_open:.2f})")
-                                    mask = df.index < dt
-                                    df.loc[mask, ["Open", "High", "Low", "Close"]] /= target_ratio
-                                    modified = True
-                                    total_fixed += 1
-                                    break
-                if modified:
-                    df.drop(columns=["ret"]).to_csv(f)
-        except Exception:
-            pass
-    log.info(f"[2.5 Complete] Fixed {total_fixed} split/bonus gaps across the stock database.")
-    return total_fixed
-
-
 def main():
     start_time = time.time()
     log.info("="*70)
     log.info("COEP MARKET INDEX - UNIFIED MASTER PIPELINE (SINGLE ENGINE)")
     log.info("="*70)
 
-    # 1. Download/Update stock candles via yfinance
+    # 1. Download clean full-history stock candles via yfinance
     dl_stats = run_yfinance_downloader()
 
     # 2. Audit corporate actions
     audit_corporate_actions()
-
-    # 2.5. Empirically scan and fix split/bonus gaps in historical stock files
-    fixed_splits = fix_empirical_splits()
 
     # 3. Rebuild clean master sector indices & export today's weights
     sec_summary, sector_weights = calculate_sector_indices()
