@@ -44,32 +44,47 @@ def main():
             bars = []
             for dt, row in df.iterrows():
                 dt_str = dt.strftime("%Y-%m-%d")
+                o_val = round(float(row.get("Open", row["Close"])), 2)
+                h_val = round(float(row.get("High", row["Close"])), 2)
+                l_val = round(float(row.get("Low", row["Close"])), 2)
+                c_val = round(float(row["Close"]), 2)
+                v_val = int(row.get("Volume", 0))
+
                 bars.append({
                     "time": dt_str,
-                    "open": round(float(row.get("Open", row["Close"])), 2),
-                    "high": round(float(row.get("High", row["Close"])), 2),
-                    "low": round(float(row.get("Low", row["Close"])), 2),
-                    "close": round(float(row["Close"]), 2),
-                    "volume": int(row.get("Volume", 0))
+                    "open": o_val,
+                    "high": h_val,
+                    "low": l_val,
+                    "close": c_val,
+                    "volume": v_val,
+                    "Open": o_val,
+                    "High": h_val,
+                    "Low": l_val,
+                    "Close": c_val,
+                    "Volume": v_val
                 })
 
             if not bars:
                 continue
 
             cur_val = bars[-1]["close"]
-            base_val = bars[0]["close"] if bars[0]["close"] > 0 else 100.0
-            tot_ret = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
+            tot_ret_val = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
+            ret_str = f"{'+' if tot_ret_val >= 0 else ''}{tot_ret_val:.2f}%"
             n_stocks = stock_counts.get(basename, 10)
 
             summary.append({
                 "sector": basename,
+                "Sector Name": basename,
                 "current_val": cur_val,
-                "total_return_pct": tot_ret,
-                "stock_count": n_stocks
+                "Current Index Value": cur_val,
+                "total_return_pct": ret_str,
+                "Total Sector Return %": ret_str,
+                "stock_count": n_stocks,
+                "Constituents Count": n_stocks
             })
 
             daily_data[basename] = bars
-            print(f"  [OK] {basename:30s} -> {len(bars):4d} bars | Current: {cur_val:7.2f} | Return: {tot_ret:+7.2f}%")
+            print(f"  [OK] {basename:30s} -> {len(bars):4d} bars | Current: {cur_val:7.2f} | Return: {ret_str}")
 
         except Exception as e:
             print(f"  [ERROR] {basename}: {e}")

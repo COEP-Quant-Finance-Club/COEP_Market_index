@@ -335,23 +335,26 @@ document.addEventListener('DOMContentLoaded', () => {
       if (seenTimes.has(t)) return; // Deduplicate
       seenTimes.add(t);
 
-      const o = parseFloat(r.Open);
-      const h = parseFloat(r.High);
-      const l = parseFloat(r.Low);
-      const c = parseFloat(r.Close);
+      const o = parseFloat(r.open !== undefined ? r.open : (r.Open !== undefined ? r.Open : r.close));
+      const h = parseFloat(r.high !== undefined ? r.high : (r.High !== undefined ? r.High : r.close));
+      const l = parseFloat(r.low !== undefined ? r.low : (r.Low !== undefined ? r.Low : r.close));
+      const c = parseFloat(r.close !== undefined ? r.close : (r.Close !== undefined ? r.Close : 0));
+      const v = parseFloat(r.volume !== undefined ? r.volume : (r.Volume !== undefined ? r.Volume : 0));
+
+      if (isNaN(c) || c <= 0) return;
 
       candleData.push({
         time: t,
-        open: o,
-        high: h,
-        low: l,
+        open: isNaN(o) ? c : o,
+        high: isNaN(h) ? c : h,
+        low: isNaN(l) ? c : l,
         close: c,
       });
 
       volData.push({
         time: t,
-        value: parseFloat(r.Volume || 0),
-        color: c >= o ? 'rgba(34, 197, 94, 0.35)' : 'rgba(239, 68, 68, 0.35)'
+        value: isNaN(v) ? 0 : v,
+        color: c >= (isNaN(o) ? c : o) ? 'rgba(34, 197, 94, 0.35)' : 'rgba(239, 68, 68, 0.35)'
       });
     });
 
