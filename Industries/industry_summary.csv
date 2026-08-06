@@ -1,0 +1,33 @@
+Sector Name,File Name,Stock Count,Sub-Industries Included
+BUILDING_MATERIALS,building_materials_enhanced.csv,135,cement - north india ; cement - south india ; cement products ; ceramics - tiles / sanitaryware ; construction...
+CAPITAL_GOODS,capital_goods_enhanced.csv,133,abrasives and grinding wheels ; bearings ; castings & forgings ; compressors / drilling equipment ; electric equipment...
+FINANCIAL_SERVICES,financial_services_enhanced.csv,128,finance & investments ; finance - housing ; finance - term-lending institutions
+AUTOMOBILES,automobiles_enhanced.csv,114,auto ancillaries ; automobiles - lcvs / hcvs ; automobiles - motorcycles / mopeds ; automobiles - passenger cars ; automobiles - scooters and 3 - wheelers...
+HEALTHCARE_SERVICES,healthcare_services_enhanced.csv,104,healthcare ; miscellaneous ; pharmaceuticals - indian - bulk drugs ; pharmaceuticals - indian - bulk drugs & formln ; pharmaceuticals - indian - formulations...
+CHEMICALS,chemicals_enhanced.csv,102,chemicals ; chlor alkali / soda ash ; dyes and pigments ; fertilizers ; pesticides / agrochemicals - indian...
+MISCELLANEOUS,miscellaneous_enhanced.csv,100,air-conditioners ; construction ; domestic appliances ; electric equipment ; electronics - components...
+INFORMATION_TECHNOLOGY,information_technology_enhanced.csv,91,computers - education ; computers - hardware ; computers - software - large ; computers - software - medium / small ; entertainment / electronic media software
+METALS_AND_MINING,metals_and_mining_enhanced.csv,85,aluminium and aluminium products ; mining / minerals / metals ; steel - large ; steel - medium / small
+CONSUMER_STAPLES,consumer_staples_enhanced.csv,61,aquaculture ; breweries & distilleries ; cigarettes ; food - processing - indian ; food - processing - mnc...
+BANKING,banking_enhanced.csv,41,banks - private sector ; banks - public sector
+POWER_AND_UTILITIES,power_and_utilities_enhanced.csv,35,cables - power ; power generation and supply
+REAL_ESTATE,real_estate_enhanced.csv,33,construction
+OIL_GAS_UTILITIES,oil_gas_utilities_enhanced.csv,26,miscellaneous ; oil drilling / allied services ; refineries ; trading
+HOSPITALITY,hospitality_enhanced.csv,25,hotels
+LOGISTICS,logistics_enhanced.csv,24,couriers ; miscellaneous ; shipping
+INFRASTRUCTURE,infrastructure_enhanced.csv,24,construction ; miscellaneous ; transmisson line towers / equipment
+JEWELLERY,jewellery_enhanced.csv,18,diamond cutting / jewellery
+ELECTRONICS_EMS,electronics_ems_enhanced.csv,17,cables - telephone ; domestic appliances ; electric equipment ; electronics - components ; electronics - consumer...
+RETAIL,retail_enhanced.csv,16,miscellaneous ; moulded luggage ; trading
+TELECOMMUNICATIONS,telecommunications_enhanced.csv,15,telecommunications - equipment ; telecommunications - service provider
+RENEWABLE_ENERGY,renewable_energy_enhanced.csv,15,electric equipment ; miscellaneous ; trading
+DIGITAL_PLATFORMS,digital_platforms_enhanced.csv,14,miscellaneous ; travel agencies
+CONSUMER_DURABLES,consumer_durables_enhanced.csv,14,construction ; domestic appliances ; dry cells ; electric equipment ; trading
+FINANCIAL_INFRASTRUCTURE,financial_infrastructure_enhanced.csv,11,auto ancillaries ; miscellaneous ; trading
+DIVERSIFIED,diversified_enhanced.csv,10,diversified - large ; diversified - medium / small ; diversified - mega
+TEXTILES_APPAREL,textiles_apparel_enhanced.csv,9,miscellaneous ; textiles - cotton/blended ; textiles - products ; trading ; transport - airlines
+DEFENCE,defence_enhanced.csv,8,electronics - components ; engineering ; miscellaneous
+MEDIA_AND_ENTERTAINMENT,media_and_entertainment_enhanced.csv,6,printing & stationery ; recreation / amusement parks
+AGRICULTURE,agriculture_enhanced.csv,5,miscellaneous ; trading
+TELECOM_INFRA,telecom_infra_enhanced.csv,4,construction ; electronics - components ; transmisson line towers / equipment
+AIRLINES,airlines_enhanced.csv,2,transport - airlines

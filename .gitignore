@@ -1,11 +1,9 @@
 # Ignore non-essential project folders and large artifacts
 Data.csv
 Data_Enhanced.csv
-Industries/
 quant_club_sector_terminal.html
 generate_terminal.py
 launch_dashboard.py
-screener_scraper.py
 sector_organizer.py
 unified_ohlcv_downloader.py
 corporate_action_adjustments.csv
