@@ -1,6 +1,7 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
- * Double-click Sector to view Constituents + Candle Crosshair 2-Day Return Sync
+ * Candle Locking (ENTER to Lock, ESC to Unlock / Click to Lock)
+ * 1-Day & 2-Day Stock Return Sync for Chart Gap & Data Anomaly Inspection
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -8,8 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeSector = 'ELECTRONICS_EMS';
   let activeK = 9;
   let activeRegimeFilter = 'ALL';
+
+  // Hover & Candle Lock State
+  let isCandleLocked = false;
   let activeHoverDate = null;
   let activeHoverPrevDate = null;
+  let activeHoverPrev2Date = null;
+
   let modalSearchTerm = '';
 
   let chart = null;
@@ -46,12 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const rfBtnNeutral = document.getElementById('rfBtnNeutral');
   const rfBtnBear = document.getElementById('rfBtnBear');
 
+  const candleLockBadge = document.getElementById('candleLockBadge');
+
   // Modal Elements
   const constituentsModalOverlay = document.getElementById('constituentsModalOverlay');
   const btnOpenConstituentsModal = document.getElementById('btnOpenConstituentsModal');
   const btnCloseConstituentsModal = document.getElementById('btnCloseConstituentsModal');
   const modalSectorTitle = document.getElementById('modalSectorTitle');
   const modalDateInfo = document.getElementById('modalDateInfo');
+  const modalLockStatus = document.getElementById('modalLockStatus');
   const modalStockSearch = document.getElementById('modalStockSearch');
   const modalStockCountBadge = document.getElementById('modalStockCountBadge');
   const modalStocksTbody = document.getElementById('modalStocksTbody');
@@ -78,6 +87,42 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeConstituentsModal() {
     constituentsModalOverlay.classList.remove('active');
   }
+
+  // Update Lock Status Badges
+  function updateLockStatusUI() {
+    if (isCandleLocked && activeHoverDate) {
+      const txt = `🔒 LOCKED: ${activeHoverDate} (Press ESC to Unlock)`;
+      candleLockBadge.innerText = txt;
+      candleLockBadge.classList.add('locked');
+      modalLockStatus.innerText = txt;
+      modalLockStatus.classList.add('locked');
+    } else {
+      const txt = `🔓 Hover Mode (Press ENTER / Click to Lock | ESC to Unlock)`;
+      candleLockBadge.innerText = txt;
+      candleLockBadge.classList.remove('locked');
+      modalLockStatus.innerText = txt;
+      modalLockStatus.classList.remove('locked');
+    }
+  }
+
+  // KEYBOARD LOCK HANDLERS (ENTER to Lock, ESC to Unlock)
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      if (activeHoverDate) {
+        isCandleLocked = true;
+        updateLockStatusUI();
+        if (constituentsModalOverlay.classList.contains('active')) {
+          renderConstituentsTable();
+        }
+      }
+    } else if (e.key === 'Escape') {
+      isCandleLocked = false;
+      updateLockStatusUI();
+      if (constituentsModalOverlay.classList.contains('active')) {
+        renderConstituentsTable();
+      }
+    }
+  });
 
   // Dynamic Fast Rolling Median Filtering (Window k = 1 to 50)
   function computeSmoothedRegimes(sectorName, kWindow) {
@@ -209,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSectorList(e.target.value.trim().toLowerCase());
   });
 
-  // Render Sidebar Sector List & Setup Double-Click Handlers
+  // Render Sidebar Sector List
   function renderSectorList(filterText = '') {
     sectorListContainer.innerHTML = '';
     const summaryList = data.sector_summaries || [];
@@ -271,7 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Single Click: Change Active Sector
       itemEl.addEventListener('click', () => {
         document.querySelectorAll('.sector-item').forEach(el => el.classList.remove('active'));
         itemEl.classList.add('active');
@@ -280,7 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderChart();
       });
 
-      // DOUBLE-CLICK: Open Sector Stocks Modal
       itemEl.addEventListener('dblclick', () => {
         activeSector = secName;
         updateHeaderMetrics(item);
@@ -312,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     metricStateVal.innerText = stateNames[curState] || "🟢 Bullish (State 2)";
   }
 
-  // Render Modal Sector Constituent Stocks & Calculate 2-Day Return Sync
+  // Render Modal Sector Constituent Stocks with 1-Day & 2-Day Return Sync
   function renderConstituentsTable() {
     const secDetail = data.sector_details[activeSector];
     if (!secDetail) return;
@@ -320,19 +363,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const constituents = secDetail.constituents || [];
     const bars = secDetail.bars || [];
 
-    // Determine target Date (T) and Previous Date (T-1)
     let curDate = activeHoverDate;
     let prevDate = activeHoverPrevDate;
+    let prev2Date = activeHoverPrev2Date;
 
     if (!curDate && bars.length > 0) {
       curDate = bars[bars.length - 1].t;
       prevDate = bars.length > 1 ? bars[bars.length - 2].t : null;
+      prev2Date = bars.length > 2 ? bars[bars.length - 3].t : null;
     }
 
     modalSectorTitle.innerText = `${activeSector} STOCKS`;
-    modalDateInfo.innerText = `Selected Candle Date: ${curDate || 'N/A'} (T) vs ${prevDate || 'N/A'} (T-1) | 2-Day Change Sync`;
+    const lockTxt = isCandleLocked ? '🔒 LOCKED' : '🔓 HOVER';
+    modalDateInfo.innerText = `[${lockTxt}] Selected Candle Date: ${curDate || 'N/A'} (T) | T-1: ${prevDate || 'N/A'} | T-2: ${prev2Date || 'N/A'}`;
 
-    // Filter by stock search term
     const filteredStocks = constituents.filter(stk => {
       const sym = (stk.symbol || '').toLowerCase();
       const name = (stk.name || '').toLowerCase();
@@ -342,15 +386,20 @@ document.addEventListener('DOMContentLoaded', () => {
     modalStockCountBadge.innerText = `${filteredStocks.length} Stocks`;
     modalStocksTbody.innerHTML = '';
 
-    // Calculate 2-day return for each stock
     const processedRows = filteredStocks.map(stk => {
       const pDict = stk.prices || {};
       const priceT = pDict[curDate];
       const priceT1 = pDict[prevDate];
+      const priceT2 = pDict[prev2Date];
 
-      let chgPct = null;
+      let chg1D = null;
       if (priceT !== undefined && priceT1 !== undefined && priceT1 > 0) {
-        chgPct = ((priceT - priceT1) / priceT1) * 100.0;
+        chg1D = ((priceT - priceT1) / priceT1) * 100.0;
+      }
+
+      let chg2D = null;
+      if (priceT !== undefined && priceT2 !== undefined && priceT2 > 0) {
+        chg2D = ((priceT - priceT2) / priceT2) * 100.0;
       }
 
       return {
@@ -358,40 +407,51 @@ document.addEventListener('DOMContentLoaded', () => {
         name: stk.name,
         priceT: priceT !== undefined ? priceT : 'N/A',
         priceT1: priceT1 !== undefined ? priceT1 : 'N/A',
-        chgPct: chgPct
+        priceT2: priceT2 !== undefined ? priceT2 : 'N/A',
+        chg1D: chg1D,
+        chg2D: chg2D
       };
     });
 
-    // Sort by 2-day return descending
+    // Sort by 1-day return descending
     processedRows.sort((a, b) => {
-      if (a.chgPct === null) return 1;
-      if (b.chgPct === null) return -1;
-      return b.chgPct - a.chgPct;
+      if (a.chg1D === null) return 1;
+      if (b.chg1D === null) return -1;
+      return b.chg1D - a.chg1D;
     });
 
     processedRows.forEach(r => {
       const tr = document.createElement('tr');
 
-      let returnPill = '<span class="return-pill zero">N/A</span>';
-      if (r.chgPct !== null) {
-        const valStr = `${r.chgPct >= 0 ? '+' : ''}${r.chgPct.toFixed(2)}%`;
-        const cls = r.chgPct > 0 ? 'pos' : (r.chgPct < 0 ? 'neg' : 'zero');
-        returnPill = `<span class="return-pill ${cls}">${valStr}</span>`;
+      let pill1D = '<span class="return-pill zero">N/A</span>';
+      if (r.chg1D !== null) {
+        const valStr = `${r.chg1D >= 0 ? '+' : ''}${r.chg1D.toFixed(2)}%`;
+        const cls = r.chg1D > 0 ? 'pos' : (r.chg1D < 0 ? 'neg' : 'zero');
+        pill1D = `<span class="return-pill ${cls}">${valStr}</span>`;
+      }
+
+      let pill2D = '<span class="return-pill zero">N/A</span>';
+      if (r.chg2D !== null) {
+        const valStr = `${r.chg2D >= 0 ? '+' : ''}${r.chg2D.toFixed(2)}%`;
+        const cls = r.chg2D > 0 ? 'pos' : (r.chg2D < 0 ? 'neg' : 'zero');
+        pill2D = `<span class="return-pill ${cls}">${valStr}</span>`;
       }
 
       tr.innerHTML = `
         <td class="sym-badge">${r.symbol}</td>
         <td>${r.name}</td>
+        <td class="text-right">${typeof r.priceT2 === 'number' ? '₹' + r.priceT2.toLocaleString('en-IN') : 'N/A'}</td>
         <td class="text-right">${typeof r.priceT1 === 'number' ? '₹' + r.priceT1.toLocaleString('en-IN') : 'N/A'}</td>
         <td class="text-right">${typeof r.priceT === 'number' ? '₹' + r.priceT.toLocaleString('en-IN') : 'N/A'}</td>
-        <td class="text-right">${returnPill}</td>
+        <td class="text-right">${pill1D}</td>
+        <td class="text-right">${pill2D}</td>
       `;
 
       modalStocksTbody.appendChild(tr);
     });
   }
 
-  // Init Chart with Crosshair Movement Event Syncing Candle Dates
+  // Init Chart with Crosshair & Click Locking Handlers
   function initChart() {
     if (chart) chart.remove();
 
@@ -474,8 +534,10 @@ document.addEventListener('DOMContentLoaded', () => {
     sma50Series = chart.addLineSeries({ color: '#38bdf8', lineWidth: 1.5, title: 'SMA 50' });
     ema200Series = chart.addLineSeries({ color: '#ec4899', lineWidth: 1.5, title: 'EMA 200' });
 
-    // CROSSHAIR MOVE LISTENER: SYNC CURSOR CANDLE SELECTION TO 2-DAY RETURN CALCULATION
+    // CROSSHAIR MOVE HANDLER (Updates dates if NOT locked)
     chart.subscribeCrosshairMove((param) => {
+      if (isCandleLocked) return; // Freeze selection when locked!
+
       if (param.time) {
         const secDetail = data.sector_details[activeSector];
         if (secDetail && secDetail.bars) {
@@ -484,8 +546,30 @@ document.addEventListener('DOMContentLoaded', () => {
           if (idx !== -1) {
             activeHoverDate = bars[idx].t;
             activeHoverPrevDate = idx > 0 ? bars[idx - 1].t : null;
+            activeHoverPrev2Date = idx > 1 ? bars[idx - 2].t : null;
 
-            // Re-render modal table if open
+            if (constituentsModalOverlay.classList.contains('active')) {
+              renderConstituentsTable();
+            }
+          }
+        }
+      }
+    });
+
+    // CHART CLICK HANDLER (Toggle Lock)
+    chart.subscribeClick((param) => {
+      if (param.time) {
+        const secDetail = data.sector_details[activeSector];
+        if (secDetail && secDetail.bars) {
+          const bars = secDetail.bars;
+          const idx = bars.findIndex(b => b.t === param.time);
+          if (idx !== -1) {
+            activeHoverDate = bars[idx].t;
+            activeHoverPrevDate = idx > 0 ? bars[idx - 1].t : null;
+            activeHoverPrev2Date = idx > 1 ? bars[idx - 2].t : null;
+            isCandleLocked = !isCandleLocked;
+            updateLockStatusUI();
+
             if (constituentsModalOverlay.classList.contains('active')) {
               renderConstituentsTable();
             }
@@ -526,7 +610,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const smoothedStates = computeSmoothedRegimes(activeSector, activeK);
     const timeScale = chart.timeScale();
     
-    // 🔴 State 0: Bearish (Red), 🟡 State 1: Neutral (Yellow), 🟢 State 2: Bullish (Green)
     const stateColors = {
       0: "rgba(255, 23, 68, 0.28)",
       1: "rgba(255, 235, 59, 0.18)",

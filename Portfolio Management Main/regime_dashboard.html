@@ -68,6 +68,7 @@
             <h2 id="active-sector-name">ELECTRONICS_EMS</h2>
             <span class="badge" id="active-timeframe-badge">DAILY OHLCV</span>
             <button class="view-stocks-btn" id="btnOpenConstituentsModal">📋 View Sector Stocks</button>
+            <span class="candle-lock-badge" id="candleLockBadge">🔓 Hover Mode (Press ENTER to Lock | ESC to Unlock)</span>
           </div>
 
           <div class="sector-metrics">
@@ -115,19 +116,20 @@
     </div>
   </div>
 
-  <!-- SECTOR CONSTITUENTS STOCKS MODAL (DOUBLE-CLICK REPLICA) -->
+  <!-- SECTOR CONSTITUENTS STOCKS MODAL WITH CANDLE LOCKING -->
   <div class="modal-overlay" id="constituentsModalOverlay">
     <div class="constituents-modal">
       <div class="modal-header">
         <div class="modal-title-group">
           <h2 id="modalSectorTitle">ELECTRONICS_EMS STOCKS</h2>
-          <span class="modal-sub" id="modalDateInfo">Candle Date: 2026-08-05 | 2-Day Return Comparison</span>
+          <span class="modal-sub" id="modalDateInfo">Candle Date: 2026-08-05 | 1-Day & 2-Day Return Comparison</span>
         </div>
         <button class="modal-close-btn" id="btnCloseConstituentsModal">✕</button>
       </div>
 
       <div class="modal-toolbar">
         <input type="text" id="modalStockSearch" placeholder="Search constituent stocks by name or symbol..." />
+        <span class="modal-lock-indicator" id="modalLockStatus">🔓 Hover Mode (Press ENTER to Lock | ESC to Unlock)</span>
         <span class="modal-stock-count" id="modalStockCountBadge">17 Stocks</span>
       </div>
 
@@ -137,8 +139,10 @@
             <tr>
               <th>Symbol</th>
               <th>Company Name</th>
+              <th class="text-right">Price (T-2)</th>
               <th class="text-right">Price (T-1)</th>
               <th class="text-right">Price (T)</th>
+              <th class="text-right">1-Day Change (%)</th>
               <th class="text-right">2-Day Change (%)</th>
             </tr>
           </thead>
