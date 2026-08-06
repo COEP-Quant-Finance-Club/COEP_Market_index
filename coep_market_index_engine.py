@@ -582,6 +582,72 @@ def update_readme_leaderboard(summary: dict) -> None:
         log.error(f"Failed to update README.md leaderboard: {e}")
 
 
+def generate_dashboard_data():
+    log.info("[5/5] Generating dashboard_data.js for dynamic web dashboard...")
+    output_js = os.path.join(BASE_DIR, "dashboard_data.js")
+    stock_counts = {}
+    if os.path.exists(WEIGHTS_FILE):
+        try:
+            with open(WEIGHTS_FILE, "r", encoding="utf-8") as f:
+                weights = json.load(f)
+                for sec, stk_map in weights.items():
+                    stock_counts[sec] = len(stk_map)
+        except Exception:
+            pass
+
+    summary = []
+    daily_data = {}
+    csv_files = glob.glob(os.path.join(INDICES_DIR, "*.csv"))
+
+    for f in csv_files:
+        basename = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").upper()
+        try:
+            df = pd.read_csv(f, index_col=0, parse_dates=True)
+            if df.empty or "Close" not in df.columns:
+                continue
+
+            df.sort_index(inplace=True)
+            bars = []
+            for dt, row in df.iterrows():
+                bars.append({
+                    "time": dt.strftime("%Y-%m-%d"),
+                    "open": round(float(row.get("Open", row["Close"])), 2),
+                    "high": round(float(row.get("High", row["Close"])), 2),
+                    "low": round(float(row.get("Low", row["Close"])), 2),
+                    "close": round(float(row["Close"]), 2),
+                    "volume": int(row.get("Volume", 0))
+                })
+
+            if not bars:
+                continue
+
+            cur_val = bars[-1]["close"]
+            tot_ret = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
+            n_stocks = stock_counts.get(basename, 10)
+
+            summary.append({
+                "sector": basename,
+                "current_val": cur_val,
+                "total_return_pct": tot_ret,
+                "stock_count": n_stocks
+            })
+            daily_data[basename] = bars
+
+        except Exception:
+            pass
+
+    summary.sort(key=lambda x: x["total_return_pct"], reverse=True)
+    payload = {"summary": summary, "daily": daily_data, "fourhour": {}}
+
+    with open(output_js, "w", encoding="utf-8") as f:
+        f.write("window.SECTOR_INDEX_DATA = ")
+        json.dump(payload, f)
+        f.write(";\n")
+
+    size_mb = round(os.path.getsize(output_js) / (1024 * 1024), 2)
+    log.info(f"[5/5 Complete] Generated dashboard_data.js ({size_mb} MB) for {len(summary)} master sectors.")
+
+
 def main():
     start_time = time.time()
     log.info("="*70)
@@ -599,6 +665,9 @@ def main():
 
     # 4. Automatically update README.md sector leaderboard table
     update_readme_leaderboard(sec_summary)
+
+    # 5. Automatically generate updated dashboard_data.js
+    generate_dashboard_data()
 
     elapsed = round(time.time() - start_time, 2)
     summary_data = {

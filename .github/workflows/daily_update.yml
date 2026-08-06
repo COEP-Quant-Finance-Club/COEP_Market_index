@@ -36,7 +36,7 @@ jobs:
         run: |
           git config --global user.name "COEP Quant Club Automation"
           git config --global user.email "quantclub@coep.ac.in"
-          git add OHLCV/ json/ README.md
+          git add OHLCV/ json/ README.md dashboard_data.js
           git status
           git diff-index --quiet HEAD || {
             git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
