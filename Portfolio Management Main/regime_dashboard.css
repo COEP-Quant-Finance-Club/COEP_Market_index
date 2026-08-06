@@ -79,7 +79,7 @@ body.dark-theme {
   border: 1px solid var(--border-color);
   padding: 4px 16px;
   border-radius: 8px;
-  min-width: 320px;
+  min-width: 340px;
 }
 
 .slider-header {

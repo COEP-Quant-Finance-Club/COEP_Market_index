@@ -1,12 +1,13 @@
 /**
- * Quant Club - Institutional Sector Index Terminal & HMM Regimes JS
- * Replica of master dashboard.js + HMM Background Canvas Shading & Sensitivity Slider
+ * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
+ * Uses REAL OHLCV data from OHLCV/Indices/Daily/*.csv
+ * Canvas Overlay Vertical HMM State Shading & Slider Hysteresis Control
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const data = window.REGIME_ANALYSIS_DATA || { sector_summaries: [], sector_details: {} };
   let activeSector = 'ELECTRONICS_EMS';
-  let activeK = 5;
+  let activeK = 9;
 
   let chart = null;
   let candlestickSeries = null;
@@ -61,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChart();
   });
 
-  // TradingView Style Scale Toolbar Controls
+  // Scale Toolbar Controls
   document.getElementById('btn-zoom-in').addEventListener('click', () => {
     if (chart) {
       const ts = chart.timeScale();
@@ -130,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filtered.forEach(item => {
       const secName = item.sector;
       const currentVal = item.current_val;
-      const retPct = `${((currentVal - 100.0) / 100.0 * 100.0) >= 0 ? '+' : ''}${((currentVal - 100.0) / 100.0 * 100.0).toFixed(2)}%`;
+      const retPct = item.total_return_pct || `${((currentVal - 100.0) / 100.0 * 100.0) >= 0 ? '+' : ''}${((currentVal - 100.0) / 100.0 * 100.0).toFixed(2)}%`;
       const isPos = !retPct.includes('-');
 
       const itemEl = document.createElement('div');
@@ -166,14 +167,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!item) return;
     const secName = item.sector;
     const currentVal = item.current_val;
-    const retPct = `${((currentVal - 100.0) / 100.0 * 100.0) >= 0 ? '+' : ''}${((currentVal - 100.0) / 100.0 * 100.0).toFixed(2)}%`;
-    const stateNames = { 0: "State 0: Bullish", 1: "State 1: Neutral", 2: "State 2: Bearish" };
+    const retPct = item.total_return_pct || `${((currentVal - 100.0) / 100.0 * 100.0) >= 0 ? '+' : ''}${((currentVal - 100.0) / 100.0 * 100.0).toFixed(2)}%`;
+    const stateNames = { 0: "🔴 Bearish (State 0)", 1: "🟡 Neutral (State 1)", 2: "🟢 Bullish (State 2)" };
 
     activeSectorTitle.innerText = secName;
     metricCurrentVal.innerText = currentVal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
     metricReturnVal.innerText = retPct;
     metricReturnVal.className = `metric-val ${!retPct.includes('-') ? 'positive' : 'negative'}`;
-    metricStateVal.innerText = stateNames[item.current_state];
+    metricStateVal.innerText = stateNames[item.current_state] || "🟢 Bullish (State 2)";
   }
 
   // Init Chart with Transparent Background for Canvas HMM State Shading
@@ -252,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       color: '#38bdf8',
       priceFormat: { type: 'volume' },
       priceScaleId: '',
-      scaleMargins: { top: 0.8, bottom: 0 },
+      scaleMargins: { top: 0.82, bottom: 0 },
     });
 
     sma20Series = chart.addLineSeries({ color: '#f59e0b', lineWidth: 1.5, title: 'SMA 20' });
@@ -279,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Draw HMM Vertical Background State Shading (IMAGE 1 REPLICA)
+  // Draw 3-State HMM Vertical Background Shading Boxes (IMAGE 1 REPLICA)
   function drawHMMBackgroundOverlay() {
     if (!chart || !canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -291,30 +292,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bars || bars.length === 0) return;
 
     const timeScale = chart.timeScale();
+    
+    // 🔴 State 0: Bearish (Red), 🟡 State 1: Neutral (Yellow), 🟢 State 2: Bullish (Green)
     const stateColors = {
-      0: "rgba(34, 197, 94, 0.32)",   /* State 0: Vibrant Bullish Green */
-      1: "rgba(245, 158, 11, 0.25)",  /* State 1: Dark Amber Yellow */
-      2: "rgba(239, 68, 68, 0.32)"   /* State 2: Vibrant Bearish Red */
+      0: "rgba(255, 23, 68, 0.28)",   /* 🔴 Bearish Macro (Vibrant Red) */
+      1: "rgba(255, 235, 59, 0.18)",  /* 🟡 Neutral Macro (Soft Gold/Yellow) */
+      2: "rgba(0, 230, 118, 0.28)"   /* 🟢 Bullish Macro (Vibrant Green) */
     };
 
     for (let i = 0; i < bars.length; i++) {
       const bar = bars[i];
       const nextBar = bars[i + 1];
 
-      const x1 = timeScale.timeToCoordinate(bar.t || bar.time);
+      const x1 = timeScale.timeToCoordinate(bar.t);
       if (x1 === null || x1 < -50 || x1 > canvas.width + 50) continue;
 
       let x2;
       if (nextBar) {
-        x2 = timeScale.timeToCoordinate(nextBar.t || nextBar.time);
+        x2 = timeScale.timeToCoordinate(nextBar.t);
       }
       if (x2 === null || x2 === undefined) {
         x2 = x1 + 10;
       }
 
       const width = Math.max(1, x2 - x1);
-      const stateVal = bar.s !== undefined ? bar.s : bar.state;
-      const color = stateColors[stateVal] || stateColors[1];
+      const stateVal = bar.s;
+      const color = stateColors[stateVal] !== undefined ? stateColors[stateVal] : stateColors[1];
 
       ctx.fillStyle = color;
       ctx.fillRect(x1, 0, width, canvas.height);
@@ -361,19 +364,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const bars = secData[activeK.toString()].bars || [];
     if (bars.length === 0) return;
 
-    const formattedBars = bars.map((b, idx) => {
-      const c = b.c || b.close;
-      const prevC = idx > 0 ? (bars[idx-1].c || bars[idx-1].close) : c;
-      const o = prevC;
-      const h = Math.max(o, c) * 1.001;
-      const l = Math.min(o, c) * 0.999;
-      return { time: b.t || b.time, open: o, high: h, low: l, close: c };
-    });
+    // Use REAL OHLCV candles
+    const formattedBars = bars.map(b => ({
+      time: b.t,
+      open: b.o,
+      high: b.h,
+      low: b.l,
+      close: b.c
+    }));
 
+    // Use REAL Volume data
     const volumeData = bars.map(b => ({
-      time: b.t || b.time,
-      value: Math.floor(Math.random() * 50000000) + 10000000,
-      color: (b.c || b.close) >= (b.o || b.close) ? 'rgba(34, 197, 94, 0.4)' : 'rgba(239, 68, 68, 0.4)'
+      time: b.t,
+      value: b.v,
+      color: b.c >= b.o ? 'rgba(34, 197, 94, 0.4)' : 'rgba(239, 68, 68, 0.4)'
     }));
 
     candlestickSeries.setData(formattedBars);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quant Club - Institutional Sector Index Terminal & HMM Regimes</title>
+  <title>Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div class="logo-icon">📊</div>
         <div class="brand-text">
           <h1>QUANT CLUB</h1>
-          <span class="sub-brand">Institutional Sector Index Terminal & HMM Regimes</span>
+          <span class="sub-brand">Institutional Sector Index Terminal & 3-State Macro Regimes</span>
         </div>
       </div>
 
@@ -28,15 +28,15 @@
       <div class="sensitivity-slider-box">
         <div class="slider-header">
           <span class="slider-title">🎛️ 3-State Macro Sensitivity (Smoothing Candles)</span>
-          <span class="slider-val" id="kSliderVal">5</span>
+          <span class="slider-val" id="kSliderVal">9</span>
         </div>
-        <input type="range" id="kRangeSlider" min="1" max="21" value="5" step="1" class="custom-slider">
+        <input type="range" id="kRangeSlider" min="1" max="21" value="9" step="1" class="custom-slider">
       </div>
 
       <div class="header-controls">
-        <div class="legend-pill bull-pill"><span class="dot"></span> State 0: Bullish</div>
-        <div class="legend-pill neutral-pill"><span class="dot"></span> State 1: Neutral</div>
-        <div class="legend-pill bear-pill"><span class="dot"></span> State 2: Bearish</div>
+        <div class="legend-pill bull-pill"><span class="dot"></span> 🟢 Bullish (2)</div>
+        <div class="legend-pill neutral-pill"><span class="dot"></span> 🟡 Neutral (1)</div>
+        <div class="legend-pill bear-pill"><span class="dot"></span> 🔴 Bearish (0)</div>
       </div>
     </header>
 
@@ -68,7 +68,7 @@
           <div class="sector-metrics">
             <div class="metric-item">
               <span class="metric-label">Current Value</span>
-              <span class="metric-val" id="metric-current-val">1,936.50</span>
+              <span class="metric-val" id="metric-current-val">2,119.08</span>
             </div>
             <div class="metric-item">
               <span class="metric-label">Base Value</span>
@@ -76,11 +76,11 @@
             </div>
             <div class="metric-item">
               <span class="metric-label">Total Return</span>
-              <span class="metric-val positive" id="metric-return-val">+1836.50%</span>
+              <span class="metric-val positive" id="metric-return-val">+2019.08%</span>
             </div>
             <div class="metric-item">
-              <span class="metric-label">Active State</span>
-              <span class="metric-val highlight" id="metric-state-val">State 0: Bullish</span>
+              <span class="metric-label">Macro Regime</span>
+              <span class="metric-val highlight" id="metric-state-val">🟢 Bullish (State 2)</span>
             </div>
           </div>
 
