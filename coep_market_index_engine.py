@@ -322,8 +322,64 @@ def audit_corporate_actions() -> dict:
     with open(CORP_ACTIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(corp_actions, f, indent=2)
 
-    log.info(f"[2/4 Complete] Audited & saved corporate actions to {os.path.basename(CORP_ACTIONS_FILE)}")
-    return corp_actions
+def sanitize_rogue_spikes() -> int:
+    log.info("[2.5] Sanitizing multi-day rogue YFinance price spikes/bad ticks...")
+    csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
+    total_fixed_bars = 0
+    cleaned_stocks = 0
+
+    for f in csv_files:
+        sym = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").strip().upper()
+        try:
+            df = pd.read_csv(f, index_col=0, parse_dates=True)
+            if df.empty or len(df) < 20 or "Close" not in df.columns:
+                continue
+
+            df.sort_index(inplace=True)
+            closes = df["Close"]
+            modified = False
+            n = len(df)
+            i = 0
+            while i < n - 1:
+                prev_idx = max(0, i - 1)
+                p_prev = closes.iloc[prev_idx]
+                p_curr = closes.iloc[i]
+
+                if p_prev > 0 and (p_curr / p_prev > 3.0 or p_curr / p_prev < 0.33):
+                    end_j = -1
+                    for j in range(i + 1, min(n, i + 20)):
+                        p_next = closes.iloc[j]
+                        if p_prev > 0 and abs(p_next - p_prev) / p_prev < 0.50:
+                            end_j = j
+                            break
+                    
+                    if end_j != -1 and (end_j - i) <= 15:
+                        start_val = closes.iloc[prev_idx]
+                        end_val = closes.iloc[end_j]
+                        num_steps = end_j - prev_idx
+                        
+                        for step_k, k in enumerate(range(prev_idx + 1, end_j)):
+                            interp_p = start_val + (end_val - start_val) * ((step_k + 1) / num_steps)
+                            interp_p = round(float(interp_p), 2)
+                            dt = df.index[k]
+                            df.loc[dt, ["Open", "High", "Low", "Close"]] = interp_p
+                            total_fixed_bars += 1
+                        
+                        modified = True
+                        i = end_j
+                        continue
+                i += 1
+
+            if modified:
+                df.to_csv(f)
+                cleaned_stocks += 1
+
+        except Exception:
+            pass
+
+    log.info(f"[2.5 Complete] Sanitized {total_fixed_bars} rogue YFinance spike bars across {cleaned_stocks} stocks.")
+    return total_fixed_bars
+
 
 # ── STEP 3: MASTER CLEAN SECTOR INDEX ENGINE ──────────────────────────────────
 
@@ -675,6 +731,9 @@ def main():
 
     # 2. Audit corporate actions
     audit_corporate_actions()
+
+    # 2.5. Sanitize multi-day rogue YFinance price spikes & bad ticks
+    sanitize_rogue_spikes()
 
     # 3. Rebuild clean master sector indices & export today's weights
     sec_summary, sector_weights = calculate_sector_indices()

@@ -179,7 +179,7 @@
   "POWER_AND_UTILITIES": {
     "sector": "POWER_AND_UTILITIES",
     "constituents_count": 35,
-    "latest_index_value": 658.34,
+    "latest_index_value": 658.3,
     "weights_percentage": {
       "ADANIPOWER": 16.925,
       "NTPC": 13.8292,
@@ -242,7 +242,7 @@
   "HEALTHCARE_SERVICES": {
     "sector": "HEALTHCARE_SERVICES",
     "constituents_count": 104,
-    "latest_index_value": 382.19,
+    "latest_index_value": 382.2,
     "weights_percentage": {
       "SUNPHARMA": 14.6871,
       "DIVISLAB": 6.0682,
@@ -821,7 +821,7 @@
   "CONSUMER_STAPLES": {
     "sector": "CONSUMER_STAPLES",
     "constituents_count": 60,
-    "latest_index_value": 292.44,
+    "latest_index_value": 292.81,
     "weights_percentage": {
       "ITC": 20.5414,
       "NESTLEIND": 16.0996,
@@ -1343,7 +1343,7 @@
   "DIVERSIFIED": {
     "sector": "DIVERSIFIED",
     "constituents_count": 10,
-    "latest_index_value": 524.81,
+    "latest_index_value": 524.77,
     "weights_percentage": {
       "3MINDIA": 40.8239,
       "NAVA": 16.0423,
@@ -1360,7 +1360,7 @@
   "OIL_GAS_UTILITIES": {
     "sector": "OIL_GAS_UTILITIES",
     "constituents_count": 26,
-    "latest_index_value": 486.95,
+    "latest_index_value": 486.94,
     "weights_percentage": {
       "RELIANCE": 60.1438,
       "ONGC": 10.8831,
@@ -1393,7 +1393,7 @@
   "FINANCIAL_INFRASTRUCTURE": {
     "sector": "FINANCIAL_INFRASTRUCTURE",
     "constituents_count": 11,
-    "latest_index_value": 748.33,
+    "latest_index_value": 748.3,
     "weights_percentage": {
       "BSE": 43.3318,
       "MCX": 20.8338,
@@ -1459,7 +1459,7 @@
   "MEDIA_AND_ENTERTAINMENT": {
     "sector": "MEDIA_AND_ENTERTAINMENT",
     "constituents_count": 6,
-    "latest_index_value": 84.5,
+    "latest_index_value": 84.59,
     "weights_percentage": {
       "DOMS": 50.6227,
       "NAVNETEDUL": 11.9612,
@@ -1622,7 +1622,7 @@
   "ELECTRONICS_EMS": {
     "sector": "ELECTRONICS_EMS",
     "constituents_count": 17,
-    "latest_index_value": 2119.08,
+    "latest_index_value": 2119.31,
     "weights_percentage": {
       "DIXON": 31.3095,
       "HFCL": 11.1534,
