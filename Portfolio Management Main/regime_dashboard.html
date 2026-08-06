@@ -3,144 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QFC Alpha Terminal | 3-State HMM Sector Regime Engine</title>
+    <title>Quant Club - Institutional 3-State HMM Sector Terminal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="regime_dashboard.css">
     <script src="lightweight-charts.min.js"></script>
     <script src="regime_dashboard_data.js"></script>
 </head>
-<body>
+<body class="dark-theme">
     <div class="app-container">
-        <!-- TOP HEADER NAVBAR -->
+        <!-- HEADER NAVBAR -->
         <header class="navbar">
             <div class="brand">
-                <div class="logo-badge">HMM</div>
-                <div>
-                    <h1>QFC ALPHA TERMINAL <span>Regime Detection Engine</span></h1>
-                    <p class="subtitle">3-State Out-of-Sample Markov Filter • Candle Smoothing Sensitivity ($k = 1 \dots 21$) • Zero Forward Bias</p>
+                <div class="logo-icon">📊</div>
+                <div class="brand-text">
+                    <h1>QUANT CLUB <span>SECTOR REGIME TERMINAL</span></h1>
+                    <div class="sub-brand">3-STATE OUT-OF-SAMPLE MARKOV REGIME FILTERING</div>
                 </div>
             </div>
-            <div class="header-metrics">
-                <div class="metric-card">
-                    <span class="m-label">MODEL ARCHITECTURE</span>
-                    <span class="m-val highlight">3-State Gaussian HMM</span>
+
+            <!-- SENSITIVITY SLIDER (IMAGE 2 REPLICA) -->
+            <div class="sensitivity-slider-box">
+                <div class="slider-header">
+                    <span class="slider-title">🎛️ 3-State Macro Sensitivity (Smoothing Candles)</span>
+                    <span class="slider-val" id="kSliderVal">5</span>
                 </div>
-                <div class="metric-card">
-                    <span class="m-label">FILTERING MODE</span>
-                    <span class="m-val success">Zero Forward Bias</span>
-                </div>
-                <div class="metric-card">
-                    <span class="m-label">SECTORS ANALYZED</span>
-                    <span class="m-val" id="totalSectorsCount">32 Master Sectors</span>
-                </div>
-                <div class="metric-card">
-                    <span class="m-label">ACTIVE SMOOTHING</span>
-                    <span class="m-val accent" id="activeKDisplay">k = 5 Candles</span>
-                </div>
+                <input type="range" id="kRangeSlider" min="1" max="21" value="5" step="1" class="custom-slider">
+            </div>
+
+            <!-- STATE LEGEND BADGES -->
+            <div class="header-controls">
+                <div class="legend-pill bull-pill"><span class="dot"></span> State 0: Bullish</div>
+                <div class="legend-pill neutral-pill"><span class="dot"></span> State 1: Neutral</div>
+                <div class="legend-pill bear-pill"><span class="dot"></span> State 2: Bearish</div>
             </div>
         </header>
 
-        <!-- CONTROL & SENSITIVITY TOOLBAR -->
-        <div class="toolbar">
-            <div class="toolbar-group">
-                <label>Candle Smoothing Sensitivity (k):</label>
-                <div class="k-selector" id="kSelectorGroup">
-                    <button class="k-btn" data-k="1">k=1</button>
-                    <button class="k-btn" data-k="3">k=3</button>
-                    <button class="k-btn active" data-k="5">k=5 (Default)</button>
-                    <button class="k-btn" data-k="7">k=7</button>
-                    <button class="k-btn" data-k="10">k=10</button>
-                    <button class="k-btn" data-k="14">k=14</button>
-                    <button class="k-btn" data-k="21">k=21</button>
+        <!-- MAIN TERMINAL CONTENT GRID -->
+        <main class="terminal-body">
+            <!-- LEFT SIDEBAR: SECTOR BASKETS (IMAGE 3 REPLICA) -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <span class="sb-title">SECTOR BASKETS</span>
+                    <span class="sb-count" id="sbCount">32 Baskets</span>
                 </div>
-            </div>
-
-            <div class="toolbar-group">
-                <label>Filter Regimes:</label>
-                <div class="filter-tabs" id="regimeFilterGroup">
-                    <button class="tab-btn active" data-filter="ALL">All (32)</button>
-                    <button class="tab-btn bull-tab" data-filter="0">State 0: Bullish</button>
-                    <button class="tab-btn neutral-tab" data-filter="1">State 1: Neutral</button>
-                    <button class="tab-btn bear-tab" data-filter="2">State 2: Bearish</button>
-                    <button class="tab-btn leader-tab" data-filter="LEADERS">🚀 Leading Sectors</button>
-                </div>
-            </div>
-
-            <div class="toolbar-group search-box">
-                <input type="text" id="sectorSearch" placeholder="Search Sector Index...">
-            </div>
-        </div>
-
-        <!-- MAIN LAYOUT GRID -->
-        <main class="dashboard-grid">
-            <!-- LEFT SIDEBAR: SECTOR REGIME MATRIX -->
-            <aside class="sidebar-panel">
-                <div class="panel-header">
-                    <h2>Master Sector Regime Matrix</h2>
-                    <span class="badge" id="visibleSectorsCount">32 Sectors</span>
+                <div class="search-box">
+                    <input type="text" id="sectorSearch" placeholder="Filter sectors (e.g. Defence, EMS, Real Estate)...">
                 </div>
                 <div class="sector-list" id="sectorListContainer">
-                    <!-- Dynamic Sector Cards -->
+                    <!-- Dynamic Sector List Items -->
                 </div>
             </aside>
 
-            <!-- CENTER MAIN PANEL: INTERACTIVE CHART & PROBABILITIES -->
-            <section class="main-chart-panel">
-                <div class="chart-header">
-                    <div class="selected-sector-info">
-                        <h2 id="chartSectorTitle">BANKING</h2>
-                        <div class="state-indicator-badge" id="chartStateBadge">
-                            <span class="state-dot"></span>
-                            <span id="chartStateText">State 0: Bullish / Expansion</span>
+            <!-- MAIN CHART PANEL (IMAGE 1 & IMAGE 3 REPLICA) -->
+            <section class="chart-panel">
+                <div class="chart-header-strip">
+                    <div class="stock-title-group">
+                        <h2 id="currentSectorTitle">ELECTRONICS_EMS</h2>
+                        <span class="badge-tag">DAILY OHLCV</span>
+                    </div>
+
+                    <div class="stats-group">
+                        <div class="stat-item">
+                            <span class="stat-lbl">Current Value</span>
+                            <span class="stat-val" id="statCurVal">0.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-lbl">Base Value</span>
+                            <span class="stat-val">100.00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-lbl">Total Return</span>
+                            <span class="stat-val green" id="statTotReturn">+0.00%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-lbl">Constituents</span>
+                            <span class="stat-val" id="statStockCount">0 Stocks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-lbl">Active State</span>
+                            <span class="stat-val highlight" id="statActiveState">State 0: Bullish</span>
                         </div>
                     </div>
-                    <div class="prob-summary" id="probSummaryContainer">
-                        <span class="prob-pill bull">Bull: <strong id="bullProbVal">99.9%</strong></span>
-                        <span class="prob-pill neutral">Neutral: <strong id="neutralProbVal">0.1%</strong></span>
-                        <span class="prob-pill bear">Bear: <strong id="bearProbVal">0.0%</strong></span>
-                    </div>
                 </div>
 
-                <!-- TRADINGVIEW LIGHTWEIGHT CANDLESTICK CHART CONTAINER -->
-                <div class="chart-wrapper">
-                    <div id="regimePriceChart" class="lightweight-chart-container"></div>
-                </div>
-
-                <!-- STATE PROBABILITY DISTRIBUTION CHART -->
-                <div class="subchart-wrapper">
-                    <div class="subchart-title">HMM Out-of-Sample State Probabilities $\gamma_{t|t} = P(S_t \mid \mathbf{x}_{1:t})$</div>
-                    <div id="regimeProbChart" class="lightweight-chart-container"></div>
+                <!-- MAIN TRADINGVIEW CANDLESTICK CHART CONTAINER WITH HMM STATE BACKGROUND OVERLAY -->
+                <div class="chart-viewport" id="chartViewport">
+                    <canvas id="hmmBackgroundCanvas" class="hmm-canvas-overlay"></canvas>
+                    <div id="tvChartContainer" class="tv-chart"></div>
                 </div>
             </section>
-
-            <!-- RIGHT ANALYTICS SIDEBAR -->
-            <aside class="analytics-panel">
-                <!-- LEADING SECTOR ROTATION RADAR -->
-                <div class="analytics-card">
-                    <div class="card-title">
-                        <span class="icon">🚀</span> Leading Sector Shift Radar
-                    </div>
-                    <p class="card-desc">Sectors exhibiting the longest persistent State 0 Bullish regime transitions.</p>
-                    <div class="radar-list" id="leadingRadarList">
-                        <!-- Dynamic Leading Radar Rows -->
-                    </div>
-                </div>
-
-                <!-- SMOOTHING SENSITIVITY BENCHMARK -->
-                <div class="analytics-card">
-                    <div class="card-title">
-                        <span class="icon">⚙️</span> Candle Smoothing Benchmark
-                    </div>
-                    <p class="card-desc">Trade-off between Whipsaw Noise Reduction & Signal Lag across $k \in [1, 21]$.</p>
-                    <div class="benchmark-table" id="smoothingBenchmarkContainer">
-                        <!-- Dynamic Benchmark Table -->
-                    </div>
-                </div>
-            </aside>
         </main>
     </div>
+
     <script src="regime_dashboard.js"></script>
 </body>
 </html>

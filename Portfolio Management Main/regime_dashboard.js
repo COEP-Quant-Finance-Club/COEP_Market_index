@@ -1,112 +1,148 @@
 /**
- * QFC Alpha Terminal - 3-State HMM Sector Regime Dashboard JS
- * Dynamic TradingView Lightweight Charts & Candle Smoothing ($k = 1 \dots 21$)
+ * Quant Club - Institutional 3-State HMM Sector Terminal JS
+ * Replicates exact minimal aesthetic of quant_club_sector_terminal.html
+ * Canvas Overlay Vertical HMM State Shading (Image 1) & Sensitivity Slider (Image 2)
  */
 
 document.addEventListener("DOMContentLoaded", () => {
     const data = window.REGIME_ANALYSIS_DATA;
     if (!data) {
-        console.error("REGIME_ANALYSIS_DATA not found!");
+        console.error("REGIME_ANALYSIS_DATA not loaded!");
         return;
     }
 
     let activeK = 5;
-    let selectedSector = "BANKING";
-    let activeFilter = "ALL";
+    let selectedSector = "ELECTRONICS_EMS";
     let searchTerm = "";
 
-    // Chart Handles
-    let priceChart = null;
+    // Chart & Series Handles
+    let chart = null;
     let candleSeries = null;
-    
-    let probChart = null;
-    let bullProbSeries = null;
-    let neutralProbSeries = null;
-    let bearProbSeries = null;
+    let volumeSeries = null;
 
     // DOM Elements
+    const kRangeSlider = document.getElementById("kRangeSlider");
+    const kSliderVal = document.getElementById("kSliderVal");
+    const sectorSearch = document.getElementById("sectorSearch");
     const sectorListContainer = document.getElementById("sectorListContainer");
-    const chartSectorTitle = document.getElementById("chartSectorTitle");
-    const chartStateBadge = document.getElementById("chartStateBadge");
-    const chartStateText = document.getElementById("chartStateText");
-    const bullProbVal = document.getElementById("bullProbVal");
-    const neutralProbVal = document.getElementById("neutralProbVal");
-    const bearProbVal = document.getElementById("bearProbVal");
-    const activeKDisplay = document.getElementById("activeKDisplay");
-    const visibleSectorsCount = document.getElementById("visibleSectorsCount");
-    const leadingRadarList = document.getElementById("leadingRadarList");
-    const smoothingBenchmarkContainer = document.getElementById("smoothingBenchmarkContainer");
+    const canvas = document.getElementById("hmmBackgroundCanvas");
+    const ctx = canvas.getContext("2d");
 
-    // Initialize Lightweight Charts
-    function initCharts() {
-        const priceContainer = document.getElementById("regimePriceChart");
-        const probContainer = document.getElementById("regimeProbChart");
+    // Header Stats
+    const currentSectorTitle = document.getElementById("currentSectorTitle");
+    const statCurVal = document.getElementById("statCurVal");
+    const statTotReturn = document.getElementById("statTotReturn");
+    const statStockCount = document.getElementById("statStockCount");
+    const statActiveState = document.getElementById("statActiveState");
 
-        priceContainer.innerHTML = "";
-        probContainer.innerHTML = "";
+    // Initialize TradingView Lightweight Chart
+    function initChart() {
+        const tvContainer = document.getElementById("tvChartContainer");
+        tvContainer.innerHTML = "";
 
-        // Main Price Chart
-        priceChart = LightweightCharts.createChart(priceContainer, {
+        chart = LightweightCharts.createChart(tvContainer, {
             layout: {
-                backgroundColor: '#121824',
+                backgroundColor: 'transparent', // Transparent background to show canvas shading underneath
                 textColor: '#94a3b8',
                 fontSize: 11,
                 fontFamily: 'Inter'
             },
             grid: {
-                vertLines: { color: '#1e293b' },
-                horzLines: { color: '#1e293b' }
+                vertLines: { color: 'rgba(36, 49, 76, 0.5)' },
+                horzLines: { color: 'rgba(36, 49, 76, 0.5)' }
             },
             crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
-            rightPriceScale: { borderColor: '#1e293b' },
-            timeScale: { borderColor: '#1e293b', timeVisible: true }
+            rightPriceScale: { borderColor: '#24314c' },
+            timeScale: { borderColor: '#24314c', timeVisible: true }
         });
 
-        candleSeries = priceChart.addCandlestickSeries({
-            upColor: '#10b981',
+        candleSeries = chart.addCandlestickSeries({
+            upColor: '#22c55e',
             downColor: '#ef4444',
-            borderUpColor: '#10b981',
+            borderUpColor: '#22c55e',
             borderDownColor: '#ef4444',
-            wickUpColor: '#10b981',
+            wickUpColor: '#22c55e',
             wickDownColor: '#ef4444'
         });
 
-        // Subchart (Probabilities)
-        probChart = LightweightCharts.createChart(probContainer, {
-            layout: {
-                backgroundColor: '#121824',
-                textColor: '#94a3b8',
-                fontSize: 10,
-                fontFamily: 'Inter'
-            },
-            grid: {
-                vertLines: { color: '#1e293b' },
-                horzLines: { color: '#1e293b' }
-            },
-            rightPriceScale: { borderColor: '#1e293b' },
-            timeScale: { borderColor: '#1e293b', timeVisible: true }
+        volumeSeries = chart.addHistogramSeries({
+            color: '#26a69a',
+            priceFormat: { type: 'volume' },
+            priceScaleId: '',
+            scaleMargins: { top: 0.8, bottom: 0 }
         });
 
-        bullProbSeries = probChart.addLineSeries({ color: '#10b981', lineWidth: 2, title: 'Bull Prob' });
-        neutralProbSeries = probChart.addLineSeries({ color: '#f59e0b', lineWidth: 1.5, title: 'Neutral Prob' });
-        bearProbSeries = probChart.addLineSeries({ color: '#ef4444', lineWidth: 1.5, title: 'Bear Prob' });
+        // Resize Canvas and Redraw Shading on TimeScale changes
+        chart.timeScale().subscribeVisibleTimeRangeChange(() => {
+            requestAnimationFrame(drawHMMBackgroundOverlay);
+        });
+
+        window.addEventListener("resize", () => {
+            resizeCanvas();
+            requestAnimationFrame(drawHMMBackgroundOverlay);
+        });
+
+        resizeCanvas();
     }
 
-    // Render Sector List Sidebar
-    function renderSectorList() {
+    function resizeCanvas() {
+        const viewport = document.getElementById("chartViewport");
+        if (viewport) {
+            canvas.width = viewport.clientWidth;
+            canvas.height = viewport.clientHeight;
+        }
+    }
+
+    // Render Canvas HMM State Vertical Background Color Bands (IMAGE 1 REPLICA)
+    function drawHMMBackgroundOverlay() {
+        if (!chart || !canvas || !ctx) return;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const secData = data.sector_details[selectedSector];
+        if (!secData || !secData[activeK.toString()]) return;
+
+        const bars = secData[activeK.toString()].bars;
+        if (!bars || bars.length === 0) return;
+
+        const timeScale = chart.timeScale();
+        const stateColors = {
+            0: "rgba(34, 197, 94, 0.22)",   /* State 0: Bullish Green */
+            1: "rgba(245, 158, 11, 0.18)",  /* State 1: Neutral Yellow */
+            2: "rgba(239, 68, 68, 0.22)"   /* State 2: Bearish Red */
+        };
+
+        for (let i = 0; i < bars.length; i++) {
+            const bar = bars[i];
+            const nextBar = bars[i + 1];
+
+            const x1 = timeScale.timeToCoordinate(bar.t || bar.time);
+            if (x1 === null || x1 < -50 || x1 > canvas.width + 50) continue;
+
+            let x2;
+            if (nextBar) {
+                x2 = timeScale.timeToCoordinate(nextBar.t || nextBar.time);
+            }
+            if (x2 === null || x2 === undefined) {
+                x2 = x1 + 8; // Default width for last bar
+            }
+
+            const width = Math.max(1, x2 - x1);
+            const color = stateColors[bar.s !== undefined ? bar.s : bar.state] || stateColors[1];
+
+            ctx.fillStyle = color;
+            ctx.fillRect(x1, 0, width, canvas.height);
+        }
+    }
+
+    // Render Sidebar Sector List (IMAGE 3 REPLICA)
+    function renderSidebar() {
         const summaries = data.sector_summaries || [];
         sectorListContainer.innerHTML = "";
 
-        const filtered = summaries.filter(s => {
-            const matchesSearch = s.sector.toLowerCase().includes(searchTerm.toLowerCase());
-            if (!matchesSearch) return false;
-
-            if (activeFilter === "ALL") return true;
-            if (activeFilter === "LEADERS") return s.days_in_bull_state > 0;
-            return s.current_state.toString() === activeFilter;
-        });
-
-        visibleSectorsCount.textContent = `${filtered.length} Sectors`;
+        const filtered = summaries.filter(s => 
+            s.sector.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
         filtered.forEach(s => {
             const item = document.createElement("div");
@@ -117,15 +153,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             item.innerHTML = `
                 <div class="sec-info">
-                    <h3>${s.sector}</h3>
-                    <div class="sec-sub">Idx: ${s.current_val.toFixed(2)} | Prob: ${(s.bull_prob * 100).toFixed(0)}%</div>
+                    <span class="sec-name">${s.sector}</span>
+                    <span class="sec-count">Master Index</span>
                 </div>
-                <div class="sec-state-badge ${stateClass}">${stateLabels[s.current_state]}</div>
+                <span class="sec-return-badge ${stateClass}">${stateLabels[s.current_state]}</span>
             `;
 
             item.addEventListener("click", () => {
                 selectedSector = s.sector;
-                renderSectorList();
+                renderSidebar();
                 updateChart();
             });
 
@@ -133,139 +169,70 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Update Chart View for Selected Sector and activeK
+    // Update Chart Data & Stats for Selected Sector
     function updateChart() {
         const secData = data.sector_details[selectedSector];
-        if (!secData || !secData[activeK.toString()]) {
-            console.error(`Data missing for sector ${selectedSector} k=${activeK}`);
-            return;
-        }
+        if (!secData || !secData[activeK.toString()]) return;
 
         const kObj = secData[activeK.toString()];
         const bars = kObj.bars;
 
-        chartSectorTitle.textContent = selectedSector;
-        
-        // State Badge
-        const curState = kObj.current_state;
-        const curProbs = kObj.current_probs;
-        
-        const stateNames = {
-            0: "State 0: Bullish / Expansion",
-            1: "State 1: Neutral / Consolidation",
-            2: "State 2: Bearish / Contraction"
-        };
+        currentSectorTitle.textContent = selectedSector;
 
-        chartStateBadge.className = `state-indicator-badge state-${curState}`;
-        chartStateText.textContent = stateNames[curState];
+        const latestBar = bars[bars.length - 1];
+        const curVal = latestBar.c || latestBar.close;
+        const totReturn = ((curVal - 100.0) / 100.0) * 100.0;
+        const stateNames = { 0: "State 0: Bullish", 1: "State 1: Neutral", 2: "State 2: Bearish" };
 
-        bullProbVal.textContent = `${(curProbs[0] * 100).toFixed(1)}%`;
-        neutralProbVal.textContent = `${(curProbs[1] * 100).toFixed(1)}%`;
-        bearProbVal.textContent = `${(curProbs[2] * 100).toFixed(1)}%`;
+        statCurVal.textContent = curVal.toFixed(2);
+        statTotReturn.textContent = `${totReturn >= 0 ? '+' : ''}${totReturn.toFixed(2)}%`;
+        statTotReturn.className = `stat-val ${totReturn >= 0 ? 'green' : 'red'}`;
+        statActiveState.textContent = stateNames[kObj.current_state];
 
-        // Candle bars
-        const candleData = bars.map(b => ({
+        // Format Candles
+        const candleData = bars.map((b, idx) => {
+            const c = b.c || b.close;
+            const prevC = idx > 0 ? (bars[idx-1].c || bars[idx-1].close) : c;
+            const o = prevC;
+            const h = Math.max(o, c) * 1.001;
+            const l = Math.min(o, c) * 0.999;
+            return { time: b.t || b.time, open: o, high: h, low: l, close: c };
+        });
+
+        // Synthetic volume for visual display
+        const volumeData = bars.map(b => ({
             time: b.t || b.time,
-            open: b.c || b.close,
-            high: (b.c || b.close) * 1.002,
-            low: (b.c || b.close) * 0.998,
-            close: b.c || b.close
+            value: Math.floor(Math.random() * 50000000) + 10000000,
+            color: (b.c || b.close) >= (b.o || b.close) ? 'rgba(34, 197, 94, 0.4)' : 'rgba(239, 68, 68, 0.4)'
         }));
 
         candleSeries.setData(candleData);
-        priceChart.timeScale().fitContent();
+        volumeSeries.setData(volumeData);
+        chart.timeScale().fitContent();
 
-        // Probabilities
-        bullProbSeries.setData(bars.map(b => ({ time: b.t || b.time, value: b.bp !== undefined ? b.bp : b.bull_prob })));
-        neutralProbSeries.setData(bars.map(b => ({ time: b.t || b.time, value: b.np !== undefined ? b.np : b.neutral_prob })));
-        bearProbSeries.setData(bars.map(b => ({ time: b.t || b.time, value: b.rp !== undefined ? b.rp : b.bear_prob })));
-        probChart.timeScale().fitContent();
+        // Draw HMM Background Overlay
+        setTimeout(drawHMMBackgroundOverlay, 50);
     }
 
-    // Render Leading Sector Rotation Radar
-    function renderLeadingRadar() {
-        const summaries = [...(data.sector_summaries || [])];
-        summaries.sort((a, b) => b.days_in_bull_state - a.days_in_bull_state);
-        
-        const topLeaders = summaries.filter(s => s.days_in_bull_state > 0).slice(0, 7);
-        leadingRadarList.innerHTML = "";
-
-        if (topLeaders.length === 0) {
-            leadingRadarList.innerHTML = `<div class="card-desc">No sectors currently in State 0.</div>`;
-            return;
-        }
-
-        topLeaders.forEach(s => {
-            const row = document.createElement("div");
-            row.className = "radar-row";
-            row.innerHTML = `
-                <span class="sec-name">${s.sector}</span>
-                <span class="days-count">${s.days_in_bull_state} Bull Days</span>
-            `;
-            leadingRadarList.appendChild(row);
-        });
-    }
-
-    // Render Candle Smoothing Benchmark Table
-    function renderSmoothingBenchmark() {
-        const benchmarks = data.smoothing_benchmark || {};
-        smoothingBenchmarkContainer.innerHTML = `
-            <div class="bm-row header">
-                <span>Window (k)</span>
-                <span>Whipsaw Ratio</span>
-                <span>Persistence</span>
-            </div>
-        `;
-
-        Object.keys(benchmarks).forEach(kKey => {
-            const b = benchmarks[kKey];
-            const row = document.createElement("div");
-            row.className = `bm-row ${parseInt(kKey) === activeK ? 'active' : ''}`;
-            row.innerHTML = `
-                <span>k = ${b.k} candles</span>
-                <span>${(b.avg_whipsaw_ratio * 100).toFixed(1)}%</span>
-                <span>${b.avg_persistence_days} days</span>
-            `;
-            smoothingBenchmarkContainer.appendChild(row);
-        });
-    }
-
-    // Setup Event Listeners
+    // Setup Slider & Search Events
     function setupEvents() {
-        // Candle Smoothing k-selector
-        document.querySelectorAll("#kSelectorGroup .k-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                document.querySelectorAll("#kSelectorGroup .k-btn").forEach(b => b.classList.remove("active"));
-                e.target.classList.add("active");
-                activeK = parseInt(e.target.getAttribute("data-k"));
-                activeKDisplay.textContent = `k = ${activeK} Candles`;
-                updateChart();
-                renderSmoothingBenchmark();
-            });
-        });
-
-        // Filter Tabs
-        document.querySelectorAll("#regimeFilterGroup .tab-btn").forEach(btn => {
-            btn.addEventListener("click", (e) => {
-                document.querySelectorAll("#regimeFilterGroup .tab-btn").forEach(b => b.classList.remove("active"));
-                e.target.classList.add("active");
-                activeFilter = e.target.getAttribute("data-filter");
-                renderSectorList();
-            });
+        // Sensitivity Slider Change (IMAGE 2 REPLICA)
+        kRangeSlider.addEventListener("input", (e) => {
+            activeK = parseInt(e.target.value);
+            kSliderVal.textContent = activeK;
+            updateChart();
         });
 
         // Search Input
-        document.getElementById("sectorSearch").addEventListener("input", (e) => {
+        sectorSearch.addEventListener("input", (e) => {
             searchTerm = e.target.value;
-            renderSectorList();
+            renderSidebar();
         });
     }
 
-    // Initialize
-    initCharts();
-    renderSectorList();
+    // Initialize Terminal
+    initChart();
+    renderSidebar();
     updateChart();
-    renderLeadingRadar();
-    renderSmoothingBenchmark();
     setupEvents();
 });
