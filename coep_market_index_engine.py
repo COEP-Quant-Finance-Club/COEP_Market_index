@@ -227,6 +227,11 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
     if not keep:
         return pd.DataFrame()
     df = df[keep].dropna(how="all")
+
+    # Purge zero-volume flat placeholder bars injected on non-trading days
+    if "Volume" in df.columns and "Open" in df.columns and "Close" in df.columns:
+        df = df[~((df["Volume"] == 0) & (df["Open"] == df["Close"]))].copy()
+
     for pcol in ["Open", "High", "Low", "Close"]:
         if pcol in df.columns:
             df[pcol] = pd.to_numeric(df[pcol], errors="coerce")
@@ -382,6 +387,56 @@ def sanitize_rogue_spikes() -> int:
         except Exception:
             pass
 
+    # PERMANENT CORPORATE ACTION DEMERGER & SPLIT BACKWARD RATIO ADJUSTER
+    log.info("[2.6] Applying Corporate Action Demerger & Split Backward Ratio Adjustments...")
+    demerger_fixed_files = 0
+    for f in csv_files:
+        try:
+            df = pd.read_csv(f)
+            if df.empty or len(df) < 10 or "Close" not in df.columns:
+                continue
+
+            date_cols = [c for c in df.columns if 'date' in c.lower() or 'time' in c.lower()]
+            if not date_cols:
+                continue
+            dcol = date_cols[0]
+
+            df[dcol] = pd.to_datetime(df[dcol])
+            df.sort_values(by=dcol, inplace=True)
+            df.reset_index(drop=True, inplace=True)
+
+            closes = df["Close"].values
+            n = len(closes)
+            was_modified = False
+
+            for i in range(1, n):
+                prev_close = closes[i - 1]
+                curr_close = closes[i]
+
+                if prev_close <= 0 or curr_close <= 0:
+                    continue
+
+                chg = (curr_close - prev_close) / prev_close
+
+                # Detect unadjusted demerger drop (>35% drop)
+                if chg < -0.35:
+                    curr_open = df.loc[i, "Open"] if "Open" in df.columns else curr_close
+                    if abs(curr_open - curr_close) / curr_close < 0.20:
+                        factor = curr_close / prev_close
+                        for col in ["Open", "High", "Low", "Close"]:
+                            if col in df.columns:
+                                df.loc[:i-1, col] = df.loc[:i-1, col] * factor
+                        closes = df["Close"].values
+                        was_modified = True
+
+            if was_modified:
+                df[dcol] = df[dcol].dt.strftime('%Y-%m-%d')
+                df.to_csv(f, index=False)
+                demerger_fixed_files += 1
+        except Exception:
+            pass
+
+    log.info(f"[2.6 Complete] Applied backward ratio adjustments to {demerger_fixed_files} demerging stock files.")
     log.info(f"[2.5 Complete] Sanitized {total_fixed_bars} rogue YFinance spike bars across {cleaned_stocks} stocks.")
     return total_fixed_bars
 

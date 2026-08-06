@@ -133,6 +133,17 @@ def run_study():
                                             socol = s_open_cols[0]
                                             stk_df = stk_df[~((stk_df[svcol] == 0) & (stk_df[socol] == stk_df[sccol]))].copy()
 
+                                    # Auto-adjust unadjusted corporate action demergers (>35% drop)
+                                    closes_val = stk_df[sccol].values
+                                    n_stk = len(closes_val)
+                                    for idx_stk in range(1, n_stk):
+                                        p_prev_stk = closes_val[idx_stk - 1]
+                                        p_curr_stk = closes_val[idx_stk]
+                                        if p_prev_stk > 0 and p_curr_stk > 0:
+                                            if (p_curr_stk - p_prev_stk) / p_prev_stk < -0.35:
+                                                fact_stk = p_curr_stk / p_prev_stk
+                                                stk_df.loc[:idx_stk-1, sccol] = stk_df.loc[:idx_stk-1, sccol] * fact_stk
+
                                     stk_df[sdcol] = pd.to_datetime(stk_df[sdcol]).dt.strftime('%Y-%m-%d')
                                     sub_stk = stk_df.tail(1250)
                                     p_dict = dict(zip(sub_stk[sdcol], sub_stk[sccol].round(2)))
