@@ -24,19 +24,23 @@
         </div>
       </div>
 
-      <!-- SENSITIVITY SLIDER (IMAGE 2 REPLICA) -->
+      <!-- SENSITIVITY SLIDER (k = 1 to 50) -->
       <div class="sensitivity-slider-box">
         <div class="slider-header">
           <span class="slider-title">🎛️ 3-State Macro Sensitivity (Smoothing Candles)</span>
           <span class="slider-val" id="kSliderVal">9</span>
         </div>
-        <input type="range" id="kRangeSlider" min="1" max="21" value="9" step="1" class="custom-slider">
+        <input type="range" id="kRangeSlider" min="1" max="50" value="9" step="1" class="custom-slider">
       </div>
 
+      <!-- 3 REGIME FILTER OPTIONS -->
       <div class="header-controls">
-        <div class="legend-pill bull-pill"><span class="dot"></span> 🟢 Bullish (2)</div>
-        <div class="legend-pill neutral-pill"><span class="dot"></span> 🟡 Neutral (1)</div>
-        <div class="legend-pill bear-pill"><span class="dot"></span> 🔴 Bearish (0)</div>
+        <div class="regime-filter-group" id="regimeFilterButtons">
+          <button class="rf-btn active" data-regime="ALL">ALL (32)</button>
+          <button class="rf-btn bull-rf" data-regime="2">🟢 Bullish (State 2)</button>
+          <button class="rf-btn neutral-rf" data-regime="1">🟡 Neutral (State 1)</button>
+          <button class="rf-btn bear-rf" data-regime="0">🔴 Bearish (State 0)</button>
+        </div>
       </div>
     </header>
 

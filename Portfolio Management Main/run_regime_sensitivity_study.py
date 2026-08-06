@@ -1,9 +1,9 @@
 """
-Real-Time 3-State Macro Regime Sensitivity Study & Payload Builder
-==================================================================
-Runs 3-State Macro Regime calculation with Rolling Median Hysteresis Filtering
-across all 32 Master Sector Indices using REAL OHLCV candle data.
-Evaluates candle smoothing window parameters k in [1, 3, 5, 7, 9, 10, 14, 21].
+Real-Time 3-State Macro Regime Data Builder for Full k in [1..50]
+===================================================================
+Outputs real OHLCV daily candle bars and 7-state micro regime sequences
+for all 32 Master Sector Indices so client-side dashboard can support
+EVERY integer smoothing factor k from 1 to 50 dynamically.
 """
 
 import os
@@ -27,17 +27,15 @@ os.makedirs(DATA_OUT_DIR, exist_ok=True)
 JSON_OUT_FILE = os.path.join(DATA_OUT_DIR, "regime_analysis_data.json")
 JS_OUT_FILE   = os.path.join(SCRIPT_DIR, "regime_dashboard_data.js")
 
-SMOOTHING_WINDOWS = [1, 3, 5, 7, 9, 10, 14, 21]
-
 def run_study():
     print("="*80)
-    print("BUILDING REAL OHLCV 3-STATE MACRO REGIME DATASET")
+    print("BUILDING COMPLETE 32-SECTOR OHLCV & MICRO REGIME DATASET (k = 1..50)")
     print("="*80)
 
     csv_files = glob.glob(os.path.join(INDICES_DIR, "*.csv"))
     print(f"Processing {len(csv_files)} master sector index daily CSV files...")
 
-    all_sector_results = {}
+    all_sector_details = {}
     sector_summaries = []
 
     for fpath in csv_files:
@@ -49,66 +47,58 @@ def run_study():
                 continue
                 
             df.sort_index(inplace=True)
-            sec_k_results = {}
             
-            # Ensure all required OHLCV columns exist
+            # Ensure required OHLCV columns
             for c in ["Open", "High", "Low", "Close"]:
                 if c not in df.columns:
                     df[c] = df["Close"]
             if "Volume" not in df.columns:
                 df["Volume"] = 0
 
-            for k in SMOOTHING_WINDOWS:
-                res_df = compute_3state_macro(df, close_col="Close", smoothing_window=k)
-                state_seq = res_df["state"].values
-                
-                # Format real OHLCV bars (cap at recent 1250 bars for optimal JS payload size)
-                bars = []
-                sub_df = res_df.tail(1250)
-                for dt, row in sub_df.iterrows():
-                    dt_str = dt.strftime("%Y-%m-%d")
-                    bars.append({
-                        "t": dt_str,
-                        "o": round(float(row["Open"]), 2),
-                        "h": round(float(row["High"]), 2),
-                        "l": round(float(row["Low"]), 2),
-                        "c": round(float(row["Close"]), 2),
-                        "v": int(row["Volume"]),
-                        "s": int(row["state"])
-                    })
-                    
-                cur_state = int(state_seq[-1])
-                sec_k_results[str(k)] = {
-                    "k": k,
-                    "current_state": cur_state,
-                    "bars": bars
-                }
-
-            # Baseline k=9 for primary summary
-            base_res = sec_k_results["9"]
-            all_sector_results[sec_name] = sec_k_results
+            # Compute base 7-state micro regime and raw 3-state macro
+            res_df = compute_3state_macro(df, close_col="Close", smoothing_window=1)
             
-            cur_val = base_res["bars"][-1]["c"]
+            bars = []
+            sub_df = res_df.tail(1500)
+            for dt, row in sub_df.iterrows():
+                dt_str = dt.strftime("%Y-%m-%d")
+                bars.append({
+                    "t": dt_str,
+                    "o": round(float(row["Open"]), 2),
+                    "h": round(float(row["High"]), 2),
+                    "l": round(float(row["Low"]), 2),
+                    "c": round(float(row["Close"]), 2),
+                    "v": int(row["Volume"]),
+                    "m": int(row["state"])  # raw 3-state macro (0, 1, 2)
+                })
+                
+            cur_val = bars[-1]["c"]
             tot_ret = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
             ret_str = f"{'+' if tot_ret >= 0 else ''}{tot_ret:.2f}%"
 
+            all_sector_details[sec_name] = {
+                "sector": sec_name,
+                "current_val": cur_val,
+                "total_return_pct": ret_str,
+                "bars": bars
+            }
+
             sector_summaries.append({
                 "sector": sec_name,
-                "current_state": base_res["current_state"],
                 "current_val": cur_val,
                 "total_return_pct": ret_str
             })
             
-            print(f"  [OK] {sec_name:30s} | State: {base_res['current_state']} | Close: {cur_val:7.2f} | Return: {ret_str}")
+            print(f"  [OK] {sec_name:30s} | Close: {cur_val:7.2f} | Return: {ret_str} | Bars: {len(bars)}")
 
         except Exception as e:
             print(f"  [ERROR] {sec_name}: {e}")
 
     payload = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S IST"),
-        "smoothing_windows": SMOOTHING_WINDOWS,
+        "max_k": 50,
         "sector_summaries": sector_summaries,
-        "sector_details": all_sector_results
+        "sector_details": all_sector_details
     }
 
     with open(JSON_OUT_FILE, "w", encoding="utf-8") as f:

@@ -1,13 +1,14 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
- * Uses REAL OHLCV data from OHLCV/Indices/Daily/*.csv
- * Canvas Overlay Vertical HMM State Shading & Slider Hysteresis Control
+ * Dynamic Client-Side Rolling Median Hysteresis Smoothing (k = 1..50)
+ * 3 Regime Filter Options (ALL, Bullish State 2, Neutral State 1, Bearish State 0)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const data = window.REGIME_ANALYSIS_DATA || { sector_summaries: [], sector_details: {} };
   let activeSector = 'ELECTRONICS_EMS';
   let activeK = 9;
+  let activeRegimeFilter = 'ALL'; // ALL, '2', '1', '0'
 
   let chart = null;
   let candlestickSeries = null;
@@ -20,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let showSma50 = true;
   let showEma200 = true;
   let isLogScale = false;
+
+  // Cache computed states per sector and k
+  const computedStateCache = {};
 
   // DOM Elements
   const sectorListContainer = document.getElementById('sector-list-container');
@@ -36,11 +40,65 @@ document.addEventListener('DOMContentLoaded', () => {
   const kRangeSlider = document.getElementById('kRangeSlider');
   const kSliderVal = document.getElementById('kSliderVal');
 
-  // Sensitivity Slider Event Listener (IMAGE 2 REPLICA)
+  // Dynamic Fast Rolling Median Filtering (Window k = 1 to 50)
+  function computeSmoothedRegimes(sectorName, kWindow) {
+    const cacheKey = `${sectorName}_${kWindow}`;
+    if (computedStateCache[cacheKey]) {
+      return computedStateCache[cacheKey];
+    }
+
+    const secDetail = data.sector_details[sectorName];
+    if (!secDetail || !secDetail.bars || secDetail.bars.length === 0) return [];
+
+    const bars = secDetail.bars;
+    const rawMacro = bars.map(b => b.m !== undefined ? b.m : 1);
+    const n = rawMacro.length;
+    const smoothed = new Array(n);
+
+    if (kWindow <= 1) {
+      for (let i = 0; i < n; i++) smoothed[i] = rawMacro[i];
+    } else {
+      const half = Math.floor(kWindow / 2);
+      for (let i = 0; i < n; i++) {
+        const start = Math.max(0, i - half);
+        const end = Math.min(n - 1, i + half);
+        const windowVals = [];
+        for (let j = start; j <= end; j++) {
+          windowVals.push(rawMacro[j]);
+        }
+        windowVals.sort((a, b) => a - b);
+        const mid = Math.floor(windowVals.length / 2);
+        smoothed[i] = windowVals[mid];
+      }
+    }
+
+    computedStateCache[cacheKey] = smoothed;
+    return smoothed;
+  }
+
+  // Get current active state of a sector for selected k
+  function getSectorCurrentState(sectorName, kWindow) {
+    const smoothed = computeSmoothedRegimes(sectorName, kWindow);
+    return smoothed.length > 0 ? smoothed[smoothed.length - 1] : 1;
+  }
+
+  // Sensitivity Slider Event Listener (k = 1 to 50)
   kRangeSlider.addEventListener('input', (e) => {
     activeK = parseInt(e.target.value);
     kSliderVal.innerText = activeK;
+    renderSectorList(sectorSearchInput.value.trim().toLowerCase());
     renderChart();
+  });
+
+  // 3 REGIME FILTER BUTTONS EVENT LISTENERS
+  const rfBtns = document.querySelectorAll('.rf-btn');
+  rfBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      rfBtns.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+      activeRegimeFilter = e.target.getAttribute('data-regime');
+      renderSectorList(sectorSearchInput.value.trim().toLowerCase());
+    });
   });
 
   // Indicator Toggle buttons
@@ -113,13 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSectorList(e.target.value.trim().toLowerCase());
   });
 
-  // Render Sector List
+  // Render Sidebar Sector List filtered by Search AND Active Regime Filter
   function renderSectorList(filterText = '') {
     sectorListContainer.innerHTML = '';
     const summaryList = data.sector_summaries || [];
-    
+
     const filtered = summaryList.filter(item => {
-      return item.sector.toLowerCase().includes(filterText);
+      const nameMatch = item.sector.toLowerCase().includes(filterText);
+      if (!nameMatch) return false;
+
+      const currentState = getSectorCurrentState(item.sector, activeK);
+      if (activeRegimeFilter === 'ALL') return true;
+      return currentState.toString() === activeRegimeFilter;
     });
 
     sectorCountBadge.innerText = `${filtered.length} Baskets`;
@@ -168,13 +231,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const secName = item.sector;
     const currentVal = item.current_val;
     const retPct = item.total_return_pct || `${((currentVal - 100.0) / 100.0 * 100.0) >= 0 ? '+' : ''}${((currentVal - 100.0) / 100.0 * 100.0).toFixed(2)}%`;
+    const curState = getSectorCurrentState(secName, activeK);
     const stateNames = { 0: "🔴 Bearish (State 0)", 1: "🟡 Neutral (State 1)", 2: "🟢 Bullish (State 2)" };
 
     activeSectorTitle.innerText = secName;
     metricCurrentVal.innerText = currentVal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
     metricReturnVal.innerText = retPct;
     metricReturnVal.className = `metric-val ${!retPct.includes('-') ? 'positive' : 'negative'}`;
-    metricStateVal.innerText = stateNames[item.current_state] || "🟢 Bullish (State 2)";
+    metricStateVal.innerText = stateNames[curState] || "🟢 Bullish (State 2)";
   }
 
   // Init Chart with Transparent Background for Canvas HMM State Shading
@@ -285,12 +349,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!chart || !canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const secData = data.sector_details[activeSector];
-    if (!secData || !secData[activeK.toString()]) return;
+    const secDetail = data.sector_details[activeSector];
+    if (!secDetail || !secDetail.bars || secDetail.bars.length === 0) return;
 
-    const bars = secData[activeK.toString()].bars;
-    if (!bars || bars.length === 0) return;
-
+    const bars = secDetail.bars;
+    const smoothedStates = computeSmoothedRegimes(activeSector, activeK);
     const timeScale = chart.timeScale();
     
     // 🔴 State 0: Bearish (Red), 🟡 State 1: Neutral (Yellow), 🟢 State 2: Bullish (Green)
@@ -316,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const width = Math.max(1, x2 - x1);
-      const stateVal = bar.s;
+      const stateVal = smoothedStates[i] !== undefined ? smoothedStates[i] : 1;
       const color = stateColors[stateVal] !== undefined ? stateColors[stateVal] : stateColors[1];
 
       ctx.fillStyle = color;
@@ -358,11 +421,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderChart() {
-    const secData = data.sector_details[activeSector];
-    if (!secData || !secData[activeK.toString()]) return;
+    const secDetail = data.sector_details[activeSector];
+    if (!secDetail || !secDetail.bars || secDetail.bars.length === 0) return;
 
-    const bars = secData[activeK.toString()].bars || [];
-    if (bars.length === 0) return;
+    const bars = secDetail.bars;
 
     // Use REAL OHLCV candles
     const formattedBars = bars.map(b => ({

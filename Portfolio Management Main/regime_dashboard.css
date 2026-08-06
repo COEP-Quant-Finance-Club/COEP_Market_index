@@ -71,7 +71,7 @@ body.dark-theme {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* MINIMALIST SENSITIVITY SLIDER (IMAGE 2 REPLICA) */
+/* MINIMALIST SENSITIVITY SLIDER (k = 1 to 50) */
 .sensitivity-slider-box {
   display: flex;
   flex-direction: column;
@@ -79,7 +79,7 @@ body.dark-theme {
   border: 1px solid var(--border-color);
   padding: 4px 16px;
   border-radius: 8px;
-  min-width: 340px;
+  min-width: 320px;
 }
 
 .slider-header {
@@ -127,39 +127,64 @@ body.dark-theme {
   transform: scale(1.2);
 }
 
-/* HEADER CONTROLS / LEGEND */
+/* 3 REGIME FILTER BUTTONS */
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
-.legend-pill {
+.regime-filter-group {
   display: flex;
-  align-items: center;
   gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
   background: var(--bg-primary);
+  padding: 3px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
 }
 
-.legend-pill .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.rf-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.bull-pill { color: var(--neon-green); }
-.bull-pill .dot { background: var(--neon-green); box-shadow: 0 0 6px var(--neon-green); }
+.rf-btn:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
 
-.neutral-pill { color: var(--neon-amber); }
-.neutral-pill .dot { background: var(--neon-amber); box-shadow: 0 0 6px var(--neon-amber); }
+.rf-btn.active {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
 
-.bear-pill { color: var(--neon-red); }
-.bear-pill .dot { background: var(--neon-red); box-shadow: 0 0 6px var(--neon-red); }
+.rf-btn.bull-rf.active {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--neon-green);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+}
+
+.rf-btn.neutral-rf.active {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--neon-amber);
+  border-color: var(--neon-amber);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
+}
+
+.rf-btn.bear-rf.active {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--neon-red);
+  border-color: var(--neon-red);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+}
 
 /* Content Grid */
 .content-grid {
