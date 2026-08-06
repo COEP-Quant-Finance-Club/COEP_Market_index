@@ -1,14 +1,16 @@
 /**
  * Quant Club - Institutional Sector Index Terminal & 3-State Macro Regimes JS
- * Dynamic Client-Side Rolling Median Hysteresis Smoothing (k = 1..50)
- * Live Dynamic Regime Filter Button Counts & Filter Badges
+ * Double-click Sector to view Constituents + Candle Crosshair 2-Day Return Sync
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   const data = window.REGIME_ANALYSIS_DATA || { sector_summaries: [], sector_details: {} };
   let activeSector = 'ELECTRONICS_EMS';
   let activeK = 9;
-  let activeRegimeFilter = 'ALL'; // ALL, '2', '1', '0'
+  let activeRegimeFilter = 'ALL';
+  let activeHoverDate = null;
+  let activeHoverPrevDate = null;
+  let modalSearchTerm = '';
 
   let chart = null;
   let candlestickSeries = null;
@@ -22,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let showEma200 = true;
   let isLogScale = false;
 
-  // Cache computed states per sector and k
   const computedStateCache = {};
 
   // DOM Elements
@@ -44,6 +45,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const rfBtnBull = document.getElementById('rfBtnBull');
   const rfBtnNeutral = document.getElementById('rfBtnNeutral');
   const rfBtnBear = document.getElementById('rfBtnBear');
+
+  // Modal Elements
+  const constituentsModalOverlay = document.getElementById('constituentsModalOverlay');
+  const btnOpenConstituentsModal = document.getElementById('btnOpenConstituentsModal');
+  const btnCloseConstituentsModal = document.getElementById('btnCloseConstituentsModal');
+  const modalSectorTitle = document.getElementById('modalSectorTitle');
+  const modalDateInfo = document.getElementById('modalDateInfo');
+  const modalStockSearch = document.getElementById('modalStockSearch');
+  const modalStockCountBadge = document.getElementById('modalStockCountBadge');
+  const modalStocksTbody = document.getElementById('modalStocksTbody');
+
+  // Modal Controls
+  btnOpenConstituentsModal.addEventListener('click', openConstituentsModal);
+  btnCloseConstituentsModal.addEventListener('click', closeConstituentsModal);
+
+  constituentsModalOverlay.addEventListener('click', (e) => {
+    if (e.target === constituentsModalOverlay) closeConstituentsModal();
+  });
+
+  modalStockSearch.addEventListener('input', (e) => {
+    modalSearchTerm = e.target.value.trim().toLowerCase();
+    renderConstituentsTable();
+  });
+
+  function openConstituentsModal() {
+    modalSectorTitle.innerText = `${activeSector} STOCKS`;
+    constituentsModalOverlay.classList.add('active');
+    renderConstituentsTable();
+  }
+
+  function closeConstituentsModal() {
+    constituentsModalOverlay.classList.remove('active');
+  }
 
   // Dynamic Fast Rolling Median Filtering (Window k = 1 to 50)
   function computeSmoothedRegimes(sectorName, kWindow) {
@@ -81,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return smoothed;
   }
 
-  // Get current active state of a sector for selected k
   function getSectorCurrentState(sectorName, kWindow) {
     const smoothed = computeSmoothedRegimes(sectorName, kWindow);
     return smoothed.length > 0 ? smoothed[smoothed.length - 1] : 1;
@@ -176,12 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSectorList(e.target.value.trim().toLowerCase());
   });
 
-  // Render Sidebar Sector List & Update Dynamic Button Counts
+  // Render Sidebar Sector List & Setup Double-Click Handlers
   function renderSectorList(filterText = '') {
     sectorListContainer.innerHTML = '';
     const summaryList = data.sector_summaries || [];
 
-    // Calculate dynamic counts across all 32 sectors for activeK
     let bullCount = 0;
     let neutralCount = 0;
     let bearCount = 0;
@@ -193,13 +225,11 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (state === 0) bearCount++;
     });
 
-    // Update Button Labels Live
     rfBtnAll.innerText = `ALL (${summaryList.length})`;
     rfBtnBull.innerText = `🟢 Bullish (${bullCount})`;
     rfBtnNeutral.innerText = `🟡 Neutral (${neutralCount})`;
     rfBtnBear.innerText = `🔴 Bearish (${bearCount})`;
 
-    // Filter list for active regime & search filter
     const filtered = summaryList.filter(item => {
       const nameMatch = item.sector.toLowerCase().includes(filterText);
       if (!nameMatch) return false;
@@ -209,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return currentState.toString() === activeRegimeFilter;
     });
 
-    // Update Badge Text
     if (activeRegimeFilter === 'ALL') {
       sectorCountBadge.innerText = `${filtered.length} Baskets`;
     } else if (activeRegimeFilter === '2') {
@@ -235,19 +264,28 @@ document.addEventListener('DOMContentLoaded', () => {
       itemEl.innerHTML = `
         <div>
           <div class="sec-name">${secName}</div>
-          <div class="sec-stocks-count">Master Index</div>
+          <div class="sec-stocks-count">${item.stock_count || ''} Stocks (Dbl-Click)</div>
         </div>
         <div class="sec-return-badge ${isPos ? 'positive' : 'negative'}">
           ${retPct}
         </div>
       `;
 
+      // Single Click: Change Active Sector
       itemEl.addEventListener('click', () => {
         document.querySelectorAll('.sector-item').forEach(el => el.classList.remove('active'));
         itemEl.classList.add('active');
         activeSector = secName;
         updateHeaderMetrics(item);
         renderChart();
+      });
+
+      // DOUBLE-CLICK: Open Sector Stocks Modal
+      itemEl.addEventListener('dblclick', () => {
+        activeSector = secName;
+        updateHeaderMetrics(item);
+        renderChart();
+        openConstituentsModal();
       });
 
       sectorListContainer.appendChild(itemEl);
@@ -274,7 +312,86 @@ document.addEventListener('DOMContentLoaded', () => {
     metricStateVal.innerText = stateNames[curState] || "🟢 Bullish (State 2)";
   }
 
-  // Init Chart with Transparent Background for Canvas HMM State Shading
+  // Render Modal Sector Constituent Stocks & Calculate 2-Day Return Sync
+  function renderConstituentsTable() {
+    const secDetail = data.sector_details[activeSector];
+    if (!secDetail) return;
+
+    const constituents = secDetail.constituents || [];
+    const bars = secDetail.bars || [];
+
+    // Determine target Date (T) and Previous Date (T-1)
+    let curDate = activeHoverDate;
+    let prevDate = activeHoverPrevDate;
+
+    if (!curDate && bars.length > 0) {
+      curDate = bars[bars.length - 1].t;
+      prevDate = bars.length > 1 ? bars[bars.length - 2].t : null;
+    }
+
+    modalSectorTitle.innerText = `${activeSector} STOCKS`;
+    modalDateInfo.innerText = `Selected Candle Date: ${curDate || 'N/A'} (T) vs ${prevDate || 'N/A'} (T-1) | 2-Day Change Sync`;
+
+    // Filter by stock search term
+    const filteredStocks = constituents.filter(stk => {
+      const sym = (stk.symbol || '').toLowerCase();
+      const name = (stk.name || '').toLowerCase();
+      return sym.includes(modalSearchTerm) || name.includes(modalSearchTerm);
+    });
+
+    modalStockCountBadge.innerText = `${filteredStocks.length} Stocks`;
+    modalStocksTbody.innerHTML = '';
+
+    // Calculate 2-day return for each stock
+    const processedRows = filteredStocks.map(stk => {
+      const pDict = stk.prices || {};
+      const priceT = pDict[curDate];
+      const priceT1 = pDict[prevDate];
+
+      let chgPct = null;
+      if (priceT !== undefined && priceT1 !== undefined && priceT1 > 0) {
+        chgPct = ((priceT - priceT1) / priceT1) * 100.0;
+      }
+
+      return {
+        symbol: stk.symbol,
+        name: stk.name,
+        priceT: priceT !== undefined ? priceT : 'N/A',
+        priceT1: priceT1 !== undefined ? priceT1 : 'N/A',
+        chgPct: chgPct
+      };
+    });
+
+    // Sort by 2-day return descending
+    processedRows.sort((a, b) => {
+      if (a.chgPct === null) return 1;
+      if (b.chgPct === null) return -1;
+      return b.chgPct - a.chgPct;
+    });
+
+    processedRows.forEach(r => {
+      const tr = document.createElement('tr');
+
+      let returnPill = '<span class="return-pill zero">N/A</span>';
+      if (r.chgPct !== null) {
+        const valStr = `${r.chgPct >= 0 ? '+' : ''}${r.chgPct.toFixed(2)}%`;
+        const cls = r.chgPct > 0 ? 'pos' : (r.chgPct < 0 ? 'neg' : 'zero');
+        returnPill = `<span class="return-pill ${cls}">${valStr}</span>`;
+      }
+
+      tr.innerHTML = `
+        <td class="sym-badge">${r.symbol}</td>
+        <td>${r.name}</td>
+        <td class="text-right">${typeof r.priceT1 === 'number' ? '₹' + r.priceT1.toLocaleString('en-IN') : 'N/A'}</td>
+        <td class="text-right">${typeof r.priceT === 'number' ? '₹' + r.priceT.toLocaleString('en-IN') : 'N/A'}</td>
+        <td class="text-right">${returnPill}</td>
+      `;
+
+      modalStocksTbody.appendChild(tr);
+    });
+  }
+
+  // Init Chart with Crosshair Movement Event Syncing Candle Dates
   function initChart() {
     if (chart) chart.remove();
 
@@ -357,6 +474,26 @@ document.addEventListener('DOMContentLoaded', () => {
     sma50Series = chart.addLineSeries({ color: '#38bdf8', lineWidth: 1.5, title: 'SMA 50' });
     ema200Series = chart.addLineSeries({ color: '#ec4899', lineWidth: 1.5, title: 'EMA 200' });
 
+    // CROSSHAIR MOVE LISTENER: SYNC CURSOR CANDLE SELECTION TO 2-DAY RETURN CALCULATION
+    chart.subscribeCrosshairMove((param) => {
+      if (param.time) {
+        const secDetail = data.sector_details[activeSector];
+        if (secDetail && secDetail.bars) {
+          const bars = secDetail.bars;
+          const idx = bars.findIndex(b => b.t === param.time);
+          if (idx !== -1) {
+            activeHoverDate = bars[idx].t;
+            activeHoverPrevDate = idx > 0 ? bars[idx - 1].t : null;
+
+            // Re-render modal table if open
+            if (constituentsModalOverlay.classList.contains('active')) {
+              renderConstituentsTable();
+            }
+          }
+        }
+      }
+    });
+
     chart.timeScale().subscribeVisibleTimeRangeChange(() => {
       requestAnimationFrame(drawHMMBackgroundOverlay);
     });
@@ -377,7 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Draw 3-State HMM Vertical Background Shading Boxes (IMAGE 1 REPLICA)
+  // Draw 3-State HMM Vertical Background Shading Boxes
   function drawHMMBackgroundOverlay() {
     if (!chart || !canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -391,9 +528,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 🔴 State 0: Bearish (Red), 🟡 State 1: Neutral (Yellow), 🟢 State 2: Bullish (Green)
     const stateColors = {
-      0: "rgba(255, 23, 68, 0.28)",   /* 🔴 Bearish Macro (Vibrant Red) */
-      1: "rgba(255, 235, 59, 0.18)",  /* 🟡 Neutral Macro (Soft Gold/Yellow) */
-      2: "rgba(0, 230, 118, 0.28)"   /* 🟢 Bullish Macro (Vibrant Green) */
+      0: "rgba(255, 23, 68, 0.28)",
+      1: "rgba(255, 235, 59, 0.18)",
+      2: "rgba(0, 230, 118, 0.28)"
     };
 
     for (let i = 0; i < bars.length; i++) {
@@ -459,7 +596,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bars = secDetail.bars;
 
-    // Use REAL OHLCV candles
     const formattedBars = bars.map(b => ({
       time: b.t,
       open: b.o,
@@ -468,7 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
       close: b.c
     }));
 
-    // Use REAL Volume data
     const volumeData = bars.map(b => ({
       time: b.t,
       value: b.v,

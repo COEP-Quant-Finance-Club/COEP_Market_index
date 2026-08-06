@@ -1,9 +1,8 @@
 """
-Real-Time 3-State Macro Regime Data Builder for Full k in [1..50]
+Real-Time 3-State Macro Regime & Sector Constituents Data Builder
 ===================================================================
-Outputs real OHLCV daily candle bars and 7-state micro regime sequences
-for all 32 Master Sector Indices so client-side dashboard can support
-EVERY integer smoothing factor k from 1 to 50 dynamically.
+1. Master Sector Index OHLCV & 3-State Macro Regimes (k = 1..50)
+2. All 32 Sector Constituent Stock Daily Prices for 2-Day Return Calculations
 """
 
 import os
@@ -21,6 +20,9 @@ from hmm_regime_engine import compute_3state_macro
 
 BASE_PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
 INDICES_DIR = os.path.join(BASE_PROJECT_DIR, "OHLCV", "Indices", "Daily")
+IND_DIR = os.path.join(BASE_PROJECT_DIR, "Industries")
+STOCKS_DIR = os.path.join(BASE_PROJECT_DIR, "OHLCV", "Stocks")
+
 DATA_OUT_DIR = os.path.join(SCRIPT_DIR, "data")
 os.makedirs(DATA_OUT_DIR, exist_ok=True)
 
@@ -29,14 +31,27 @@ JS_OUT_FILE   = os.path.join(SCRIPT_DIR, "regime_dashboard_data.js")
 
 def run_study():
     print("="*80)
-    print("BUILDING COMPLETE 32-SECTOR OHLCV & MICRO REGIME DATASET (k = 1..50)")
+    print("BUILDING 32-SECTOR OHLCV, MICRO REGIME & CONSTITUENT STOCK DATASET")
     print("="*80)
 
+    # 1. Index Stock CSV files
+    stock_files = glob.glob(os.path.join(STOCKS_DIR, "**", "*.csv"), recursive=True)
+    stock_file_map = {}
+    for f in stock_files:
+        fname = os.path.basename(f).replace(".csv", "").upper()
+        stock_file_map[fname] = f
+        clean_sym = fname.replace(".NS", "")
+        stock_file_map[clean_sym] = f
+
+    print(f"Indexed {len(stock_files)} stock files.")
+
+    # 2. Build Sector Indices & Constituents
     csv_files = glob.glob(os.path.join(INDICES_DIR, "*.csv"))
     print(f"Processing {len(csv_files)} master sector index daily CSV files...")
 
     all_sector_details = {}
     sector_summaries = []
+    sector_constituents_map = {}
 
     for fpath in csv_files:
         sec_name = os.path.basename(fpath).replace("_daily.csv", "").replace(".csv", "").strip().upper()
@@ -48,18 +63,16 @@ def run_study():
                 
             df.sort_index(inplace=True)
             
-            # Ensure required OHLCV columns
             for c in ["Open", "High", "Low", "Close"]:
                 if c not in df.columns:
                     df[c] = df["Close"]
             if "Volume" not in df.columns:
                 df["Volume"] = 0
 
-            # Compute base 7-state micro regime and raw 3-state macro
             res_df = compute_3state_macro(df, close_col="Close", smoothing_window=1)
             
             bars = []
-            sub_df = res_df.tail(1500)
+            sub_df = res_df.tail(1250)
             for dt, row in sub_df.iterrows():
                 dt_str = dt.strftime("%Y-%m-%d")
                 bars.append({
@@ -69,27 +82,65 @@ def run_study():
                     "l": round(float(row["Low"]), 2),
                     "c": round(float(row["Close"]), 2),
                     "v": int(row["Volume"]),
-                    "m": int(row["state"])  # raw 3-state macro (0, 1, 2)
+                    "m": int(row["state"])
                 })
                 
             cur_val = bars[-1]["c"]
             tot_ret = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
             ret_str = f"{'+' if tot_ret >= 0 else ''}{tot_ret:.2f}%"
 
+            # Load Constituents for this Sector
+            ind_csv = os.path.join(IND_DIR, f"{sec_name.lower()}_enhanced.csv")
+            stock_constituents = []
+            
+            if os.path.exists(ind_csv):
+                try:
+                    df_ind = pd.read_csv(ind_csv)
+                    sym_col = [c for c in df_ind.columns if 'symbol' in c.lower() or 'ticker' in c.lower()][0]
+                    name_col = [c for c in df_ind.columns if 'name' in c.lower()][0]
+                    
+                    for _, row in df_ind.iterrows():
+                        raw_sym = str(row[sym_col]).strip().upper()
+                        clean_sym = raw_sym.replace(".NS", "")
+                        name = str(row[name_col]).strip()
+                        
+                        stk_file = stock_file_map.get(raw_sym) or stock_file_map.get(clean_sym) or stock_file_map.get(clean_sym + ".NS")
+                        p_dict = {}
+                        if stk_file:
+                            try:
+                                stk_df = pd.read_csv(stk_file, index_col=0, parse_dates=True)
+                                stk_df.sort_index(inplace=True)
+                                if not stk_df.empty and "Close" in stk_df.columns:
+                                    # Tail 1250 dates to sync with index bars
+                                    sub_stk = stk_df.tail(1250)
+                                    p_dict = {dt.strftime("%Y-%m-%d"): round(float(p), 2) for dt, p in sub_stk["Close"].items()}
+                            except Exception:
+                                pass
+                                
+                        stock_constituents.append({
+                            "symbol": clean_sym,
+                            "name": name,
+                            "prices": p_dict
+                        })
+                except Exception as e_ind:
+                    print(f"    [WARN] Could not parse industry CSV for {sec_name}: {e_ind}")
+
             all_sector_details[sec_name] = {
                 "sector": sec_name,
                 "current_val": cur_val,
                 "total_return_pct": ret_str,
-                "bars": bars
+                "bars": bars,
+                "constituents": stock_constituents
             }
 
             sector_summaries.append({
                 "sector": sec_name,
                 "current_val": cur_val,
-                "total_return_pct": ret_str
+                "total_return_pct": ret_str,
+                "stock_count": len(stock_constituents)
             })
             
-            print(f"  [OK] {sec_name:30s} | Close: {cur_val:7.2f} | Return: {ret_str} | Bars: {len(bars)}")
+            print(f"  [OK] {sec_name:30s} | Close: {cur_val:7.2f} | Return: {ret_str} | Stocks: {len(stock_constituents)}")
 
         except Exception as e:
             print(f"  [ERROR] {sec_name}: {e}")
@@ -101,6 +152,7 @@ def run_study():
         "sector_details": all_sector_details
     }
 
+    print("\nWriting payload files...")
     with open(JSON_OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f)
 
@@ -110,7 +162,7 @@ def run_study():
         f.write(";\n")
 
     size_mb = round(os.path.getsize(JS_OUT_FILE) / (1024 * 1024), 2)
-    print("\n" + "="*80)
+    print("="*80)
     print(f"SUCCESS: Generated regime_dashboard_data.js ({size_mb} MB) for {len(sector_summaries)} sectors!")
     print("="*80)
 

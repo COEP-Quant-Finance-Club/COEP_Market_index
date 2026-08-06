@@ -53,7 +53,7 @@
           <span class="sector-count" id="sector-count-badge">32 Baskets</span>
         </div>
         <div class="search-box">
-          <input type="text" id="sector-search" placeholder="Filter sectors (e.g. Defence, EMS, Real Estate)..." />
+          <input type="text" id="sector-search" placeholder="Filter sectors (Double-click sector to view stocks)..." />
         </div>
         <div class="sector-list" id="sector-list-container">
           <!-- Rendered dynamically -->
@@ -67,6 +67,7 @@
           <div class="sector-title-group">
             <h2 id="active-sector-name">ELECTRONICS_EMS</h2>
             <span class="badge" id="active-timeframe-badge">DAILY OHLCV</span>
+            <button class="view-stocks-btn" id="btnOpenConstituentsModal">📋 View Sector Stocks</button>
           </div>
 
           <div class="sector-metrics">
@@ -111,6 +112,41 @@
           <div id="tv-chart-container"></div>
         </div>
       </main>
+    </div>
+  </div>
+
+  <!-- SECTOR CONSTITUENTS STOCKS MODAL (DOUBLE-CLICK REPLICA) -->
+  <div class="modal-overlay" id="constituentsModalOverlay">
+    <div class="constituents-modal">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="modalSectorTitle">ELECTRONICS_EMS STOCKS</h2>
+          <span class="modal-sub" id="modalDateInfo">Candle Date: 2026-08-05 | 2-Day Return Comparison</span>
+        </div>
+        <button class="modal-close-btn" id="btnCloseConstituentsModal">✕</button>
+      </div>
+
+      <div class="modal-toolbar">
+        <input type="text" id="modalStockSearch" placeholder="Search constituent stocks by name or symbol..." />
+        <span class="modal-stock-count" id="modalStockCountBadge">17 Stocks</span>
+      </div>
+
+      <div class="modal-table-container">
+        <table class="stocks-table">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Company Name</th>
+              <th class="text-right">Price (T-1)</th>
+              <th class="text-right">Price (T)</th>
+              <th class="text-right">2-Day Change (%)</th>
+            </tr>
+          </thead>
+          <tbody id="modalStocksTbody">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
