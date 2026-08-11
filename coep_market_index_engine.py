@@ -212,14 +212,25 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
     if hasattr(df.index, 'tz') and df.index.tz is not None:
         df = df.copy()
         df.index = df.index.tz_convert('Asia/Kolkata').tz_localize(None)
+
+    # --- Robust MultiIndex flattening (handles all yfinance versions) ---
+    # yfinance >= 0.2.40 returns MultiIndex like ('Close', 'RELIANCE.NS')
+    # yfinance older returns MultiIndex like ('Close', '') for single tickers
+    # We always take the first level (the OHLCV field name) as the column name.
     if isinstance(df.columns, pd.MultiIndex):
-        df = df.droplevel(level=1, axis=1)
+        df = df.copy()
+        df.columns = [str(col[0]) if isinstance(col, tuple) else str(col) for col in df.columns]
+
+    # Normalise column names to standard OHLCV casing
     rename = {}
     for col in df.columns:
         for standard in OHLCV_COLS:
-            if str(col).lower() == standard.lower():
+            if str(col).strip().lower() == standard.lower():
                 rename[col] = standard
                 break
+        # Also handle 'Adj Close' -> 'Close' (yfinance auto_adjust=False fallback)
+        if str(col).strip().lower() in ("adj close", "adj_close") and "Close" not in rename.values():
+            rename[col] = "Close"
     if rename:
         df = df.rename(columns=rename)
     df = df.loc[:, ~df.columns.duplicated(keep="first")]
@@ -242,13 +253,12 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
 def update_single_stock(file_path: str) -> tuple[str, bool, str]:
     sym = os.path.basename(file_path).replace("_daily.csv", "").replace(".csv", "").strip().upper()
     try:
-        # Fetch clean, 100% officially split-adjusted full history directly from yfinance
-        yf_ticker = f"{sym}.NS"
-        df = yf.download(yf_ticker, start="2015-01-01", progress=False)
+        # auto_adjust=True: yfinance returns split+dividend-adjusted OHLC directly.
+        # This works across all yfinance versions (0.1.x, 0.2.x, 0.3.x).
+        df = yf.download(f"{sym}.NS", start="2015-01-01", progress=False, auto_adjust=True)
 
         if df is None or df.empty:
-            yf_ticker_bse = f"{sym}.BO"
-            df = yf.download(yf_ticker_bse, start="2015-01-01", progress=False)
+            df = yf.download(f"{sym}.BO", start="2015-01-01", progress=False, auto_adjust=True)
 
         if df is None or df.empty:
             return sym, False, "No data found on NSE/BSE"
