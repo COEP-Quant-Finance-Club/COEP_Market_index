@@ -2,7 +2,7 @@ source,output,sector,stocks,mean_score,llm_reviewed
 agriculture_enhanced.csv,agriculture_scored.csv,agriculture,5,50.4,0
 airlines_enhanced.csv,airlines_scored.csv,airlines,2,46.5,0
 automobiles_enhanced.csv,automobiles_scored.csv,automobiles,114,51.26,0
-banking_enhanced.csv,banking_scored.csv,banking,41,35.39,0
+banking_enhanced.csv,banking_scored.csv,banking,41,52.78,0
 building_materials_enhanced.csv,building_materials_scored.csv,building_materials,135,49.25,0
 capital_goods_enhanced.csv,capital_goods_scored.csv,capital_goods,133,49.88,0
 chemicals_enhanced.csv,chemicals_scored.csv,chemicals,102,51.65,0
@@ -13,10 +13,10 @@ digital_platforms_enhanced.csv,digital_platforms_scored.csv,digital_platforms,14
 diversified_enhanced.csv,diversified_scored.csv,diversified,10,55.1,0
 electronics_ems_enhanced.csv,electronics_ems_scored.csv,electronics_ems,17,55.94,0
 financial_infrastructure_enhanced.csv,financial_infrastructure_scored.csv,financial_infrastructure,11,59.27,0
-financial_services_enhanced.csv,financial_services_scored.csv,financial_services,128,42.53,0
+financial_services_enhanced.csv,financial_services_scored.csv,financial_services,128,46.42,0
 healthcare_services_enhanced.csv,healthcare_services_scored.csv,healthcare_services,104,50.21,0
 hospitality_enhanced.csv,hospitality_scored.csv,hospitality,25,51.61,0
-information_technology_enhanced.csv,information_technology_scored.csv,information_technology,91,50.99,0
+information_technology_enhanced.csv,information_technology_scored.csv,information_technology,91,50.84,0
 infrastructure_enhanced.csv,infrastructure_scored.csv,infrastructure,24,53.8,0
 jewellery_enhanced.csv,jewellery_scored.csv,jewellery,18,50.84,0
 logistics_enhanced.csv,logistics_scored.csv,logistics,24,52.45,0

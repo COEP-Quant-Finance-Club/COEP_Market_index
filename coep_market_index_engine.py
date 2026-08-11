@@ -61,24 +61,31 @@ USER_EXPLICIT_MAPPINGS = {
         "Schneider Electric", "TD Power", "Voltamp Transformers", "Transformers & Rectifiers", "Indo Tech Transformers",
         "Bharat Bijlee", "Hind Rectifiers", "Salzer Electronics", "HPL Electric", "Servotech Power",
         "Spectrum Electrical", "Marine Electricals", "Wonder Electricals", "Quality Power", "Powerica",
-        "Triveni Turbine", "Thermax", "Genus Power"
+        "Triveni Turbine", "Thermax", "Genus Power", "Shilchar Technologies", "Vidya Wires", "Tembo Global",
+        "Pix Transmission", "Rishabh Instruments", "Honda Siel Power", "Marsons", "Atlanta Electricals",
+        "Hmt Limited", "Apar Industries", "Kirloskar Oil Engines", "Cummins India", "Siemens", "GE Vernova T&D",
+        "3m India", "Eternal"
     ],
     "ELECTRONICS_EMS": [
         "Dixon Technologies", "Kaynes Technology", "Avalon Technologies", "Centum Electronics", "DCX Systems",
         "Cyient DLM", "PG Electroplast", "Virtuoso Optoelectronics", "IKIO Lighting", "Optiemus Infracom",
         "Rashi Peripherals", "Exicom Tele-Systems", "Sigma Advanced", "Apollo Micro Systems", "HFCL",
-        "Sterlite Technologies", "Syrma SGS"
+        "Sterlite Technologies", "Syrma SGS", "Epack Durable", "GNG Electronics", "Aditya Infotech",
+        "Amber Enterprises"
     ],
     "DEFENCE": [
         "Bharat Electronics", "Garden Reach Shipbuilders", "Mazagon Dock", "Data Patterns", "Zen Technologies",
-        "Swan Defence", "Hindustan Aeronautics", "Bharat Dynamics"
+        "Swan Defence", "Hindustan Aeronautics", "Bharat Dynamics", "Cochin Shipyard"
     ],
     "INFRASTRUCTURE": [
         "NCC", "KEC International", "Kalpataru Projects", "KNR Constructions", "H.G. Infra", "G R Infraprojects",
         "PNC Infratech", "Dilip Buildcon", "IRB Infrastructure", "Patel Engineering", "Ramky Infrastructure",
         "Hindustan Construction", "Simplex Infrastructures", "B. L. Kashyap", "PSP Projects", "Capacite Infraprojects",
         "Ahluwalia Contracts", "Ceigall India", "SRM Contractors", "Afcons Infrastructure", "Texmaco Infrastructure",
-        "Welspun Enterprises", "Reliance Industrial Infrastructure", "Vikran Engineering"
+        "Welspun Enterprises", "Reliance Industrial Infrastructure", "Vikran Engineering", "Gpt Infraprojects",
+        "Updater Services", "J.kumar Infraprojects", "Jyoti Structures", "Sanghvi Movers", "Kapston Services",
+        "Rites Ltd", "Security & Intelligence Services", "Ircon International", "Adani Enterprises", "Nbcc",
+        "Rail Vikas Nigam", "Cemindia Projects", "Bluspring Enterprises", "Quess Corp"
     ],
     "REAL_ESTATE": [
         "DLF", "Godrej Properties", "Prestige Estates", "Lodha", "Macrotech", "Brigade Enterprises", "Sobha",
@@ -86,28 +93,35 @@ USER_EXPLICIT_MAPPINGS = {
         "Puravankara", "SignatureGlobal", "Keystone Realtors", "Raymond Realty", "Sunteck Realty", "TARC",
         "Arkade Developers", "Shriram Properties", "Arvind Smartspaces", "Ashiana Housing", "Ajmera Realty",
         "Ganesh Housing", "Hemisphere Properties", "Omaxe", "Hubtown", "Unitech", "Marathon Nextgen",
-        "Arihant Superstructures", "Arihant Foundations", "Valor Estate", "Nirlon"
+        "Arihant Superstructures", "Arihant Foundations", "Valor Estate", "Nirlon", "Indiqube Spaces",
+        "Man Infraconstruction", "Alembic Limited", "AGI Infra", "AWFIS Space", "EFC (I)", "TCC Concept",
+        "Wework India", "Nesco", "Smartworks Coworking", "Sri Lotus Developers", "Aditya Birla Real Estate",
+        "Kalpataru Limited", "Anant Raj Limited"
     ],
     "LOGISTICS": [
         "Transport Corporation Of India", "TCI Express", "Mahindra Logistics", "TVS Supply Chain", "Delhivery",
         "BlackBuck", "Gateway Distriparks", "Container Corporation", "Allcargo Logistics", "Navkar Corporation",
         "VRL Logistics", "Shipping Corporation of India", "Seamec", "Knowledge Marine", "Adani Ports",
-        "JSW Infrastructure", "Gujarat Pipavav", "Dredging Corporation", "GMR Airports"
+        "JSW Infrastructure", "Gujarat Pipavav", "Dredging Corporation", "GMR Airports", "Sindhu Trade Links",
+        "Balmer Lawrie"
     ],
     "CONSUMER_DURABLES": [
         "Havells India", "Crompton Greaves", "V-Guard", "Orient Electric", "Bajaj Electricals", "Butterfly Gandhimathi",
         "TTK Prestige", "Hawkins Cookers", "Whirlpool", "Symphony", "Eveready Industries", "Hindware",
-        "Stove Kraft", "Elpro International"
+        "Stove Kraft", "Elpro International", "Bosch Home Comfort", "Onida Electronics", "Ifb Industries",
+        "Eureka Forbes", "Sheela Foam", "Cello World", "Voltas", "LG Electronics", "Blue Star"
     ],
     "RETAIL": [
         "Trent", "Avenue Supermarts", "DMart", "V-Mart", "Baazar Style", "Electronics Mart", "Sai Silks",
         "Aditya Vision", "Redtape", "Ethos", "Safari Industries", "VIP Industries", "Brainbees", "FirstCry",
-        "FSN E-Commerce", "Nykaa", "Honasa", "Mamaearth", "Vishal Mega Mart", "Meesho"
+        "FSN E-Commerce", "Nykaa", "Honasa", "Mamaearth", "Vishal Mega Mart", "Meesho", "Shanti Educational",
+        "Elitecon International", "Redington"
     ],
     "DIGITAL_PLATFORMS": [
         "One 97", "Paytm", "One Mobikwik", "Pine Labs", "Indiamart Intermesh", "Just Dial", "TBO Tek", "Easy Trip",
         "EaseMyTrip", "Yatra Online", "Le Travenues", "ixigo", "Swiggy", "Urban Company", "Cartrade Tech",
-        "Info Edge", "AvenuesAI"
+        "Info Edge", "AvenuesAI", "Arisinfra Solutions", "Crizac", "Veranda Learning", "Jaro Institute",
+        "Indian Railway Catering", "Physicswallah", "Vouchagram"
     ],
     "FINANCIAL_INFRASTRUCTURE": [
         "BSE", "Bombay Stock Exchange", "Central Depository Services", "CDSL", "Multi Commodity Exchange", "MCX",
@@ -117,7 +131,7 @@ USER_EXPLICIT_MAPPINGS = {
     "RENEWABLE_ENERGY": [
         "Waaree Energies", "Premier Energies", "Vikram Solar", "Emmvee", "Saatvik Green", "Solex Energy",
         "Websol Energy", "Insolation Energy", "Fujiyama Power", "Inox Wind", "Inox Green", "Adani Total Gas",
-        "Ravindra Energy", "TruAlt Bioenergy", "Suzlon"
+        "Ravindra Energy", "TruAlt Bioenergy", "Suzlon", "Indosolar"
     ],
     "OIL_GAS_UTILITIES": [
         "GAIL", "Mahanagar Gas", "MGL", "Indraprastha Gas", "IGL", "Petronet LNG", "Confidence Petroleum",
@@ -126,20 +140,55 @@ USER_EXPLICIT_MAPPINGS = {
     "HEALTHCARE_SERVICES": [
         "Syngene International", "Indegene", "Medi Assist", "Entero Healthcare", "MedPlus Health", "Vimta Labs",
         "Tarsons Products", "Jeena Sikho", "Sun Pharma Advanced Research", "SPARC", "Fischer Medical",
-        "Narayana Hrudayalaya", "Apollo Hospitals", "Fortis Healthcare", "Max Healthcare", "Aster DM", "KIMS"
+        "Narayana Hrudayalaya", "Apollo Hospitals", "Fortis Healthcare", "Max Healthcare", "Aster DM", "KIMS",
+        "Suven Life Sciences", "Ttk Healthcare"
     ],
     "BUILDING_MATERIALS": [
         "Greenply", "Greenpanel", "Century Plyboards", "Greenlam", "Stylam", "Shankara Buildpro", "Indian Hume Pipe",
-        "Pokarna", "Carysil", "Nitco", "Kajaria Ceramics", "Cera Sanitaryware", "Somany Ceramics", "Supreme Industries", "Astral"
+        "Pokarna", "Carysil", "Nitco", "Kajaria Ceramics", "Cera Sanitaryware", "Somany Ceramics", "Supreme Industries",
+        "Astral", "Euro Pratik", "M & B Engineering", "SG Mart"
     ],
     "TEXTILES_APPAREL": [
-        "PDS", "KDDL", "Arvind Fashions", "Timex Group", "Page Industries", "KPR Mill", "Raymond", "Vardhman Textiles", "Welspun Living"
+        "PDS", "KDDL", "Arvind Fashions", "Timex Group", "Page Industries", "KPR Mill", "Raymond", "Vardhman Textiles",
+        "Welspun Living", "Bhartiya International"
     ],
     "AGRICULTURE": [
-        "Kaveri Seed", "Venky", "Gujarat Ambuja Exports", "BN Agrochem", "Sanstar"
+        "Kaveri Seed", "Venky", "Gujarat Ambuja Exports", "BN Agrochem", "Sanstar", "Jain Irrigation"
     ],
     "TELECOM_INFRA": [
         "Indus Towers", "GTL Infrastructure", "Vindhya Telelinks", "Kernex Microsystems"
+    ],
+    "CHEMICALS": [
+        "Grp Limited", "Refex Industries", "Apcotex Industries", "Tinna Rubber", "Kothari Industrial", "Rain Industries",
+        "Gocl Corporation", "Dcm Shriram"
+    ],
+    "AUTOMOBILES": [
+        "Swaraj Engines", "Landmark Cars", "Igarashi Motors", "Sedemac Mechatronics", "Greaves Cotton", "Carraro India",
+        "Munjal Auto"
+    ],
+    "CONSUMER_STAPLES": [
+        "Vintage Coffee", "Amir Chand Jagdish", "Hindustan Foods"
+    ],
+    "HOSPITALITY": [
+        "Thomas Cook"
+    ],
+    "JEWELLERY": [
+        "PNGS Reva", "International Gemmological"
+    ],
+    "TELECOMMUNICATIONS": [
+        "D-link"
+    ],
+    "POWER_AND_UTILITIES": [
+        "Antony Waste", "Ptc India", "Gujarat Energy"
+    ],
+    "METALS_AND_MINING": [
+        "Midwest Ltd", "CMR Green", "Lloyds Enterprises", "Mmtc Limited", "Central Mine Planning", "Nava Ltd"
+    ],
+    "FINANCIAL_SERVICES": [
+        "CMS Info Systems", "Max Financial", "SBI Funds", "Piramal Finance", "Indiabulls Limited"
+    ],
+    "INFORMATION_TECHNOLOGY": [
+        "Hexaware Technologies"
     ]
 }
 

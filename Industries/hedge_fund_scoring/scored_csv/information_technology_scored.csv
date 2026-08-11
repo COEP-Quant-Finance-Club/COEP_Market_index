@@ -1,7 +1,7 @@
 ﻿Stock Name,Symbol,market_cap,industry,Hedge Fund Score,LLM Score,Combined Score,Pros,Cons
 Niit Limited,NIITLTD,1293.02,computers - education,25.0,52.0,40.0,"The company exhibits above-peer growth and a healthy balance sheet, indicating strong revenue expansion and financial stability.","Valuation appears stretched compared to peers, and profitability lags, suggesting potential overpricing and earnings pressure."
 RPSG Ventures Ltd,RPSGVENT,2957.76,computers - software - medium / small,36.7,50.0,50.0,No data available to identify specific strengths.,"Insufficient information to evaluate financial health, growth, or valuation."
-Jagran Prakashan Limited,JAGRAN,1367.96,entertainment / electronic media software,68.3,50.0,68.3,nan,nan
+Jagran Prakashan Limited,JAGRAN,1367.96,entertainment / electronic media software,68.3,50.0,53.3,nan,nan
 R Systems International Limited,RSYSTEMS,2909.11,computers - software - medium / small,55.6,50.0,50.0,Insufficient data to assess strengths.,Insufficient data to assess weaknesses.
 Expleo Solutions Ltd,EXPLEOSOL,1243.98,computers - software - medium / small,67.7,62.0,62.0,Above-average quality and balance sheet relative to IT peers.,Below-average growth and ownership levels compared to IT peers.
 Network People Services Technologies Ltd,NPST,3169.58,computers - software - medium / small,32.7,50.0,47.7,Insufficient data to identify specific strengths.,Insufficient data to identify specific weaknesses.
@@ -47,7 +47,7 @@ NINtec Systems Ltd,NINSYS,1609.8,computers - software - medium / small,58.5,50.0
 BLS E-Services Ltd,BLSE,2565.06,computers - software - medium / small,56.1,50.0,50.0,Insufficient data to identify specific strengths.,Insufficient data to identify specific weaknesses.
 Zensar Technologies Limited,ZENSARTECH,11510.94,computers - software - medium / small,79.3,69.0,69.0,"Demonstrates exceptional quality and strong valuation relative to IT peers, indicating solid fundamentals and attractive pricing.","Exhibits below-average growth and limited ownership confidence among peers, suggesting weaker earnings momentum and investor sentiment."
 Happiest Minds Technologies Ltd,HAPPSTMNDS,5673.0,computers - software - medium / small,35.7,50.0,50.0,Insufficient data to identify specific pros.,Insufficient data to identify specific cons.
-Saregama India Limited,SAREGAMA,9572.99,entertainment / electronic media software,48.8,50.0,48.8,nan,nan
+Saregama India Limited,SAREGAMA,9572.99,entertainment / electronic media software,48.8,50.0,50.0,nan,nan
 Tips Music Ltd,TIPSMUSIC,8941.18,entertainment / electronic media software,74.8,60.0,60.0,"Exhibits above-average quality and ownership metrics compared to IT peers, indicating solid fundamentals and stable shareholder structure.","Valuation and cash generation metrics lag peers, suggesting the stock may be priced less attractively and generates less cash relative to sector averages."
 Birlasoft Ltd,BSOFT,7895.89,computers - software - medium / small,62.4,50.0,50.0,Insufficient data to evaluate specific strengths.,Insufficient data to evaluate specific weaknesses.
 PVR Inox Ltd,PVRINOX,10447.99,entertainment / electronic media software,46.5,50.0,50.0,Insufficient data to evaluate strengths.,Insufficient data to evaluate weaknesses.

@@ -349,18 +349,6 @@ def evaluate_red_flags(features: pd.DataFrame, profile: str) -> list[tuple[str, 
         ("losses in most reported periods",
          features.profit_consistency < RED_FLAG_THRESHOLDS["min_profit_consistency"],
          RED_FLAG_CAPS["chronic_losses"]),
-        ("chronic negative operating cash flow",
-         features.cfo_consistency < 0.3,
-         20.0),
-        ("financial distress zone (Altman risk)",
-         altman_proxy < 0.3,
-         20.0),
-        ("debt trap (high leverage with negative free cash flow)",
-         (features.debt_to_equity > 1.5) & (features.free_cash_flow < 0),
-         25.0),
-        ("double working capital drain (debtor & inventory bloat)",
-         (features.debtor_days_trend > 15) & (features.inventory_days_trend > 15),
-         30.0),
         ("promoters dumping stake",
          features.promoter_change < -3.0,
          35.0),
@@ -368,17 +356,31 @@ def evaluate_red_flags(features: pd.DataFrame, profile: str) -> list[tuple[str, 
          (features.equity_dilution > RED_FLAG_THRESHOLDS["max_dilution_with_weak_returns"]) &
          (features.roce < RED_FLAG_THRESHOLDS["weak_roce_threshold"]),
          RED_FLAG_CAPS["dilution_with_weak_returns"]),
-        ("working capital bloat with weak sales",
-         (features.working_capital_trend > 30) & (features.sales_history_trend <= 0),
-         35.0),
     ]
+
     if profile != "financial":
-        flags.insert(1, (
-            "can't cover interest from operating profit",
-            features.interest_coverage < RED_FLAG_THRESHOLDS["min_interest_coverage"],
-            RED_FLAG_CAPS["cannot_cover_interest"],
-        ))
+        flags.extend([
+            ("can't cover interest from operating profit",
+             features.interest_coverage < RED_FLAG_THRESHOLDS["min_interest_coverage"],
+             RED_FLAG_CAPS["cannot_cover_interest"]),
+            ("chronic negative operating cash flow",
+             features.cfo_consistency < 0.3,
+             20.0),
+            ("financial distress zone (Altman risk)",
+             altman_proxy < 0.3,
+             20.0),
+            ("debt trap (high leverage with negative free cash flow)",
+             (features.debt_to_equity > 1.5) & (features.free_cash_flow < 0),
+             25.0),
+            ("double working capital drain (debtor & inventory bloat)",
+             (features.debtor_days_trend > 15) & (features.inventory_days_trend > 15),
+             30.0),
+            ("working capital bloat with weak sales",
+             (features.working_capital_trend > 30) & (features.sales_history_trend <= 0),
+             35.0),
+        ])
     return flags
+
 
 
 def apply_red_flags(score: pd.Series, features: pd.DataFrame, profile: str) -> tuple[pd.Series, pd.Series]:
@@ -621,14 +623,20 @@ def merge_existing_llm_scores(current_scored: pd.DataFrame, output_dir: Path, se
         for idx in current_scored.index:
             sym = current_scored.at[idx, "Symbol"]
             if pd.notna(sym) and sym in mapping.index:
-                current_scored.at[idx, "LLM Score"] = float(mapping.at[sym, "LLM Score"])
-                current_scored.at[idx, "Combined Score"] = float(mapping.at[sym, "Combined Score"])
-                current_scored.at[idx, "Pros"] = str(mapping.at[sym, "Pros"])
-                current_scored.at[idx, "Cons"] = str(mapping.at[sym, "Cons"])
+                llm_val = mapping.at[sym, "LLM Score"]
+                if pd.notna(llm_val):
+                    llm_val = float(llm_val)
+                    base_val = float(current_scored.at[idx, "Hedge Fund Score"])
+                    adj = float(np.clip(llm_val - base_val, -LLM_MAX_ADJUSTMENT, LLM_MAX_ADJUSTMENT))
+                    current_scored.at[idx, "LLM Score"] = llm_val
+                    current_scored.at[idx, "Combined Score"] = round(float(np.clip(base_val + adj, 0, 100)), 1)
+                    current_scored.at[idx, "Pros"] = str(mapping.at[sym, "Pros"])
+                    current_scored.at[idx, "Cons"] = str(mapping.at[sym, "Cons"])
     except Exception as e:
         LOG.warning("Could not merge existing LLM scores for %s: %s", sector, e)
 
     return current_scored
+
 
 # =============================================================================
 # LLM EVALUATION INTEGRATION
