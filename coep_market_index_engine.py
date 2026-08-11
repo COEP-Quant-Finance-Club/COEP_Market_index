@@ -36,7 +36,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_CSV = os.path.join(BASE_DIR, "Data.csv")
 STOCKS_DIR = os.path.join(BASE_DIR, "OHLCV", "Stocks", "Daily")
+STOCKS_1H_DIR = os.path.join(BASE_DIR, "OHLCV", "Stocks", "1H")
 INDICES_DIR = os.path.join(BASE_DIR, "OHLCV", "Indices", "Daily")
+INDICES_1H_DIR = os.path.join(BASE_DIR, "OHLCV", "Indices", "1H")
 JSON_DIR = os.path.join(BASE_DIR, "json")
 os.makedirs(JSON_DIR, exist_ok=True)
 
@@ -47,7 +49,9 @@ SUMMARY_FILE = os.path.join(JSON_DIR, "update_summary.json")
 CORP_ACTIONS_FILE = os.path.join(JSON_DIR, "screener_corporate_actions.json")
 
 os.makedirs(STOCKS_DIR, exist_ok=True)
+os.makedirs(STOCKS_1H_DIR, exist_ok=True)
 os.makedirs(INDICES_DIR, exist_ok=True)
+os.makedirs(INDICES_1H_DIR, exist_ok=True)
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] %(levelname)s - %(message)s")
 log = logging.getLogger("COEPMarketIndex")
@@ -527,15 +531,167 @@ def load_stock_metadata() -> dict:
     return stock_meta
 
 
+def update_1h_data_via_yfinance(max_workers: int = 15):
+    log.info("[2.7] Running Incremental 1H Data Downloader and Corporate Action Adjuster via YFinance...")
+    if not os.path.exists(DATA_CSV):
+        log.error("Data.csv not found, skipping 1H updates.")
+        return
+
+    df_data = pd.read_csv(DATA_CSV, low_memory=False)
+    symbols = sorted(list(set(df_data["Symbol"].dropna().astype(str).str.strip().str.upper())))
+
+    def update_stock_1h(sym):
+        out_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
+        daily_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+
+        # Fetch last 14 days if local file exists, otherwise fetch max history (730d)
+        exists = os.path.exists(out_path)
+        period = "14d" if exists else "730d"
+
+        try:
+            # Download hourly data from yfinance (auto_adjust=True)
+            df_new = yf.download(f"{sym}.NS", period=period, interval="1h", auto_adjust=True, progress=False)
+            if df_new is None or df_new.empty:
+                df_new = yf.download(f"{sym}.BO", period=period, interval="1h", auto_adjust=True, progress=False)
+
+            if df_new is None or df_new.empty:
+                return sym, False, "No data on yfinance"
+
+            # Flatten MultiIndex columns
+            if isinstance(df_new.columns, pd.MultiIndex):
+                df_new = df_new.copy()
+                df_new.columns = [str(col[0]) if isinstance(col, tuple) else str(col) for col in df_new.columns]
+
+            # Rename columns
+            rename = {}
+            for col in df_new.columns:
+                for standard in OHLCV_COLS:
+                    if str(col).strip().lower() == standard.lower():
+                        rename[col] = standard
+                        break
+            if rename:
+                df_new = df_new.rename(columns=rename)
+
+            keep = [c for c in OHLCV_COLS if c in df_new.columns]
+            if not keep:
+                return sym, False, "No valid OHLCV columns"
+            df_new = df_new[keep].dropna(how="all")
+
+            # Strip timezone
+            if df_new.index.tz is not None:
+                df_new.index = df_new.index.tz_localize(None)
+
+            if exists:
+                df_old = pd.read_csv(out_path, index_col=0, parse_dates=True)
+                if df_old.index.tz is not None:
+                    df_old.index = df_old.index.tz_localize(None)
+                df_combined = pd.concat([df_old, df_new])
+            else:
+                df_combined = df_new
+
+            # Deduplicate and sort
+            df_combined = df_combined[~df_combined.index.duplicated(keep="last")].sort_index()
+
+            # Drop zero-volume placeholder bars
+            if "Volume" in df_combined.columns and "Open" in df_combined.columns and "Close" in df_combined.columns:
+                df_combined = df_combined[~((df_combined["Volume"] == 0) & (df_combined["Open"] == df_combined["Close"]))]
+
+            # Align with daily reference file for corporate actions
+            if os.path.exists(daily_path):
+                df_daily = pd.read_csv(daily_path, index_col=0, parse_dates=True)
+                if df_daily.index.tz is not None:
+                    df_daily.index = df_daily.index.tz_localize(None)
+
+                if not df_daily.empty and "Close" in df_daily.columns:
+                    df_daily.sort_index(inplace=True)
+                    yf_daily_close = df_daily["Close"]
+
+                    df_combined["_date"] = df_combined.index.normalize()
+                    day_close_1h = df_combined.groupby("_date")["Close"].last()
+
+                    common_dates = day_close_1h.index.intersection(yf_daily_close.index)
+                    if len(common_dates) >= 5:
+                        ratios = yf_daily_close.loc[common_dates] / day_close_1h.loc[common_dates]
+                        ratios = ratios.replace([np.inf, -np.inf], np.nan).dropna()
+
+                        if not ratios.empty:
+                            ratios_smooth = ratios.rolling(3, min_periods=1, center=True).median()
+                            pct_change = ratios_smooth.pct_change().abs()
+                            breakpoints = ratios_smooth.index[pct_change > 0.03].tolist()
+
+                            for bp_date in breakpoints:
+                                pos = ratios_smooth.index.get_loc(bp_date)
+                                if pos == 0: continue
+                                r_prev = ratios_smooth.iloc[pos - 1]
+                                r_curr = ratios_smooth.iloc[pos]
+
+                                if r_prev > 0 and r_curr > 0:
+                                    factor = r_curr / r_prev
+                                    if abs(factor - 1.0) >= 0.02:
+                                        mask = df_combined["_date"] < bp_date
+                                        if mask.sum() > 0:
+                                            for col in ["Open", "High", "Low", "Close"]:
+                                                if col in df_combined.columns:
+                                                    df_combined.loc[mask, col] = df_combined.loc[mask, col] * factor
+
+            df_combined.drop(columns=["_date"], inplace=True, errors="ignore")
+
+            # Clean bad ticks / rogue spikes
+            if len(df_combined) >= 3:
+                closes = df_combined["Close"].values.copy()
+                for i in range(1, len(closes) - 1):
+                    p_prev = closes[i - 1]
+                    p_curr = closes[i]
+                    p_next = closes[i + 1]
+                    if p_prev <= 0 or p_curr <= 0 or p_next <= 0: continue
+
+                    chg_in = (p_curr - p_prev) / p_prev
+                    chg_out = (p_next - p_curr) / p_curr
+                    if (chg_in > 0.20 and chg_out < -0.15) or (chg_in < -0.20 and chg_out > 0.15):
+                        if (abs(p_next - p_prev) / p_prev) < 0.05:
+                            interp_val = round((p_prev + p_next) / 2.0, 4)
+                            dt = df_combined.index[i]
+                            ratio = interp_val / p_curr
+                            for col in ["Open", "High", "Low", "Close"]:
+                                if col in df_combined.columns:
+                                    df_combined.loc[dt, col] = round(df_combined.loc[dt, col] * ratio, 4)
+                            closes[i] = interp_val
+
+            # Round and save
+            for col in ["Open", "High", "Low", "Close"]:
+                if col in df_combined.columns:
+                    df_combined[col] = df_combined[col].round(4)
+            if "Volume" in df_combined.columns:
+                df_combined["Volume"] = df_combined["Volume"].fillna(0).astype(int)
+
+            df_combined.index.name = "Datetime"
+            df_combined.to_csv(out_path)
+            return sym, True, "OK"
+        except Exception as e:
+            return sym, False, str(e)
+
+    updated, failed = 0, 0
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(update_stock_1h, sym): sym for sym in symbols}
+        for future in as_completed(futures):
+            sym, ok, msg = future.result()
+            if ok:
+                updated += 1
+            else:
+                failed += 1
+
+    log.info(f"[2.7 Complete] 1H data update finished: {updated} updated, {failed} failed/skipped.")
+
+
 def calculate_sector_indices() -> tuple[dict, dict]:
-    log.info("[3/4] Rebuilding Clean Master Free-Float Market-Cap Sector Indices...")
+    log.info("[3/4] Rebuilding Clean Master Free-Float Market-Cap Sector Indices from 1H Candles...")
     stock_meta = load_stock_metadata()
     if not stock_meta:
         log.error("Failed to load stock metadata from Data.csv")
         return {}, {}
 
     # Clean old index CSV files to prevent duplicate/stale micro-sector files
-    for old_f in glob.glob(os.path.join(INDICES_DIR, "*.csv")):
+    for old_f in glob.glob(os.path.join(INDICES_DIR, "*.csv")) + glob.glob(os.path.join(INDICES_1H_DIR, "*.csv")):
         try:
             os.remove(old_f)
         except Exception:
@@ -557,18 +713,16 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         for c in constituents:
             sym = c["symbol"]
             mcap_cr = c["market_cap_cr"]
-            csv_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+            csv_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
             if os.path.exists(csv_path):
                 try:
                     df_s = pd.read_csv(csv_path, index_col=0, parse_dates=True)
-                    df_s = normalize_cols(df_s)
+                    if df_s.index.tz is not None:
+                        df_s.index = df_s.index.tz_localize(None)
                     if not df_s.empty and len(df_s) >= 1:
                         df_s.sort_index(inplace=True)
                         latest_price = float(df_s["Close"].iloc[-1])
                         if latest_price > 0:
-                            # Outstanding Shares Q_i = (Current Market Cap in Cr * 10^7) / Current Price
-                            # Since YFinance historical prices are split-adjusted, Q_i is the split-adjusted share count
-                            # that remains constant throughout history.
                             shares = (mcap_cr * 1e7) / latest_price
                             stock_dfs[sym] = {"df": df_s, "shares": shares}
                 except Exception:
@@ -583,119 +737,129 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         lows_dict   = {sym: info["df"]["Low"]   for sym, info in stock_dfs.items()}
         vols_dict   = {sym: info["df"]["Volume"] for sym, info in stock_dfs.items()}
 
-        df_close = pd.DataFrame(closes_dict).dropna(how="all")
+        df_close = pd.DataFrame(closes_dict).dropna(how="all").sort_index()
         df_open  = pd.DataFrame(opens_dict).reindex(df_close.index)
         df_high  = pd.DataFrame(highs_dict).reindex(df_close.index)
         df_low   = pd.DataFrame(lows_dict).reindex(df_close.index)
         df_vol   = pd.DataFrame(vols_dict).reindex(df_close.index).fillna(0)
 
         timestamps = df_close.index
-        n_dt = len(df_close)
         symbols = df_close.columns.tolist()
-        shares_arr = np.array([stock_dfs[sym]["shares"] for sym in symbols])
+        shares_dict = {sym: stock_dfs[sym]["shares"] for sym in symbols}
 
-        close_vals = df_close.values
-        open_vals  = df_open.values
-        high_vals  = df_high.values
-        low_vals   = df_low.values
-        vol_vals   = df_vol.values
+        # Forward-fill prices for divisor calculation reference (prevents drift from missing data)
+        df_close_ffill = df_close.ffill().bfill()
 
+        n_dt = len(df_close)
         idx_open  = np.zeros(n_dt)
         idx_high  = np.zeros(n_dt)
         idx_low   = np.zeros(n_dt)
         idx_close = np.zeros(n_dt)
         idx_vol   = np.zeros(n_dt)
 
-        idx_open[0]  = 100.0
-        idx_high[0]  = 100.0
-        idx_low[0]   = 100.0
+        # Base level: 100.0 at t=0
+        active_0 = [sym for sym in symbols if not np.isnan(df_close.iloc[0][sym])]
+        mcap_0 = sum(df_close_ffill.iloc[0][sym] * shares_dict[sym] for sym in active_0)
+        divisor = mcap_0 / 100.0 if mcap_0 > 0 else 1.0
+
         idx_close[0] = 100.0
-        idx_vol[0]   = float(np.sum(vol_vals[0]))
+        idx_open[0]  = sum(df_open.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
+        idx_high[0]  = sum(df_high.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
+        idx_low[0]   = sum(df_low.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
+        idx_vol[0]   = sum(df_vol.iloc[0][sym] for sym in active_0)
+
+        prev_active = set(active_0)
 
         for t in range(1, n_dt):
-            valid_pair = ~np.isnan(close_vals[t]) & ~np.isnan(close_vals[t-1])
-            if not np.any(valid_pair):
+            row_close_ffill = df_close_ffill.iloc[t]
+            active_t = [sym for sym in symbols if not np.isnan(df_close.iloc[t][sym])]
+            curr_active = set(active_t)
+
+            if not active_t:
+                idx_close[t] = idx_close[t-1]
                 idx_open[t]  = idx_close[t-1]
                 idx_high[t]  = idx_close[t-1]
                 idx_low[t]   = idx_close[t-1]
-                idx_close[t] = idx_close[t-1]
-                idx_vol[t]   = 0.0
+                idx_vol[t]   = 0
                 continue
 
-            prev_prices  = close_vals[t-1, valid_pair]
-            cur_prices   = close_vals[t, valid_pair]
-            pairs_shares = shares_arr[valid_pair]
+            if curr_active != prev_active:
+                mcap_old = sum(row_close_ffill[sym] * shares_dict[sym] for sym in prev_active)
+                mcap_new = sum(row_close_ffill[sym] * shares_dict[sym] for sym in curr_active)
+                if mcap_old > 0:
+                    divisor = divisor * (mcap_new / mcap_old)
 
-            mcap_prev = prev_prices * pairs_shares
-            tot_mcap_prev = np.sum(mcap_prev)
+            mcap_c = sum(df_close.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
+            mcap_o = sum(df_open.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
+            mcap_h = sum(df_high.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
+            mcap_l = sum(df_low.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
 
-            if tot_mcap_prev <= 0:
-                weights = np.ones_like(prev_prices) / len(prev_prices)
-            else:
-                weights = mcap_prev / tot_mcap_prev
+            idx_close[t] = mcap_c / divisor if divisor > 0 else 100.0
+            idx_open[t]  = mcap_o / divisor if divisor > 0 else 100.0
+            idx_high[t]  = mcap_h / divisor if divisor > 0 else 100.0
+            idx_low[t]   = mcap_l / divisor if divisor > 0 else 100.0
+            idx_vol[t]   = sum(df_vol.iloc[t][sym] for sym in curr_active)
 
-            ret_close = (cur_prices - prev_prices) / prev_prices
-            sector_ret_close = np.sum(weights * ret_close)
+            prev_active = curr_active
 
-            cur_highs = np.where(np.isnan(high_vals[t, valid_pair]), cur_prices, high_vals[t, valid_pair])
-            cur_lows  = np.where(np.isnan(low_vals[t, valid_pair]),  cur_prices, low_vals[t, valid_pair])
-            cur_opens = np.where(np.isnan(open_vals[t, valid_pair]), cur_prices, open_vals[t, valid_pair])
-
-            ret_open = (cur_opens - prev_prices) / prev_prices
-            ret_high = (cur_highs - prev_prices) / prev_prices
-            ret_low  = (cur_lows  - prev_prices) / prev_prices
-
-            sector_ret_open = np.sum(weights * ret_open)
-            sector_ret_high = np.sum(weights * ret_high)
-            sector_ret_low  = np.sum(weights * ret_low)
-
-            c_prev = idx_close[t-1]
-            c_val  = c_prev * (1.0 + sector_ret_close)
-            o_val  = c_prev * (1.0 + sector_ret_open)
-            h_val  = max(o_val, c_val, c_prev * (1.0 + sector_ret_high))
-            l_val  = min(o_val, c_val, c_prev * (1.0 + sector_ret_low))
-
-            idx_open[t]  = round(o_val, 2)
-            idx_high[t]  = round(h_val, 2)
-            idx_low[t]   = round(l_val, 2)
-            idx_close[t] = round(c_val, 2)
-            idx_vol[t]   = float(np.sum(vol_vals[t]))
-
+        # Round values for Display
         idx_df = pd.DataFrame({
-            "Open": idx_open, "High": idx_high, "Low": idx_low, "Close": idx_close, "Volume": idx_vol
+            "Open": np.round(idx_open, 4), 
+            "High": np.round(idx_high, 4), 
+            "Low": np.round(idx_low, 4), 
+            "Close": np.round(idx_close, 4), 
+            "Volume": idx_vol.astype(int)
         }, index=timestamps)
 
-        out_path = os.path.join(INDICES_DIR, f"{sec_name.lower()}_daily.csv")
-        idx_df.to_csv(out_path)
+        # Save 1H Index CSV
+        out_path_1h = os.path.join(INDICES_1H_DIR, f"{sec_name.lower()}_1h.csv")
+        idx_df.to_csv(out_path_1h)
 
-        latest_prices = close_vals[-1]
-        valid_latest = ~np.isnan(latest_prices) & (latest_prices > 0)
-        latest_mcaps = latest_prices[valid_latest] * shares_arr[valid_latest]
+        # Aggregate to daily Index levels (fully calculated from 1H candles)
+        idx_df["_date"] = idx_df.index.normalize()
+        daily_idx_df = idx_df.groupby("_date").agg({
+            "Open": "first",
+            "High": "max",
+            "Low": "min",
+            "Close": "last",
+            "Volume": "sum"
+        })
+        daily_idx_df.index.name = "Date"
+
+        # Save Daily Index CSV
+        out_path_daily = os.path.join(INDICES_DIR, f"{sec_name.lower()}_daily.csv")
+        daily_idx_df.to_csv(out_path_daily)
+
+        latest_index_val = float(daily_idx_df["Close"].iloc[-1])
+        
+        # Calculate constituents weights for weights JSON
+        shares_arr = np.array([stock_dfs[sym]["shares"] for sym in symbols])
+        latest_prices = df_close_ffill.iloc[-1].values
+        latest_mcaps = latest_prices * shares_arr
         tot_latest_mcap = np.sum(latest_mcaps)
 
         weights_dict = {}
         if tot_latest_mcap > 0:
-            valid_syms = np.array(symbols)[valid_latest]
-            for sym_i, mcap_i in zip(valid_syms, latest_mcaps):
+            for sym_i, mcap_i in zip(symbols, latest_mcaps):
                 w_pct = round(float(mcap_i / tot_latest_mcap) * 100.0, 4)
                 weights_dict[sym_i] = w_pct
 
         todays_sector_weights[sec_name] = {
             "sector": sec_name,
             "constituents_count": len(weights_dict),
-            "latest_index_value": float(idx_close[-1]),
+            "latest_index_value": round(latest_index_val, 2),
             "weights_percentage": dict(sorted(weights_dict.items(), key=lambda x: x[1], reverse=True))
         }
 
         summary[sec_name] = {
             "constituents": len(symbols),
-            "latest_index_val": float(idx_close[-1]),
-            "total_return_pct": round(((idx_close[-1] - 100.0) / 100.0) * 100.0, 2)
+            "latest_index_val": round(latest_index_val, 2),
+            "total_return_pct": round(((latest_index_val - 100.0) / 100.0) * 100.0, 2)
         }
 
-        log.info(f"[OK] Master Sector {sec_name:30s} -> Index: {idx_close[-1]:7.2f} | Stocks: {len(symbols)}")
+        log.info(f"[OK] Master Sector {sec_name:30s} -> Index: {latest_index_val:7.2f} | Stocks: {len(symbols)}")
 
-    # Save today's sector weights (overwriting past weights completely)
+    # Save today's sector weights
     with open(WEIGHTS_FILE, "w", encoding="utf-8") as f:
         json.dump(todays_sector_weights, f, indent=2)
 
@@ -847,16 +1011,19 @@ def main():
     log.info("COEP MARKET INDEX - UNIFIED MASTER PIPELINE (SINGLE ENGINE)")
     log.info("="*70)
 
-    # 1. Download clean full-history stock candles via yfinance
+    # 1. Download clean full-history stock daily candles via yfinance
     dl_stats = run_yfinance_downloader()
 
-    # 2. Audit corporate actions
+    # 2. Audit corporate actions on daily data
     audit_corporate_actions()
 
-    # 2.5. Sanitize multi-day rogue YFinance price spikes & bad ticks
+    # 2.5. Sanitize multi-day rogue YFinance price spikes & bad ticks on daily data
     sanitize_rogue_spikes()
 
-    # 3. Rebuild clean master sector indices & export today's weights
+    # 2.7. Download and update 1H data via yfinance fallbacks
+    update_1h_data_via_yfinance()
+
+    # 3. Rebuild clean master sector indices (1H & Daily divisor-based) & export weights
     sec_summary, sector_weights = calculate_sector_indices()
 
     # 4. Automatically update README.md sector leaderboard table
