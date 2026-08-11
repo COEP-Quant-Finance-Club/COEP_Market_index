@@ -79,6 +79,72 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 616.7 | +516.7% | 19 |
+| 🥈 2 | Financial Infrastructure | 470.2 | +370.2% | 11 |
+| 🥉 3 | Defence | 445.1 | +345.1% | 8 |
+| 4 | Infrastructure | 418.8 | +318.8% | 39 |
+| 5 | Jewellery | 324.1 | +224.1% | 19 |
+| 6 | Capital Goods | 315.5 | +215.5% | 146 |
+| 7 | Airlines | 308.6 | +208.6% | 2 |
+| 8 | Telecommunications | 297.9 | +197.9% | 17 |
+| 9 | Power And Utilities | 288.3 | +188.3% | 37 |
+| 10 | Metals And Mining | 244.1 | +144.1% | 90 |
+| 11 | Logistics | 241.5 | +141.5% | 28 |
+| 12 | Hospitality | 217.0 | +117.0% | 26 |
+| 13 | Renewable Energy | 216.9 | +116.9% | 15 |
+| 14 | Automobiles | 203.9 | +103.9% | 118 |
+| 15 | Retail | 201.0 | +101.0% | 19 |
+| 16 | Miscellaneous | 197.2 | +97.2% | 5 |
+| 17 | Media And Entertainment | 177.2 | +77.2% | 6 |
+| 18 | Consumer Staples | 172.4 | +72.4% | 63 |
+| 19 | Banking | 143.7 | +43.7% | 39 |
+| 20 | Oil Gas Utilities | 139.5 | +39.5% | 26 |
+| 21 | Telecom Infra | 134.4 | +34.4% | 4 |
+| 22 | Healthcare Services | 131.0 | +31.0% | 103 |
+| 23 | Building Materials | 108.7 | +8.7% | 137 |
+| 24 | Agriculture | 105.4 | +5.4% | 7 |
+| 25 | Financial Services | 101.1 | +1.1% | 130 |
+| 26 | Information Technology | 89.3 | -10.7% | 92 |
+| 27 | Digital Platforms | 76.3 | -23.7% | 20 |
+| 28 | Consumer Durables | 75.1 | -24.9% | 23 |
+| 29 | Real Estate | 71.1 | -28.9% | 45 |
+| 30 | Chemicals | 50.3 | -49.7% | 113 |
+| 31 | Textiles Apparel | 24.5 | -75.5% | 10 |
+
+---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,086.3 | +1,986.3% | 21 |
+| 🥈 2 | Defence | 1,847.0 | +1,747.0% | 9 |
+| 🥉 3 | Retail | 1,097.5 | +997.5% | 19 |
+| 4 | Jewellery | 1,064.3 | +964.3% | 20 |
+| 5 | Financial Infrastructure | 807.8 | +707.8% | 11 |
+| 6 | Chemicals | 790.7 | +690.7% | 114 |
+| 7 | Power And Utilities | 715.0 | +615.0% | 38 |
+| 8 | Infrastructure | 678.4 | +578.4% | 39 |
+| 9 | Metals And Mining | 674.2 | +574.2% | 92 |
+| 10 | Airlines | 637.9 | +537.9% | 2 |
+| 11 | Real Estate | 613.0 | +513.0% | 46 |
+| 12 | Oil Gas Utilities | 566.1 | +466.1% | 26 |
+| 13 | Financial Services | 543.5 | +443.5% | 131 |
+| 14 | Logistics | 523.6 | +423.6% | 28 |
+| 15 | Capital Goods | 498.5 | +398.5% | 151 |
+| 16 | Digital Platforms | 472.1 | +372.1% | 20 |
+| 17 | Automobiles | 460.8 | +360.8% | 121 |
+| 18 | Renewable Energy | 422.0 | +322.0% | 16 |
+| 19 | Information Technology | 398.4 | +298.4% | 93 |
+| 20 | Building Materials | 380.8 | +280.8% | 140 |
+| 21 | Healthcare Services | 380.1 | +280.1% | 107 |
+| 22 | Hospitality | 369.4 | +269.4% | 26 |
+| 23 | Textiles Apparel | 367.5 | +267.5% | 10 |
+| 24 | Consumer Staples | 363.9 | +263.9% | 64 |
+| 25 | Consumer Durables | 355.9 | +255.9% | 23 |
+| 26 | Miscellaneous | 314.3 | +214.3% | 5 |
+| 27 | Banking | 184.7 | +84.7% | 41 |
+| 28 | Telecom Infra | 160.6 | +60.6% | 4 |
+| 29 | Agriculture | 136.2 | +36.2% | 7 |
+| 30 | Telecommunications | 111.8 | +11.8% | 17 |
+| 31 | Media And Entertainment | 82.0 | -18.0% | 6 |
+
+---:|:---|:---:|:---:|:---:|
 
 ---:|:---|:---:|:---:|:---:|
 
