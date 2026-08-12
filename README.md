@@ -79,6 +79,8 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+
+---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 616.7 | +516.7% | 19 |
 | 🥈 2 | Financial Infrastructure | 470.2 | +370.2% | 11 |
 | 🥉 3 | Defence | 445.1 | +345.1% | 8 |
