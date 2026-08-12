@@ -118,14 +118,14 @@ USER_EXPLICIT_MAPPINGS = {
         "Arihant Superstructures", "Arihant Foundations", "Valor Estate", "Nirlon", "Indiqube Spaces",
         "Man Infraconstruction", "Alembic Limited", "AGI Infra", "AWFIS Space", "EFC (I)", "TCC Concept",
         "Wework India", "Nesco", "Smartworks Coworking", "Sri Lotus Developers", "Aditya Birla Real Estate",
-        "Kalpataru Limited", "Anant Raj Limited"
+        "Kalpataru Limited", "Kalpataru", "Anant Raj Limited"  # KALPATARU is a real-estate developer
     ],
     "LOGISTICS": [
         "Transport Corporation Of India", "TCI Express", "Mahindra Logistics", "TVS Supply Chain", "Delhivery",
         "BlackBuck", "Gateway Distriparks", "Container Corporation", "Allcargo Logistics", "Navkar Corporation",
         "VRL Logistics", "Shipping Corporation of India", "Seamec", "Knowledge Marine", "Adani Ports",
         "JSW Infrastructure", "Gujarat Pipavav", "Dredging Corporation", "GMR Airports", "Sindhu Trade Links",
-        "Balmer Lawrie"
+        "Balmer Lawrie", "Signpost India"  # Outdoor signage infrastructure
     ],
     "CONSUMER_DURABLES": [
         "Havells India", "Crompton Greaves", "V-Guard", "Orient Electric", "Bajaj Electricals", "Butterfly Gandhimathi",
@@ -143,7 +143,7 @@ USER_EXPLICIT_MAPPINGS = {
         "One 97", "Paytm", "One Mobikwik", "Pine Labs", "Indiamart Intermesh", "Just Dial", "TBO Tek", "Easy Trip",
         "EaseMyTrip", "Yatra Online", "Le Travenues", "ixigo", "Swiggy", "Urban Company", "Cartrade Tech",
         "Info Edge", "AvenuesAI", "Arisinfra Solutions", "Crizac", "Veranda Learning", "Jaro Institute",
-        "Indian Railway Catering", "Physicswallah", "Vouchagram"
+        "Indian Railway Catering", "Physicswallah", "Vouchagram", "Gyftr"  # Gift vouchers/rewards digital platform
     ],
     "FINANCIAL_INFRASTRUCTURE": [
         "BSE", "Bombay Stock Exchange", "Central Depository Services", "CDSL", "Multi Commodity Exchange", "MCX",
@@ -207,7 +207,8 @@ USER_EXPLICIT_MAPPINGS = {
         "Midwest Ltd", "CMR Green", "Lloyds Enterprises", "Mmtc Limited", "Central Mine Planning", "Nava Ltd"
     ],
     "FINANCIAL_SERVICES": [
-        "CMS Info Systems", "Max Financial", "SBI Funds", "Piramal Finance", "Indiabulls Limited"
+        "CMS Info Systems", "Max Financial", "SBI Funds", "Piramal Finance", "Indiabulls Limited",
+        "Teamlease Services"  # HR staffing/workforce solutions - financial/professional services
     ],
     "INFORMATION_TECHNOLOGY": [
         "Hexaware Technologies"
@@ -266,7 +267,10 @@ def map_master_sector(stock_name: str, symbol: str, ind: str) -> str:
         return "BUILDING_MATERIALS"
     if any(k in ind for k in ["chemical", "pesticide", "agrochemical", "fertilizer", "petrochemical", "dyes", "soda ash"]):
         return "CHEMICALS"
-    if any(k in ind for k in ["media", "entertainment", "recreation", "amusement", "printing"]):
+    if any(k in ind for k in ["media", "entertainment", "recreation", "amusement", "printing", "specialty business"]):
+        return "MEDIA_AND_ENTERTAINMENT"
+    # Prime Focus (VFX/post-production) + any specialty services
+    if any(k in stock_name.lower() for k in ["prime focus"]):
         return "MEDIA_AND_ENTERTAINMENT"
     if "textile" in ind:
         return "TEXTILES_APPAREL"
@@ -1061,7 +1065,7 @@ def generate_dashboard_data():
                         df_stk = pd.read_csv(stock_path, index_col=0, parse_dates=True)
                         if not df_stk.empty and "Close" in df_stk.columns:
                             df_stk.sort_index(inplace=True)
-                            recent = df_stk.tail(30)
+                            recent = df_stk.tail(252)
                             for dt_stk, row_stk in recent.iterrows():
                                 prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(row_stk["Close"]), 2)
                     except Exception:
