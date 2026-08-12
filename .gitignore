@@ -21,18 +21,20 @@ Thumbs.db
 !update_summary.json
 !official_splits_cache.json
 
-# Local-only dashboard files (excluded from GitHub remote repo)
+# Local-only legacy dashboard files (excluded from GitHub)
 dashboard.html
 dashboard.js
 dashboard.css
 dashboard_data.js
 build_dashboard_data.py
-lightweight-charts.min.js
-Portfolio Management Main/regime_dashboard.css
-Portfolio Management Main/regime_dashboard.html
-Portfolio Management Main/regime_dashboard.js
-Portfolio Management Main/regime_dashboard_data.js
-Portfolio Management Main/lightweight-charts.min.js
+
+# Portfolio Management Main dashboard: these ARE tracked so Netlify can serve them
+# Only exclude helper/data files not needed for the hosted site
+Portfolio Management Main/__pycache__/
+Portfolio Management Main/*.py
+Portfolio Management Main/data/
+Portfolio Management Main/scored_csv/
+Portfolio Management Main/OHLCV/
 Portfolio Management Main/data/regime_analysis_data.json
 
 

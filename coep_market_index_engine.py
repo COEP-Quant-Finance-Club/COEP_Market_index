@@ -29,8 +29,26 @@ import re
 import pandas as pd
 import numpy as np
 import yfinance as yf
+import requests
+from urllib3.util import Retry
+from requests.adapters import HTTPAdapter
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+def get_session():
+    session = requests.Session()
+    retry = Retry(
+        total=5,
+        backoff_factor=1.5,
+        status_forcelist=[429, 500, 502, 503, 504],
+        raise_on_status=False
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
+
+SESSION = get_session()
 
 # ── PATHS & GLOBALS ───────────────────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -306,29 +324,54 @@ def normalize_cols(df: pd.DataFrame) -> pd.DataFrame:
 def update_single_stock(file_path: str) -> tuple[str, bool, str]:
     sym = os.path.basename(file_path).replace("_daily.csv", "").replace(".csv", "").strip().upper()
     try:
-        # auto_adjust=True: yfinance returns split+dividend-adjusted OHLC directly.
-        # This works across all yfinance versions (0.1.x, 0.2.x, 0.3.x).
-        df = yf.download(f"{sym}.NS", start="2015-01-01", progress=False, auto_adjust=True)
+        # Determine start date: check if file exists and has rows to update incrementally
+        start_date = "2015-01-01"
+        df_old = None
+        if os.path.exists(file_path) and os.path.getsize(file_path) > 100:
+            try:
+                df_old = pd.read_csv(file_path, index_col=0, parse_dates=True)
+                if not df_old.empty:
+                    df_old.sort_index(inplace=True)
+                    last_dt = df_old.index[-1]
+                    # Fetch starting 14 days ago to capture weekend gaps / audit modifications / splits
+                    start_date = (last_dt - pd.Timedelta(days=14)).strftime("%Y-%m-%d")
+            except Exception:
+                pass
 
-        if df is None or df.empty:
-            df = yf.download(f"{sym}.BO", start="2015-01-01", progress=False, auto_adjust=True)
+        time.sleep(0.1)  # small rate-limit safety sleep
+        df_new = yf.download(f"{sym}.NS", start=start_date, progress=False, auto_adjust=True, session=SESSION)
+        if df_new is None or df_new.empty:
+            df_new = yf.download(f"{sym}.BO", start=start_date, progress=False, auto_adjust=True, session=SESSION)
 
-        if df is None or df.empty:
+        if df_new is None or df_new.empty:
+            if df_old is not None and not df_old.empty:
+                return sym, True, "No new daily data (kept old)"
             return sym, False, "No data found on NSE/BSE"
 
-        df = normalize_cols(df)
-        if df.empty:
+        df_new = normalize_cols(df_new)
+        if df_new.empty:
+            if df_old is not None and not df_old.empty:
+                return sym, True, "No new daily data after norm (kept old)"
             return sym, False, "Empty after norm"
 
-        df = df.sort_index()
-        df.to_csv(file_path)
-        return sym, True, f"Updated {len(df)} rows"
+        if df_old is not None and not df_old.empty:
+            if df_old.index.tz is not None:
+                df_old.index = df_old.index.tz_localize(None)
+            if df_new.index.tz is not None:
+                df_new.index = df_new.index.tz_localize(None)
+            df_combined = pd.concat([df_old, df_new])
+        else:
+            df_combined = df_new
+
+        df_combined = df_combined[~df_combined.index.duplicated(keep="last")].sort_index()
+        df_combined.to_csv(file_path)
+        return sym, True, f"Updated up to {df_combined.index[-1].date()}"
 
     except Exception as e:
         return sym, False, str(e)
 
 
-def run_yfinance_downloader(max_workers: int = 20) -> dict:
+def run_yfinance_downloader(max_workers: int = 5) -> dict:
     # Ensure all symbols from Data.csv exist as daily CSV targets in STOCKS_DIR
     if os.path.exists(DATA_CSV):
         df_data = pd.read_csv(DATA_CSV, low_memory=False)
@@ -531,7 +574,7 @@ def load_stock_metadata() -> dict:
     return stock_meta
 
 
-def update_1h_data_via_yfinance(max_workers: int = 15):
+def update_1h_data_via_yfinance(max_workers: int = 5):
     log.info("[2.7] Running Incremental 1H Data Downloader and Corporate Action Adjuster via YFinance...")
     if not os.path.exists(DATA_CSV):
         log.error("Data.csv not found, skipping 1H updates.")
@@ -549,10 +592,11 @@ def update_1h_data_via_yfinance(max_workers: int = 15):
         period = "14d" if exists else "730d"
 
         try:
-            # Download hourly data from yfinance (auto_adjust=True)
-            df_new = yf.download(f"{sym}.NS", period=period, interval="1h", auto_adjust=True, progress=False)
+            time.sleep(0.1)  # rate-limit safety sleep
+            # Download hourly data from yfinance (auto_adjust=True) with retry session
+            df_new = yf.download(f"{sym}.NS", period=period, interval="1h", auto_adjust=True, progress=False, session=SESSION)
             if df_new is None or df_new.empty:
-                df_new = yf.download(f"{sym}.BO", period=period, interval="1h", auto_adjust=True, progress=False)
+                df_new = yf.download(f"{sym}.BO", period=period, interval="1h", auto_adjust=True, progress=False, session=SESSION)
 
             if df_new is None or df_new.empty:
                 return sym, False, "No data on yfinance"
@@ -922,87 +966,153 @@ def update_readme_leaderboard(summary: dict) -> None:
 
 
 def generate_dashboard_data():
-    log.info("[5/5] Generating dashboard_data.js for dynamic web dashboard...")
-    output_js = os.path.join(BASE_DIR, "dashboard_data.js")
-    stock_counts = {}
+    log.info("[5/5] Generating regime_dashboard_data.js for dynamic web dashboard...")
+    output_js = os.path.join(BASE_DIR, "Portfolio Management Main", "regime_dashboard_data.js")
+    
+    # 1. Load Symbol to Stock Name mapping from Data.csv
+    symbol_to_name = {}
+    if os.path.exists(DATA_CSV):
+        try:
+            df_data = pd.read_csv(DATA_CSV, low_memory=False)
+            for _, row in df_data.iterrows():
+                sym = str(row.get("Symbol", "")).strip().upper()
+                name = str(row.get("Stock Name", sym)).strip()
+                if sym:
+                    symbol_to_name[sym] = name
+        except Exception as e:
+            log.error(f"Error loading Data.csv: {e}")
+
+    # 2. Load todays sector weights to get constituent lists
+    sector_constituents = {}
     if os.path.exists(WEIGHTS_FILE):
         try:
             with open(WEIGHTS_FILE, "r", encoding="utf-8") as f:
                 weights = json.load(f)
                 for sec, sec_obj in weights.items():
                     if isinstance(sec_obj, dict):
-                        cnt = sec_obj.get("constituents_count", len(sec_obj.get("weights_percentage", {})))
-                        stock_counts[sec] = cnt
-        except Exception:
-            pass
+                        weights_dict = sec_obj.get("weights_percentage", {})
+                        sector_constituents[sec] = sorted(list(weights_dict.keys()))
+        except Exception as e:
+            log.error(f"Error loading todays_sector_weights.json: {e}")
 
-    summary = []
-    daily_data = {}
+    # 3. Discretization helper for 3-state macro regimes
+    def compute_raw_3state_local(close_series: np.ndarray) -> np.ndarray:
+        n = len(close_series)
+        if n < 5:
+            return np.ones(n, dtype=int)
+        rets = np.zeros(n)
+        rets[1:] = np.diff(close_series) / (close_series[:-1] + 1e-6) * 100.0
+        mom3 = pd.Series(rets).rolling(3, min_periods=1).sum().values
+        quantiles = np.percentile(mom3, np.linspace(0, 100, 8))
+        quantiles[0] -= 1e-5
+        quantiles[-1] += 1e-5
+        causal_7state = np.clip(np.digitize(mom3, quantiles) - 1, 0, 6)
+        return np.where(causal_7state <= 2, 0, np.where(causal_7state >= 4, 2, 1))
+
+    # 4. Process all indices
+    sector_summaries = []
+    sector_details = {}
     csv_files = glob.glob(os.path.join(INDICES_DIR, "*.csv"))
 
     for f in csv_files:
-        basename = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").upper()
+        sec_name = os.path.basename(f).replace("_daily.csv", "").replace(".csv", "").upper()
+        if not sec_name:
+            continue
         try:
             df = pd.read_csv(f, index_col=0, parse_dates=True)
             if df.empty or "Close" not in df.columns:
                 continue
 
             df.sort_index(inplace=True)
+            close_vals = df["Close"].values
+            raw_states = compute_raw_3state_local(close_vals)
+
+            # Compile index daily bars
             bars = []
-            for dt, row in df.iterrows():
+            for idx, (dt, row) in enumerate(df.iterrows()):
                 o_val = round(float(row.get("Open", row["Close"])), 2)
                 h_val = round(float(row.get("High", row["Close"])), 2)
                 l_val = round(float(row.get("Low", row["Close"])), 2)
                 c_val = round(float(row["Close"]), 2)
                 v_val = int(row.get("Volume", 0))
+                m_state = int(raw_states[idx])
 
                 bars.append({
-                    "time": dt.strftime("%Y-%m-%d"),
-                    "open": o_val,
-                    "high": h_val,
-                    "low": l_val,
-                    "close": c_val,
-                    "volume": v_val,
-                    "Open": o_val,
-                    "High": h_val,
-                    "Low": l_val,
-                    "Close": c_val,
-                    "Volume": v_val
+                    "t": dt.strftime("%Y-%m-%d"),
+                    "o": o_val,
+                    "h": h_val,
+                    "l": l_val,
+                    "c": c_val,
+                    "v": v_val,
+                    "m": m_state
                 })
 
             if not bars:
                 continue
 
-            cur_val = bars[-1]["close"]
+            # Load recent prices for constituent stocks (last 30 trading days)
+            consts_symbols = sector_constituents.get(sec_name, [])
+            consts_list = []
+            for sym in consts_symbols:
+                stock_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+                prices_dict = {}
+                if os.path.exists(stock_path):
+                    try:
+                        df_stk = pd.read_csv(stock_path, index_col=0, parse_dates=True)
+                        if not df_stk.empty and "Close" in df_stk.columns:
+                            df_stk.sort_index(inplace=True)
+                            recent = df_stk.tail(30)
+                            for dt_stk, row_stk in recent.iterrows():
+                                prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(row_stk["Close"]), 2)
+                    except Exception:
+                        pass
+
+                consts_list.append({
+                    "symbol": sym,
+                    "name": symbol_to_name.get(sym, sym),
+                    "prices": prices_dict
+                })
+
+            cur_val = bars[-1]["c"]
             tot_ret_val = round(((cur_val - 100.0) / 100.0) * 100.0, 2)
             ret_str = f"{'+' if tot_ret_val >= 0 else ''}{tot_ret_val:.2f}%"
-            n_stocks = stock_counts.get(basename, 10)
 
-            summary.append({
-                "sector": basename,
-                "Sector Name": basename,
+            summary_item = {
+                "sector": sec_name,
                 "current_val": cur_val,
-                "Current Index Value": cur_val,
                 "total_return_pct": ret_str,
-                "Total Sector Return %": ret_str,
-                "stock_count": n_stocks,
-                "Constituents Count": n_stocks
-            })
-            daily_data[basename] = bars
+                "stock_count": len(consts_symbols)
+            }
+            sector_summaries.append(summary_item)
 
-        except Exception:
-            pass
+            sector_details[sec_name] = {
+                "sector": sec_name,
+                "current_val": cur_val,
+                "total_return_pct": ret_str,
+                "bars": bars,
+                "constituents": consts_list
+            }
+        except Exception as e:
+            log.error(f"Error compiling details for sector {sec_name}: {e}")
 
-    summary.sort(key=lambda x: x["total_return_pct"], reverse=True)
-    payload = {"summary": summary, "daily": daily_data, "fourhour": {}}
+    # Sort sector summaries by return
+    sector_summaries.sort(key=lambda x: float(x["total_return_pct"].replace("%", "")), reverse=True)
 
+    payload = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S IST"),
+        "max_k": 50,
+        "sector_summaries": sector_summaries,
+        "sector_details": sector_details
+    }
+
+    os.makedirs(os.path.dirname(output_js), exist_ok=True)
     with open(output_js, "w", encoding="utf-8") as f:
-        f.write("window.SECTOR_INDEX_DATA = ")
+        f.write("window.REGIME_ANALYSIS_DATA = ")
         json.dump(payload, f)
         f.write(";\n")
 
     size_mb = round(os.path.getsize(output_js) / (1024 * 1024), 2)
-    log.info(f"[5/5 Complete] Generated dashboard_data.js ({size_mb} MB) for {len(summary)} master sectors.")
+    log.info(f"[5/5 Complete] Generated regime_dashboard_data.js ({size_mb} MB) for {len(sector_summaries)} master sectors.")
 
 
 def main():
