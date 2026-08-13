@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     } else {
       chart.applyOptions({
-        layout: { background: { color: '#ffffff' }, textColor: '#475569' },
+        layout: { background: { color: 'transparent' }, textColor: '#334155' },
         grid: {
           vertLines: { color: '#e2e8f0' },
           horzLines: { color: '#e2e8f0' }

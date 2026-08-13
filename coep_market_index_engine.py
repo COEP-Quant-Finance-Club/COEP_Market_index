@@ -852,12 +852,11 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         df_low   = pd.DataFrame(lows_dict).reindex(df_close.index)
         df_vol   = pd.DataFrame(vols_dict).reindex(df_close.index).fillna(0)
 
-        timestamps = df_close.index
-        symbols = df_close.columns.tolist()
-        shares_dict = {sym: stock_dfs[sym]["shares"] for sym in symbols}
-
-        # Forward-fill prices for divisor calculation reference (prevents drift from missing data)
-        df_close_ffill = df_close.ffill().bfill()
+        df_ret = df_close.pct_change()
+        shares = {sym: stock_dfs[sym]["shares"] for sym in df_close.columns}
+        df_mcap = df_close.copy()
+        for sym in df_close.columns:
+            df_mcap[sym] = df_mcap[sym] * shares[sym]
 
         n_dt = len(df_close)
         idx_open  = np.zeros(n_dt)
@@ -866,25 +865,19 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         idx_close = np.zeros(n_dt)
         idx_vol   = np.zeros(n_dt)
 
-        # Base level: 100.0 at t=0
-        active_0 = [sym for sym in symbols if not np.isnan(df_close.iloc[0][sym])]
-        mcap_0 = sum(df_close_ffill.iloc[0][sym] * shares_dict[sym] for sym in active_0)
-        divisor = mcap_0 / 100.0 if mcap_0 > 0 else 1.0
-
         idx_close[0] = 100.0
-        idx_open[0]  = sum(df_open.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
-        idx_high[0]  = sum(df_high.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
-        idx_low[0]   = sum(df_low.iloc[0][sym] * shares_dict[sym] for sym in active_0) / divisor if divisor > 0 else 100.0
-        idx_vol[0]   = sum(df_vol.iloc[0][sym] for sym in active_0)
-
-        prev_active = set(active_0)
+        idx_open[0]  = 100.0
+        idx_high[0]  = 100.0
+        idx_low[0]   = 100.0
+        idx_vol[0]   = df_vol.iloc[0].sum()
 
         for t in range(1, n_dt):
-            row_close_ffill = df_close_ffill.iloc[t]
-            active_t = [sym for sym in symbols if not np.isnan(df_close.iloc[t][sym])]
-            curr_active = set(active_t)
-
-            if not active_t:
+            prev_mcaps = df_mcap.iloc[t-1]
+            curr_rets  = df_ret.iloc[t]
+            
+            valid_mask = (~prev_mcaps.isna()) & (~curr_rets.isna()) & (prev_mcaps > 0)
+            
+            if not valid_mask.any():
                 idx_close[t] = idx_close[t-1]
                 idx_open[t]  = idx_close[t-1]
                 idx_high[t]  = idx_close[t-1]
@@ -892,33 +885,41 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                 idx_vol[t]   = 0
                 continue
 
-            if curr_active != prev_active:
-                mcap_old = sum(row_close_ffill[sym] * shares_dict[sym] for sym in prev_active)
-                mcap_new = sum(row_close_ffill[sym] * shares_dict[sym] for sym in curr_active)
-                if mcap_old > 0:
-                    divisor = divisor * (mcap_new / mcap_old)
+            valid_mcaps = prev_mcaps[valid_mask]
+            valid_rets  = curr_rets[valid_mask]
+            
+            total_prev_mcap = valid_mcaps.sum()
+            weights = valid_mcaps / total_prev_mcap
+            
+            daily_idx_ret = (weights * valid_rets).sum()
+            
+            curr_opens = (df_open.iloc[t] - df_close.iloc[t-1]) / df_close.iloc[t-1]
+            curr_highs = (df_high.iloc[t] - df_close.iloc[t-1]) / df_close.iloc[t-1]
+            curr_lows  = (df_low.iloc[t]  - df_close.iloc[t-1]) / df_close.iloc[t-1]
+            
+            ret_open = (weights * curr_opens[valid_mask].fillna(0)).sum()
+            ret_high = (weights * curr_highs[valid_mask].fillna(0)).sum()
+            ret_low  = (weights * curr_lows[valid_mask].fillna(0)).sum()
 
-            mcap_c = sum(df_close.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
-            mcap_o = sum(df_open.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
-            mcap_h = sum(df_high.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
-            mcap_l = sum(df_low.iloc[t][sym] * shares_dict[sym] for sym in curr_active)
+            prev_c = idx_close[t-1]
+            c_val = prev_c * (1.0 + daily_idx_ret)
+            o_val = prev_c * (1.0 + ret_open)
+            h_val = max(c_val, o_val, prev_c * (1.0 + ret_high))
+            l_val = min(c_val, o_val, prev_c * (1.0 + ret_low))
 
-            idx_close[t] = mcap_c / divisor if divisor > 0 else 100.0
-            idx_open[t]  = mcap_o / divisor if divisor > 0 else 100.0
-            idx_high[t]  = mcap_h / divisor if divisor > 0 else 100.0
-            idx_low[t]   = mcap_l / divisor if divisor > 0 else 100.0
-            idx_vol[t]   = sum(df_vol.iloc[t][sym] for sym in curr_active)
+            idx_close[t] = c_val
+            idx_open[t]  = o_val
+            idx_high[t]  = h_val
+            idx_low[t]   = l_val
+            idx_vol[t]   = df_vol.iloc[t].sum()
 
-            prev_active = curr_active
-
-        # Round values for Display
         idx_df = pd.DataFrame({
             "Open": np.round(idx_open, 4), 
             "High": np.round(idx_high, 4), 
             "Low": np.round(idx_low, 4), 
             "Close": np.round(idx_close, 4), 
             "Volume": idx_vol.astype(int)
-        }, index=timestamps)
+        }, index=df_close.index)
 
         # Save 1H Index CSV
         out_path_1h = os.path.join(INDICES_1H_DIR, f"{sec_name.lower()}_1h.csv")
@@ -942,9 +943,9 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         latest_index_val = float(daily_idx_df["Close"].iloc[-1])
         
         # Calculate constituents weights for weights JSON
-        shares_arr = np.array([stock_dfs[sym]["shares"] for sym in symbols])
-        latest_prices = df_close_ffill.iloc[-1].values
-        latest_mcaps = latest_prices * shares_arr
+        symbols = df_close.columns.tolist()
+        latest_prices = df_close.iloc[-1].fillna(df_close.iloc[-2] if len(df_close) > 1 else 0)
+        latest_mcaps = np.array([latest_prices[sym] * stock_dfs[sym]["shares"] for sym in symbols])
         tot_latest_mcap = np.sum(latest_mcaps)
 
         weights_dict = {}
