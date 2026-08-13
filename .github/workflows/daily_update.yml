@@ -50,7 +50,7 @@ jobs:
           git config --global http.lowSpeedLimit 0
           git config --global http.lowSpeedTime 300
           # Stage all generated data files and compiled dashboard
-          git add OHLCV/ json/ README.md "Portfolio Management Main/"
+          git add Data.csv OHLCV/ json/ README.md "Portfolio Management Main/"
           git status
           git diff-index --quiet HEAD || {
             git commit -m "Auto EOD Update: $(date -u +'%Y-%m-%d %H:%M UTC')"
