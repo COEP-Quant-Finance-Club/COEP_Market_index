@@ -712,9 +712,9 @@ document.addEventListener('DOMContentLoaded', () => {
       1: "rgba(255, 235, 59, 0.18)",
       2: "rgba(0, 230, 118, 0.28)"
     } : {
-      0: "rgba(220, 38, 38, 0.45)",
-      1: "rgba(217, 119, 6, 0.40)",
-      2: "rgba(22, 163, 74, 0.45)"
+      0: "rgba(220, 38, 38, 0.72)",
+      1: "rgba(217, 119, 6, 0.68)",
+      2: "rgba(22, 163, 74, 0.72)"
     };
 
     // Render contiguous regime blocks to guarantee 100% uniform color density at all zoom levels
