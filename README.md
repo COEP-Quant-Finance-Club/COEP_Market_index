@@ -79,6 +79,8 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+
+---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,160.5 | +2,060.5% | 21 |
 | 🥈 2 | Defence | 1,861.7 | +1,761.7% | 9 |
 | 🥉 3 | Cables And Wires | 1,616.7 | +1,516.7% | 11 |
