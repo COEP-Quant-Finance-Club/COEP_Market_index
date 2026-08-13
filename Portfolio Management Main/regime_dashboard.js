@@ -216,36 +216,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // REGIME OVERLAY ON/OFF TOGGLE
-  let regimeOpacityMode = 2; // Default: 2 = Medium (45%)
-  let regimeOpacityMult = 1.0;
-
+  // REGIME OVERLAY ON/OFF TOGGLE (Locked to 65% Deep Opacity for Light Theme)
   if (btnToggleRegimeOverlay) {
     btnToggleRegimeOverlay.addEventListener('click', () => {
-      regimeOpacityMode = (regimeOpacityMode + 1) % 4;
-      if (regimeOpacityMode === 0) {
-        showRegimeOverlay = false;
-        btnToggleRegimeOverlay.innerText = '⚡ Regimes: OFF';
-        btnToggleRegimeOverlay.classList.remove('active');
-        btnToggleRegimeOverlay.classList.add('inactive');
-      } else if (regimeOpacityMode === 1) {
-        showRegimeOverlay = true;
-        regimeOpacityMult = 0.65;
-        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Soft (25%)';
-        btnToggleRegimeOverlay.classList.add('active');
-        btnToggleRegimeOverlay.classList.remove('inactive');
-      } else if (regimeOpacityMode === 2) {
-        showRegimeOverlay = true;
-        regimeOpacityMult = 1.0;
-        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Medium (45%)';
+      showRegimeOverlay = !showRegimeOverlay;
+      if (showRegimeOverlay) {
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: ON';
         btnToggleRegimeOverlay.classList.add('active');
         btnToggleRegimeOverlay.classList.remove('inactive');
       } else {
-        showRegimeOverlay = true;
-        regimeOpacityMult = 1.45;
-        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Deep (65%)';
-        btnToggleRegimeOverlay.classList.add('active');
-        btnToggleRegimeOverlay.classList.remove('inactive');
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: OFF';
+        btnToggleRegimeOverlay.classList.remove('active');
+        btnToggleRegimeOverlay.classList.add('inactive');
       }
       requestAnimationFrame(drawHMMBackgroundOverlay);
     });
@@ -746,13 +728,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeScale = chart.timeScale();
     
     const stateColors = isDarkMode ? {
-      0: `rgba(255, 23, 68, ${0.28 * regimeOpacityMult})`,
-      1: `rgba(255, 235, 59, ${0.18 * regimeOpacityMult})`,
-      2: `rgba(0, 230, 118, ${0.28 * regimeOpacityMult})`
+      0: "rgba(255, 23, 68, 0.28)",
+      1: "rgba(255, 235, 59, 0.18)",
+      2: "rgba(0, 230, 118, 0.28)"
     } : {
-      0: `rgba(244, 63, 94, ${0.30 * regimeOpacityMult})`,  // Distinct Coral Rose
-      1: `rgba(245, 158, 11, ${0.26 * regimeOpacityMult})`, // Distinct Honey Gold
-      2: `rgba(20, 184, 166, ${0.30 * regimeOpacityMult})`  // Distinct Mint Cyan (Never collides with green candles!)
+      0: "rgba(244, 63, 94, 0.44)",  // Distinct Coral Rose (65% Deep Opacity)
+      1: "rgba(245, 158, 11, 0.38)", // Distinct Honey Gold (65% Deep Opacity)
+      2: "rgba(20, 184, 166, 0.44)"  // Distinct Mint Cyan (65% Deep Opacity - No Candle Blending!)
     };
 
     // Render contiguous regime blocks to guarantee 100% uniform color density at all zoom levels
