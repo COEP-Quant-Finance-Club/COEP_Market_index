@@ -247,6 +247,10 @@ USER_EXPLICIT_MAPPINGS = {
         "CMS Info Systems", "Max Financial", "SBI Funds", "Piramal Finance", "Indiabulls Limited",
         "Teamlease Services", "Updater Services"
     ],
+    "DIVERSIFIED": [
+        "3M India", "DCM Shriram", "Balmer Lawrie", "Refex Industries",
+        "GOCL Corporation", "Nava Ltd", "Kothari Industrial"
+    ],
     "INFORMATION_TECHNOLOGY": [
         "Hexaware Technologies"
     ]
