@@ -435,31 +435,69 @@ def update_single_stock(file_path: str) -> tuple[str, bool, str]:
 
 
 def run_yfinance_downloader(max_workers: int = 5) -> dict:
-    # Ensure all symbols from Data.csv exist as daily CSV targets in STOCKS_DIR
-    if os.path.exists(DATA_CSV):
-        df_data = pd.read_csv(DATA_CSV, low_memory=False)
-        symbols = set(df_data["Symbol"].dropna().astype(str).str.strip().str.upper())
-        for sym in symbols:
-            if sym:
-                target_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
-                if not os.path.exists(target_path):
-                    open(target_path, "w").close()
+    if not os.path.exists(DATA_CSV):
+        return {"total": 0, "updated": 0, "failed": 0}
 
-    csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
-    log.info(f"[1/4] Running YFinance Clean Full-History Downloader for {len(csv_files)} stocks...")
-    updated, up_to_date, failed = 0, 0, 0
+    df_data = pd.read_csv(DATA_CSV, low_memory=False)
+    symbols = sorted(list(set(df_data["Symbol"].dropna().astype(str).str.strip().str.upper())))
+    nse_tickers = [f"{sym}.NS" for sym in symbols if sym]
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(update_single_stock, f): f for f in csv_files}
-        for future in as_completed(futures):
-            sym, was_updated, msg = future.result()
-            if was_updated:
+    log.info(f"[1/4] Running YFinance Batch EOD Downloader for {len(nse_tickers)} stocks...")
+    
+    batch_df = None
+    try:
+        batch_df = yf.download(nse_tickers, period="1mo", group_by="ticker", threads=True, progress=False)
+    except Exception as e:
+        log.error(f"Batch download error: {e}")
+
+    updated, failed = 0, 0
+
+    for sym in symbols:
+        if not sym:
+            continue
+        file_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+        ticker = f"{sym}.NS"
+
+        try:
+            df_old = None
+            if os.path.exists(file_path) and os.path.getsize(file_path) > 100:
+                try:
+                    df_old = pd.read_csv(file_path, index_col=0, parse_dates=True)
+                    if not df_old.empty:
+                        df_old.sort_index(inplace=True)
+                except Exception:
+                    pass
+
+            df_new = None
+            if batch_df is not None and ticker in batch_df.columns.levels[0]:
+                try:
+                    df_sub = batch_df[ticker].dropna(how="all")
+                    df_new = normalize_cols(df_sub)
+                except Exception:
+                    pass
+
+            if df_old is not None and not df_old.empty:
+                if df_new is not None and not df_new.empty:
+                    if df_old.index.tz is not None:
+                        df_old.index = df_old.index.tz_localize(None)
+                    if df_new.index.tz is not None:
+                        df_new.index = df_new.index.tz_localize(None)
+                    df_combined = pd.concat([df_old, df_new])
+                    df_combined = df_combined[~df_combined.index.duplicated(keep="last")].sort_index()
+                    df_combined.to_csv(file_path)
+                    updated += 1
+                else:
+                    updated += 1
+            elif df_new is not None and not df_new.empty:
+                df_new.to_csv(file_path)
                 updated += 1
             else:
                 failed += 1
+        except Exception:
+            failed += 1
 
-    log.info(f"[1/4 Complete] {updated} updated/refreshed, {failed} failed/no-data.")
-    return {"total": len(csv_files), "updated": updated, "failed": failed}
+    log.info(f"[1/4 Complete] {updated} stocks updated up to latest date ({datetime.now().strftime('%Y-%m-%d')}), {failed} failed.")
+    return {"total": len(symbols), "updated": updated, "failed": failed}
 
 # ── STEP 2: SCREENER / YFINANCE CORPORATE ACTION AUDITOR ──────────────────────
 
@@ -645,149 +683,54 @@ def update_1h_data_via_yfinance(max_workers: int = 5):
 
     df_data = pd.read_csv(DATA_CSV, low_memory=False)
     symbols = sorted(list(set(df_data["Symbol"].dropna().astype(str).str.strip().str.upper())))
+    nse_tickers = [f"{sym}.NS" for sym in symbols if sym]
 
-    def update_stock_1h(sym):
-        out_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
-        daily_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
-
-        # Fetch last 14 days if local file exists, otherwise fetch max history (730d)
-        exists = os.path.exists(out_path)
-        period = "14d" if exists else "730d"
-
-        try:
-            time.sleep(0.1)  # rate-limit safety sleep
-            # Download hourly data from yfinance (auto_adjust=True) with retry session
-            df_new = yf.download(f"{sym}.NS", period=period, interval="1h", auto_adjust=True, progress=False, session=SESSION)
-            if df_new is None or df_new.empty:
-                df_new = yf.download(f"{sym}.BO", period=period, interval="1h", auto_adjust=True, progress=False, session=SESSION)
-
-            if df_new is None or df_new.empty:
-                return sym, False, "No data on yfinance"
-
-            # Flatten MultiIndex columns
-            if isinstance(df_new.columns, pd.MultiIndex):
-                df_new = df_new.copy()
-                df_new.columns = [str(col[0]) if isinstance(col, tuple) else str(col) for col in df_new.columns]
-
-            # Rename columns
-            rename = {}
-            for col in df_new.columns:
-                for standard in OHLCV_COLS:
-                    if str(col).strip().lower() == standard.lower():
-                        rename[col] = standard
-                        break
-            if rename:
-                df_new = df_new.rename(columns=rename)
-
-            keep = [c for c in OHLCV_COLS if c in df_new.columns]
-            if not keep:
-                return sym, False, "No valid OHLCV columns"
-            df_new = df_new[keep].dropna(how="all")
-
-            # Strip timezone
-            if df_new.index.tz is not None:
-                df_new.index = df_new.index.tz_localize(None)
-
-            if exists:
-                df_old = pd.read_csv(out_path, index_col=0, parse_dates=True)
-                if df_old.index.tz is not None:
-                    df_old.index = df_old.index.tz_localize(None)
-                df_combined = pd.concat([df_old, df_new])
-            else:
-                df_combined = df_new
-
-            # Deduplicate and sort
-            df_combined = df_combined[~df_combined.index.duplicated(keep="last")].sort_index()
-
-            # Drop zero-volume placeholder bars
-            if "Volume" in df_combined.columns and "Open" in df_combined.columns and "Close" in df_combined.columns:
-                df_combined = df_combined[~((df_combined["Volume"] == 0) & (df_combined["Open"] == df_combined["Close"]))]
-
-            # Align with daily reference file for corporate actions
-            if os.path.exists(daily_path):
-                df_daily = pd.read_csv(daily_path, index_col=0, parse_dates=True)
-                if df_daily.index.tz is not None:
-                    df_daily.index = df_daily.index.tz_localize(None)
-
-                if not df_daily.empty and "Close" in df_daily.columns:
-                    df_daily.sort_index(inplace=True)
-                    yf_daily_close = df_daily["Close"]
-
-                    df_combined["_date"] = df_combined.index.normalize()
-                    day_close_1h = df_combined.groupby("_date")["Close"].last()
-
-                    common_dates = day_close_1h.index.intersection(yf_daily_close.index)
-                    if len(common_dates) >= 5:
-                        ratios = yf_daily_close.loc[common_dates] / day_close_1h.loc[common_dates]
-                        ratios = ratios.replace([np.inf, -np.inf], np.nan).dropna()
-
-                        if not ratios.empty:
-                            ratios_smooth = ratios.rolling(3, min_periods=1, center=True).median()
-                            pct_change = ratios_smooth.pct_change().abs()
-                            breakpoints = ratios_smooth.index[pct_change > 0.03].tolist()
-
-                            for bp_date in breakpoints:
-                                pos = ratios_smooth.index.get_loc(bp_date)
-                                if pos == 0: continue
-                                r_prev = ratios_smooth.iloc[pos - 1]
-                                r_curr = ratios_smooth.iloc[pos]
-
-                                if r_prev > 0 and r_curr > 0:
-                                    factor = r_curr / r_prev
-                                    if abs(factor - 1.0) >= 0.02:
-                                        mask = df_combined["_date"] < bp_date
-                                        if mask.sum() > 0:
-                                            for col in ["Open", "High", "Low", "Close"]:
-                                                if col in df_combined.columns:
-                                                    df_combined.loc[mask, col] = df_combined.loc[mask, col] * factor
-
-            df_combined.drop(columns=["_date"], inplace=True, errors="ignore")
-
-            # Clean bad ticks / rogue spikes
-            if len(df_combined) >= 3:
-                closes = df_combined["Close"].values.copy()
-                for i in range(1, len(closes) - 1):
-                    p_prev = closes[i - 1]
-                    p_curr = closes[i]
-                    p_next = closes[i + 1]
-                    if p_prev <= 0 or p_curr <= 0 or p_next <= 0: continue
-
-                    chg_in = (p_curr - p_prev) / p_prev
-                    chg_out = (p_next - p_curr) / p_curr
-                    if (chg_in > 0.20 and chg_out < -0.15) or (chg_in < -0.20 and chg_out > 0.15):
-                        if (abs(p_next - p_prev) / p_prev) < 0.05:
-                            interp_val = round((p_prev + p_next) / 2.0, 4)
-                            dt = df_combined.index[i]
-                            ratio = interp_val / p_curr
-                            for col in ["Open", "High", "Low", "Close"]:
-                                if col in df_combined.columns:
-                                    df_combined.loc[dt, col] = round(df_combined.loc[dt, col] * ratio, 4)
-                            closes[i] = interp_val
-
-            # Round and save
-            for col in ["Open", "High", "Low", "Close"]:
-                if col in df_combined.columns:
-                    df_combined[col] = df_combined[col].round(4)
-            if "Volume" in df_combined.columns:
-                df_combined["Volume"] = df_combined["Volume"].fillna(0).astype(int)
-
-            df_combined.index.name = "Datetime"
-            df_combined.to_csv(out_path)
-            return sym, True, "OK"
-        except Exception as e:
-            return sym, False, str(e)
+    log.info(f"[2.7] Running YFinance Batch 1H Downloader for {len(nse_tickers)} stocks...")
+    batch_df_1h = None
+    try:
+        batch_df_1h = yf.download(nse_tickers, period="5d", interval="1h", group_by="ticker", threads=True, progress=False)
+    except Exception as e:
+        log.error(f"1H Batch download error: {e}")
 
     updated, failed = 0, 0
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(update_stock_1h, sym): sym for sym in symbols}
-        for future in as_completed(futures):
-            sym, ok, msg = future.result()
-            if ok:
-                updated += 1
-            else:
-                failed += 1
 
-    log.info(f"[2.7 Complete] 1H data update finished: {updated} updated, {failed} failed/skipped.")
+    for sym in symbols:
+        if not sym: continue
+        out_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
+        ticker = f"{sym}.NS"
+
+        try:
+            df_old = None
+            if os.path.exists(out_path) and os.path.getsize(out_path) > 100:
+                try:
+                    df_old = pd.read_csv(out_path, index_col=0, parse_dates=True)
+                    if not df_old.empty: df_old.sort_index(inplace=True)
+                except Exception: pass
+
+            df_new = None
+            if batch_df_1h is not None and ticker in batch_df_1h.columns.levels[0]:
+                try:
+                    df_sub = batch_df_1h[ticker].dropna(how="all")
+                    df_new = normalize_cols(df_sub)
+                except Exception: pass
+
+            if df_old is not None and not df_old.empty:
+                if df_new is not None and not df_new.empty:
+                    if df_old.index.tz is not None: df_old.index = df_old.index.tz_localize(None)
+                    if df_new.index.tz is not None: df_new.index = df_new.index.tz_localize(None)
+                    df_combined = pd.concat([df_old, df_new])
+                    df_combined = df_combined[~df_combined.index.duplicated(keep="last")].sort_index()
+                    df_combined.to_csv(out_path)
+                    updated += 1
+                else: updated += 1
+            elif df_new is not None and not df_new.empty:
+                df_new.to_csv(out_path)
+                updated += 1
+            else: failed += 1
+        except Exception:
+            failed += 1
+
+    log.info(f"[2.7 Complete] 1H data update finished: {updated} updated, {failed} failed.")
 
 
 def calculate_sector_indices() -> tuple[dict, dict]:

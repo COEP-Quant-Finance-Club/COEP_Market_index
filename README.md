@@ -79,6 +79,44 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,160.5 | +2,060.5% | 21 |
+| 🥈 2 | Defence | 1,861.7 | +1,761.7% | 9 |
+| 🥉 3 | Cables And Wires | 1,616.7 | +1,516.7% | 11 |
+| 4 | Retail | 1,076.5 | +976.5% | 18 |
+| 5 | Jewellery | 1,038.4 | +938.4% | 20 |
+| 6 | Chemicals | 971.9 | +871.9% | 79 |
+| 7 | Financial Infrastructure | 804.4 | +704.4% | 11 |
+| 8 | Paper And Packaging | 752.5 | +652.5% | 20 |
+| 9 | Power And Utilities | 676.0 | +576.0% | 28 |
+| 10 | Infrastructure | 669.9 | +569.9% | 38 |
+| 11 | Metals And Mining | 646.4 | +546.4% | 110 |
+| 12 | Real Estate | 623.3 | +523.3% | 47 |
+| 13 | Capital Goods | 612.6 | +512.6% | 139 |
+| 14 | Logistics | 562.6 | +462.6% | 30 |
+| 15 | Financial Services | 541.6 | +441.6% | 131 |
+| 16 | Automobiles | 520.3 | +420.3% | 126 |
+| 17 | Plastics And Pipes | 486.4 | +386.4% | 16 |
+| 18 | Digital Platforms | 463.0 | +363.0% | 21 |
+| 19 | Building Materials | 458.0 | +358.0% | 69 |
+| 20 | Fertilizers And Agrochemicals | 452.5 | +352.5% | 38 |
+| 21 | Renewable Energy | 422.0 | +322.0% | 15 |
+| 22 | Information Technology | 418.9 | +318.9% | 85 |
+| 23 | Paints And Varnishes | 378.2 | +278.2% | 6 |
+| 24 | Healthcare Services | 376.6 | +276.6% | 107 |
+| 25 | Breweries And Distilleries | 361.6 | +261.6% | 13 |
+| 26 | Consumer Staples | 357.4 | +257.4% | 37 |
+| 27 | Consumer Durables | 354.9 | +254.9% | 23 |
+| 28 | Textiles Apparel | 350.5 | +250.5% | 9 |
+| 29 | Sugar And Bioenergy | 335.8 | +235.8% | 9 |
+| 30 | Footwear And Accessories | 323.4 | +223.4% | 6 |
+| 31 | Cement And Building Materials | 315.1 | +215.1% | 27 |
+| 32 | Oil Gas Utilities | 302.6 | +202.6% | 26 |
+| 33 | Hospitality | 287.4 | +187.3% | 29 |
+| 34 | Banking | 186.2 | +86.2% | 41 |
+| 35 | Media And Entertainment | 131.9 | +31.9% | 13 |
+| 36 | Telecommunications | 120.6 | +20.6% | 19 |
+
+---:|:---|:---:|:---:|:---:|
 
 ---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 616.7 | +516.7% | 19 |

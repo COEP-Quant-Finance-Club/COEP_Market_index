@@ -1,0 +1,7260 @@
+{
+    "SIRCA": {
+        "status": "Success",
+        "bars": 5953,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "TCIEXP": {
+        "status": "Success",
+        "bars": 9693,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "PARACABLES": {
+        "status": "Success",
+        "bars": 5832,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "BAJAJELEC": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SOLARA": {
+        "status": "Success",
+        "bars": 9394,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SPIC": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "BEPL": {
+        "status": "Success",
+        "bars": 9692,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "IMPAL": {
+        "status": "Success",
+        "bars": 9569,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "MAITHANALL": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "ELECTCAST": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "FOSECOIND": {
+        "status": "Success",
+        "bars": 9676,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SUNDROP": {
+        "status": "Success",
+        "bars": 9687,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "JINDALPOLY": {
+        "status": "Success",
+        "bars": 9690,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "NIITLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SHILCTECH": {
+        "status": "Success",
+        "bars": 1239,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SANSTAR": {
+        "status": "Success",
+        "bars": 3537,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "WSTCSTPAPR": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "RPSGVENT": {
+        "status": "Success",
+        "bars": 9692,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "STYLEBAAZA": {
+        "status": "Success",
+        "bars": 3334,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "CENTRUM": {
+        "status": "Success",
+        "bars": 9691,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "SBC": {
+        "status": "Success",
+        "bars": 8118,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "MUFIN": {
+        "status": "Success",
+        "bars": 4758,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "GREENPANEL": {
+        "status": "Success",
+        "bars": 9692,
+        "adjustments": 0,
+        "msg": "No adjustments needed"
+    },
+    "PRINCEPIPE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AUTOAXLES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GODAVARIB": {
+        "status": "Success",
+        "bars": 3004,
+        "msg": "3004 bars saved"
+    },
+    "INDIANHUME": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "TIL": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "SURAKSHA": {
+        "status": "Success",
+        "bars": 2906,
+        "msg": "2906 bars"
+    },
+    "TEXINFRA": {
+        "status": "Success",
+        "bars": 9687,
+        "msg": "9687 bars"
+    },
+    "GMMPFAUDLR": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ADVAIT": {
+        "status": "Success",
+        "bars": 966,
+        "msg": "966 bars"
+    },
+    "RESPONIND": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "ARIHANTSUP": {
+        "status": "Success",
+        "bars": 9662,
+        "msg": "9662 bars"
+    },
+    "AMNPLST": {
+        "status": "Success",
+        "bars": 4726,
+        "msg": "4726 bars"
+    },
+    "LAXMIDENTL": {
+        "status": "Success",
+        "bars": 2696,
+        "msg": "2696 bars"
+    },
+    "INDNIPPON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GEOJITFSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UNICHEMLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INDSWFTLAB": {
+        "status": "Success",
+        "bars": 9506,
+        "msg": "9506 bars"
+    },
+    "GUJTHEM": {
+        "status": "Success",
+        "bars": 2507,
+        "msg": "2507 bars"
+    },
+    "BLIL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "TTKHLTCARE": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "NITTAGELA": {
+        "status": "Success",
+        "bars": 552,
+        "msg": "552 bars"
+    },
+    "AYMSYNTEX": {
+        "status": "Success",
+        "bars": 9541,
+        "msg": "9541 bars"
+    },
+    "GRPLTD": {
+        "status": "Success",
+        "bars": 9233,
+        "msg": "9233 bars"
+    },
+    "TVSSRICHAK": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "JINDRILL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AEROENTER": {
+        "status": "Success",
+        "bars": 6440,
+        "msg": "6440 bars"
+    },
+    "NITCO": {
+        "status": "Success",
+        "bars": 9280,
+        "msg": "9280 bars"
+    },
+    "RSYSTEMS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KAMDHENU": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "MASTERTR": {
+        "status": "Success",
+        "bars": 3018,
+        "msg": "3018 bars"
+    },
+    "JAGRAN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ICRA": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "REFEX": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "ASIANTILES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BGRENERGY": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "INDIQUBE": {
+        "status": "Success",
+        "bars": 1779,
+        "msg": "1779 bars"
+    },
+    "SSWL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "VENUSPIPES": {
+        "status": "Success",
+        "bars": 7290,
+        "msg": "7290 bars"
+    },
+    "ZSARACOM": {
+        "status": "Success",
+        "bars": 355,
+        "msg": "355 bars"
+    },
+    "MOLDTKPAC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EXPLEOSOL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STEELCAS": {
+        "status": "Success",
+        "bars": 8135,
+        "msg": "8135 bars"
+    },
+    "HIMATSEIDE": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "MANINFRA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BFINVEST": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "TEXRAIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VINDHYATEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARSSBL": {
+        "status": "Success",
+        "bars": 1485,
+        "msg": "1485 bars"
+    },
+    "SALZERELEC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GIPCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PACEDIGITK": {
+        "status": "Success",
+        "bars": 1464,
+        "msg": "1464 bars"
+    },
+    "AWHCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STOVEKRAFT": {
+        "status": "Success",
+        "bars": 9523,
+        "msg": "9523 bars"
+    },
+    "GPTINFRA": {
+        "status": "Success",
+        "bars": 9397,
+        "msg": "9397 bars"
+    },
+    "ROTO": {
+        "status": "Success",
+        "bars": 7452,
+        "msg": "7452 bars"
+    },
+    "RAJRATAN": {
+        "status": "Success",
+        "bars": 7591,
+        "msg": "7591 bars"
+    },
+    "SMCGLOBAL": {
+        "status": "Success",
+        "bars": 9425,
+        "msg": "9425 bars"
+    },
+    "EASEMYTRIP": {
+        "status": "Success",
+        "bars": 9317,
+        "msg": "9317 bars"
+    },
+    "SULA": {
+        "status": "Success",
+        "bars": 6281,
+        "msg": "6281 bars"
+    },
+    "HERITGFOOD": {
+        "status": "Success",
+        "bars": 6310,
+        "msg": "6310 bars"
+    },
+    "JPOLYINVST": {
+        "status": "Success",
+        "bars": 8686,
+        "msg": "8686 bars"
+    },
+    "STUDDS": {
+        "status": "Success",
+        "bars": 1316,
+        "msg": "1316 bars"
+    },
+    "MIDWESTLTD": {
+        "status": "Success",
+        "bars": 1379,
+        "msg": "1379 bars"
+    },
+    "TATVA": {
+        "status": "Success",
+        "bars": 8706,
+        "msg": "8706 bars"
+    },
+    "NPST": {
+        "status": "Success",
+        "bars": 5157,
+        "msg": "5157 bars"
+    },
+    "VIDYAWIRES": {
+        "status": "Success",
+        "bars": 1155,
+        "msg": "1155 bars"
+    },
+    "WAKEFIT": {
+        "status": "Success",
+        "bars": 1134,
+        "msg": "1134 bars"
+    },
+    "WINDLAS": {
+        "status": "Success",
+        "bars": 8622,
+        "msg": "8622 bars"
+    },
+    "GCSL": {
+        "status": "Success",
+        "bars": 1385,
+        "msg": "1385 bars"
+    },
+    "CEINSYS": {
+        "status": "Success",
+        "bars": 812,
+        "msg": "812 bars"
+    },
+    "MMFL": {
+        "status": "Success",
+        "bars": 5832,
+        "msg": "5832 bars"
+    },
+    "PDSL": {
+        "status": "Success",
+        "bars": 9993,
+        "msg": "9993 bars"
+    },
+    "MCLOUD": {
+        "status": "Success",
+        "bars": 2591,
+        "msg": "2591 bars"
+    },
+    "SIMPLEXINF": {
+        "status": "Success",
+        "bars": 9372,
+        "msg": "9372 bars"
+    },
+    "VENKEYS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IMAGICAA": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "CARYSIL": {
+        "status": "Success",
+        "bars": 9627,
+        "msg": "9627 bars"
+    },
+    "POLYPLEX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RSL": {
+        "status": "Success",
+        "bars": 679,
+        "msg": "679 bars"
+    },
+    "GSPCROP": {
+        "status": "Success",
+        "bars": 658,
+        "msg": "658 bars"
+    },
+    "BCLIND": {
+        "status": "Success",
+        "bars": 9393,
+        "msg": "9393 bars"
+    },
+    "VRLLOG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APEX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RATNAVEER": {
+        "status": "Success",
+        "bars": 4888,
+        "msg": "4888 bars"
+    },
+    "JLHL": {
+        "status": "Success",
+        "bars": 4993,
+        "msg": "4993 bars"
+    },
+    "NGLFINE": {
+        "status": "Success",
+        "bars": 6876,
+        "msg": "6876 bars"
+    },
+    "UDS": {
+        "status": "Success",
+        "bars": 4923,
+        "msg": "4923 bars"
+    },
+    "IRMENERGY": {
+        "status": "Success",
+        "bars": 4825,
+        "msg": "4825 bars"
+    },
+    "ZOTA": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "SALASAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WEALTH": {
+        "status": "Success",
+        "bars": 7975,
+        "msg": "7975 bars"
+    },
+    "CAPACITE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CMRGREEN": {
+        "status": "Success",
+        "bars": 308,
+        "msg": "308 bars"
+    },
+    "CONFIPET": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "63MOONS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "5PAISA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IFGLEXPOR": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "VENUSREM": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "PASHUPATI": {
+        "status": "Success",
+        "bars": 2560,
+        "msg": "2560 bars"
+    },
+    "KPEL": {
+        "status": "Success",
+        "bars": 3004,
+        "msg": "3004 bars"
+    },
+    "ICEMAKE": {
+        "status": "Success",
+        "bars": 9678,
+        "msg": "9678 bars"
+    },
+    "SHALBY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MEDIASSIST": {
+        "status": "Success",
+        "bars": 4404,
+        "msg": "4404 bars"
+    },
+    "SEIL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "EPACK": {
+        "status": "Success",
+        "bars": 4376,
+        "msg": "4376 bars"
+    },
+    "SOLEX": {
+        "status": "Success",
+        "bars": 5499,
+        "msg": "5499 bars"
+    },
+    "PARKHOTELS": {
+        "status": "Success",
+        "bars": 4313,
+        "msg": "4313 bars"
+    },
+    "HGINFRA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "THEMISMED": {
+        "status": "Success",
+        "bars": 9655,
+        "msg": "9655 bars"
+    },
+    "PARAGMILK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MACPOWER": {
+        "status": "Success",
+        "bars": 9113,
+        "msg": "9113 bars"
+    },
+    "ASIANENE": {
+        "status": "Success",
+        "bars": 7965,
+        "msg": "7965 bars"
+    },
+    "YASHO": {
+        "status": "Success",
+        "bars": 5140,
+        "msg": "5140 bars"
+    },
+    "JUNIPER": {
+        "status": "Success",
+        "bars": 4229,
+        "msg": "4229 bars"
+    },
+    "INDOSTAR": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "BHARATRAS": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "JGCHEM": {
+        "status": "Success",
+        "bars": 4163,
+        "msg": "4163 bars"
+    },
+    "AMRUTANJAN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAKSOFT": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "SRM": {
+        "status": "Success",
+        "bars": 4072,
+        "msg": "4072 bars"
+    },
+    "RAJRILTD": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "ANDHRSUGAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BANARISUG": {
+        "status": "Success",
+        "bars": 9574,
+        "msg": "9574 bars"
+    },
+    "TEMBO": {
+        "status": "Success",
+        "bars": 8712,
+        "msg": "8712 bars"
+    },
+    "DALMIASUG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MARINE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UFLEX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GOODYEAR": {
+        "status": "Success",
+        "bars": 5412,
+        "msg": "5412 bars"
+    },
+    "KIRLOSIND": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "ALICON": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "AGI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PIXTRANS": {
+        "status": "Success",
+        "bars": 7416,
+        "msg": "7416 bars"
+    },
+    "VSTTILLERS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PANACEABIO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INTERARCH": {
+        "status": "Success",
+        "bars": 3397,
+        "msg": "3397 bars"
+    },
+    "BNAGROCHEM": {
+        "status": "Success",
+        "bars": 412,
+        "msg": "412 bars"
+    },
+    "EXCELINDUS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HEIDELBERG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GRMOVER": {
+        "status": "Success",
+        "bars": 6786,
+        "msg": "6786 bars"
+    },
+    "EVEREADY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SOMANYCERA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAGCEM": {
+        "status": "Success",
+        "bars": 8699,
+        "msg": "8699 bars"
+    },
+    "NOVARTIND": {
+        "status": "Success",
+        "bars": 5412,
+        "msg": "5412 bars"
+    },
+    "ARKADE": {
+        "status": "Success",
+        "bars": 3250,
+        "msg": "3250 bars"
+    },
+    "BOROLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ANDHRAPAP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MARATHON": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "SIYSIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APOLLOPIPE": {
+        "status": "Success",
+        "bars": 9769,
+        "msg": "9769 bars"
+    },
+    "SWSOLAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DOLATALGO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ELPROINTL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "ROSSARI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MOBIKWIK": {
+        "status": "Success",
+        "bars": 2850,
+        "msg": "2850 bars"
+    },
+    "KDDL": {
+        "status": "Success",
+        "bars": 9667,
+        "msg": "9667 bars"
+    },
+    "GRAUWEIL": {
+        "status": "Success",
+        "bars": 4399,
+        "msg": "4399 bars"
+    },
+    "FMGOETZE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RANEHOLDIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ROUTE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STALLION": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "ALEMBICLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SDBL": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "PNBGILTS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RAMCOSYS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HAWKINCOOK": {
+        "status": "Success",
+        "bars": 551,
+        "msg": "551 bars"
+    },
+    "ASALCBR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NAVNETEDUL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ALLDIGI": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "BIRLANU": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SASKEN": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "DHANUKA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ALGOQUANT": {
+        "status": "Success",
+        "bars": 1029,
+        "msg": "1029 bars"
+    },
+    "AURIONPRO": {
+        "status": "Success",
+        "bars": 9683,
+        "msg": "9683 bars"
+    },
+    "NITINSPIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARIS": {
+        "status": "Success",
+        "bars": 1954,
+        "msg": "1954 bars"
+    },
+    "RAYMONDREL": {
+        "status": "Success",
+        "bars": 1926,
+        "msg": "1926 bars"
+    },
+    "INDOTECH": {
+        "status": "Success",
+        "bars": 9372,
+        "msg": "9372 bars"
+    },
+    "CAMLINFINE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUNTECK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INSECTICID": {
+        "status": "Success",
+        "bars": 9652,
+        "msg": "9652 bars"
+    },
+    "MMWL": {
+        "status": "Success",
+        "bars": 537,
+        "msg": "537 bars"
+    },
+    "HARIOMPIPE": {
+        "status": "Success",
+        "bars": 7346,
+        "msg": "7346 bars"
+    },
+    "RPGLIFE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GANDHITUBE": {
+        "status": "Success",
+        "bars": 9680,
+        "msg": "9680 bars"
+    },
+    "ASTEC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUMEETINDS": {
+        "status": "Success",
+        "bars": 2207,
+        "msg": "2207 bars"
+    },
+    "KNRCON": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "DDEVPLSTIK": {
+        "status": "Success",
+        "bars": 2717,
+        "msg": "2717 bars"
+    },
+    "EUROPRATIK": {
+        "status": "Success",
+        "bars": 1520,
+        "msg": "1520 bars"
+    },
+    "KICL": {
+        "status": "Success",
+        "bars": 9584,
+        "msg": "9584 bars"
+    },
+    "IVALUE": {
+        "status": "Success",
+        "bars": 1506,
+        "msg": "1506 bars"
+    },
+    "STLNETWORK": {
+        "status": "Success",
+        "bars": 1611,
+        "msg": "1611 bars"
+    },
+    "GKENERGY": {
+        "status": "Success",
+        "bars": 1499,
+        "msg": "1499 bars"
+    },
+    "UEL": {
+        "status": "Success",
+        "bars": 1901,
+        "msg": "1901 bars"
+    },
+    "VSSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LUMAXIND": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "INA": {
+        "status": "Success",
+        "bars": 735,
+        "msg": "735 bars"
+    },
+    "RUPA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RTNINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SYMPHONY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TARC": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "BUTTERFLY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WEBELSOLAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TASTYBITE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "REPCOHOME": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ADFFOODS": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "UFBL": {
+        "status": "Success",
+        "bars": 9245,
+        "msg": "9245 bars"
+    },
+    "SURYODAY": {
+        "status": "Success",
+        "bars": 8587,
+        "msg": "8587 bars"
+    },
+    "JTEKTINDIA": {
+        "status": "Success",
+        "bars": 5399,
+        "msg": "5399 bars"
+    },
+    "CAPILLARY": {
+        "status": "Success",
+        "bars": 1246,
+        "msg": "1246 bars"
+    },
+    "IPL": {
+        "status": "Success",
+        "bars": 8825,
+        "msg": "8825 bars"
+    },
+    "ROLEXRINGS": {
+        "status": "Success",
+        "bars": 8657,
+        "msg": "8657 bars"
+    },
+    "FRONTSP": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "HLEGLAS": {
+        "status": "Success",
+        "bars": 9440,
+        "msg": "9440 bars"
+    },
+    "RAMRAT": {
+        "status": "Success",
+        "bars": 6961,
+        "msg": "6961 bars"
+    },
+    "EIHAHOTELS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GKSL": {
+        "status": "Success",
+        "bars": 1064,
+        "msg": "1064 bars"
+    },
+    "TARSONS": {
+        "status": "Success",
+        "bars": 8144,
+        "msg": "8144 bars"
+    },
+    "GOCOLORS": {
+        "status": "Success",
+        "bars": 8130,
+        "msg": "8130 bars"
+    },
+    "NILKAMAL": {
+        "status": "Success",
+        "bars": 2486,
+        "msg": "2486 bars"
+    },
+    "SHRIRAMPPS": {
+        "status": "Success",
+        "bars": 7892,
+        "msg": "7892 bars"
+    },
+    "BOSCH-HCIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MONTECARLO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CMSINFO": {
+        "status": "Success",
+        "bars": 7969,
+        "msg": "7969 bars"
+    },
+    "DREDGECORP": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "GHCLTEXTIL": {
+        "status": "Success",
+        "bars": 5469,
+        "msg": "5469 bars"
+    },
+    "GAUDIUMIVF": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "PNGSREVA": {
+        "status": "Success",
+        "bars": 756,
+        "msg": "756 bars"
+    },
+    "APCOTEXIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MANAKCOAT": {
+        "status": "Success",
+        "bars": 9388,
+        "msg": "9388 bars"
+    },
+    "STEL": {
+        "status": "Success",
+        "bars": 9552,
+        "msg": "9552 bars"
+    },
+    "AMIRCHAND": {
+        "status": "NoToken",
+        "bars": 0,
+        "msg": "No token"
+    },
+    "AARTIDRUGS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VIMTALABS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AGIIL": {
+        "status": "Success",
+        "bars": 3586,
+        "msg": "3586 bars"
+    },
+    "SPORTKING": {
+        "status": "Success",
+        "bars": 6849,
+        "msg": "6849 bars"
+    },
+    "HESTERBIO": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "HIKAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PANAMAPET": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RISHABH": {
+        "status": "Success",
+        "bars": 5035,
+        "msg": "5035 bars"
+    },
+    "FILATEX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PREMEXPLN": {
+        "status": "Success",
+        "bars": 9642,
+        "msg": "9642 bars"
+    },
+    "SATIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHREEPUSHK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SERVOTECH": {
+        "status": "Success",
+        "bars": 5539,
+        "msg": "5539 bars"
+    },
+    "ELECTHERM": {
+        "status": "Success",
+        "bars": 8805,
+        "msg": "8805 bars"
+    },
+    "GANDHAR": {
+        "status": "Success",
+        "bars": 4663,
+        "msg": "4663 bars"
+    },
+    "LUXIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TFCILTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GOLDIAM": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GREENPLY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAJEL": {
+        "status": "Success",
+        "bars": 4502,
+        "msg": "4502 bars"
+    },
+    "TEAMLEASE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DIAMONDYD": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "ELCIDIN": {
+        "status": "Success",
+        "bars": 359,
+        "msg": "359 bars"
+    },
+    "BETA": {
+        "status": "Success",
+        "bars": 5890,
+        "msg": "5890 bars"
+    },
+    "DOLLAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MOTISONS": {
+        "status": "Success",
+        "bars": 4467,
+        "msg": "4467 bars"
+    },
+    "SILVERTUC": {
+        "status": "Success",
+        "bars": 5771,
+        "msg": "5771 bars"
+    },
+    "ONEPOINT": {
+        "status": "Success",
+        "bars": 9503,
+        "msg": "9503 bars"
+    },
+    "ANTELOPUS": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "ADVENZYMES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CAPITALSFB": {
+        "status": "Success",
+        "bars": 4299,
+        "msg": "4299 bars"
+    },
+    "SPAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SANDHAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TINNARUBR": {
+        "status": "Success",
+        "bars": 2283,
+        "msg": "2283 bars"
+    },
+    "BAJAJHIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BOMDYEING": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "XPROINDIA": {
+        "status": "Success",
+        "bars": 9651,
+        "msg": "9651 bars"
+    },
+    "KCP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OAL": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "MTNL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SPECTRUM": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "DCW": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MADRASFERT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GHCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IGPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AWFIS": {
+        "status": "Success",
+        "bars": 3810,
+        "msg": "3810 bars"
+    },
+    "INDORAMA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JISLJALEQS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LGBBROSLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PATELENG": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "MOREPENLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARMANFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ONIDA": {
+        "status": "Success",
+        "bars": 9336,
+        "msg": "9336 bars"
+    },
+    "NUCLEUS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ORIENTHOT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RAYMOND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JAYKAY": {
+        "status": "Success",
+        "bars": 1190,
+        "msg": "1190 bars"
+    },
+    "RALLIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SPMLINFRA": {
+        "status": "Success",
+        "bars": 9127,
+        "msg": "9127 bars"
+    },
+    "SWARAJENG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TIRUMALCHM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ORIENTTECH": {
+        "status": "Success",
+        "bars": 3383,
+        "msg": "3383 bars"
+    },
+    "TNPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RAYMONDLSL": {
+        "status": "Success",
+        "bars": 3341,
+        "msg": "3341 bars"
+    },
+    "KROSS": {
+        "status": "Success",
+        "bars": 3292,
+        "msg": "3292 bars"
+    },
+    "TECHNVISN": {
+        "status": "Success",
+        "bars": 444,
+        "msg": "444 bars"
+    },
+    "MSTCLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SESHAPAPER": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "WEL": {
+        "status": "Success",
+        "bars": 7389,
+        "msg": "7389 bars"
+    },
+    "JINDWORLD": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "TALBROAUTO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VIDHIING": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "ROSSTECH": {
+        "status": "Success",
+        "bars": 2668,
+        "msg": "2668 bars"
+    },
+    "SINDHUTRAD": {
+        "status": "Success",
+        "bars": 5432,
+        "msg": "5432 bars"
+    },
+    "WENDT": {
+        "status": "Success",
+        "bars": 9648,
+        "msg": "9648 bars"
+    },
+    "NDRAUTO": {
+        "status": "Success",
+        "bars": 9402,
+        "msg": "9402 bars"
+    },
+    "VAIBHAVGBL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "PRAKASH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BLISSGVS": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "SANATHAN": {
+        "status": "Success",
+        "bars": 2808,
+        "msg": "2808 bars"
+    },
+    "ACCELYA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BCG": {
+        "status": "Success",
+        "bars": 8005,
+        "msg": "8005 bars"
+    },
+    "BALAJITELE": {
+        "status": "Success",
+        "bars": 9595,
+        "msg": "9595 bars"
+    },
+    "AVANTEL": {
+        "status": "Success",
+        "bars": 3516,
+        "msg": "3516 bars"
+    },
+    "JAGSNPHARM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BFUTILITIE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MPSLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UNITECH": {
+        "status": "Success",
+        "bars": 9792,
+        "msg": "9792 bars"
+    },
+    "POKARNA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COSMOFIRST": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "DATAMATICS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PTC": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "GUFICBIO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JINDALPHOT": {
+        "status": "Success",
+        "bars": 9561,
+        "msg": "9561 bars"
+    },
+    "MSPL": {
+        "status": "Success",
+        "bars": 9429,
+        "msg": "9429 bars"
+    },
+    "INDOCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HUHTAMAKI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RML": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "RENUKA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DIGITIDE": {
+        "status": "Success",
+        "bars": 2024,
+        "msg": "2024 bars"
+    },
+    "OSWALPUMPS": {
+        "status": "Success",
+        "bars": 1975,
+        "msg": "1975 bars"
+    },
+    "BLKASHYAP": {
+        "status": "Success",
+        "bars": 9682,
+        "msg": "9682 bars"
+    },
+    "EKC": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "PAUSHAKLTD": {
+        "status": "Success",
+        "bars": 1204,
+        "msg": "1204 bars"
+    },
+    "CRIZAC": {
+        "status": "Success",
+        "bars": 1884,
+        "msg": "1884 bars"
+    },
+    "KKCL": {
+        "status": "Success",
+        "bars": 9687,
+        "msg": "9687 bars"
+    },
+    "DEEPINDS": {
+        "status": "Success",
+        "bars": 9157,
+        "msg": "9157 bars"
+    },
+    "CREST": {
+        "status": "Success",
+        "bars": 6757,
+        "msg": "6757 bars"
+    },
+    "NETWORK18": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "EFCIL": {
+        "status": "Success",
+        "bars": 1681,
+        "msg": "1681 bars"
+    },
+    "UGROCAP": {
+        "status": "Success",
+        "bars": 8643,
+        "msg": "8643 bars"
+    },
+    "DECNGOLD": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "SMSPHARMA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DELTACORP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HGS": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "OMAXE": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "BHAGYANGR": {
+        "status": "Success",
+        "bars": 9629,
+        "msg": "9629 bars"
+    },
+    "RGL": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "JKIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SEPC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ALLTIME": {
+        "status": "Success",
+        "bars": 1702,
+        "msg": "1702 bars"
+    },
+    "PENIND": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "PITTIENG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DLINKINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RTNPOWER": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "MAHASTEEL": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "DBCORP": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "WAAREEINDO": {
+        "status": "Success",
+        "bars": 1448,
+        "msg": "1448 bars"
+    },
+    "RAMKY": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "CANTABIL": {
+        "status": "Success",
+        "bars": 9671,
+        "msg": "9671 bars"
+    },
+    "ASHOKA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHRINGARMS": {
+        "status": "Success",
+        "bars": 1548,
+        "msg": "1548 bars"
+    },
+    "GNRL": {
+        "status": "Success",
+        "bars": 552,
+        "msg": "552 bars"
+    },
+    "SOLARWORLD": {
+        "status": "Success",
+        "bars": 1485,
+        "msg": "1485 bars"
+    },
+    "ARROWGREEN": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "INDOTHAI": {
+        "status": "Success",
+        "bars": 5534,
+        "msg": "5534 bars"
+    },
+    "JTLIND": {
+        "status": "Success",
+        "bars": 8012,
+        "msg": "8012 bars"
+    },
+    "STEELXIND": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "RBA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FUSION": {
+        "status": "Success",
+        "bars": 6470,
+        "msg": "6470 bars"
+    },
+    "VADILALIND": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "AVTNPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHARDAMOTR": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "UNIPARTS": {
+        "status": "Success",
+        "bars": 6337,
+        "msg": "6337 bars"
+    },
+    "ORIENTCEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LANDMARK": {
+        "status": "Success",
+        "bars": 6274,
+        "msg": "6274 bars"
+    },
+    "CHEMPLASTS": {
+        "status": "Success",
+        "bars": 8587,
+        "msg": "8587 bars"
+    },
+    "KRSNAA": {
+        "status": "Success",
+        "bars": 8622,
+        "msg": "8622 bars"
+    },
+    "JAYBARMARU": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "KITEX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WINDMACHIN": {
+        "status": "Success",
+        "bars": 9563,
+        "msg": "9563 bars"
+    },
+    "HONDAPOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KLBRENG-B": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "SKMEGGPROD": {
+        "status": "Success",
+        "bars": 5736,
+        "msg": "5736 bars"
+    },
+    "TCPLPACK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RIIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SIKA": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "VINCOFE": {
+        "status": "Success",
+        "bars": 3131,
+        "msg": "3131 bars"
+    },
+    "IDEAFORGE": {
+        "status": "Success",
+        "bars": 5350,
+        "msg": "5350 bars"
+    },
+    "ASHIANA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WANBURY": {
+        "status": "Success",
+        "bars": 5468,
+        "msg": "5468 bars"
+    },
+    "UTKARSHBNK": {
+        "status": "Success",
+        "bars": 5280,
+        "msg": "5280 bars"
+    },
+    "SAIPARENT": {
+        "status": "Success",
+        "bars": 623,
+        "msg": "623 bars"
+    },
+    "ARFIN": {
+        "status": "Success",
+        "bars": 1821,
+        "msg": "1821 bars"
+    },
+    "SYNCOMF": {
+        "status": "Success",
+        "bars": 6421,
+        "msg": "6421 bars"
+    },
+    "SGFIN": {
+        "status": "Success",
+        "bars": 1751,
+        "msg": "1751 bars"
+    },
+    "FISCHER": {
+        "status": "Success",
+        "bars": 1877,
+        "msg": "1877 bars"
+    },
+    "AVADHSUGAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NACLIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KRISHANA": {
+        "status": "Success",
+        "bars": 9565,
+        "msg": "9565 bars"
+    },
+    "HITECH": {
+        "status": "Success",
+        "bars": 6261,
+        "msg": "6261 bars"
+    },
+    "SAMHI": {
+        "status": "Success",
+        "bars": 4972,
+        "msg": "4972 bars"
+    },
+    "MBAPL": {
+        "status": "Success",
+        "bars": 9472,
+        "msg": "9472 bars"
+    },
+    "INFOBEAN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KALAMANDIR": {
+        "status": "Success",
+        "bars": 4958,
+        "msg": "4958 bars"
+    },
+    "PROTEAN": {
+        "status": "Success",
+        "bars": 2598,
+        "msg": "2598 bars"
+    },
+    "NAVKARCORP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ESAFSFB": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "DRAGARWQ": {
+        "status": "Success",
+        "bars": 552,
+        "msg": "552 bars"
+    },
+    "PRECAM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MUTHOOTMF": {
+        "status": "Success",
+        "bars": 4544,
+        "msg": "4544 bars"
+    },
+    "SUNCLAY": {
+        "status": "Success",
+        "bars": 4522,
+        "msg": "4522 bars"
+    },
+    "BHARATWIRE": {
+        "status": "Success",
+        "bars": 9677,
+        "msg": "9677 bars"
+    },
+    "GUJALKALI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FAZE3Q": {
+        "status": "Success",
+        "bars": 6440,
+        "msg": "6440 bars"
+    },
+    "MAHLOG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAJAJHCARE": {
+        "status": "Success",
+        "bars": 8151,
+        "msg": "8151 bars"
+    },
+    "SIGNPOST": {
+        "status": "Success",
+        "bars": 4289,
+        "msg": "4289 bars"
+    },
+    "GNA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "EXICOM": {
+        "status": "Success",
+        "bars": 4198,
+        "msg": "4198 bars"
+    },
+    "NRBBEARING": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KPL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "GOPAL": {
+        "status": "Success",
+        "bars": 4156,
+        "msg": "4156 bars"
+    },
+    "ORIENTELEC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SCILAL": {
+        "status": "Success",
+        "bars": 4135,
+        "msg": "4135 bars"
+    },
+    "ASIANHOTNR": {
+        "status": "Success",
+        "bars": 9088,
+        "msg": "9088 bars"
+    },
+    "WHEELS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ORISSAMINE": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "DISAQ": {
+        "status": "Success",
+        "bars": 531,
+        "msg": "531 bars"
+    },
+    "VEEDOL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COCKERILL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "HINDOILEXP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BOROSCI": {
+        "status": "Success",
+        "bars": 3768,
+        "msg": "3768 bars"
+    },
+    "JNKINDIA": {
+        "status": "Success",
+        "bars": 3953,
+        "msg": "3953 bars"
+    },
+    "DEEDEV": {
+        "status": "Success",
+        "bars": 3684,
+        "msg": "3684 bars"
+    },
+    "MANALIPETC": {
+        "status": "Success",
+        "bars": 9680,
+        "msg": "9680 bars"
+    },
+    "WELSPLSOL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "THOMASCOOK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VHL": {
+        "status": "Success",
+        "bars": 9547,
+        "msg": "9547 bars"
+    },
+    "CENTENKA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MUKANDLTD": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "ARIHANT": {
+        "status": "Success",
+        "bars": 2324,
+        "msg": "2324 bars"
+    },
+    "NOCIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GALAPREC": {
+        "status": "Success",
+        "bars": 3327,
+        "msg": "3327 bars"
+    },
+    "RAJESHEXPO": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "ANUP": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "INDPRUD": {
+        "status": "Success",
+        "bars": 251,
+        "msg": "251 bars"
+    },
+    "NORTHARC": {
+        "status": "Success",
+        "bars": 3250,
+        "msg": "3250 bars"
+    },
+    "MANGLMCEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHREDIGCEM": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "LINCOLN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RUBYMILLS": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "SPANDANA": {
+        "status": "Success",
+        "bars": 5832,
+        "msg": "5832 bars"
+    },
+    "GARUDA": {
+        "status": "Success",
+        "bars": 3152,
+        "msg": "3152 bars"
+    },
+    "DIFFNKG": {
+        "status": "Success",
+        "bars": 715,
+        "msg": "715 bars"
+    },
+    "BHAGCHEM": {
+        "status": "Success",
+        "bars": 8288,
+        "msg": "8288 bars"
+    },
+    "HIRECT": {
+        "status": "Success",
+        "bars": 9606,
+        "msg": "9606 bars"
+    },
+    "BBL": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "NELCO": {
+        "status": "Success",
+        "bars": 9680,
+        "msg": "9680 bars"
+    },
+    "ATULAUTO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HINDWAREAP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UNIVCABLES": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "RELTD": {
+        "status": "Success",
+        "bars": 3523,
+        "msg": "3523 bars"
+    },
+    "LGHL": {
+        "status": "Success",
+        "bars": 4423,
+        "msg": "4423 bars"
+    },
+    "ARTEMISMED": {
+        "status": "Success",
+        "bars": 9628,
+        "msg": "9628 bars"
+    },
+    "EIEL": {
+        "status": "Success",
+        "bars": 2941,
+        "msg": "2941 bars"
+    },
+    "INDRAMEDCO": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "3BBLACKBIO": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "WPIL": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "DAMCAPITAL": {
+        "status": "Success",
+        "bars": 2808,
+        "msg": "2808 bars"
+    },
+    "DHANBANK": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "GENESYS": {
+        "status": "Success",
+        "bars": 9657,
+        "msg": "9657 bars"
+    },
+    "STYRENIX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NSIL": {
+        "status": "Success",
+        "bars": 9654,
+        "msg": "9654 bars"
+    },
+    "QUADFUTURE": {
+        "status": "Success",
+        "bars": 2724,
+        "msg": "2724 bars"
+    },
+    "GOCLCORP": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "PUNJABCHEM": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "ULTRAMAR": {
+        "status": "Success",
+        "bars": 549,
+        "msg": "549 bars"
+    },
+    "DSSL": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "IZMO": {
+        "status": "Success",
+        "bars": 9211,
+        "msg": "9211 bars"
+    },
+    "JUBLCPL": {
+        "status": "Success",
+        "bars": 2549,
+        "msg": "2549 bars"
+    },
+    "RAMCOIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WALCHANNAG": {
+        "status": "Success",
+        "bars": 9444,
+        "msg": "9444 bars"
+    },
+    "GMBREW": {
+        "status": "Success",
+        "bars": 9687,
+        "msg": "9687 bars"
+    },
+    "TAJGVK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MOSCHIP": {
+        "status": "Success",
+        "bars": 2605,
+        "msg": "2605 bars"
+    },
+    "VIPIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PRABHA": {
+        "status": "Success",
+        "bars": 2401,
+        "msg": "2401 bars"
+    },
+    "SHOPERSTOP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "POCL": {
+        "status": "Success",
+        "bars": 5924,
+        "msg": "5924 bars"
+    },
+    "VSTIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KERNEX": {
+        "status": "Success",
+        "bars": 9557,
+        "msg": "9557 bars"
+    },
+    "BLUSPRING": {
+        "status": "Success",
+        "bars": 2024,
+        "msg": "2024 bars"
+    },
+    "SAMBHV": {
+        "status": "Success",
+        "bars": 1919,
+        "msg": "1919 bars"
+    },
+    "KOTIC": {
+        "status": "Success",
+        "bars": 550,
+        "msg": "550 bars"
+    },
+    "MONARCH": {
+        "status": "Success",
+        "bars": 7936,
+        "msg": "7936 bars"
+    },
+    "GTLINFRA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HUBTOWN": {
+        "status": "Success",
+        "bars": 9663,
+        "msg": "9663 bars"
+    },
+    "ALLCARGO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TCC": {
+        "status": "Success",
+        "bars": 774,
+        "msg": "774 bars"
+    },
+    "NELCAST": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GATEWAY": {
+        "status": "Success",
+        "bars": 7577,
+        "msg": "7577 bars"
+    },
+    "JAICORPLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KRISHNADEF": {
+        "status": "Success",
+        "bars": 5401,
+        "msg": "5401 bars"
+    },
+    "KSCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VERANDA": {
+        "status": "Success",
+        "bars": 7486,
+        "msg": "7486 bars"
+    },
+    "BRIGHOTEL": {
+        "status": "Success",
+        "bars": 1772,
+        "msg": "1772 bars"
+    },
+    "SHANTIGOLD": {
+        "status": "Success",
+        "bars": 1765,
+        "msg": "1765 bars"
+    },
+    "KIRIINDUS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KOLTEPATIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MBEL": {
+        "status": "Success",
+        "bars": 1744,
+        "msg": "1744 bars"
+    },
+    "SBCL": {
+        "status": "Success",
+        "bars": 8872,
+        "msg": "8872 bars"
+    },
+    "EMUDHRA": {
+        "status": "Success",
+        "bars": 7255,
+        "msg": "7255 bars"
+    },
+    "JYOTISTRUC": {
+        "status": "Success",
+        "bars": 5588,
+        "msg": "5588 bars"
+    },
+    "MANINDS": {
+        "status": "Success",
+        "bars": 8692,
+        "msg": "8692 bars"
+    },
+    "AJMERA": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "MHRIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GLOBUSSPR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DEN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HATHWAY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GANECOS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GREENPOWER": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "SANGAMIND": {
+        "status": "Success",
+        "bars": 9646,
+        "msg": "9646 bars"
+    },
+    "VIKRAN": {
+        "status": "Success",
+        "bars": 1618,
+        "msg": "1618 bars"
+    },
+    "SUMMITSEC": {
+        "status": "Success",
+        "bars": 9681,
+        "msg": "9681 bars"
+    },
+    "FCL": {
+        "status": "Success",
+        "bars": 10717,
+        "msg": "10717 bars"
+    },
+    "PFS": {
+        "status": "Success",
+        "bars": 9680,
+        "msg": "9680 bars"
+    },
+    "RHETAN": {
+        "status": "Success",
+        "bars": 1499,
+        "msg": "1499 bars"
+    },
+    "VISHNU": {
+        "status": "Success",
+        "bars": 9682,
+        "msg": "9682 bars"
+    },
+    "ADOR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JARO": {
+        "status": "Success",
+        "bars": 1485,
+        "msg": "1485 bars"
+    },
+    "EPACKPEB": {
+        "status": "Success",
+        "bars": 1478,
+        "msg": "1478 bars"
+    },
+    "HARSHA": {
+        "status": "Success",
+        "bars": 6695,
+        "msg": "6695 bars"
+    },
+    "TBZ": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HEMIPROP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VOEPL": {
+        "status": "Success",
+        "bars": 210,
+        "msg": "210 bars"
+    },
+    "TRUALT": {
+        "status": "Success",
+        "bars": 1471,
+        "msg": "1471 bars"
+    },
+    "IGARASHI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MARSONS": {
+        "status": "Success",
+        "bars": 707,
+        "msg": "707 bars"
+    },
+    "EMIL": {
+        "status": "Success",
+        "bars": 6450,
+        "msg": "6450 bars"
+    },
+    "DCXINDIA": {
+        "status": "Success",
+        "bars": 6484,
+        "msg": "6484 bars"
+    },
+    "NIBE": {
+        "status": "Success",
+        "bars": 2591,
+        "msg": "2591 bars"
+    },
+    "AFSL": {
+        "status": "Success",
+        "bars": 6182,
+        "msg": "6182 bars"
+    },
+    "RICOAUTO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WONDERLA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MOL": {
+        "status": "Success",
+        "bars": 8608,
+        "msg": "8608 bars"
+    },
+    "SHANTIGEAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HITECHGEAR": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "RACLGEAR": {
+        "status": "Success",
+        "bars": 2954,
+        "msg": "2954 bars"
+    },
+    "MAYURUNIQ": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DOLPHIN": {
+        "status": "Success",
+        "bars": 4205,
+        "msg": "4205 bars"
+    },
+    "DIVGIITTS": {
+        "status": "Success",
+        "bars": 5889,
+        "msg": "5889 bars"
+    },
+    "FINOPB": {
+        "status": "Success",
+        "bars": 8206,
+        "msg": "8206 bars"
+    },
+    "BHARATSE": {
+        "status": "Success",
+        "bars": 2388,
+        "msg": "2388 bars"
+    },
+    "BUILDPRO": {
+        "status": "Success",
+        "bars": 1008,
+        "msg": "1008 bars"
+    },
+    "BALMLAWRIE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NFL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AYE": {
+        "status": "Success",
+        "bars": 833,
+        "msg": "833 bars"
+    },
+    "IKIO": {
+        "status": "Success",
+        "bars": 5448,
+        "msg": "5448 bars"
+    },
+    "EIMCOELECO": {
+        "status": "Success",
+        "bars": 9592,
+        "msg": "9592 bars"
+    },
+    "MENONBE": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "GRANDOAK": {
+        "status": "Success",
+        "bars": 479,
+        "msg": "479 bars"
+    },
+    "HMAAGRO": {
+        "status": "Success",
+        "bars": 5372,
+        "msg": "5372 bars"
+    },
+    "KABRAEXTRU": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IOLCP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INDOBORAX": {
+        "status": "Success",
+        "bars": 7554,
+        "msg": "7554 bars"
+    },
+    "NIITMTS": {
+        "status": "Success",
+        "bars": 5179,
+        "msg": "5179 bars"
+    },
+    "PSPPROJECT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SOTL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EMSLIMITED": {
+        "status": "Success",
+        "bars": 4979,
+        "msg": "4979 bars"
+    },
+    "ZAGGLE": {
+        "status": "Success",
+        "bars": 4979,
+        "msg": "4979 bars"
+    },
+    "AURUM": {
+        "status": "Success",
+        "bars": 5742,
+        "msg": "5742 bars"
+    },
+    "THEJO": {
+        "status": "Success",
+        "bars": 5544,
+        "msg": "5544 bars"
+    },
+    "ARVSMART": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAKAR": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "YATRA": {
+        "status": "Success",
+        "bars": 4951,
+        "msg": "4951 bars"
+    },
+    "DCAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ELITECON": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "TURTLEMINT": {
+        "status": "Success",
+        "bars": 224,
+        "msg": "224 bars"
+    },
+    "FLAIR": {
+        "status": "Success",
+        "bars": 4656,
+        "msg": "4656 bars"
+    },
+    "SHAREINDIA": {
+        "status": "Success",
+        "bars": 6261,
+        "msg": "6261 bars"
+    },
+    "JASH": {
+        "status": "Success",
+        "bars": 9683,
+        "msg": "9683 bars"
+    },
+    "SEAMECLTD": {
+        "status": "Success",
+        "bars": 9679,
+        "msg": "9679 bars"
+    },
+    "DPABHUSHAN": {
+        "status": "Success",
+        "bars": 9644,
+        "msg": "9644 bars"
+    },
+    "LAOPALA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DYCL": {
+        "status": "Success",
+        "bars": 6966,
+        "msg": "6966 bars"
+    },
+    "NINSYS": {
+        "status": "Success",
+        "bars": 5786,
+        "msg": "5786 bars"
+    },
+    "TAALTECH": {
+        "status": "Success",
+        "bars": 544,
+        "msg": "544 bars"
+    },
+    "SANGHVIMOV": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "BLSE": {
+        "status": "Success",
+        "bars": 4341,
+        "msg": "4341 bars"
+    },
+    "QUESS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PILANIINVS": {
+        "status": "Success",
+        "bars": 9677,
+        "msg": "9677 bars"
+    },
+    "CLSEL": {
+        "status": "Success",
+        "bars": 9084,
+        "msg": "9084 bars"
+    },
+    "KAPSTON": {
+        "status": "Success",
+        "bars": 8822,
+        "msg": "8822 bars"
+    },
+    "GPTHEALTH": {
+        "status": "Success",
+        "bars": 4222,
+        "msg": "4222 bars"
+    },
+    "AKCAPIT": {
+        "status": "Success",
+        "bars": 464,
+        "msg": "464 bars"
+    },
+    "PLATIND": {
+        "status": "Success",
+        "bars": 4191,
+        "msg": "4191 bars"
+    },
+    "RELAXO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ATUL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BALRAMCHIN": {
+        "status": "Success",
+        "bars": 9800,
+        "msg": "9800 bars"
+    },
+    "BASF": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RITES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CHAMBLFERT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARVIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ELANTAS": {
+        "status": "Success",
+        "bars": 548,
+        "msg": "548 bars"
+    },
+    "IFCI": {
+        "status": "Success",
+        "bars": 9392,
+        "msg": "9392 bars"
+    },
+    "KRBL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TECHNOE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SKYGOLD": {
+        "status": "Success",
+        "bars": 6141,
+        "msg": "6141 bars"
+    },
+    "INDGN": {
+        "status": "Success",
+        "bars": 3897,
+        "msg": "3897 bars"
+    },
+    "BALAMINES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KIRLFER": {
+        "status": "Success",
+        "bars": 5419,
+        "msg": "5419 bars"
+    },
+    "MAHSCOOTER": {
+        "status": "Success",
+        "bars": 9670,
+        "msg": "9670 bars"
+    },
+    "EMAMILTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NCC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BANSALWIRE": {
+        "status": "Success",
+        "bars": 3614,
+        "msg": "3614 bars"
+    },
+    "KSB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BIRLACORPN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RAIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SPLPETRO": {
+        "status": "Success",
+        "bars": 6210,
+        "msg": "6210 bars"
+    },
+    "SKFINDIA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GRWRHITECH": {
+        "status": "Success",
+        "bars": 7800,
+        "msg": "7800 bars"
+    },
+    "SANOFICONR": {
+        "status": "Success",
+        "bars": 3299,
+        "msg": "3299 bars"
+    },
+    "SANOFI": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "CEATLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HATSUN": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ZENSARTECH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SARDAEN": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "SANDUMA": {
+        "status": "Success",
+        "bars": 5050,
+        "msg": "5050 bars"
+    },
+    "NIVABUPA": {
+        "status": "Success",
+        "bars": 3004,
+        "msg": "3004 bars"
+    },
+    "IFBIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HAPPSTMNDS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CAMS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAREGAMA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "TRANSRAILL": {
+        "status": "Success",
+        "bars": 2808,
+        "msg": "2808 bars"
+    },
+    "ENGINERSIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAYERCROP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AGARWALEYE": {
+        "status": "Success",
+        "bars": 2612,
+        "msg": "2612 bars"
+    },
+    "TCI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TIPSMUSIC": {
+        "status": "Success",
+        "bars": 6261,
+        "msg": "6261 bars"
+    },
+    "BSOFT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OLECTRA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUPRAJIT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TTML": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RKFORGE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "HEG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PVRINOX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KEC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FIEMIND": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "TIMETECHNO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EUREKAFORB": {
+        "status": "Success",
+        "bars": 3313,
+        "msg": "3313 bars"
+    },
+    "EDELWEISS": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "JYOTHYLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RAINBOW": {
+        "status": "Success",
+        "bars": 7367,
+        "msg": "7367 bars"
+    },
+    "AVANTIFEED": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AETHER": {
+        "status": "Success",
+        "bars": 7241,
+        "msg": "7241 bars"
+    },
+    "RPOWER": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "SWANDEF": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "JSWCEMENT": {
+        "status": "Success",
+        "bars": 1702,
+        "msg": "1702 bars"
+    },
+    "BLUESTONE": {
+        "status": "Success",
+        "bars": 1688,
+        "msg": "1688 bars"
+    },
+    "DBREALTY": {
+        "status": "Success",
+        "bars": 9689,
+        "msg": "9689 bars"
+    },
+    "WELSPUNLIV": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MOIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ZENTEC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PGEL": {
+        "status": "Success",
+        "bars": 9682,
+        "msg": "9682 bars"
+    },
+    "TDPOWERSYS": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "TRITURBINE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RHIM": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "EQUITASBNK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WAAREERTL": {
+        "status": "Success",
+        "bars": 2311,
+        "msg": "2311 bars"
+    },
+    "PCJEWELLER": {
+        "status": "Success",
+        "bars": 5832,
+        "msg": "5832 bars"
+    },
+    "INDIGOPNTS": {
+        "status": "Success",
+        "bars": 9523,
+        "msg": "9523 bars"
+    },
+    "WEWORK": {
+        "status": "Success",
+        "bars": 1436,
+        "msg": "1436 bars"
+    },
+    "BIKAJI": {
+        "status": "Success",
+        "bars": 6463,
+        "msg": "6463 bars"
+    },
+    "PINELABS": {
+        "status": "Success",
+        "bars": 1281,
+        "msg": "1281 bars"
+    },
+    "NAZARA": {
+        "status": "Success",
+        "bars": 9274,
+        "msg": "9274 bars"
+    },
+    "VESUVIUS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CRAMC": {
+        "status": "Success",
+        "bars": 1408,
+        "msg": "1408 bars"
+    },
+    "ALIVUS": {
+        "status": "Success",
+        "bars": 8664,
+        "msg": "8664 bars"
+    },
+    "UTLSOLAR": {
+        "status": "Success",
+        "bars": 1253,
+        "msg": "1253 bars"
+    },
+    "ICIL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "EPIGRAL": {
+        "status": "Success",
+        "bars": 8608,
+        "msg": "8608 bars"
+    },
+    "PARAS": {
+        "status": "Success",
+        "bars": 8398,
+        "msg": "8398 bars"
+    },
+    "DIACABS": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "NEPHROPLUS": {
+        "status": "Success",
+        "bars": 1120,
+        "msg": "1120 bars"
+    },
+    "PRAJIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JAYNECOIND": {
+        "status": "Success",
+        "bars": 9668,
+        "msg": "9668 bars"
+    },
+    "AVALON": {
+        "status": "Success",
+        "bars": 5742,
+        "msg": "5742 bars"
+    },
+    "RATEGAIN": {
+        "status": "Success",
+        "bars": 8039,
+        "msg": "8039 bars"
+    },
+    "MAPMYINDIA": {
+        "status": "Success",
+        "bars": 8025,
+        "msg": "8025 bars"
+    },
+    "JMFINANCIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AMAGI": {
+        "status": "Success",
+        "bars": 959,
+        "msg": "959 bars"
+    },
+    "PRECWIRE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SCI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MINDACORP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CLEANMAX": {
+        "status": "Success",
+        "bars": 763,
+        "msg": "763 bars"
+    },
+    "SEDEMAC": {
+        "status": "Success",
+        "bars": 721,
+        "msg": "721 bars"
+    },
+    "VINATIORGA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RCF": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CONCORDBIO": {
+        "status": "Success",
+        "bars": 5147,
+        "msg": "5147 bars"
+    },
+    "PNCINFRA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TVSSCS": {
+        "status": "Success",
+        "bars": 5112,
+        "msg": "5112 bars"
+    },
+    "TEJASNET": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CAPLIPOINT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BLUEDART": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INOXINDIA": {
+        "status": "Success",
+        "bars": 4551,
+        "msg": "4551 bars"
+    },
+    "THYROCARE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GALAXYSURF": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LLOYDSENGG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RPTECH": {
+        "status": "Success",
+        "bars": 4299,
+        "msg": "4299 bars"
+    },
+    "SUVEN": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "BLS": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "ENTERO": {
+        "status": "Success",
+        "bars": 4285,
+        "msg": "4285 bars"
+    },
+    "TSFINV": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "MIDHANI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SFL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SHILPAMED": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FINEORG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CHENNPETRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PGHL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARE&M": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MANORAMA": {
+        "status": "Success",
+        "bars": 7101,
+        "msg": "7101 bars"
+    },
+    "INGERRAND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IONEXCHANG": {
+        "status": "Success",
+        "bars": 7713,
+        "msg": "7713 bars"
+    },
+    "KAJARIACER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WHIRLPOOL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BALUFORGE": {
+        "status": "Success",
+        "bars": 3960,
+        "msg": "3960 bars"
+    },
+    "LMW": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MAHSEAMLES": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "PRSMJOHNSN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TIMEX": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "AKUMS": {
+        "status": "Success",
+        "bars": 3488,
+        "msg": "3488 bars"
+    },
+    "SUNFLAG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FIRSTCRY": {
+        "status": "Success",
+        "bars": 3453,
+        "msg": "3453 bars"
+    },
+    "BBOX": {
+        "status": "Success",
+        "bars": 9671,
+        "msg": "9671 bars"
+    },
+    "SHAKTIPUMP": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "GSFC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KPITTECH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BBTC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IIFLCAPS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATACHEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AFCONS": {
+        "status": "Success",
+        "bars": 3060,
+        "msg": "3060 bars"
+    },
+    "SMLMAH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ZEEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KENNAMET": {
+        "status": "Success",
+        "bars": 5418,
+        "msg": "5418 bars"
+    },
+    "JKPAPER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CYIENT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GMDCLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SOUTHBANK": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "PCBL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ALKYLAMINE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SIGMAADV": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "AJAXENGG": {
+        "status": "Success",
+        "bars": 2549,
+        "msg": "2549 bars"
+    },
+    "CERA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STAR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ASTRAMICRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WELENT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GARFIBRES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JPPOWER": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "KTKBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "THELEELA": {
+        "status": "Success",
+        "bars": 2073,
+        "msg": "2073 bars"
+    },
+    "GALLANTT": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "GPIL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "VOLTAMP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ACE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DCBBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TANLA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LUMAXTECH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GMRP&UI": {
+        "status": "Success",
+        "bars": 7577,
+        "msg": "7577 bars"
+    },
+    "FSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SGMART": {
+        "status": "Success",
+        "bars": 1569,
+        "msg": "1569 bars"
+    },
+    "PURVA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EBGNG": {
+        "status": "Success",
+        "bars": 1779,
+        "msg": "1779 bars"
+    },
+    "JSLL": {
+        "status": "Success",
+        "bars": 5809,
+        "msg": "5809 bars"
+    },
+    "LLOYDSENT": {
+        "status": "Success",
+        "bars": 3138,
+        "msg": "3138 bars"
+    },
+    "CAMPUS": {
+        "status": "Success",
+        "bars": 7374,
+        "msg": "7374 bars"
+    },
+    "PAISALO": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "VGUARD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MMTC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BRIGADE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GPPL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WABAG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PSB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IBULLSLTD": {
+        "status": "Success",
+        "bars": 9077,
+        "msg": "9077 bars"
+    },
+    "STYL": {
+        "status": "Success",
+        "bars": 1485,
+        "msg": "1485 bars"
+    },
+    "USHAMART": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JAINREC": {
+        "status": "Success",
+        "bars": 1478,
+        "msg": "1478 bars"
+    },
+    "BECTORFOOD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HOMEFIRST": {
+        "status": "Success",
+        "bars": 9523,
+        "msg": "9523 bars"
+    },
+    "CARERATING": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CENTUM": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "INOXGREEN": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "LXCHEM": {
+        "status": "Success",
+        "bars": 9294,
+        "msg": "9294 bars"
+    },
+    "SAMMAANCAP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DODLA": {
+        "status": "Success",
+        "bars": 8860,
+        "msg": "8860 bars"
+    },
+    "RATNAMANI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ALOKINDS": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "DEVYANI": {
+        "status": "Success",
+        "bars": 8622,
+        "msg": "8622 bars"
+    },
+    "NUVOCO": {
+        "status": "Success",
+        "bars": 8594,
+        "msg": "8594 bars"
+    },
+    "SKFINDUS": {
+        "status": "Success",
+        "bars": 1176,
+        "msg": "1176 bars"
+    },
+    "AARTIPHARM": {
+        "status": "Success",
+        "bars": 6092,
+        "msg": "6092 bars"
+    },
+    "AEQUS": {
+        "status": "Success",
+        "bars": 1155,
+        "msg": "1155 bars"
+    },
+    "SUDEEPPHRM": {
+        "status": "Success",
+        "bars": 1211,
+        "msg": "1211 bars"
+    },
+    "SANSERA": {
+        "status": "Success",
+        "bars": 8433,
+        "msg": "8433 bars"
+    },
+    "CORONA": {
+        "status": "Success",
+        "bars": 1134,
+        "msg": "1134 bars"
+    },
+    "ELGIEQUIP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KOVAI": {
+        "status": "Success",
+        "bars": 4390,
+        "msg": "4390 bars"
+    },
+    "SAFARI": {
+        "status": "Success",
+        "bars": 9681,
+        "msg": "9681 bars"
+    },
+    "TEGA": {
+        "status": "Success",
+        "bars": 8067,
+        "msg": "8067 bars"
+    },
+    "SHADOWFAX": {
+        "status": "Success",
+        "bars": 931,
+        "msg": "931 bars"
+    },
+    "DCMSHRIRAM": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "KWIL": {
+        "status": "Success",
+        "bars": 833,
+        "msg": "833 bars"
+    },
+    "CYIENTDLM": {
+        "status": "Success",
+        "bars": 5343,
+        "msg": "5343 bars"
+    },
+    "KINGFA": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "OMNI": {
+        "status": "Success",
+        "bars": 749,
+        "msg": "749 bars"
+    },
+    "AARTIIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GAEL": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "STARCEMENT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "POWERMECH": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "GANESHHOU": {
+        "status": "Success",
+        "bars": 6829,
+        "msg": "6829 bars"
+    },
+    "MAXESTATES": {
+        "status": "Success",
+        "bars": 4740,
+        "msg": "4740 bars"
+    },
+    "VEDPOWER": {
+        "status": "Success",
+        "bars": 287,
+        "msg": "287 bars"
+    },
+    "GODREJAGRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AZAD": {
+        "status": "Success",
+        "bars": 4530,
+        "msg": "4530 bars"
+    },
+    "SYNGENE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STYLAMIND": {
+        "status": "Success",
+        "bars": 8691,
+        "msg": "8691 bars"
+    },
+    "CCAVENUE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ASHAPURMIN": {
+        "status": "Success",
+        "bars": 9683,
+        "msg": "9683 bars"
+    },
+    "JKTYRE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NEWGEN": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "MGL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AVL": {
+        "status": "Success",
+        "bars": 3046,
+        "msg": "3046 bars"
+    },
+    "LEMONTREE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BANCOINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BATAINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VARROC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IRCON": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "AAVAS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FINCABLES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KANSAINER": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "HCC": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "SURYAROSNI": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "JINDALSAW": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CHALET": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JSWDULUX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ARVINDFASN": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "CASTROLIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "METROPOLIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PNGJL": {
+        "status": "Success",
+        "bars": 3285,
+        "msg": "3285 bars"
+    },
+    "FDC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NEOGEN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KRN": {
+        "status": "Success",
+        "bars": 3208,
+        "msg": "3208 bars"
+    },
+    "GREAVESCOT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VTL": {
+        "status": "Success",
+        "bars": 9694,
+        "msg": "9694 bars"
+    },
+    "SWANCORP": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "POLYMED": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UJJIVANSFB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAGILITY": {
+        "status": "Success",
+        "bars": 3018,
+        "msg": "3018 bars"
+    },
+    "BLACKBUCK": {
+        "status": "Success",
+        "bars": 2976,
+        "msg": "2976 bars"
+    },
+    "BORORENEW": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KIRLPNU": {
+        "status": "Success",
+        "bars": 5700,
+        "msg": "5700 bars"
+    },
+    "NESCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ELECON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IGIL": {
+        "status": "Success",
+        "bars": 2836,
+        "msg": "2836 bars"
+    },
+    "VENTIVE": {
+        "status": "Success",
+        "bars": 2801,
+        "msg": "2801 bars"
+    },
+    "UNIMECH": {
+        "status": "Success",
+        "bars": 2794,
+        "msg": "2794 bars"
+    },
+    "J&KBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SONATSOFTW": {
+        "status": "Success",
+        "bars": 8090,
+        "msg": "8090 bars"
+    },
+    "MAHLIFE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SUDARSCHEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TI": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "QPOWER": {
+        "status": "Success",
+        "bars": 2514,
+        "msg": "2514 bars"
+    },
+    "TRIVENI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ABLBL": {
+        "status": "Success",
+        "bars": 1968,
+        "msg": "1968 bars"
+    },
+    "AXISCADES": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "JSWHL": {
+        "status": "Success",
+        "bars": 9670,
+        "msg": "9670 bars"
+    },
+    "CANFINHOME": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "LTFOODS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AHLUCONT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SMARTWORKS": {
+        "status": "Success",
+        "bars": 1842,
+        "msg": "1842 bars"
+    },
+    "V2RETAIL": {
+        "status": "Success",
+        "bars": 9509,
+        "msg": "9509 bars"
+    },
+    "MANYAVAR": {
+        "status": "Success",
+        "bars": 7745,
+        "msg": "7745 bars"
+    },
+    "ECLERX": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "NAVA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TITAGARH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LOTUSDEV": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "ETHOSLTD": {
+        "status": "Success",
+        "bars": 7269,
+        "msg": "7269 bars"
+    },
+    "ISGEC": {
+        "status": "Success",
+        "bars": 9119,
+        "msg": "9119 bars"
+    },
+    "SHREEJISPG": {
+        "status": "Success",
+        "bars": 1653,
+        "msg": "1653 bars"
+    },
+    "BAJAJCON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GRAVITA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BENGALASM": {
+        "status": "Success",
+        "bars": 481,
+        "msg": "481 bars"
+    },
+    "ATLANTAELE": {
+        "status": "Success",
+        "bars": 1492,
+        "msg": "1492 bars"
+    },
+    "TMB": {
+        "status": "Success",
+        "bars": 5844,
+        "msg": "5844 bars"
+    },
+    "TTKPRESTIG": {
+        "status": "Success",
+        "bars": 9770,
+        "msg": "9770 bars"
+    },
+    "HBLENGINE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VMART": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JUBLINGREA": {
+        "status": "Success",
+        "bars": 9322,
+        "msg": "9322 bars"
+    },
+    "ANURAS": {
+        "status": "Success",
+        "bars": 9301,
+        "msg": "9301 bars"
+    },
+    "JUSTDIAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ORKLAINDIA": {
+        "status": "Success",
+        "bars": 1323,
+        "msg": "1323 bars"
+    },
+    "CCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JAMNAAUTO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GRINFRA": {
+        "status": "Success",
+        "bars": 8755,
+        "msg": "8755 bars"
+    },
+    "TRIDENT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "CARTRADE": {
+        "status": "Success",
+        "bars": 8601,
+        "msg": "8601 bars"
+    },
+    "SKIPPER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KSHINTL": {
+        "status": "Success",
+        "bars": 1092,
+        "msg": "1092 bars"
+    },
+    "SAPPHIRE": {
+        "status": "Success",
+        "bars": 8179,
+        "msg": "8179 bars"
+    },
+    "MEDPLUS": {
+        "status": "Success",
+        "bars": 8011,
+        "msg": "8011 bars"
+    },
+    "FRACTAL": {
+        "status": "Success",
+        "bars": 833,
+        "msg": "833 bars"
+    },
+    "MASTEK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SENCO": {
+        "status": "Success",
+        "bars": 5315,
+        "msg": "5315 bars"
+    },
+    "BHARATCOAL": {
+        "status": "Success",
+        "bars": 973,
+        "msg": "973 bars"
+    },
+    "INOXWIND": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "SHRIPISTON": {
+        "status": "Success",
+        "bars": 8894,
+        "msg": "8894 bars"
+    },
+    "CMPDI": {
+        "status": "Success",
+        "bars": 637,
+        "msg": "637 bars"
+    },
+    "ORCHPHARMA": {
+        "status": "Success",
+        "bars": 9553,
+        "msg": "9553 bars"
+    },
+    "ERIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "REDTAPE": {
+        "status": "Success",
+        "bars": 5168,
+        "msg": "5168 bars"
+    },
+    "SIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BLUEJET": {
+        "status": "Success",
+        "bars": 4797,
+        "msg": "4797 bars"
+    },
+    "NATCOPHARM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HONASA": {
+        "status": "Success",
+        "bars": 4769,
+        "msg": "4769 bars"
+    },
+    "VISL": {
+        "status": "Success",
+        "bars": 287,
+        "msg": "287 bars"
+    },
+    "CORDELIA": {
+        "status": "Success",
+        "bars": 210,
+        "msg": "210 bars"
+    },
+    "INDIASHLTR": {
+        "status": "Success",
+        "bars": 4558,
+        "msg": "4558 bars"
+    },
+    "DOMS": {
+        "status": "Success",
+        "bars": 4565,
+        "msg": "4565 bars"
+    },
+    "MASFIN": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "IEX": {
+        "status": "Success",
+        "bars": 9774,
+        "msg": "9774 bars"
+    },
+    "CROMPTON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APOLLO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OPTIEMUS": {
+        "status": "Success",
+        "bars": 9676,
+        "msg": "9676 bars"
+    },
+    "PICCADIL": {
+        "status": "Success",
+        "bars": 1919,
+        "msg": "1919 bars"
+    },
+    "ABREL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BEML": {
+        "status": "Success",
+        "bars": 6779,
+        "msg": "6779 bars"
+    },
+    "GOODLUCK": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "EIDPARRY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ESABINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TBOTEK": {
+        "status": "Success",
+        "bars": 3883,
+        "msg": "3883 bars"
+    },
+    "HMT": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "KIRLOSBROS": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "INDIAGLYCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IXIGO": {
+        "status": "Success",
+        "bars": 3726,
+        "msg": "3726 bars"
+    },
+    "NIRLON": {
+        "status": "Success",
+        "bars": 553,
+        "msg": "553 bars"
+    },
+    "ABDL": {
+        "status": "Success",
+        "bars": 3656,
+        "msg": "3656 bars"
+    },
+    "JKLAKSHMI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CEIGALL": {
+        "status": "Success",
+        "bars": 3474,
+        "msg": "3474 bars"
+    },
+    "SUNDRMFAST": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ZYDUSWELL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OLAELEC": {
+        "status": "Success",
+        "bars": 3467,
+        "msg": "3467 bars"
+    },
+    "CHOICEIN": {
+        "status": "Success",
+        "bars": 7502,
+        "msg": "7502 bars"
+    },
+    "KPIGREEN": {
+        "status": "Success",
+        "bars": 8707,
+        "msg": "8707 bars"
+    },
+    "DEEPAKFERT": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "GNFC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FINPIPE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SHAILY": {
+        "status": "Success",
+        "bars": 7504,
+        "msg": "7504 bars"
+    },
+    "INDIAMART": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "CSBBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COHANCE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DYNAMATECH": {
+        "status": "Success",
+        "bars": 9690,
+        "msg": "9690 bars"
+    },
+    "WESTLIFE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UTIAMC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ITDC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SENORES": {
+        "status": "Success",
+        "bars": 2801,
+        "msg": "2801 bars"
+    },
+    "SETL": {
+        "status": "Success",
+        "bars": 2731,
+        "msg": "2731 bars"
+    },
+    "GVPIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ONESOURCE": {
+        "status": "Success",
+        "bars": 2668,
+        "msg": "2668 bars"
+    },
+    "KAMAHOLD": {
+        "status": "Success",
+        "bars": 547,
+        "msg": "547 bars"
+    },
+    "GOKEX": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GRAPHITE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CENTURYPLY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JBMA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "KALPATARU": {
+        "status": "Success",
+        "bars": 1926,
+        "msg": "1926 bars"
+    },
+    "SUNTV": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TRAVELFOOD": {
+        "status": "Success",
+        "bars": 1863,
+        "msg": "1863 bars"
+    },
+    "CIEINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PGIL": {
+        "status": "Success",
+        "bars": 4341,
+        "msg": "4341 bars"
+    },
+    "SOBHA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TIIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EMBDL": {
+        "status": "Success",
+        "bars": 9607,
+        "msg": "9607 bars"
+    },
+    "SPARC": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "RELIGARE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TARIL": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "VIYASH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PRUDENT": {
+        "status": "Success",
+        "bars": 7311,
+        "msg": "7311 bars"
+    },
+    "JAIBALAJI": {
+        "status": "Success",
+        "bars": 9652,
+        "msg": "9652 bars"
+    },
+    "PARADEEP": {
+        "status": "Success",
+        "bars": 7276,
+        "msg": "7276 bars"
+    },
+    "IMFA": {
+        "status": "Success",
+        "bars": 9780,
+        "msg": "9780 bars"
+    },
+    "VIKRAMSOLR": {
+        "status": "Success",
+        "bars": 1653,
+        "msg": "1653 bars"
+    },
+    "JWL": {
+        "status": "Success",
+        "bars": 9683,
+        "msg": "9683 bars"
+    },
+    "PRICOLLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APLLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAATVIKGL": {
+        "status": "Success",
+        "bars": 1499,
+        "msg": "1499 bars"
+    },
+    "RAILTEL": {
+        "status": "Success",
+        "bars": 9420,
+        "msg": "9420 bars"
+    },
+    "MTARTECH": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "FIVESTAR": {
+        "status": "Success",
+        "bars": 6442,
+        "msg": "6442 bars"
+    },
+    "SUBROS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ACI": {
+        "status": "Success",
+        "bars": 6442,
+        "msg": "6442 bars"
+    },
+    "KMEW": {
+        "status": "Success",
+        "bars": 3004,
+        "msg": "3004 bars"
+    },
+    "HNDFDS": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "RUSTOMJEE": {
+        "status": "Success",
+        "bars": 6421,
+        "msg": "6421 bars"
+    },
+    "CANHLIFE": {
+        "status": "Success",
+        "bars": 1401,
+        "msg": "1401 bars"
+    },
+    "KFINTECH": {
+        "status": "Success",
+        "bars": 6246,
+        "msg": "6246 bars"
+    },
+    "ABFRL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CLEAN": {
+        "status": "Success",
+        "bars": 8755,
+        "msg": "8755 bars"
+    },
+    "APTUS": {
+        "status": "Success",
+        "bars": 8587,
+        "msg": "8587 bars"
+    },
+    "GULFOILLUB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VIJAYA": {
+        "status": "Success",
+        "bars": 8489,
+        "msg": "8489 bars"
+    },
+    "NSLNISP": {
+        "status": "Success",
+        "bars": 5987,
+        "msg": "5987 bars"
+    },
+    "PARKHOSPS": {
+        "status": "Success",
+        "bars": 1120,
+        "msg": "1120 bars"
+    },
+    "SHARDACROP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SJS": {
+        "status": "Success",
+        "bars": 8200,
+        "msg": "8200 bars"
+    },
+    "LATENTVIEW": {
+        "status": "Success",
+        "bars": 8165,
+        "msg": "8165 bars"
+    },
+    "INTELLECT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUPRIYA": {
+        "status": "Success",
+        "bars": 7990,
+        "msg": "7990 bars"
+    },
+    "GREENLAM": {
+        "status": "Success",
+        "bars": 9688,
+        "msg": "9688 bars"
+    },
+    "POWERICA": {
+        "status": "Success",
+        "bars": 623,
+        "msg": "623 bars"
+    },
+    "YATHARTH": {
+        "status": "Success",
+        "bars": 5203,
+        "msg": "5203 bars"
+    },
+    "SBFC": {
+        "status": "Success",
+        "bars": 5161,
+        "msg": "5161 bars"
+    },
+    "MARKSANS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AEROFLEX": {
+        "status": "Success",
+        "bars": 5077,
+        "msg": "5077 bars"
+    },
+    "SIGNATURE": {
+        "status": "Success",
+        "bars": 3172,
+        "msg": "3172 bars"
+    },
+    "KISSHT": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "CELLO": {
+        "status": "Success",
+        "bars": 4292,
+        "msg": "4292 bars"
+    },
+    "ASKAUTOLTD": {
+        "status": "Success",
+        "bars": 4733,
+        "msg": "4733 bars"
+    },
+    "VOGL": {
+        "status": "Success",
+        "bars": 287,
+        "msg": "287 bars"
+    },
+    "FEDFINA": {
+        "status": "Success",
+        "bars": 4663,
+        "msg": "4663 bars"
+    },
+    "GOKULAGRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HCG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HAPPYFORGE": {
+        "status": "Success",
+        "bars": 4537,
+        "msg": "4537 bars"
+    },
+    "INDIACEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INNOVACAP": {
+        "status": "Success",
+        "bars": 4516,
+        "msg": "4516 bars"
+    },
+    "JYOTICNC": {
+        "status": "Success",
+        "bars": 4439,
+        "msg": "4439 bars"
+    },
+    "RPEL": {
+        "status": "Success",
+        "bars": 3474,
+        "msg": "3474 bars"
+    },
+    "JUBLPHARMA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "JSFB": {
+        "status": "Success",
+        "bars": 4299,
+        "msg": "4299 bars"
+    },
+    "PRIVISCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DBL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GENUSPOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ADANIGREEN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "E2E": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "CRISIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUNDARMFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CREDITACC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IDBI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GODREJIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HINDZINC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LICHSGFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HSCL": {
+        "status": "Success",
+        "bars": 8692,
+        "msg": "8692 bars"
+    },
+    "GRASIM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATAPOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "THERMAX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ABBOTINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VOLTAS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HINDUNILVR": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ASIANPAINT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "BALKRISIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INDHOTEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SAILIFE": {
+        "status": "Success",
+        "bars": 2850,
+        "msg": "2850 bars"
+    },
+    "NTPCGREEN": {
+        "status": "Success",
+        "bars": 2955,
+        "msg": "2955 bars"
+    },
+    "MAXHEALTH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ACMESOLAR": {
+        "status": "Success",
+        "bars": 3011,
+        "msg": "3011 bars"
+    },
+    "AXISBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GLENMARK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GAIL": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "TVSMOTOR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OFSS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RADICO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APOLLOHOSP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NAVINFLUOR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BIOCON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COFORGE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BERGEPAINT": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "IIFL": {
+        "status": "Success",
+        "bars": 9394,
+        "msg": "9394 bars"
+    },
+    "AIAENG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SHRIRAMFIN": {
+        "status": "Success",
+        "bars": 9392,
+        "msg": "9392 bars"
+    },
+    "NTPC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HDBFS": {
+        "status": "Success",
+        "bars": 1919,
+        "msg": "1919 bars"
+    },
+    "GMRAIRPORT": {
+        "status": "Success",
+        "bars": 9797,
+        "msg": "9797 bars"
+    },
+    "NAUKRI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PFC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "INDIANB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ASTRAL": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "MOTILALOFS": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "CPPLUS": {
+        "status": "Success",
+        "bars": 1751,
+        "msg": "1751 bars"
+    },
+    "BAJAJFINSV": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LICI": {
+        "status": "Success",
+        "bars": 7332,
+        "msg": "7332 bars"
+    },
+    "RECLTD": {
+        "status": "Success",
+        "bars": 10088,
+        "msg": "10088 bars"
+    },
+    "JUBLFOOD": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "HINDCOPPER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GODREJPROP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NLCINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATACAP": {
+        "status": "Success",
+        "bars": 1429,
+        "msg": "1429 bars"
+    },
+    "SJVN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PRESTIGE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EMMVEE": {
+        "status": "Success",
+        "bars": 1267,
+        "msg": "1267 bars"
+    },
+    "GROWW": {
+        "status": "Success",
+        "bars": 1295,
+        "msg": "1295 bars"
+    },
+    "CRAFTSMAN": {
+        "status": "Success",
+        "bars": 9294,
+        "msg": "9294 bars"
+    },
+    "NYKAA": {
+        "status": "Success",
+        "bars": 8222,
+        "msg": "8222 bars"
+    },
+    "TIMKEN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PAYTM": {
+        "status": "Success",
+        "bars": 8179,
+        "msg": "8179 bars"
+    },
+    "ANANDRATHI": {
+        "status": "Success",
+        "bars": 8060,
+        "msg": "8060 bars"
+    },
+    "METROBRAND": {
+        "status": "Success",
+        "bars": 8018,
+        "msg": "8018 bars"
+    },
+    "PIIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AIIL": {
+        "status": "Success",
+        "bars": 3988,
+        "msg": "3988 bars"
+    },
+    "JIOFIN": {
+        "status": "Success",
+        "bars": 5126,
+        "msg": "5126 bars"
+    },
+    "NEULANDLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BSE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "RRKABEL": {
+        "status": "Success",
+        "bars": 4986,
+        "msg": "4986 bars"
+    },
+    "AUBANK": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ABCAPITAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MPHASIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NUVAMA": {
+        "status": "Success",
+        "bars": 4888,
+        "msg": "4888 bars"
+    },
+    "NMDC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "VAML": {
+        "status": "Success",
+        "bars": 287,
+        "msg": "287 bars"
+    },
+    "IREDA": {
+        "status": "Success",
+        "bars": 4670,
+        "msg": "4670 bars"
+    },
+    "ALKEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GICRE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TIINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AMBER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ASTERDM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RBLBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LTTS": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ICICIPRULI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CESC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VBL": {
+        "status": "Success",
+        "bars": 8945,
+        "msg": "8945 bars"
+    },
+    "HINDPETRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAJFINANCE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TITAN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CUPID": {
+        "status": "Success",
+        "bars": 7544,
+        "msg": "7544 bars"
+    },
+    "GRSE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GODFRYPHLP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HFCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GODIGIT": {
+        "status": "Success",
+        "bars": 3845,
+        "msg": "3845 bars"
+    },
+    "IOC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "LUPIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MFSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EMCURE": {
+        "status": "Success",
+        "bars": 3614,
+        "msg": "3614 bars"
+    },
+    "ONGC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SHREECEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ACC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HINDALCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATACOMM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AMBUJACEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ESCORTS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATASTEEL": {
+        "status": "Success",
+        "bars": 10077,
+        "msg": "10077 bars"
+    },
+    "BOSCHLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TMPV": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATACONSUM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RVNL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "EIHOTEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAJAJHFL": {
+        "status": "Success",
+        "bars": 3292,
+        "msg": "3292 bars"
+    },
+    "APOLLOTYRE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATAINVEST": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "CGCL": {
+        "status": "Success",
+        "bars": 7676,
+        "msg": "7676 bars"
+    },
+    "FLUOROCHEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUMICHEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SWIGGY": {
+        "status": "Success",
+        "bars": 3011,
+        "msg": "3011 bars"
+    },
+    "SBICARD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BANKBARODA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MAZDOCK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NATIONALUM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WELCORP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APARINDS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AJANTPHARM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "STLTECH": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "GODREJCP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PNB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IGL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PETRONET": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "CANBK": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "TCS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ATHERENERG": {
+        "status": "Success",
+        "bars": 2206,
+        "msg": "2206 bars"
+    },
+    "JKCEMENT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CEMPRO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "YESBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SUPREMEIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "REDINGTON": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ADANIPORTS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IRB": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "DELHIVERY": {
+        "status": "Success",
+        "bars": 7297,
+        "msg": "7297 bars"
+    },
+    "BAJAJ-AUTO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NHPC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ZFCVINDIA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "OIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "THANGAMAYL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "COALINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "OBEROIRLTY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "URBANCO": {
+        "status": "Success",
+        "bars": 1548,
+        "msg": "1548 bars"
+    },
+    "DALBHARAT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "APLAPOLLO": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "MOTHERSON": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IRFC": {
+        "status": "Success",
+        "bars": 9558,
+        "msg": "9558 bars"
+    },
+    "SCHNEIDER": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "GLAND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LGEINDIA": {
+        "status": "Success",
+        "bars": 1422,
+        "msg": "1422 bars"
+    },
+    "KAYNES": {
+        "status": "Success",
+        "bars": 6435,
+        "msg": "6435 bars"
+    },
+    "KEI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TMCV": {
+        "status": "Success",
+        "bars": 1295,
+        "msg": "1295 bars"
+    },
+    "LODHA": {
+        "status": "Success",
+        "bars": 9197,
+        "msg": "9197 bars"
+    },
+    "SHYAMMETL": {
+        "status": "Success",
+        "bars": 8874,
+        "msg": "8874 bars"
+    },
+    "STARHEALTH": {
+        "status": "Success",
+        "bars": 8074,
+        "msg": "8074 bars"
+    },
+    "PTCIL": {
+        "status": "Success",
+        "bars": 5481,
+        "msg": "5481 bars"
+    },
+    "DATAPATTNS": {
+        "status": "Success",
+        "bars": 8002,
+        "msg": "8002 bars"
+    },
+    "LINDEINDIA": {
+        "status": "Success",
+        "bars": 7892,
+        "msg": "7892 bars"
+    },
+    "HUDCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DIXON": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SUNPHARMA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AUROPHARMA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JSWINFRA": {
+        "status": "Success",
+        "bars": 4937,
+        "msg": "4937 bars"
+    },
+    "IDFCFIRSTB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ICICIGI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HDFCLIFE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BANDHANBNK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ABB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KARURVYSYA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FACT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BLUESTARCO": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "EXIDEIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CGPOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BHARTIHEXA": {
+        "status": "Success",
+        "bars": 4030,
+        "msg": "4030 bars"
+    },
+    "SBIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AADHARHFC": {
+        "status": "Success",
+        "bars": 3883,
+        "msg": "3883 bars"
+    },
+    "DRREDDY": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ATGL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HDFCBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JSWSTEEL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "RAMCOCEM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VEDL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PATANJALI": {
+        "status": "Success",
+        "bars": 9552,
+        "msg": "9552 bars"
+    },
+    "MANAPPURAM": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "TORNTPHARM": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "PGHH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ASHOKLEY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BAJAJHLDNG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CONCOR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BPCL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GESHIP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GLAXO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BRITANNIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MARICO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IRCTC": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "CHOLAHLDNG": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "WAAREEENER": {
+        "status": "Success",
+        "bars": 3089,
+        "msg": "3089 bars"
+    },
+    "HYUNDAI": {
+        "status": "Success",
+        "bars": 3117,
+        "msg": "3117 bars"
+    },
+    "EICHERMOT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "POWERINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "VMM": {
+        "status": "Success",
+        "bars": 2850,
+        "msg": "2850 bars"
+    },
+    "IKS": {
+        "status": "Success",
+        "bars": 2843,
+        "msg": "2843 bars"
+    },
+    "INDUSINDBK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SCHAEFFLER": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "BANKINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COROMANDEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HCLTECH": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "JINDALSTEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "WOCKPHARMA": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "ITCHOTELS": {
+        "status": "Success",
+        "bars": 1947,
+        "msg": "1947 bars"
+    },
+    "JBCHEPHARM": {
+        "status": "NoToken",
+        "bars": 0,
+        "msg": "No token"
+    },
+    "ZYDUSLIFE": {
+        "status": "Success",
+        "bars": 1799,
+        "msg": "1799 bars"
+    },
+    "ASTRAZEN": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "IOB": {
+        "status": "NoData",
+        "bars": 0,
+        "msg": "Empty response"
+    },
+    "WIPRO": {
+        "status": "Success",
+        "bars": 4292,
+        "msg": "4292 bars"
+    },
+    "GILLETTE": {
+        "status": "Success",
+        "bars": 6092,
+        "msg": "6092 bars"
+    },
+    "BHARTIARTL": {
+        "status": "Success",
+        "bars": 7892,
+        "msg": "7892 bars"
+    },
+    "UNIONBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ULTRACEMCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UCOBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BELRISE": {
+        "status": "Success",
+        "bars": 2094,
+        "msg": "2094 bars"
+    },
+    "ENRIN": {
+        "status": "Success",
+        "bars": 1982,
+        "msg": "1982 bars"
+    },
+    "CHOLAFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PFOCUS": {
+        "status": "Success",
+        "bars": 9678,
+        "msg": "9678 bars"
+    },
+    "TECHM": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "IDEA": {
+        "status": "Success",
+        "bars": 9676,
+        "msg": "9676 bars"
+    },
+    "AWL": {
+        "status": "Success",
+        "bars": 7787,
+        "msg": "7787 bars"
+    },
+    "PAGEIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CENTRALBK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KPRMILL": {
+        "status": "Success",
+        "bars": 9774,
+        "msg": "9774 bars"
+    },
+    "POWERGRID": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "KIRLOSENG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ANANTRAJ": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MUTHOOTFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HONAUT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MCX": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HAVELLS": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "MEDANTA": {
+        "status": "Success",
+        "bars": 6463,
+        "msg": "6463 bars"
+    },
+    "KALYANKJIL": {
+        "status": "Success",
+        "bars": 9287,
+        "msg": "9287 bars"
+    },
+    "INDUSTOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RUBICON": {
+        "status": "Success",
+        "bars": 1408,
+        "msg": "1408 bars"
+    },
+    "LENSKART": {
+        "status": "Success",
+        "bars": 1309,
+        "msg": "1309 bars"
+    },
+    "PWL": {
+        "status": "Success",
+        "bars": 1267,
+        "msg": "1267 bars"
+    },
+    "TENNIND": {
+        "status": "Success",
+        "bars": 1260,
+        "msg": "1260 bars"
+    },
+    "MEESHO": {
+        "status": "Success",
+        "bars": 1155,
+        "msg": "1155 bars"
+    },
+    "ACUTAAS": {
+        "status": "Success",
+        "bars": 8489,
+        "msg": "8489 bars"
+    },
+    "KPIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "POONAWALLA": {
+        "status": "Success",
+        "bars": 9670,
+        "msg": "9670 bars"
+    },
+    "POLICYBZR": {
+        "status": "Success",
+        "bars": 8200,
+        "msg": "8200 bars"
+    },
+    "NETWEB": {
+        "status": "Success",
+        "bars": 5245,
+        "msg": "5245 bars"
+    },
+    "IPCALAB": {
+        "status": "Success",
+        "bars": 9799,
+        "msg": "9799 bars"
+    },
+    "DMART": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CDSL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "COCHINSHIP": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GUJENERGY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TATATECH": {
+        "status": "Success",
+        "bars": 4663,
+        "msg": "4663 bars"
+    },
+    "LALPATHLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SBILIFE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BDL": {
+        "status": "Success",
+        "bars": 7320,
+        "msg": "7320 bars"
+    },
+    "HAL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "PNBHOUSING": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ENDURANCE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AEGISLOG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LAURUSLABS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FORCEMOT": {
+        "status": "Success",
+        "bars": 9165,
+        "msg": "9165 bars"
+    },
+    "CIPLA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "HDFCAMC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DABUR": {
+        "status": "Success",
+        "bars": 8991,
+        "msg": "8991 bars"
+    },
+    "BHEL": {
+        "status": "Success",
+        "bars": 7905,
+        "msg": "7905 bars"
+    },
+    "MRPL": {
+        "status": "Success",
+        "bars": 7891,
+        "msg": "7891 bars"
+    },
+    "HEROMOTOCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INFY": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SAIL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KOTAKBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "TRENT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MRF": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "RELIANCE": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PIDILITIND": {
+        "status": "Success",
+        "bars": 9797,
+        "msg": "9797 bars"
+    },
+    "TATAELXSI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "FEDERALBNK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CUMMINSIND": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BHARATFORG": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "M&M": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "SIEMENS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PFIZER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PREMIERENE": {
+        "status": "Success",
+        "bars": 3355,
+        "msg": "3355 bars"
+    },
+    "NESTLEIND": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "COLPAL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ITC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "POLYCAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "AFFLE": {
+        "status": "Success",
+        "bars": 9773,
+        "msg": "9773 bars"
+    },
+    "PHOENIXLTD": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "360ONE": {
+        "status": "Success",
+        "bars": 6261,
+        "msg": "6261 bars"
+    },
+    "SRF": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GABRIEL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ANGELONE": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "GRINDWELL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ICICIBANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CUB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DEEPAKNTR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UNITDSPR": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UBL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "DIVISLAB": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GRANULES": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MARUTI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MAHABANK": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UNOMINDA": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "AEGISVOPAK": {
+        "status": "Success",
+        "bars": 2073,
+        "msg": "2073 bars"
+    },
+    "SUZLON": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "SOLARINDS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "M&MFIN": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ANTHEM": {
+        "status": "Success",
+        "bars": 1828,
+        "msg": "1828 bars"
+    },
+    "TORNTPOWER": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "UPL": {
+        "status": "Success",
+        "bars": 9727,
+        "msg": "9727 bars"
+    },
+    "FORTIS": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MSUMI": {
+        "status": "Success",
+        "bars": 7557,
+        "msg": "7557 bars"
+    },
+    "DLF": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LLOYDSME": {
+        "status": "Success",
+        "bars": 5308,
+        "msg": "5308 bars"
+    },
+    "ADANIENT": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "CARBORUNIV": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "ADANIPOWER": {
+        "status": "Success",
+        "bars": 9685,
+        "msg": "9685 bars"
+    },
+    "JSWENERGY": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PERSISTENT": {
+        "status": "Success",
+        "bars": 9693,
+        "msg": "9693 bars"
+    },
+    "ASAHIINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LTF": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SYRMA": {
+        "status": "Success",
+        "bars": 6835,
+        "msg": "6835 bars"
+    },
+    "NBCC": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "PPLPHARMA": {
+        "status": "Success",
+        "bars": 6576,
+        "msg": "6576 bars"
+    },
+    "SONACOMS": {
+        "status": "Success",
+        "bars": 8874,
+        "msg": "8874 bars"
+    },
+    "TVSHLTD": {
+        "status": "Success",
+        "bars": 6240,
+        "msg": "6240 bars"
+    },
+    "ETERNAL": {
+        "status": "Success",
+        "bars": 8734,
+        "msg": "8734 bars"
+    },
+    "ABSLAMC": {
+        "status": "Success",
+        "bars": 8356,
+        "msg": "8356 bars"
+    },
+    "ICICIAMC": {
+        "status": "Success",
+        "bars": 1106,
+        "msg": "1106 bars"
+    },
+    "KIMS": {
+        "status": "Success",
+        "bars": 8860,
+        "msg": "8860 bars"
+    },
+    "GVT&D": {
+        "status": "Success",
+        "bars": 9684,
+        "msg": "9684 bars"
+    },
+    "3MINDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "MANKIND": {
+        "status": "Success",
+        "bars": 5644,
+        "msg": "5644 bars"
+    },
+    "ITI": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "KIOCL": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "ADANIENSOL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "INDIGO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NAM-INDIA": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "NIACL": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "LTM": {
+        "status": "Success",
+        "bars": 9692,
+        "msg": "9692 bars"
+    },
+    "SBIFUNDS": {
+        "status": "Success",
+        "bars": 112,
+        "msg": "112 bars"
+    },
+    "PIRAMALFIN": {
+        "status": "Success",
+        "bars": 1316,
+        "msg": "1316 bars"
+    },
+    "HEXT": {
+        "status": "Success",
+        "bars": 2535,
+        "msg": "2535 bars"
+    },
+    "LASERPOWER": {
+        "status": "Success",
+        "bars": 133,
+        "msg": "133 bars"
+    },
+    "ELLEN": {
+        "status": "Success",
+        "bars": 1926,
+        "msg": "1926 bars"
+    },
+    "CARRARO": {
+        "status": "Success",
+        "bars": 2801,
+        "msg": "2801 bars"
+    },
+    "KNACK": {
+        "status": "Success",
+        "bars": 175,
+        "msg": "175 bars"
+    },
+    "AEROPLANE": {
+        "status": "Success",
+        "bars": 623,
+        "msg": "623 bars"
+    },
+    "JISLDVREQS": {
+        "status": "Success",
+        "bars": 9614,
+        "msg": "9614 bars"
+    },
+    "CNL": {
+        "status": "Success",
+        "bars": 9668,
+        "msg": "9668 bars"
+    },
+    "UNIENTER": {
+        "status": "Success",
+        "bars": 9549,
+        "msg": "9549 bars"
+    },
+    "GYFTR": {
+        "status": "Success",
+        "bars": 160,
+        "msg": "160 bars"
+    },
+    "GULPOLY": {
+        "status": "Success",
+        "bars": 9686,
+        "msg": "9686 bars"
+    },
+    "AGL": {
+        "status": "Success",
+        "bars": 196,
+        "msg": "196 bars"
+    },
+    "MWL": {
+        "status": "Success",
+        "bars": 3616,
+        "msg": "3616 bars"
+    },
+    "NAHARSPING": {
+        "status": "Success",
+        "bars": 9616,
+        "msg": "9616 bars"
+    },
+    "MUNJALAU": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "BIL": {
+        "status": "Success",
+        "bars": 9011,
+        "msg": "9011 bars"
+    },
+    "AMBIKCO": {
+        "status": "Success",
+        "bars": 9691,
+        "msg": "9691 bars"
+    },
+    "GEMAROMA": {
+        "status": "Success",
+        "bars": 1652,
+        "msg": "1652 bars"
+    },
+    "SUYOG": {
+        "status": "Success",
+        "bars": 3255,
+        "msg": "3255 bars"
+    },
+    "HEALTHX": {
+        "status": "Success",
+        "bars": 9670,
+        "msg": "9670 bars"
+    }
+}
