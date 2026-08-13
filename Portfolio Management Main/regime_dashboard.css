@@ -135,17 +135,63 @@ body.light-theme .stocks-table tr:hover {
 .logo-container {
   display: flex;
   align-items: center;
-  padding: 2px;
-  border-radius: 4px;
+  padding: 0;
 }
 
 .brand-logo-img {
-  height: 34px;
-  width: auto;
-  max-width: 150px;
+  height: 40px;
+  width: 40px;
   object-fit: contain;
   border-radius: 4px;
   transition: opacity 0.2s ease;
+}
+
+.brand-title-stacked {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  font-family: 'Inter', -apple-system, sans-serif;
+  user-select: none;
+}
+
+.bt-coep {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.bt-quant {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.bt-bottom {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.bt-fin {
+  color: #f59e0b;
+}
+
+.bt-club {
+  color: #0284c7;
+}
+
+body.dark-theme .bt-coep,
+body.dark-theme .bt-quant {
+  color: #ffffff;
+}
+
+body.dark-theme .bt-club {
+  color: #38bdf8;
+}
+
+body.light-theme .bt-coep,
+body.light-theme .bt-quant {
+  color: #0d1b2a;
 }
 
 .theme-toggle-btn {

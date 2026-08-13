@@ -240,12 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isDarkMode) {
         document.body.classList.remove('light-theme');
         document.body.classList.add('dark-theme');
-        if (clubLogo) clubLogo.src = 'Dark Theme.jpg';
+        if (clubLogo) clubLogo.src = 'Dark Theme Logo.png';
         themeToggleBtn.innerText = '☀️ Light Mode';
       } else {
         document.body.classList.remove('dark-theme');
         document.body.classList.add('light-theme');
-        if (clubLogo) clubLogo.src = 'Light Theme.jpg';
+        if (clubLogo) clubLogo.src = 'Light Theme Logo.png';
         themeToggleBtn.innerText = '🌙 Dark Mode';
       }
       applyThemeToChart();
