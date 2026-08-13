@@ -36,6 +36,7 @@ jobs:
         run: |
           git config --global user.name "COEP Quant Club Automation"
           git config --global user.email "quantclub@coep.ac.in"
+          git config --global http.postBuffer 524288000
           # Stage index data, weights, README, AND the compiled dashboard files
           git add OHLCV/ json/ README.md "Portfolio Management Main/"
           git status
