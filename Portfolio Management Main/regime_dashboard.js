@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let showEma200 = true;
   let isLogScale = false;
 
+  // Theme & Overlay State
+  let isDarkMode = true;
+  let showRegimeOverlay = true;
+
   const computedStateCache = {};
 
   // DOM Elements
@@ -51,6 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const rfBtnBull = document.getElementById('rfBtnBull');
   const rfBtnNeutral = document.getElementById('rfBtnNeutral');
   const rfBtnBear = document.getElementById('rfBtnBear');
+  const btnToggleRegimeOverlay = document.getElementById('btnToggleRegimeOverlay');
+
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const clubLogo = document.getElementById('club-logo');
 
   const candleLockBadge = document.getElementById('candleLockBadge');
 
@@ -198,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // 3 REGIME FILTER BUTTONS EVENT LISTENERS
-  const rfBtns = document.querySelectorAll('.rf-btn');
+  const rfBtns = document.querySelectorAll('.rf-btn:not(.regime-toggle-btn)');
   rfBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       rfBtns.forEach(b => b.classList.remove('active'));
@@ -207,6 +215,68 @@ document.addEventListener('DOMContentLoaded', () => {
       renderSectorList(sectorSearchInput.value.trim().toLowerCase());
     });
   });
+
+  // REGIME OVERLAY ON/OFF TOGGLE
+  if (btnToggleRegimeOverlay) {
+    btnToggleRegimeOverlay.addEventListener('click', () => {
+      showRegimeOverlay = !showRegimeOverlay;
+      if (showRegimeOverlay) {
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: ON';
+        btnToggleRegimeOverlay.classList.add('active');
+        btnToggleRegimeOverlay.classList.remove('inactive');
+      } else {
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: OFF';
+        btnToggleRegimeOverlay.classList.remove('active');
+        btnToggleRegimeOverlay.classList.add('inactive');
+      }
+      requestAnimationFrame(drawHMMBackgroundOverlay);
+    });
+  }
+
+  // THEME SWITCHER (DARK / LIGHT MODE)
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+        if (clubLogo) clubLogo.src = 'Dark Theme.jpg';
+        themeToggleBtn.innerText = '☀️ Light Mode';
+      } else {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+        if (clubLogo) clubLogo.src = 'Light Theme.jpg';
+        themeToggleBtn.innerText = '🌙 Dark Mode';
+      }
+      applyThemeToChart();
+    });
+  }
+
+  function applyThemeToChart() {
+    if (!chart) return;
+    if (isDarkMode) {
+      chart.applyOptions({
+        layout: { background: { color: 'transparent' }, textColor: '#94a3b8' },
+        grid: {
+          vertLines: { color: 'rgba(36, 49, 76, 0.4)' },
+          horzLines: { color: 'rgba(36, 49, 76, 0.4)' }
+        },
+        rightPriceScale: { borderColor: '#24314c' },
+        timeScale: { borderColor: '#24314c' }
+      });
+    } else {
+      chart.applyOptions({
+        layout: { background: { color: '#ffffff' }, textColor: '#475569' },
+        grid: {
+          vertLines: { color: '#e2e8f0' },
+          horzLines: { color: '#e2e8f0' }
+        },
+        rightPriceScale: { borderColor: '#cbd5e1' },
+        timeScale: { borderColor: '#cbd5e1' }
+      });
+    }
+    requestAnimationFrame(drawHMMBackgroundOverlay);
+  }
 
   // Indicator Toggle buttons
   document.getElementById('btn-toggle-sma20').addEventListener('click', (e) => {
@@ -628,6 +698,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!chart || !canvas || !ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    if (!showRegimeOverlay) return;
+
     const secDetail = data.sector_details[activeSector];
     if (!secDetail || !secDetail.bars || secDetail.bars.length === 0) return;
 
@@ -635,10 +707,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const smoothedStates = computeSmoothedRegimes(activeSector, activeK);
     const timeScale = chart.timeScale();
     
-    const stateColors = {
+    const stateColors = isDarkMode ? {
       0: "rgba(255, 23, 68, 0.28)",
       1: "rgba(255, 235, 59, 0.18)",
       2: "rgba(0, 230, 118, 0.28)"
+    } : {
+      0: "rgba(239, 68, 68, 0.22)",
+      1: "rgba(245, 158, 11, 0.16)",
+      2: "rgba(34, 197, 94, 0.22)"
     };
 
     for (let i = 0; i < bars.length; i++) {

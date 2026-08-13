@@ -17,7 +17,9 @@
     <!-- Header Navbar -->
     <header class="navbar">
       <div class="brand">
-        <div class="logo-icon">📊</div>
+        <div class="logo-container">
+          <img id="club-logo" src="Dark Theme.jpg" alt="COEP Quantitative Finance Club Logo" class="brand-logo-img">
+        </div>
         <div class="brand-text">
           <h1>QUANT CLUB</h1>
           <span class="sub-brand">Institutional Sector Index Terminal & 3-State Macro Regimes</span>
@@ -33,14 +35,16 @@
         <input type="range" id="kRangeSlider" min="1" max="50" value="9" step="1" class="custom-slider">
       </div>
 
-      <!-- 3 REGIME FILTER OPTIONS WITH DYNAMIC COUNTS -->
+      <!-- 3 REGIME FILTER OPTIONS WITH DYNAMIC COUNTS + REGIME TOGGLE + THEME SWITCHER -->
       <div class="header-controls">
         <div class="regime-filter-group" id="regimeFilterButtons">
-          <button class="rf-btn active" id="rfBtnAll" data-regime="ALL">ALL (32)</button>
+          <button class="rf-btn active" id="rfBtnAll" data-regime="ALL">ALL (30)</button>
           <button class="rf-btn bull-rf" id="rfBtnBull" data-regime="2">🟢 Bullish (0)</button>
           <button class="rf-btn neutral-rf" id="rfBtnNeutral" data-regime="1">🟡 Neutral (0)</button>
           <button class="rf-btn bear-rf" id="rfBtnBear" data-regime="0">🔴 Bearish (0)</button>
+          <button class="rf-btn regime-toggle-btn active" id="btnToggleRegimeOverlay" title="Toggle 3-State Regime Background Overlay">⚡ Regimes: ON</button>
         </div>
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Light / Dark Theme">☀️ Light Mode</button>
       </div>
     </header>
 
