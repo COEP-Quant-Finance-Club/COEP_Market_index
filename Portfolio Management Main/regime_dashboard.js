@@ -217,17 +217,35 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // REGIME OVERLAY ON/OFF TOGGLE
+  let regimeOpacityMode = 2; // Default: 2 = Medium (45%)
+  let regimeOpacityMult = 1.0;
+
   if (btnToggleRegimeOverlay) {
     btnToggleRegimeOverlay.addEventListener('click', () => {
-      showRegimeOverlay = !showRegimeOverlay;
-      if (showRegimeOverlay) {
-        btnToggleRegimeOverlay.innerText = '⚡ Regimes: ON';
-        btnToggleRegimeOverlay.classList.add('active');
-        btnToggleRegimeOverlay.classList.remove('inactive');
-      } else {
+      regimeOpacityMode = (regimeOpacityMode + 1) % 4;
+      if (regimeOpacityMode === 0) {
+        showRegimeOverlay = false;
         btnToggleRegimeOverlay.innerText = '⚡ Regimes: OFF';
         btnToggleRegimeOverlay.classList.remove('active');
         btnToggleRegimeOverlay.classList.add('inactive');
+      } else if (regimeOpacityMode === 1) {
+        showRegimeOverlay = true;
+        regimeOpacityMult = 0.65;
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Soft (25%)';
+        btnToggleRegimeOverlay.classList.add('active');
+        btnToggleRegimeOverlay.classList.remove('inactive');
+      } else if (regimeOpacityMode === 2) {
+        showRegimeOverlay = true;
+        regimeOpacityMult = 1.0;
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Medium (45%)';
+        btnToggleRegimeOverlay.classList.add('active');
+        btnToggleRegimeOverlay.classList.remove('inactive');
+      } else {
+        showRegimeOverlay = true;
+        regimeOpacityMult = 1.45;
+        btnToggleRegimeOverlay.innerText = '⚡ Regimes: Deep (65%)';
+        btnToggleRegimeOverlay.classList.add('active');
+        btnToggleRegimeOverlay.classList.remove('inactive');
       }
       requestAnimationFrame(drawHMMBackgroundOverlay);
     });
@@ -264,6 +282,16 @@ document.addEventListener('DOMContentLoaded', () => {
         rightPriceScale: { borderColor: '#24314c' },
         timeScale: { borderColor: '#24314c' }
       });
+      if (candlestickSeries) {
+        candlestickSeries.applyOptions({
+          upColor: '#22c55e',
+          downColor: '#ef4444',
+          borderUpColor: '#22c55e',
+          borderDownColor: '#ef4444',
+          wickUpColor: '#22c55e',
+          wickDownColor: '#ef4444',
+        });
+      }
     } else {
       chart.applyOptions({
         layout: { background: { color: 'transparent' }, textColor: '#334155' },
@@ -274,6 +302,16 @@ document.addEventListener('DOMContentLoaded', () => {
         rightPriceScale: { borderColor: '#cbd5e1' },
         timeScale: { borderColor: '#cbd5e1' }
       });
+      if (candlestickSeries) {
+        candlestickSeries.applyOptions({
+          upColor: '#16a34a',
+          downColor: '#dc2626',
+          borderUpColor: '#092b00',
+          borderDownColor: '#450a0a',
+          wickUpColor: '#092b00',
+          wickDownColor: '#450a0a',
+        });
+      }
     }
     requestAnimationFrame(drawHMMBackgroundOverlay);
   }
@@ -708,13 +746,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeScale = chart.timeScale();
     
     const stateColors = isDarkMode ? {
-      0: "rgba(255, 23, 68, 0.28)",
-      1: "rgba(255, 235, 59, 0.18)",
-      2: "rgba(0, 230, 118, 0.28)"
+      0: `rgba(255, 23, 68, ${0.28 * regimeOpacityMult})`,
+      1: `rgba(255, 235, 59, ${0.18 * regimeOpacityMult})`,
+      2: `rgba(0, 230, 118, ${0.28 * regimeOpacityMult})`
     } : {
-      0: "rgba(220, 38, 38, 0.72)",
-      1: "rgba(217, 119, 6, 0.68)",
-      2: "rgba(22, 163, 74, 0.72)"
+      0: `rgba(244, 63, 94, ${0.30 * regimeOpacityMult})`,  // Distinct Coral Rose
+      1: `rgba(245, 158, 11, ${0.26 * regimeOpacityMult})`, // Distinct Honey Gold
+      2: `rgba(20, 184, 166, ${0.30 * regimeOpacityMult})`  // Distinct Mint Cyan (Never collides with green candles!)
     };
 
     // Render contiguous regime blocks to guarantee 100% uniform color density at all zoom levels
