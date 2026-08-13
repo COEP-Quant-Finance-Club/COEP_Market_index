@@ -43,9 +43,9 @@ body.light-theme {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
   --card-bg: #ffffff;
-  --border-color: #cbd5e1;
+  --border-color: #e2e8f0;
   --text-primary: #0f172a;
-  --text-secondary: #64748b;
+  --text-secondary: #475569;
   --accent-cyan: #0284c7;
   --accent-purple: #4f46e5;
   --neon-green: #16a34a;
@@ -59,7 +59,46 @@ body.light-theme {
 }
 
 body.light-theme .navbar {
+  background: #ffffff;
+  border-bottom-color: #cbd5e1;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .sensitivity-slider-box {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+body.light-theme .slider-title {
+  color: #334155;
+}
+
+body.light-theme .sector-info-card {
+  background: #ffffff;
+  border-bottom-color: #cbd5e1;
+}
+
+body.light-theme .candle-lock-badge {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+body.light-theme .tv-scale-toolbar {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #cbd5e1;
+}
+
+body.light-theme .tv-tool-btn {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+body.light-theme .tv-tool-btn:hover {
+  background: #f1f5f9;
+  border-color: #0284c7;
+  color: #0284c7;
 }
 
 body.light-theme .constituents-modal {
@@ -96,11 +135,14 @@ body.light-theme .stocks-table tr:hover {
 .logo-container {
   display: flex;
   align-items: center;
+  padding: 2px;
+  border-radius: 4px;
 }
 
 .brand-logo-img {
-  height: 38px;
+  height: 34px;
   width: auto;
+  max-width: 150px;
   object-fit: contain;
   border-radius: 4px;
   transition: opacity 0.2s ease;
@@ -110,16 +152,17 @@ body.light-theme .stocks-table tr:hover {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  padding: 6px 14px;
+  padding: 6px 12px;
   font-size: 12px;
   font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: 12px;
+  margin-left: 8px;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
 }
 
 .theme-toggle-btn:hover {
@@ -138,37 +181,41 @@ body.light-theme .stocks-table tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 24px;
-  height: 56px;
+  padding: 6px 20px;
+  min-height: 58px;
+  height: auto;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   z-index: 10;
+  gap: 12px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.logo-icon {
-  font-size: 26px;
+  flex-shrink: 0;
 }
 
 .brand-text h1 {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .sub-brand {
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--text-secondary);
   font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+  line-height: 1.2;
+  display: block;
 }
 
 /* MINIMALIST SENSITIVITY SLIDER (k = 1 to 50) */
@@ -177,9 +224,9 @@ body.light-theme .stocks-table tr:hover {
   flex-direction: column;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  padding: 4px 16px;
+  padding: 4px 14px;
   border-radius: 8px;
-  min-width: 320px;
+  min-width: 260px;
 }
 
 .slider-header {
@@ -437,10 +484,13 @@ body.light-theme .stocks-table tr:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
+  padding: 8px 20px;
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border-color);
-  height: 60px;
+  min-height: 54px;
+  height: auto;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .sector-title-group {

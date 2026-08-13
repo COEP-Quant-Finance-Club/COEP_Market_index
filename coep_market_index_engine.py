@@ -820,7 +820,9 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         for c in constituents:
             sym = c["symbol"]
             mcap_cr = c["market_cap_cr"]
-            csv_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
+            csv_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+            if not os.path.exists(csv_path):
+                csv_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
             if os.path.exists(csv_path):
                 try:
                     df_s = pd.read_csv(csv_path, index_col=0, parse_dates=True)
