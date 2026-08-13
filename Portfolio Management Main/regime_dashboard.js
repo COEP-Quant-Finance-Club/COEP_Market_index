@@ -712,32 +712,46 @@ document.addEventListener('DOMContentLoaded', () => {
       1: "rgba(255, 235, 59, 0.18)",
       2: "rgba(0, 230, 118, 0.28)"
     } : {
-      0: "rgba(220, 38, 38, 0.48)",
-      1: "rgba(217, 119, 6, 0.42)",
-      2: "rgba(22, 163, 74, 0.48)"
+      0: "rgba(220, 38, 38, 0.45)",
+      1: "rgba(217, 119, 6, 0.40)",
+      2: "rgba(22, 163, 74, 0.45)"
     };
 
+    // Render contiguous regime blocks to guarantee 100% uniform color density at all zoom levels
+    let segStart = 0;
     for (let i = 0; i < bars.length; i++) {
-      const bar = bars[i];
-      const nextBar = bars[i + 1];
+      const isLast = (i === bars.length - 1);
+      const currState = smoothedStates[i] !== undefined ? smoothedStates[i] : 1;
+      const nextState = !isLast ? (smoothedStates[i + 1] !== undefined ? smoothedStates[i + 1] : 1) : null;
 
-      const x1 = timeScale.timeToCoordinate(bar.t);
-      if (x1 === null || x1 < -50 || x1 > canvas.width + 50) continue;
+      if (isLast || currState !== nextState) {
+        const startBar = bars[segStart];
+        const endBar = bars[i];
+        const nextBar = !isLast ? bars[i + 1] : null;
 
-      let x2;
-      if (nextBar) {
-        x2 = timeScale.timeToCoordinate(nextBar.t);
+        const x1 = timeScale.timeToCoordinate(startBar.t);
+        let x2;
+        if (nextBar) {
+          x2 = timeScale.timeToCoordinate(nextBar.t);
+        } else {
+          const xEndBar = timeScale.timeToCoordinate(endBar.t);
+          x2 = xEndBar !== null ? xEndBar + 25 : canvas.width;
+        }
+
+        if (x1 !== null && x2 !== null && x2 > x1) {
+          if (x2 >= 0 && x1 <= canvas.width) {
+            const drawX1 = Math.max(-10, x1);
+            const drawX2 = Math.min(canvas.width + 10, x2);
+            const drawWidth = Math.max(1, drawX2 - drawX1);
+
+            const color = stateColors[currState] !== undefined ? stateColors[currState] : stateColors[1];
+            ctx.fillStyle = color;
+            ctx.fillRect(drawX1, 0, drawWidth, canvas.height);
+          }
+        }
+
+        segStart = i + 1;
       }
-      if (x2 === null || x2 === undefined) {
-        x2 = x1 + 10;
-      }
-
-      const width = Math.max(1, x2 - x1);
-      const stateVal = smoothedStates[i] !== undefined ? smoothedStates[i] : 1;
-      const color = stateColors[stateVal] !== undefined ? stateColors[stateVal] : stateColors[1];
-
-      ctx.fillStyle = color;
-      ctx.fillRect(x1, 0, width, canvas.height);
     }
   }
 
