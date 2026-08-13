@@ -78,6 +78,49 @@ OHLCV_COLS = ["Open", "High", "Low", "Close", "Volume"]
 
 # ── MASTER SECTOR CLASSIFIER (FROM sector_organizer.py) ──────────────────────
 USER_EXPLICIT_MAPPINGS = {
+    "PAINTS_AND_VARNISHES": [
+        "Sirca Paints", "Asian Paints", "Berger Paints", "Kansai Nerolac", "Akzo Nobel",
+        "Indigo Paints", "Shalimar Paints", "JSW Dulux"
+    ],
+    "CABLES_AND_WIRES": [
+        "Polycab India", "KEI Industries", "RR Kabel", "Finolex Cables", "Paramount Communications",
+        "Universal Cables", "Vindhya Telelinks", "Plaza Wires", "Dynamic Cables"
+    ],
+    "CEMENT_AND_BUILDING_MATERIALS": [
+        "UltraTech Cement", "Ambuja Cements", "ACC", "Shree Cement", "Dalmia Bharat",
+        "The Ramco Cements", "JK Lakshmi Cement", "Birla Corporation", "HeidelbergCement", "Orient Cement",
+        "NCL Industries", "Sagar Cements", "KCP Limited", "Deccan Cements"
+    ],
+    "PAPER_AND_PACKAGING": [
+        "JK Paper", "West Coast Paper", "Seshasayee Paper", "Century Textiles", "Andhra Paper",
+        "TCPL Packaging", "Uflex", "Mold-Tek Packaging", "EPL Limited", "Polyplex Corporation", "Cosmo First", "Jindal Poly"
+    ],
+    "PLASTICS_AND_PIPES": [
+        "Supreme Industries", "Astral", "Finolex Industries", "Prince Pipes", "Responsive Industries",
+        "Shaily Engineering", "Kingfa Science", "Premier Polyfilm", "Jain Irrigation"
+    ],
+    "FERTILIZERS_AND_AGROCHEMICALS": [
+        "Coromandel International", "UPL", "PI Industries", "Sumitomo Chemical", "Bayer CropScience",
+        "Chambal Fertilisers", "Rashtriya Chemicals", "Fertilisers And Chemicals Travancore", "Sharda Cropchem",
+        "Dhanuka Agritech", "Nova Agritech", "BN Agrochem", "Sanstar", "Venky's", "Kaveri Seed", "Gujarat Ambuja Exports"
+    ],
+    "SUGAR_AND_BIOENERGY": [
+        "EID Parry", "Balrampur Chini", "Triveni Engineering", "Shree Renuka Sugars", "Dwarikesh Sugar",
+        "Dhampur Sugar", "Uttam Sugar", "Dalmia Bharat Sugar", "Avadh Sugar", "TruAlt Bioenergy"
+    ],
+    "BREWERIES_AND_DISTILLERIES": [
+        "United Spirits", "United Breweries", "Radico Khaitan", "Allied Blenders", "Tilaknagar Industries",
+        "Som Distilleries", "Associated Alcohols", "Globus Spirits", "Piccadily Agro", "SDBL", "GM Breweries"
+    ],
+    "FOOTWEAR_AND_ACCESSORIES": [
+        "Bata India", "Relaxo Footwears", "Campus Activewear", "Metro Brands", "Liberty Shoes",
+        "Mirza International", "Redtape", "Khadim India", "Sreeleathers", "Mayur Uniquoters"
+    ],
+    "MEDIA_AND_ENTERTAINMENT": [
+        "Sun TV Network", "Zee Entertainment", "PVR INOX", "TV18 Broadcast", "Network18",
+        "Saregama India", "Tips Music", "Nazara Technologies", "Prime Focus", "Signpost India",
+        "D.B. Corp", "Jagran Prakashan", "Navneet Education", "Flair Writing", "Doms Industries"
+    ],
     "CAPITAL_GOODS": [
         "ABB India", "Bharat Heavy Electricals", "CG Power", "Hitachi Energy", "Honeywell Automation",
         "Schneider Electric", "TD Power", "Voltamp Transformers", "Transformers & Rectifiers", "Indo Tech Transformers",
@@ -105,7 +148,7 @@ USER_EXPLICIT_MAPPINGS = {
         "Hindustan Construction", "Simplex Infrastructures", "B. L. Kashyap", "PSP Projects", "Capacite Infraprojects",
         "Ahluwalia Contracts", "Ceigall India", "SRM Contractors", "Afcons Infrastructure", "Texmaco Infrastructure",
         "Welspun Enterprises", "Reliance Industrial Infrastructure", "Vikran Engineering", "Gpt Infraprojects",
-        "Updater Services", "J.kumar Infraprojects", "Jyoti Structures", "Sanghvi Movers", "Kapston Services",
+        "J.kumar Infraprojects", "Jyoti Structures", "Sanghvi Movers", "Kapston Services",
         "Rites Ltd", "Security & Intelligence Services", "Ircon International", "Adani Enterprises", "Nbcc",
         "Rail Vikas Nigam", "Cemindia Projects", "Bluspring Enterprises", "Quess Corp"
     ],
@@ -118,14 +161,14 @@ USER_EXPLICIT_MAPPINGS = {
         "Arihant Superstructures", "Arihant Foundations", "Valor Estate", "Nirlon", "Indiqube Spaces",
         "Man Infraconstruction", "Alembic Limited", "AGI Infra", "AWFIS Space", "EFC (I)", "TCC Concept",
         "Wework India", "Nesco", "Smartworks Coworking", "Sri Lotus Developers", "Aditya Birla Real Estate",
-        "Kalpataru Limited", "Kalpataru", "Anant Raj Limited"  # KALPATARU is a real-estate developer
+        "Kalpataru Limited", "Kalpataru", "Anant Raj Limited"
     ],
     "LOGISTICS": [
         "Transport Corporation Of India", "TCI Express", "Mahindra Logistics", "TVS Supply Chain", "Delhivery",
         "BlackBuck", "Gateway Distriparks", "Container Corporation", "Allcargo Logistics", "Navkar Corporation",
         "VRL Logistics", "Shipping Corporation of India", "Seamec", "Knowledge Marine", "Adani Ports",
         "JSW Infrastructure", "Gujarat Pipavav", "Dredging Corporation", "GMR Airports", "Sindhu Trade Links",
-        "Balmer Lawrie", "Signpost India"  # Outdoor signage infrastructure
+        "Balmer Lawrie"
     ],
     "CONSUMER_DURABLES": [
         "Havells India", "Crompton Greaves", "V-Guard", "Orient Electric", "Bajaj Electricals", "Butterfly Gandhimathi",
@@ -143,7 +186,7 @@ USER_EXPLICIT_MAPPINGS = {
         "One 97", "Paytm", "One Mobikwik", "Pine Labs", "Indiamart Intermesh", "Just Dial", "TBO Tek", "Easy Trip",
         "EaseMyTrip", "Yatra Online", "Le Travenues", "ixigo", "Swiggy", "Urban Company", "Cartrade Tech",
         "Info Edge", "AvenuesAI", "Arisinfra Solutions", "Crizac", "Veranda Learning", "Jaro Institute",
-        "Indian Railway Catering", "Physicswallah", "Vouchagram", "Gyftr"  # Gift vouchers/rewards digital platform
+        "Indian Railway Catering", "Physicswallah", "Vouchagram", "Gyftr"
     ],
     "FINANCIAL_INFRASTRUCTURE": [
         "BSE", "Bombay Stock Exchange", "Central Depository Services", "CDSL", "Multi Commodity Exchange", "MCX",
@@ -153,7 +196,7 @@ USER_EXPLICIT_MAPPINGS = {
     "RENEWABLE_ENERGY": [
         "Waaree Energies", "Premier Energies", "Vikram Solar", "Emmvee", "Saatvik Green", "Solex Energy",
         "Websol Energy", "Insolation Energy", "Fujiyama Power", "Inox Wind", "Inox Green", "Adani Total Gas",
-        "Ravindra Energy", "TruAlt Bioenergy", "Suzlon", "Indosolar"
+        "Ravindra Energy", "Suzlon", "Indosolar"
     ],
     "OIL_GAS_UTILITIES": [
         "GAIL", "Mahanagar Gas", "MGL", "Indraprastha Gas", "IGL", "Petronet LNG", "Confidence Petroleum",
@@ -167,18 +210,12 @@ USER_EXPLICIT_MAPPINGS = {
     ],
     "BUILDING_MATERIALS": [
         "Greenply", "Greenpanel", "Century Plyboards", "Greenlam", "Stylam", "Shankara Buildpro", "Indian Hume Pipe",
-        "Pokarna", "Carysil", "Nitco", "Kajaria Ceramics", "Cera Sanitaryware", "Somany Ceramics", "Supreme Industries",
-        "Astral", "Euro Pratik", "M & B Engineering", "SG Mart"
+        "Pokarna", "Carysil", "Nitco", "Kajaria Ceramics", "Cera Sanitaryware", "Somany Ceramics",
+        "Euro Pratik", "M & B Engineering", "SG Mart"
     ],
     "TEXTILES_APPAREL": [
-        "PDS", "KDDL", "Arvind Fashions", "Timex Group", "Page Industries", "KPR Mill", "Raymond", "Vardhman Textiles",
+        "PDS", "Arvind Fashions", "Timex Group", "Page Industries", "KPR Mill", "Raymond", "Vardhman Textiles",
         "Welspun Living", "Bhartiya International"
-    ],
-    "AGRICULTURE": [
-        "Kaveri Seed", "Venky", "Gujarat Ambuja Exports", "BN Agrochem", "Sanstar", "Jain Irrigation"
-    ],
-    "TELECOM_INFRA": [
-        "Indus Towers", "GTL Infrastructure", "Vindhya Telelinks", "Kernex Microsystems"
     ],
     "CHEMICALS": [
         "Grp Limited", "Refex Industries", "Apcotex Industries", "Tinna Rubber", "Kothari Industrial", "Rain Industries",
@@ -198,7 +235,7 @@ USER_EXPLICIT_MAPPINGS = {
         "PNGS Reva", "International Gemmological"
     ],
     "TELECOMMUNICATIONS": [
-        "D-link"
+        "D-link", "Indus Towers", "GTL Infrastructure", "Kernex Microsystems"
     ],
     "POWER_AND_UTILITIES": [
         "Antony Waste", "Ptc India", "Gujarat Energy"
@@ -208,7 +245,7 @@ USER_EXPLICIT_MAPPINGS = {
     ],
     "FINANCIAL_SERVICES": [
         "CMS Info Systems", "Max Financial", "SBI Funds", "Piramal Finance", "Indiabulls Limited",
-        "Teamlease Services"  # HR staffing/workforce solutions - financial/professional services
+        "Teamlease Services", "Updater Services"
     ],
     "INFORMATION_TECHNOLOGY": [
         "Hexaware Technologies"
@@ -220,64 +257,82 @@ def map_master_sector(stock_name: str, symbol: str, ind: str) -> str:
     symbol = str(symbol).strip()
     ind = str(ind).lower().strip()
 
-    # 1. Check Explicit User Mappings
+    # 1. Check Explicit Mappings
     for category, names in USER_EXPLICIT_MAPPINGS.items():
         for name in names:
             if name.lower() in stock_name.lower() or name.lower() == symbol.lower():
                 return category
 
     # 2. Industry Keyword Mapping
+    if "paint" in ind or "varnish" in ind:
+        return "PAINTS_AND_VARNISHES"
+    if "cable" in ind:
+        return "CABLES_AND_WIRES"
+    if "cement" in ind:
+        return "CEMENT_AND_BUILDING_MATERIALS"
+    if "paper" in ind or "packaging" in ind:
+        return "PAPER_AND_PACKAGING"
+    if "plastic" in ind or "moulded luggage" in ind:
+        return "PLASTICS_AND_PIPES"
+    if "pesticide" in ind or "fertilizer" in ind or "agrochemical" in ind or "seed" in ind or "solvent extraction" in ind:
+        return "FERTILIZERS_AND_AGROCHEMICALS"
+    if "sugar" in ind:
+        return "SUGAR_AND_BIOENERGY"
+    if "breweries" in ind or "distilleries" in ind:
+        return "BREWERIES_AND_DISTILLERIES"
+    if "footwear" in ind or "leather" in ind:
+        return "FOOTWEAR_AND_ACCESSORIES"
+    if "tyre" in ind or "auto ancillar" in ind or "auto parts" in ind or "bearing" in ind:
+        return "AUTOMOBILES"
+
     if "bank" in ind and "non banking" not in ind and "nbfc" not in ind:
         return "BANKING"
-    if any(k in ind for k in ["finance", "housing", "nbfc", "investment", "insurance", "financial"]):
+    if any(k in ind for k in ["finance", "housing", "nbfc", "investment", "insurance", "financial", "credit", "asset management"]):
         return "FINANCIAL_SERVICES"
-    if any(k in ind for k in ["computer", "software", "consulting"]):
+    if any(k in ind for k in ["computer", "software", "consulting", "information technology"]):
         return "INFORMATION_TECHNOLOGY"
-    if "telecom" in ind or "telecommunication" in ind:
+    if "telecom" in ind or "telecommunication" in ind or "transmisson line" in ind:
         return "TELECOMMUNICATIONS"
     if any(k in ind for k in ["defense", "defence", "aerospace"]):
         return "DEFENCE"
-    if any(k in ind for k in ["steel", "iron", "aluminium", "mining", "coal", "minerals"]):
+    if any(k in ind for k in ["steel", "iron", "aluminium", "mining", "coal", "minerals", "castings & forgings", "refractories"]):
         return "METALS_AND_MINING"
-    if any(k in ind for k in ["oil", "refinement", "refineries", "gas"]):
+    if any(k in ind for k in ["oil", "refinery", "gas", "petrochemical"]):
         return "OIL_GAS_UTILITIES"
-    if "power" in ind:
+    if "power" in ind or "dry cells" in ind:
         return "POWER_AND_UTILITIES"
-    if any(k in ind for k in ["automobile", "vehicle", "car", "moped", "scooter", "motorcycle", "tractor", "auto ancillaries", "tyre"]):
+    if any(k in ind for k in ["automobile", "vehicle", "car", "moped", "scooter", "motorcycle", "tractor"]):
         return "AUTOMOBILES"
     if any(k in ind for k in ["pharma", "hospital", "healthcare", "bulk drug", "formulation"]):
         return "HEALTHCARE_SERVICES"
-    if any(k in ind for k in ["cigarette", "food", "dairy", "tea", "coffee", "personal care", "fmcg", "packaged", "sugar", "breweries", "distilleries", "aquaculture", "solvent extraction"]):
+    if any(k in ind for k in ["cigarette", "food", "dairy", "tea", "coffee", "personal care", "fmcg", "packaged", "aquaculture"]):
         return "CONSUMER_STAPLES"
-    if any(k in ind for k in ["hotel", "resort"]):
+    if any(k in ind for k in ["hotel", "resort", "travel", "recreation", "amusement"]):
         return "HOSPITALITY"
-    if any(k in ind for k in ["airline", "aviation"]):
-        return "AIRLINES"
-    if any(k in ind for k in ["jewell", "gems", "watch"]):
+    if "airline" in ind:
+        return "LOGISTICS"
+    if any(k in ind for k in ["jewell", "gems", "diamond", "watch"]):
         return "JEWELLERY"
-    if any(k in ind for k in ["retail", "e-commerce", "e-retail"]):
+    if any(k in ind for k in ["retail", "e-commerce", "e-retail", "departmental"]):
         return "RETAIL"
-    if any(k in ind for k in ["civil construction", "infra", "road"]):
+    if any(k in ind for k in ["civil construction", "infra", "road", "construction"]):
         return "INFRASTRUCTURE"
-    if any(k in ind for k in ["engineering", "electrical equipment", "compressor", "pump", "bearing", "fastener", "electrode", "abrasive", "turnkey", "transmission line", "machinery", "casting", "forging"]):
+    if any(k in ind for k in ["engineering", "electrical equipment", "compressor", "pump", "fastener", "electrode", "abrasive", "machinery"]):
         return "CAPITAL_GOODS"
     if any(k in ind for k in ["shipping", "port", "courier", "transport", "logistics"]):
         return "LOGISTICS"
-    if any(k in ind for k in ["cement", "paint", "paper", "packaging", "plastic", "glass", "ceramic", "tile", "sanitaryware", "leather", "refractories"]):
+    if any(k in ind for k in ["ceramic", "tile", "sanitaryware", "glass"]):
         return "BUILDING_MATERIALS"
-    if any(k in ind for k in ["chemical", "pesticide", "agrochemical", "fertilizer", "petrochemical", "dyes", "soda ash"]):
+    if any(k in ind for k in ["chemical", "dyes", "soda ash", "chlor alkali"]):
         return "CHEMICALS"
-    if any(k in ind for k in ["media", "entertainment", "recreation", "amusement", "printing", "specialty business"]):
+    if any(k in ind for k in ["media", "entertainment", "printing", "stationery"]):
         return "MEDIA_AND_ENTERTAINMENT"
-    # Prime Focus (VFX/post-production) + any specialty services
-    if any(k in stock_name.lower() for k in ["prime focus"]):
-        return "MEDIA_AND_ENTERTAINMENT"
-    if "textile" in ind:
+    if "textile" in ind or "jute" in ind:
         return "TEXTILES_APPAREL"
-    if "diversified" in ind or "holding" in ind:
-        return "DIVERSIFIED"
+    if "electronics" in ind:
+        return "ELECTRONICS_EMS"
 
-    return "MISCELLANEOUS"
+    return "CAPITAL_GOODS"
 
 # ── STEP 1: YFINANCE INCREMENTAL DOWNLOADER ───────────────────────────────────
 
