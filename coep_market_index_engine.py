@@ -506,15 +506,16 @@ def audit_corporate_actions() -> dict:
     corp_actions = {}
     csv_files = glob.glob(os.path.join(STOCKS_DIR, "*.csv"))
 
-    # Audit corporate actions for ALL stocks (cap at 500 for performance;
-    # increases each run via shuffle so full universe is covered over time)
+    # Rotate sample each run so full universe is covered over ~15 daily runs
+    # Cap at 100 per run to keep audit within 3-4 minutes with rate-limit safety sleep
     import random
     random.shuffle(csv_files)
-    sample_files = csv_files[:500]
+    sample_files = csv_files[:100]
 
     def fetch_actions(fpath):
         sym = os.path.basename(fpath).replace("_daily.csv", "").replace(".csv", "").strip().upper()
         try:
+            time.sleep(0.4)  # rate-limit safety: max ~2.5 req/sec across 2 workers
             ticker = yf.Ticker(f"{sym}.NS")
             splits = ticker.splits
             divs = ticker.dividends
@@ -529,7 +530,8 @@ def audit_corporate_actions() -> dict:
         except Exception:
             return sym, {}
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
+    # Use only 2 concurrent workers to stay well below Yahoo Finance rate limits
+    with ThreadPoolExecutor(max_workers=2) as executor:
         futures = [executor.submit(fetch_actions, f) for f in sample_files]
         for future in as_completed(futures):
             sym, acts = future.result()
@@ -538,6 +540,7 @@ def audit_corporate_actions() -> dict:
 
     with open(CORP_ACTIONS_FILE, "w", encoding="utf-8") as f:
         json.dump(corp_actions, f, indent=2)
+    log.info(f"[2/4 Complete] Audited {len(sample_files)} stocks for corporate actions.")
 
 def sanitize_rogue_spikes() -> int:
     log.info("[2.5] Sanitizing multi-day rogue YFinance price spikes/bad ticks...")
