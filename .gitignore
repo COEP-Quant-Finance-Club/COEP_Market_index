@@ -1,5 +1,4 @@
 # Ignore non-essential project folders and large artifacts
-Data.csv
 Data_Enhanced.csv
 quant_club_sector_terminal.html
 generate_terminal.py
