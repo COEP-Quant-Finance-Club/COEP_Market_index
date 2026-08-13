@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', () => {
       2: "rgba(20, 184, 166, 0.44)"  // Distinct Mint Cyan (65% Deep Opacity - No Candle Blending!)
     };
 
-    // Render contiguous regime blocks to guarantee 100% uniform color density at all zoom levels
+    // Render contiguous regime blocks with exact midpoint bar boundaries so color transitions occur between candles (never splitting candles in half)
     let segStart = 0;
     for (let i = 0; i < bars.length; i++) {
       const isLast = (i === bars.length - 1);
@@ -747,21 +747,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isLast || currState !== nextState) {
         const startBar = bars[segStart];
         const endBar = bars[i];
+        const prevBar = segStart > 0 ? bars[segStart - 1] : null;
         const nextBar = !isLast ? bars[i + 1] : null;
 
-        const x1 = timeScale.timeToCoordinate(startBar.t);
-        let x2;
-        if (nextBar) {
-          x2 = timeScale.timeToCoordinate(nextBar.t);
-        } else {
-          const xEndBar = timeScale.timeToCoordinate(endBar.t);
-          x2 = xEndBar !== null ? xEndBar + 25 : canvas.width;
-        }
+        const xCenterStart = timeScale.timeToCoordinate(startBar.t);
+        const xCenterEnd = timeScale.timeToCoordinate(endBar.t);
 
-        if (x1 !== null && x2 !== null && x2 > x1) {
-          if (x2 >= 0 && x1 <= canvas.width) {
-            const drawX1 = Math.max(-10, x1);
-            const drawX2 = Math.min(canvas.width + 10, x2);
+        if (xCenterStart !== null && xCenterEnd !== null) {
+          // Midpoint for left boundary x1
+          let x1;
+          if (prevBar) {
+            const xPrev = timeScale.timeToCoordinate(prevBar.t);
+            x1 = xPrev !== null ? xCenterStart - (xCenterStart - xPrev) / 2 : xCenterStart - 10;
+          } else {
+            x1 = xCenterStart - 20;
+          }
+
+          // Midpoint for right boundary x2
+          let x2;
+          if (nextBar) {
+            const xNext = timeScale.timeToCoordinate(nextBar.t);
+            x2 = xNext !== null ? xCenterEnd + (xNext - xCenterEnd) / 2 : xCenterEnd + 10;
+          } else {
+            x2 = xCenterEnd + 40;
+          }
+
+          if (x2 > x1 && x2 >= -20 && x1 <= canvas.width + 20) {
+            const drawX1 = Math.max(-20, x1);
+            const drawX2 = Math.min(canvas.width + 20, x2);
             const drawWidth = Math.max(1, drawX2 - drawX1);
 
             const color = stateColors[currState] !== undefined ? stateColors[currState] : stateColors[1];
