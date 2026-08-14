@@ -79,6 +79,44 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,163.3 | +2,063.3% | 21 |
+| 🥈 2 | Defence | 1,822.5 | +1,722.5% | 9 |
+| 🥉 3 | Cables And Wires | 1,565.1 | +1,465.1% | 11 |
+| 4 | Retail | 1,061.6 | +961.6% | 18 |
+| 5 | Jewellery | 1,037.0 | +937.0% | 20 |
+| 6 | Chemicals | 829.6 | +729.6% | 79 |
+| 7 | Financial Infrastructure | 801.8 | +701.8% | 11 |
+| 8 | Paper And Packaging | 739.6 | +639.6% | 20 |
+| 9 | Power And Utilities | 671.7 | +571.7% | 28 |
+| 10 | Infrastructure | 663.6 | +563.6% | 38 |
+| 11 | Metals And Mining | 642.6 | +542.6% | 110 |
+| 12 | Capital Goods | 608.9 | +508.9% | 139 |
+| 13 | Real Estate | 565.5 | +465.5% | 47 |
+| 14 | Financial Services | 520.1 | +420.1% | 131 |
+| 15 | Plastics And Pipes | 481.6 | +381.6% | 16 |
+| 16 | Logistics | 477.2 | +377.2% | 30 |
+| 17 | Building Materials | 456.6 | +356.6% | 69 |
+| 18 | Fertilizers And Agrochemicals | 452.4 | +352.4% | 38 |
+| 19 | Automobiles | 445.5 | +345.5% | 126 |
+| 20 | Renewable Energy | 423.0 | +323.0% | 15 |
+| 21 | Information Technology | 399.8 | +299.8% | 85 |
+| 22 | Digital Platforms | 386.0 | +286.0% | 21 |
+| 23 | Healthcare Services | 377.3 | +277.3% | 107 |
+| 24 | Paints And Varnishes | 372.9 | +272.9% | 6 |
+| 25 | Consumer Durables | 364.4 | +264.4% | 23 |
+| 26 | Breweries And Distilleries | 362.5 | +262.5% | 13 |
+| 27 | Textiles Apparel | 361.4 | +261.4% | 9 |
+| 28 | Consumer Staples | 355.4 | +255.4% | 37 |
+| 29 | Sugar And Bioenergy | 333.9 | +233.9% | 9 |
+| 30 | Footwear And Accessories | 326.4 | +226.4% | 6 |
+| 31 | Cement And Building Materials | 314.1 | +214.1% | 27 |
+| 32 | Oil Gas Utilities | 285.5 | +185.5% | 26 |
+| 33 | Hospitality | 285.4 | +185.3% | 29 |
+| 34 | Banking | 185.3 | +85.3% | 41 |
+| 35 | Media And Entertainment | 135.4 | +35.4% | 13 |
+| 36 | Telecommunications | 125.0 | +25.0% | 19 |
+
+---:|:---|:---:|:---:|:---:|
 
 ---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,160.5 | +2,060.5% | 21 |
