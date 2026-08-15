@@ -736,14 +736,75 @@ def update_1h_data_via_yfinance(max_workers: int = 5):
     log.info(f"[2.7 Complete] 1H data update finished: {updated} updated, {failed} failed.")
 
 
+def load_unified_stock_df(sym: str, mcap_cr: float):
+    daily_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+    h1_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
+
+    df_daily = None
+    if os.path.exists(daily_path):
+        try:
+            df_d = pd.read_csv(daily_path, index_col=0, parse_dates=True)
+            if not df_d.empty and "Close" in df_d.columns:
+                df_d.sort_index(inplace=True)
+                if df_d.index.tz is not None:
+                    df_d.index = df_d.index.tz_localize(None)
+                df_daily = df_d
+        except Exception:
+            pass
+
+    df_1h_daily = None
+    min_1h_date = None
+    if os.path.exists(h1_path):
+        try:
+            df_h = pd.read_csv(h1_path, index_col=0, parse_dates=True)
+            if not df_h.empty and "Close" in df_h.columns:
+                df_h.sort_index(inplace=True)
+                if df_h.index.tz is not None:
+                    df_h.index = df_h.index.tz_localize(None)
+                df_h["_date"] = df_h.index.normalize()
+                df_1h_daily = df_h.groupby("_date").agg({
+                    "Open": "first",
+                    "High": "max",
+                    "Low": "min",
+                    "Close": "last",
+                    "Volume": "sum"
+                })
+                df_1h_daily.index.name = "Date"
+                if not df_1h_daily.empty:
+                    min_1h_date = df_1h_daily.index[0]
+        except Exception:
+            pass
+
+    if df_daily is not None and df_1h_daily is not None and min_1h_date is not None:
+        # Pre-1H period: from Daily data; 1H period: from 1H data
+        df_pre = df_daily[df_daily.index < min_1h_date]
+        df_unified = pd.concat([df_pre, df_1h_daily]).sort_index()
+        df_unified = df_unified[~df_unified.index.duplicated(keep="last")]
+    elif df_1h_daily is not None:
+        df_unified = df_1h_daily
+    elif df_daily is not None:
+        df_unified = df_daily
+    else:
+        return None
+
+    if df_unified is None or df_unified.empty:
+        return None
+
+    latest_price = float(df_unified["Close"].iloc[-1])
+    if latest_price <= 0:
+        return None
+    shares = (mcap_cr * 1e7) / latest_price
+    return {"df": df_unified, "shares": shares}
+
+
 def calculate_sector_indices() -> tuple[dict, dict]:
-    log.info("[3/4] Rebuilding Clean Master Free-Float Market-Cap Sector Indices from 1H Candles...")
+    log.info("[3/4] Rebuilding Master Sector Indices (Historical Daily + Recent 1H Candlestick Precision)...")
     stock_meta = load_stock_metadata()
     if not stock_meta:
         log.error("Failed to load stock metadata from Data.csv")
         return {}, {}
 
-    # Clean old index CSV files to prevent duplicate/stale micro-sector files
+    # Clean old index CSV files
     for old_f in glob.glob(os.path.join(INDICES_DIR, "*.csv")) + glob.glob(os.path.join(INDICES_1H_DIR, "*.csv")):
         try:
             os.remove(old_f)
@@ -761,30 +822,17 @@ def calculate_sector_indices() -> tuple[dict, dict]:
     summary = {}
     todays_sector_weights = {}
 
-    for sec_name, constituents in sectors_map.items():
+    def process_single_sector(sec_name, constituents):
         stock_dfs = {}
         for c in constituents:
             sym = c["symbol"]
             mcap_cr = c["market_cap_cr"]
-            csv_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
-            if not os.path.exists(csv_path):
-                csv_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
-            if os.path.exists(csv_path):
-                try:
-                    df_s = pd.read_csv(csv_path, index_col=0, parse_dates=True)
-                    if df_s.index.tz is not None:
-                        df_s.index = df_s.index.tz_localize(None)
-                    if not df_s.empty and len(df_s) >= 1:
-                        df_s.sort_index(inplace=True)
-                        latest_price = float(df_s["Close"].iloc[-1])
-                        if latest_price > 0:
-                            shares = (mcap_cr * 1e7) / latest_price
-                            stock_dfs[sym] = {"df": df_s, "shares": shares}
-                except Exception:
-                    pass
+            res = load_unified_stock_df(sym, mcap_cr)
+            if res is not None:
+                stock_dfs[sym] = res
 
         if not stock_dfs:
-            continue
+            return None
 
         closes_dict = {sym: info["df"]["Close"] for sym, info in stock_dfs.items()}
         opens_dict  = {sym: info["df"]["Open"]  for sym, info in stock_dfs.items()}
@@ -900,20 +948,30 @@ def calculate_sector_indices() -> tuple[dict, dict]:
                 w_pct = round(float(mcap_i / tot_latest_mcap) * 100.0, 4)
                 weights_dict[sym_i] = w_pct
 
-        todays_sector_weights[sec_name] = {
+        sec_weight_entry = {
             "sector": sec_name,
             "constituents_count": len(weights_dict),
             "latest_index_value": round(latest_index_val, 2),
             "weights_percentage": dict(sorted(weights_dict.items(), key=lambda x: x[1], reverse=True))
         }
 
-        summary[sec_name] = {
+        sec_summary_entry = {
             "constituents": len(symbols),
             "latest_index_val": round(latest_index_val, 2),
             "total_return_pct": round(((latest_index_val - 100.0) / 100.0) * 100.0, 2)
         }
 
         log.info(f"[OK] Master Sector {sec_name:30s} -> Index: {latest_index_val:7.2f} | Stocks: {len(symbols)}")
+        return sec_name, sec_summary_entry, sec_weight_entry
+
+    with ThreadPoolExecutor(max_workers=6) as executor:
+        futures = {executor.submit(process_single_sector, sname, consts): sname for sname, consts in sectors_map.items()}
+        for future in as_completed(futures):
+            res = future.result()
+            if res:
+                sname, s_summary, s_weight = res
+                summary[sname] = s_summary
+                todays_sector_weights[sname] = s_weight
 
     # Save today's sector weights
     with open(WEIGHTS_FILE, "w", encoding="utf-8") as f:
@@ -1067,15 +1125,24 @@ def generate_dashboard_data():
             consts_list = []
             for sym in consts_symbols:
                 stock_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
+                if not os.path.exists(stock_path):
+                    stock_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
                 prices_dict = {}
                 if os.path.exists(stock_path):
                     try:
                         df_stk = pd.read_csv(stock_path, index_col=0, parse_dates=True)
                         if not df_stk.empty and "Close" in df_stk.columns:
                             df_stk.sort_index(inplace=True)
-                            recent = df_stk.tail(252)
-                            for dt_stk, row_stk in recent.iterrows():
-                                prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(row_stk["Close"]), 2)
+                            if "1h" in stock_path.lower():
+                                df_stk["_date"] = df_stk.index.normalize()
+                                df_stk_daily = df_stk.groupby("_date")["Close"].last()
+                                recent = df_stk_daily.tail(252)
+                                for dt_stk, c_val in recent.items():
+                                    prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(c_val), 2)
+                            else:
+                                recent = df_stk.tail(252)
+                                for dt_stk, row_stk in recent.iterrows():
+                                    prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(row_stk["Close"]), 2)
                     except Exception:
                         pass
 
