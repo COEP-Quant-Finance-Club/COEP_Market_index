@@ -736,65 +736,85 @@ def update_1h_data_via_yfinance(max_workers: int = 5):
     log.info(f"[2.7 Complete] 1H data update finished: {updated} updated, {failed} failed.")
 
 
-def load_unified_stock_df(sym: str, mcap_cr: float):
+def load_clean_unified_stock_df(sym: str, mcap_cr: float):
     daily_path = os.path.join(STOCKS_DIR, f"{sym}_daily.csv")
     h1_path = os.path.join(STOCKS_1H_DIR, f"{sym}_1h.csv")
 
-    df_daily = None
-    if os.path.exists(daily_path):
-        try:
-            df_d = pd.read_csv(daily_path, index_col=0, parse_dates=True)
-            if not df_d.empty and "Close" in df_d.columns:
-                df_d.sort_index(inplace=True)
-                if df_d.index.tz is not None:
-                    df_d.index = df_d.index.tz_localize(None)
-                df_daily = df_d
-        except Exception:
-            pass
-
-    df_1h_daily = None
-    min_1h_date = None
-    if os.path.exists(h1_path):
-        try:
-            df_h = pd.read_csv(h1_path, index_col=0, parse_dates=True)
-            if not df_h.empty and "Close" in df_h.columns:
-                df_h.sort_index(inplace=True)
-                if df_h.index.tz is not None:
-                    df_h.index = df_h.index.tz_localize(None)
+    if not os.path.exists(daily_path):
+        if os.path.exists(h1_path):
+            try:
+                df_h = pd.read_csv(h1_path, index_col=0, parse_dates=True)
+                if df_h.empty or "Close" not in df_h.columns: return None
+                if hasattr(df_h.index, "tz") and df_h.index.tz is not None: df_h.index = df_h.index.tz_localize(None)
                 df_h["_date"] = df_h.index.normalize()
-                df_1h_daily = df_h.groupby("_date").agg({
-                    "Open": "first",
-                    "High": "max",
-                    "Low": "min",
-                    "Close": "last",
-                    "Volume": "sum"
-                })
-                df_1h_daily.index.name = "Date"
-                if not df_1h_daily.empty:
-                    min_1h_date = df_1h_daily.index[0]
-        except Exception:
-            pass
-
-    if df_daily is not None and df_1h_daily is not None and min_1h_date is not None:
-        # Pre-1H period: from Daily data; 1H period: from 1H data
-        df_pre = df_daily[df_daily.index < min_1h_date]
-        df_unified = pd.concat([df_pre, df_1h_daily]).sort_index()
-        df_unified = df_unified[~df_unified.index.duplicated(keep="last")]
-    elif df_1h_daily is not None:
-        df_unified = df_1h_daily
-    elif df_daily is not None:
-        df_unified = df_daily
-    else:
+                d = df_h.groupby("_date").agg({"Open":"first", "High":"max", "Low":"min", "Close":"last", "Volume":"sum"})
+                d.index.name = "Date"
+                latest_p = float(d["Close"].iloc[-1])
+                if latest_p <= 0: return None
+                return {"df": d, "shares": (mcap_cr * 1e7) / latest_p}
+            except Exception:
+                return None
         return None
 
-    if df_unified is None or df_unified.empty:
-        return None
+    try:
+        df_d = pd.read_csv(daily_path, index_col=0, parse_dates=True)
+        if df_d.empty or "Close" not in df_d.columns: return None
+        if hasattr(df_d.index, "tz") and df_d.index.tz is not None: df_d.index = df_d.index.tz_localize(None)
+        df_d.index = pd.to_datetime(df_d.index).normalize()
+        df_d.sort_index(inplace=True)
 
-    latest_price = float(df_unified["Close"].iloc[-1])
-    if latest_price <= 0:
+        if not os.path.exists(h1_path):
+            latest_p = float(df_d["Close"].iloc[-1])
+            if latest_p <= 0: return None
+            return {"df": df_d, "shares": (mcap_cr * 1e7) / latest_p}
+
+        df_h = pd.read_csv(h1_path, index_col=0, parse_dates=True)
+        if df_h.empty or "Close" not in df_h.columns:
+            latest_p = float(df_d["Close"].iloc[-1])
+            if latest_p <= 0: return None
+            return {"df": df_d, "shares": (mcap_cr * 1e7) / latest_p}
+
+        if hasattr(df_h.index, "tz") and df_h.index.tz is not None: df_h.index = df_h.index.tz_localize(None)
+        df_h.sort_index(inplace=True)
+        df_h["_date"] = df_h.index.normalize()
+
+        agg_1h = df_h.groupby("_date").agg({
+            "Open": "first",
+            "High": "max",
+            "Low": "min",
+            "Close": "last",
+            "Volume": "sum"
+        })
+
+        common_dates = agg_1h.index.intersection(df_d.index)
+        if common_dates.empty:
+            latest_p = float(df_d["Close"].iloc[-1])
+            if latest_p <= 0: return None
+            return {"df": df_d, "shares": (mcap_cr * 1e7) / latest_p}
+
+        # Auto-correct unadjusted splits, demergers, and paise/rupee scale differences
+        scale = df_d.loc[common_dates, "Close"] / agg_1h.loc[common_dates, "Close"]
+        scale = scale.replace([np.inf, -np.inf], 1.0).fillna(1.0)
+
+        agg_1h_scaled = agg_1h.loc[common_dates].copy()
+        for col in ["Open", "High", "Low", "Close"]:
+            agg_1h_scaled[col] = agg_1h_scaled[col] * scale
+        agg_1h_scaled["Close"] = df_d.loc[common_dates, "Close"]
+
+        # Maintain valid candle geometry: High >= max(Open, Close), Low <= min(Open, Close)
+        agg_1h_scaled["High"] = np.maximum(agg_1h_scaled["High"], np.maximum(agg_1h_scaled["Open"], agg_1h_scaled["Close"]))
+        agg_1h_scaled["Low"] = np.minimum(agg_1h_scaled["Low"], np.minimum(agg_1h_scaled["Open"], agg_1h_scaled["Close"]))
+
+        min_1h_date = common_dates[0]
+        df_pre = df_d[df_d.index < min_1h_date]
+        df_final = pd.concat([df_pre, agg_1h_scaled]).sort_index()
+        df_final = df_final[~df_final.index.duplicated(keep="last")]
+
+        latest_p = float(df_final["Close"].iloc[-1])
+        if latest_p <= 0: return None
+        return {"df": df_final, "shares": (mcap_cr * 1e7) / latest_p}
+    except Exception:
         return None
-    shares = (mcap_cr * 1e7) / latest_price
-    return {"df": df_unified, "shares": shares}
 
 
 def calculate_sector_indices() -> tuple[dict, dict]:
@@ -827,7 +847,7 @@ def calculate_sector_indices() -> tuple[dict, dict]:
         for c in constituents:
             sym = c["symbol"]
             mcap_cr = c["market_cap_cr"]
-            res = load_unified_stock_df(sym, mcap_cr)
+            res = load_clean_unified_stock_df(sym, mcap_cr)
             if res is not None:
                 stock_dfs[sym] = res
 
