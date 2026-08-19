@@ -2,7 +2,7 @@
   "PAINTS_AND_VARNISHES": {
     "sector": "PAINTS_AND_VARNISHES",
     "constituents_count": 6,
-    "latest_index_value": 364.36,
+    "latest_index_value": 364.08,
     "weights_percentage": {
       "ASIANPAINT": 72.8442,
       "BERGEPAINT": 16.7153,
@@ -15,7 +15,7 @@
   "CABLES_AND_WIRES": {
     "sector": "CABLES_AND_WIRES",
     "constituents_count": 11,
-    "latest_index_value": 1557.99,
+    "latest_index_value": 1547.9,
     "weights_percentage": {
       "POLYCAB": 52.7938,
       "KEI": 18.311,
@@ -33,7 +33,7 @@
   "CONSUMER_DURABLES": {
     "sector": "CONSUMER_DURABLES",
     "constituents_count": 23,
-    "latest_index_value": 356.4,
+    "latest_index_value": 353.48,
     "weights_percentage": {
       "LGEINDIA": 28.1517,
       "HAVELLS": 20.9098,
@@ -63,7 +63,7 @@
   "LOGISTICS": {
     "sector": "LOGISTICS",
     "constituents_count": 30,
-    "latest_index_value": 471.6,
+    "latest_index_value": 471.57,
     "weights_percentage": {
       "ADANIPORTS": 40.8138,
       "INDIGO": 19.3093,
@@ -100,7 +100,7 @@
   "FERTILIZERS_AND_AGROCHEMICALS": {
     "sector": "FERTILIZERS_AND_AGROCHEMICALS",
     "constituents_count": 38,
-    "latest_index_value": 449.85,
+    "latest_index_value": 449.87,
     "weights_percentage": {
       "MARICO": 20.6916,
       "COROMANDEL": 10.8844,
@@ -145,7 +145,7 @@
   "OIL_GAS_UTILITIES": {
     "sector": "OIL_GAS_UTILITIES",
     "constituents_count": 26,
-    "latest_index_value": 288.91,
+    "latest_index_value": 286.8,
     "weights_percentage": {
       "ONGC": 43.736,
       "GAIL": 15.6232,
@@ -178,7 +178,7 @@
   "CEMENT_AND_BUILDING_MATERIALS": {
     "sector": "CEMENT_AND_BUILDING_MATERIALS",
     "constituents_count": 27,
-    "latest_index_value": 310.25,
+    "latest_index_value": 307.8,
     "weights_percentage": {
       "ULTRACEMCO": 43.7626,
       "AMBUJACEM": 13.244,
@@ -212,7 +212,7 @@
   "PAPER_AND_PACKAGING": {
     "sector": "PAPER_AND_PACKAGING",
     "constituents_count": 20,
-    "latest_index_value": 762.13,
+    "latest_index_value": 756.32,
     "weights_percentage": {
       "INOXINDIA": 20.548,
       "GRWRHITECH": 18.1173,
@@ -239,7 +239,7 @@
   "CONSUMER_STAPLES": {
     "sector": "CONSUMER_STAPLES",
     "constituents_count": 37,
-    "latest_index_value": 347.78,
+    "latest_index_value": 345.0,
     "weights_percentage": {
       "ITC": 28.1903,
       "NESTLEIND": 22.0946,
@@ -283,7 +283,7 @@
   "RETAIL": {
     "sector": "RETAIL",
     "constituents_count": 18,
-    "latest_index_value": 1043.15,
+    "latest_index_value": 1048.85,
     "weights_percentage": {
       "DMART": 35.5749,
       "TRENT": 20.9182,
@@ -308,13 +308,13 @@
   "HEALTHCARE_SERVICES": {
     "sector": "HEALTHCARE_SERVICES",
     "constituents_count": 0,
-    "latest_index_value": 370.5,
+    "latest_index_value": 370.48,
     "weights_percentage": {}
   },
   "CHEMICALS": {
     "sector": "CHEMICALS",
     "constituents_count": 79,
-    "latest_index_value": 824.24,
+    "latest_index_value": 819.08,
     "weights_percentage": {
       "SOLARINDS": 15.4457,
       "PIDILITIND": 14.7563,
@@ -400,7 +400,7 @@
   "SUGAR_AND_BIOENERGY": {
     "sector": "SUGAR_AND_BIOENERGY",
     "constituents_count": 9,
-    "latest_index_value": 349.1,
+    "latest_index_value": 363.36,
     "weights_percentage": {
       "EIDPARRY": 26.308,
       "BALRAMCHIN": 25.1406,
@@ -416,7 +416,7 @@
   "INFORMATION_TECHNOLOGY": {
     "sector": "INFORMATION_TECHNOLOGY",
     "constituents_count": 85,
-    "latest_index_value": 386.56,
+    "latest_index_value": 388.23,
     "weights_percentage": {
       "TCS": 27.8315,
       "INFY": 14.4119,
@@ -508,7 +508,7 @@
   "METALS_AND_MINING": {
     "sector": "METALS_AND_MINING",
     "constituents_count": 110,
-    "latest_index_value": 644.73,
+    "latest_index_value": 639.55,
     "weights_percentage": {
       "JSWSTEEL": 10.3523,
       "COALINDIA": 8.9864,
@@ -625,7 +625,7 @@
   "PLASTICS_AND_PIPES": {
     "sector": "PLASTICS_AND_PIPES",
     "constituents_count": 16,
-    "latest_index_value": 481.18,
+    "latest_index_value": 485.24,
     "weights_percentage": {
       "SUPREMEIND": 28.9048,
       "ASTRAL": 25.9465,
@@ -648,7 +648,7 @@
   "BUILDING_MATERIALS": {
     "sector": "BUILDING_MATERIALS",
     "constituents_count": 69,
-    "latest_index_value": 453.99,
+    "latest_index_value": 449.56,
     "weights_percentage": {
       "GRASIM": 37.5274,
       "KPRMILL": 6.476,
@@ -724,7 +724,7 @@
   "INFRASTRUCTURE": {
     "sector": "INFRASTRUCTURE",
     "constituents_count": 38,
-    "latest_index_value": 663.97,
+    "latest_index_value": 661.06,
     "weights_percentage": {
       "ADANIENT": 58.2163,
       "RVNL": 6.6523,
@@ -766,28 +766,10 @@
       "RIIL": 0.1565
     }
   },
-  "FINANCIAL_INFRASTRUCTURE": {
-    "sector": "FINANCIAL_INFRASTRUCTURE",
-    "constituents_count": 11,
-    "latest_index_value": 798.17,
-    "weights_percentage": {
-      "BSE": 43.3318,
-      "MCX": 20.8338,
-      "CRISIL": 9.5145,
-      "CDSL": 8.3385,
-      "CAMS": 5.6563,
-      "KFINTECH": 4.4366,
-      "IEX": 3.3161,
-      "CARERATING": 1.5114,
-      "ICRA": 1.3876,
-      "MSTCLTD": 1.2793,
-      "PRECAM": 0.3941
-    }
-  },
   "MEDIA_AND_ENTERTAINMENT": {
     "sector": "MEDIA_AND_ENTERTAINMENT",
     "constituents_count": 13,
-    "latest_index_value": 137.28,
+    "latest_index_value": 134.89,
     "weights_percentage": {
       "PFOCUS": 18.924,
       "SUNTV": 16.1649,
@@ -804,10 +786,28 @@
       "JAGRAN": 1.1524
     }
   },
+  "FINANCIAL_INFRASTRUCTURE": {
+    "sector": "FINANCIAL_INFRASTRUCTURE",
+    "constituents_count": 11,
+    "latest_index_value": 795.97,
+    "weights_percentage": {
+      "BSE": 43.3318,
+      "MCX": 20.8338,
+      "CRISIL": 9.5145,
+      "CDSL": 8.3385,
+      "CAMS": 5.6563,
+      "KFINTECH": 4.4366,
+      "IEX": 3.3161,
+      "CARERATING": 1.5114,
+      "ICRA": 1.3876,
+      "MSTCLTD": 1.2793,
+      "PRECAM": 0.3941
+    }
+  },
   "CAPITAL_GOODS": {
     "sector": "CAPITAL_GOODS",
     "constituents_count": 139,
-    "latest_index_value": 602.57,
+    "latest_index_value": 596.87,
     "weights_percentage": {
       "RELIANCE": 34.0272,
       "LT": 10.2467,
@@ -953,7 +953,7 @@
   "REAL_ESTATE": {
     "sector": "REAL_ESTATE",
     "constituents_count": 47,
-    "latest_index_value": 562.35,
+    "latest_index_value": 558.74,
     "weights_percentage": {
       "DLF": 20.6712,
       "LODHA": 14.7949,
@@ -1007,7 +1007,7 @@
   "TEXTILES_APPAREL": {
     "sector": "TEXTILES_APPAREL",
     "constituents_count": 9,
-    "latest_index_value": 364.14,
+    "latest_index_value": 357.26,
     "weights_percentage": {
       "PAGEIND": 43.063,
       "VTL": 17.0548,
@@ -1023,7 +1023,7 @@
   "BREWERIES_AND_DISTILLERIES": {
     "sector": "BREWERIES_AND_DISTILLERIES",
     "constituents_count": 13,
-    "latest_index_value": 360.05,
+    "latest_index_value": 359.94,
     "weights_percentage": {
       "UNITDSPR": 42.3603,
       "RADICO": 21.7505,
@@ -1043,7 +1043,7 @@
   "DIGITAL_PLATFORMS": {
     "sector": "DIGITAL_PLATFORMS",
     "constituents_count": 21,
-    "latest_index_value": 377.56,
+    "latest_index_value": 376.62,
     "weights_percentage": {
       "PAYTM": 19.8301,
       "NAUKRI": 18.2385,
@@ -1071,7 +1071,7 @@
   "POWER_AND_UTILITIES": {
     "sector": "POWER_AND_UTILITIES",
     "constituents_count": 28,
-    "latest_index_value": 665.4,
+    "latest_index_value": 657.2,
     "weights_percentage": {
       "ADANIPOWER": 19.6203,
       "NTPC": 16.0314,
@@ -1106,7 +1106,7 @@
   "FINANCIAL_SERVICES": {
     "sector": "FINANCIAL_SERVICES",
     "constituents_count": 131,
-    "latest_index_value": 513.85,
+    "latest_index_value": 514.14,
     "weights_percentage": {
       "BAJFINANCE": 11.3418,
       "LICI": 9.5859,
@@ -1244,7 +1244,7 @@
   "RENEWABLE_ENERGY": {
     "sector": "RENEWABLE_ENERGY",
     "constituents_count": 15,
-    "latest_index_value": 420.72,
+    "latest_index_value": 418.57,
     "weights_percentage": {
       "WAAREEENER": 22.3173,
       "SUZLON": 20.6301,
@@ -1266,7 +1266,7 @@
   "ELECTRONICS_EMS": {
     "sector": "ELECTRONICS_EMS",
     "constituents_count": 21,
-    "latest_index_value": 2185.67,
+    "latest_index_value": 2151.93,
     "weights_percentage": {
       "DIXON": 24.4244,
       "CPPLUS": 12.0589,
@@ -1291,46 +1291,10 @@
       "VOEPL": 0.445
     }
   },
-  "HOSPITALITY": {
-    "sector": "HOSPITALITY",
-    "constituents_count": 29,
-    "latest_index_value": 285.32,
-    "weights_percentage": {
-      "INDHOTEL": 30.2667,
-      "ITCHOTELS": 9.7367,
-      "JUBLFOOD": 8.0668,
-      "EIHOTEL": 5.9663,
-      "CHALET": 5.2131,
-      "TRAVELFOOD": 4.9509,
-      "THELEELA": 4.6338,
-      "VENTIVE": 4.217,
-      "DEVYANI": 4.0471,
-      "LEMONTREE": 2.5325,
-      "WESTLIFE": 2.0928,
-      "ITDC": 1.8487,
-      "CORDELIA": 1.7064,
-      "SAPPHIRE": 1.6826,
-      "RBA": 1.3555,
-      "THOMASCOOK": 1.3453,
-      "MHRIL": 1.2925,
-      "JUNIPER": 1.2557,
-      "SAMHI": 1.1535,
-      "WONDERLA": 0.8694,
-      "IMAGICAA": 0.7718,
-      "UFBL": 0.771,
-      "PARKHOTELS": 0.7633,
-      "ORIENTHOT": 0.7039,
-      "BRIGHOTEL": 0.6679,
-      "TAJGVK": 0.6596,
-      "EIHAHOTELS": 0.5538,
-      "DELTACORP": 0.493,
-      "ASIANHOTNR": 0.3821
-    }
-  },
   "AUTOMOBILES": {
     "sector": "AUTOMOBILES",
     "constituents_count": 126,
-    "latest_index_value": 443.82,
+    "latest_index_value": 441.91,
     "weights_percentage": {
       "HINDUNILVR": 10.9151,
       "MARUTI": 9.1529,
@@ -1463,7 +1427,7 @@
   "TELECOMMUNICATIONS": {
     "sector": "TELECOMMUNICATIONS",
     "constituents_count": 19,
-    "latest_index_value": 124.37,
+    "latest_index_value": 123.92,
     "weights_percentage": {
       "BHARTIARTL": 71.2885,
       "IDEA": 8.7662,
@@ -1486,10 +1450,46 @@
       "SUYOG": 0.0625
     }
   },
+  "HOSPITALITY": {
+    "sector": "HOSPITALITY",
+    "constituents_count": 29,
+    "latest_index_value": 287.46,
+    "weights_percentage": {
+      "INDHOTEL": 30.2667,
+      "ITCHOTELS": 9.7367,
+      "JUBLFOOD": 8.0668,
+      "EIHOTEL": 5.9663,
+      "CHALET": 5.2131,
+      "TRAVELFOOD": 4.9509,
+      "THELEELA": 4.6338,
+      "VENTIVE": 4.217,
+      "DEVYANI": 4.0471,
+      "LEMONTREE": 2.5325,
+      "WESTLIFE": 2.0928,
+      "ITDC": 1.8487,
+      "CORDELIA": 1.7064,
+      "SAPPHIRE": 1.6826,
+      "RBA": 1.3555,
+      "THOMASCOOK": 1.3453,
+      "MHRIL": 1.2925,
+      "JUNIPER": 1.2557,
+      "SAMHI": 1.1535,
+      "WONDERLA": 0.8694,
+      "IMAGICAA": 0.7718,
+      "UFBL": 0.771,
+      "PARKHOTELS": 0.7633,
+      "ORIENTHOT": 0.7039,
+      "BRIGHOTEL": 0.6679,
+      "TAJGVK": 0.6596,
+      "EIHAHOTELS": 0.5538,
+      "DELTACORP": 0.493,
+      "ASIANHOTNR": 0.3821
+    }
+  },
   "FOOTWEAR_AND_ACCESSORIES": {
     "sector": "FOOTWEAR_AND_ACCESSORIES",
     "constituents_count": 6,
-    "latest_index_value": 321.45,
+    "latest_index_value": 317.88,
     "weights_percentage": {
       "METROBRAND": 43.653,
       "RELAXO": 15.7212,
@@ -1502,7 +1502,7 @@
   "JEWELLERY": {
     "sector": "JEWELLERY",
     "constituents_count": 20,
-    "latest_index_value": 1041.03,
+    "latest_index_value": 1039.85,
     "weights_percentage": {
       "TITAN": 71.4823,
       "KALYANKJIL": 10.1973,
@@ -1529,7 +1529,7 @@
   "DEFENCE": {
     "sector": "DEFENCE",
     "constituents_count": 9,
-    "latest_index_value": 1832.35,
+    "latest_index_value": 1810.26,
     "weights_percentage": {
       "HAL": 35.5465,
       "BEL": 34.4062,
@@ -1545,7 +1545,7 @@
   "BANKING": {
     "sector": "BANKING",
     "constituents_count": 41,
-    "latest_index_value": 183.97,
+    "latest_index_value": 184.08,
     "weights_percentage": {
       "HDFCBANK": 20.9238,
       "ICICIBANK": 18.8003,

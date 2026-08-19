@@ -79,6 +79,44 @@
 
 | Rank | Sector | Index Level | Total Return | Constituents |
 |:---:|:---|:---:|:---:|:---:|
+| 🥇 1 | Electronics EMS | 2,151.9 | +2,051.9% | 21 |
+| 🥈 2 | Defence | 1,810.3 | +1,710.3% | 9 |
+| 🥉 3 | Cables And Wires | 1,547.9 | +1,447.9% | 11 |
+| 4 | Retail | 1,048.8 | +948.9% | 18 |
+| 5 | Jewellery | 1,039.8 | +939.9% | 20 |
+| 6 | Chemicals | 819.1 | +719.1% | 79 |
+| 7 | Financial Infrastructure | 796.0 | +696.0% | 11 |
+| 8 | Paper And Packaging | 756.3 | +656.3% | 20 |
+| 9 | Infrastructure | 661.1 | +561.1% | 38 |
+| 10 | Power And Utilities | 657.2 | +557.2% | 28 |
+| 11 | Metals And Mining | 639.5 | +539.5% | 110 |
+| 12 | Capital Goods | 596.9 | +496.9% | 139 |
+| 13 | Real Estate | 558.7 | +458.7% | 47 |
+| 14 | Financial Services | 514.1 | +414.1% | 131 |
+| 15 | Plastics And Pipes | 485.2 | +385.2% | 16 |
+| 16 | Logistics | 471.6 | +371.6% | 30 |
+| 17 | Fertilizers And Agrochemicals | 449.9 | +349.9% | 38 |
+| 18 | Building Materials | 449.6 | +349.6% | 69 |
+| 19 | Automobiles | 441.9 | +341.9% | 126 |
+| 20 | Renewable Energy | 418.6 | +318.6% | 15 |
+| 21 | Information Technology | 388.2 | +288.2% | 85 |
+| 22 | Digital Platforms | 376.6 | +276.6% | 21 |
+| 23 | Healthcare Services | 370.5 | +270.5% | 107 |
+| 24 | Paints And Varnishes | 364.1 | +264.1% | 6 |
+| 25 | Sugar And Bioenergy | 363.4 | +263.4% | 9 |
+| 26 | Breweries And Distilleries | 359.9 | +259.9% | 13 |
+| 27 | Textiles Apparel | 357.3 | +257.3% | 9 |
+| 28 | Consumer Durables | 353.5 | +253.5% | 23 |
+| 29 | Consumer Staples | 345.0 | +245.0% | 37 |
+| 30 | Footwear And Accessories | 317.9 | +217.9% | 6 |
+| 31 | Cement And Building Materials | 307.8 | +207.8% | 27 |
+| 32 | Hospitality | 287.5 | +187.5% | 29 |
+| 33 | Oil Gas Utilities | 286.8 | +186.8% | 26 |
+| 34 | Banking | 184.1 | +84.1% | 41 |
+| 35 | Media And Entertainment | 134.9 | +34.9% | 13 |
+| 36 | Telecommunications | 123.9 | +23.9% | 19 |
+
+---:|:---|:---:|:---:|:---:|
 | 🥇 1 | Electronics EMS | 2,185.7 | +2,085.7% | 21 |
 | 🥈 2 | Defence | 1,832.3 | +1,732.3% | 9 |
 | 🥉 3 | Cables And Wires | 1,558.0 | +1,458.0% | 11 |
