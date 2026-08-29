@@ -1167,7 +1167,7 @@ def generate_dashboard_data():
             if not bars:
                 continue
 
-            # Load recent prices for constituent stocks (last 30 trading days)
+            # Load complete daily price history for constituent stocks (2015 to present)
             consts_symbols = sector_constituents.get(sec_name, [])
             consts_list = []
             for sym in consts_symbols:
@@ -1183,12 +1183,10 @@ def generate_dashboard_data():
                             if "1h" in stock_path.lower():
                                 df_stk["_date"] = df_stk.index.normalize()
                                 df_stk_daily = df_stk.groupby("_date")["Close"].last()
-                                recent = df_stk_daily.tail(252)
-                                for dt_stk, c_val in recent.items():
+                                for dt_stk, c_val in df_stk_daily.items():
                                     prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(c_val), 2)
                             else:
-                                recent = df_stk.tail(252)
-                                for dt_stk, row_stk in recent.iterrows():
+                                for dt_stk, row_stk in df_stk.iterrows():
                                     prices_dict[dt_stk.strftime("%Y-%m-%d")] = round(float(row_stk["Close"]), 2)
                     except Exception:
                         pass
