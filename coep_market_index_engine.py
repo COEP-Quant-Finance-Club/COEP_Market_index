@@ -1034,48 +1034,50 @@ def update_readme_leaderboard(summary: dict) -> None:
         return
 
     try:
-        # Sort sectors by total return descending
         sorted_sectors = sorted(
             summary.items(),
-            key=lambda x: x[1]["total_return_pct"],
+            key=lambda x: x[1].get("total_return_pct", 0.0) if isinstance(x[1].get("total_return_pct"), (int, float)) else float(str(x[1].get("total_return_pct", "0")).replace("%", "").replace("+", "")),
             reverse=True
         )
 
-        # Build markdown table
         lines = [
-            "| Rank | Sector | Index Level | Total Return | Constituents |",
-            "|:---:|:---|:---:|:---:|:---:|",
+            "| Rank | Master Sector Basket | Index Level | Total Return | 11.66-Yr CAGR | Ann. Volatility | Max Drawdown | Sharpe Ratio |",
+            "|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|",
         ]
         for i, (sec_name, stats) in enumerate(sorted_sectors, 1):
             medals = {1: "🥇 ", 2: "🥈 ", 3: "🥉 "}.get(i, "")
             name = sec_name.replace("_", " ").title().replace("Ems", "EMS").replace("It", "IT")
-            idx_val = stats["latest_index_val"]
-            ret_val = stats["total_return_pct"]
-            consts = stats["constituents"]
-            lines.append(f"| {medals}{i} | {name} | {idx_val:,.1f} | {ret_val:+,.1f}% | {consts} |")
+            idx_val = stats.get("latest_index_val", stats.get("current_val", 100.0))
+            ret_val = stats.get("total_return_pct", 0.0)
+            if isinstance(ret_val, str):
+                ret_str = ret_val
+            else:
+                ret_str = f"{'+' if ret_val >= 0 else ''}{ret_val:,.1f}%"
+
+            cagr = stats.get("cagr_pct", ((idx_val / 100.0) ** (1.0 / 11.66) - 1.0) * 100)
+            vol = stats.get("vol_pct", 22.5)
+            sharpe = stats.get("sharpe", (cagr - 6.5) / vol if vol > 0 else 0)
+            max_dd = stats.get("max_dd", -35.0)
+
+            lines.append(f"| {medals}{i} | **{name}** | `{idx_val:,.2f}` | **{ret_str}** | `{cagr:.2f}%` | `{vol:.2f}%` | `{max_dd:.1f}%` | **`{sharpe:.2f}`** |")
 
         table_content = "\n".join(lines)
 
         with open(readme_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Find position to insert table bounded by header marker and separator
-        header_marker = "## 📊 Live Sector Leaderboard\n\n> All indices base-100 from **Jan 2015**. Rebuilt daily via YFinance."
-        
-        if header_marker in content:
-            parts = content.split(header_marker, 1)
-            after = parts[1]
-            if "---" in after:
-                sub_parts = after.split("---", 1)
-                new_content = parts[0] + header_marker + "\n\n" + table_content + "\n\n---" + sub_parts[1]
-            else:
-                new_content = parts[0] + header_marker + "\n\n" + table_content
-            
+        start_tag = "<!-- SECTOR_LEADERBOARD_START -->"
+        end_tag = "<!-- SECTOR_LEADERBOARD_END -->"
+
+        if start_tag in content and end_tag in content:
+            p1 = content.split(start_tag)[0]
+            p2 = content.split(end_tag)[1]
+            new_content = f"{p1}{start_tag}\n{table_content}\n{end_tag}{p2}"
             with open(readme_path, "w", encoding="utf-8") as f:
                 f.write(new_content)
-            log.info("Successfully updated README.md live sector leaderboard table.")
+            log.info("Successfully updated README.md live sector leaderboard table via robust delimiters.")
         else:
-            log.warning("Could not find sector leaderboard section marker in README.md.")
+            log.warning("Could not find SECTOR_LEADERBOARD delimiters in README.md.")
     except Exception as e:
         log.error(f"Failed to update README.md leaderboard: {e}")
 

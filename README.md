@@ -62,14 +62,14 @@
 [![Live Terminal](https://img.shields.io/badge/Live_Terminal-Open_Access-06B6D4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://coep-quant-finance-club.github.io/club-website/market-index)
 [![Download Data](https://img.shields.io/badge/Datasets-1--Click_Download-10B981?style=for-the-badge&logo=databricks&logoColor=white)](https://coep-quant-finance-club.github.io/club-website/resources)
 [![Coverage](https://img.shields.io/badge/Universe-1%2C451_Equities-7C3AED?style=for-the-badge&logo=stackshare&logoColor=white)](#-36-master-sector-universe)
-[![Zero Forward Bias](https://img.shields.io/badge/Methodology-Free--Float_Weighted-F59E0B?style=for-the-badge&logo=mathworks&logoColor=white)](#-index-calculation-methodology)
+[![Zero Forward Bias](https://img.shields.io/badge/Methodology-Free--Float_Weighted-F59E0B?style=for-the-badge&logo=mathworks&logoColor=white)](#-index-methodology)
 
 <br/>
 
 > **India's First Student-Built Institutional Sector Index Architecture**  
 > A production-grade, zero-forward-bias quantitative equity platform tracking **36 specialized master sectors**, **3-state macro regimes**, and **intraday liquidity spillovers** across **1,451 Indian equities** (2015 – 2026).
 
-[🌐 **Explore Live Terminal**](https://coep-quant-finance-club.github.io/club-website/market-index) • [📦 **Download Datasets (ZIP/CSV)**](https://coep-quant-finance-club.github.io/club-website/resources) • [📑 **Research Documentation**](#-index-calculation-methodology)
+[🌐 **Explore Live Terminal**](https://coep-quant-finance-club.github.io/club-website/market-index) • [📦 **Download Datasets (ZIP/CSV)**](https://coep-quant-finance-club.github.io/club-website/resources) • [📑 **Sector Universe**](#-36-master-sector-universe)
 
 </div>
 
@@ -97,11 +97,12 @@
 
 ## 📊 Master 36-Sector Benchmark Leaderboard
 
-> **Base Value**: `100.00` (Jan 1, 2015) • **Audited Horizon**: 11.5 Years (2,868 Daily Trading Bars) • **Coverage**: 1,451 Stocks
+> **Base Value**: `100.00` (Jan 1, 2015) • **Audited Horizon**: 11.66 Years (2,878 Daily Trading Bars) • **Coverage**: 1,451 Stocks
 
-| Rank | Master Sector Basket | Index Level | Total Return | 11.5-Yr CAGR | Ann. Volatility | Max Drawdown | Sharpe Ratio |
+<!-- SECTOR_LEADERBOARD_START -->
+| Rank | Master Sector Basket | Index Level | Total Return | 11.66-Yr CAGR | Ann. Volatility | Max Drawdown | Sharpe Ratio |
 |:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|
-| 🥇  | **Electronics Ems** | `2,112.38` | **+2,012.4%** | `30.03%` | `32.46%` | `-66.8%` | **`0.79`** |
+| 🥇  | **Electronics EMS** | `2,112.38` | **+2,012.4%** | `30.03%` | `32.46%` | `-66.8%` | **`0.79`** |
 | 🥈  | **Defence** | `1,871.56` | **+1,771.6%** | `28.68%` | `31.07%` | `-66.6%` | **`0.77`** |
 | 🥉  | **Cables And Wires** | `1,606.85` | **+1,506.8%** | `27.00%` | `29.04%` | `-54.0%` | **`0.76`** |
 | 4 | **Retail** | `1,067.11` | **+967.1%** | `22.61%` | `25.97%` | `-45.5%` | **`0.68`** |
@@ -137,6 +138,7 @@
 | 34 | **Banking** | `185.49` | **+85.5%** | `5.46%` | `22.42%` | `-58.9%` | **`0.07`** |
 | 35 | **Media And Entertainment** | `134.48` | **+34.5%** | `2.58%` | `26.54%` | `-71.5%` | **`-0.01`** |
 | 36 | **Telecommunications** | `125.27` | **+25.3%** | `1.96%` | `29.71%` | `-80.4%` | **`-0.00`** |
+<!-- SECTOR_LEADERBOARD_END -->
 
 ---
 
@@ -146,7 +148,7 @@ All datasets are split-adjusted, audited for continuity, and available for resea
 
 | Package | Format | File Size | Description | Download Link |
 |:---|:---:|:---:|:---|:---:|
-| **Consolidated Master Daily CSV** | `CSV` | **7.84 MB** | All 36 sector time series unified into 1 master table (103,227 trading bars) | [📥 Download CSV](https://coep-quant-finance-club.github.io/club-website/downloads/coep_36_sector_indices_daily_master.csv) |
+| **Consolidated Master Daily CSV** | `CSV` | **7.84 MB** | All 36 sector time series unified into 1 master table (103,608 trading bars) | [📥 Download CSV](https://coep-quant-finance-club.github.io/club-website/downloads/coep_36_sector_indices_daily_master.csv) |
 | **36-Sector Daily OHLCV Bundle** | `ZIP` | **2.28 MB** | 36 dedicated CSV files + statistical performance manifest | [📦 Download ZIP](https://coep-quant-finance-club.github.io/club-website/downloads/coep_36_sector_indices_daily_csv.zip) |
 | **36-Sector 1-Hour Intraday Bundle** | `ZIP` | **2.27 MB** | 36 high-frequency 1-hour candlestick OHLCV files | [⏱️ Download ZIP](https://coep-quant-finance-club.github.io/club-website/downloads/coep_36_sector_indices_1hour_csv.zip) |
 | **Performance & Risk Summary** | `CSV` | **6.6 KB** | Audited CAGR, Volatility, Sharpe, and Drawdown matrix | [📑 Download Summary](https://coep-quant-finance-club.github.io/club-website/downloads/coep_36_sector_indices_metrics_summary.csv) |
@@ -168,60 +170,75 @@ print(f"Loaded {len(df):,} bars across {df['Sector_Code'].nunique()} sectors.")
 
 ```mermaid
 flowchart TD
-    subgraph Data Layer
-        A[🌐 YFinance API\nOHLCV Daily & 1H Bars] -->|1,451 stocks\nParallel workers| B[(OHLCV/Stocks/Daily\n1,447+ Stock CSVs)]
-        C[🌐 Screener.in\nFundamentals Scraper] -->|P&L · Balance Sheet\nCash Flow · Ratios| D[(Industries/\n36 x enhanced CSVs)]
-        E[🌐 Screener.in\nCorporate Actions] -->|Splits · Bonuses\nDividends · Mergers| F[json/screener_corporate_actions.json]
-    end
+    A[🌐 YFinance API
+OHLCV Daily Data] -->|1,451 stocks
+25 workers parallel| B[(OHLCV/Stocks/Daily
+1,451 x daily CSVs)]
+    C[🌐 Screener.in
+Fundamentals Scraper] -->|P&L · Balance Sheet
+Cash Flow · Ratios| D[(Industries/
+36 x enhanced CSVs)]
+    E[🌐 Screener.in
+Corporate Actions] -->|Splits · Bonuses
+Dividends · Rights| F[json/screener_corporate_actions.json]
 
-    subgraph Index Engine
-        B --> G[⚙️ coep_market_index_engine.py\nFree-Float Market-Cap Index Builder]
-        F --> G
-        G -->|Base = 100.0 · Jan 2015| H[(OHLCV/Indices/Daily\n36 Sector Index CSVs)]
-        G -->|1-Hour Precision| H1[(OHLCV/Indices/1H\n36 Intraday Index CSVs)]
-        G --> I[json/todays_sector_weights.json]
-        G --> J[json/base_market_caps.json]
-    end
+    B --> G[⚙️ coep_market_index_engine.py
+Free-Float Market-Cap Index Builder]
+    G -->|Base = 100 · Jan 2015| H[(OHLCV/Indices/Daily
+36 sector index CSVs)]
+    G --> I[json/todays_sector_weights.json]
+    G --> J[json/base_market_caps.json]
 
-    subgraph Regime & Alpha Modeling
-        H --> K[🧠 Macro Regime State Machine\nEMA + ATR + Momentum Transitions]
-        K --> L[State 2: Bullish\nState 1: Neutral / Accumulation\nState 0: Bearish]
-        D --> M[🎯 Hedge Fund Scoring Engine\nDeterministic 50-Feature Factor Weights]
-    end
+    D --> K[🎯 score_industries.py
+Hedge Fund Scoring Engine]
+    K -->|Deterministic
+50 financial features| L[Hedge Fund Score
+0–100]
+    K -->|GPT-4o review
+batch mode| M[LLM Score
+0–100]
+    L --> N[Combined Score
+max of HF and LLM]
+    M --> N
 
-    subgraph Institutional UI
-        H --> N[🖥️ regime_dashboard_data.js\n16.9 MB Master Payload]
-        L --> N
-        M --> N
-        N --> O[📊 Web Terminal\nLightweightCharts.js + React]
-    end
+    N --> O[(scored_csv/
+global_ranking.csv
+1,451 stocks ranked)]
 
-    style A fill:#061426,stroke:#06b6d4,color:#fff
-    style C fill:#061426,stroke:#06b6d4,color:#fff
-    style G fill:#0d2847,stroke:#10b981,color:#fff
-    style K fill:#1e1438,stroke:#a855f7,color:#fff
-    style O fill:#042f2e,stroke:#14b8a6,color:#fff
+    D --> P[🤖 ml_scorer_v2.py
+ML Validation Layer]
+    P -->|GBM + 6-Layer Residual DNN
+Stacking ensemble| Q[ML Score Validation
+vs Expert Anchors]
+    O --> Q
+
+    H --> R[📊 dashboard.html
+Interactive Terminal]
+    O --> R
+    I --> R
+    R -->|LightweightCharts.js
+Candlestick Engine| S[🖥️ Sector Intelligence
+Dashboard]
+
+    style A fill:#1a1a2e,stroke:#00d4ff,color:#fff
+    style C fill:#1a1a2e,stroke:#00d4ff,color:#fff
+    style E fill:#1a1a2e,stroke:#00d4ff,color:#fff
+    style G fill:#0d3b5e,stroke:#ffd700,color:#fff
+    style K fill:#0d3b5e,stroke:#ffd700,color:#fff
+    style P fill:#1a1a2e,stroke:#7b2ff7,color:#fff
+    style R fill:#1a2e1a,stroke:#00ff88,color:#fff
+    style S fill:#1a2e1a,stroke:#00ff88,color:#fff
+    style O fill:#2e1a1a,stroke:#ff6b35,color:#fff
 ```
 
 ---
 
-## 🔬 Index Calculation Methodology
+## 🔬 Index Methodology
 
-Our index engine enforces **strict zero-forward-bias free-float market-capitalization weighting**:
-
-```
-Fixed Share Count:      Q_i    = (BaseMarketCap_0 * 10^7) / BasePrice_0
-
-Daily Market Cap:       M_i,t  = Price_i,t * Q_i
-
-Lagged Sector Weight:   w_i,t-1 = M_i,t-1 / Σ M_j,t-1   (lagged — zero forward bias)
-
-Daily Sector Return:    R_s,t  = Σ w_i,t-1 * (Price_i,t - Price_i,t-1) / Price_i,t-1
-
-Sector Index Level:     I_t    = I_t-1 * (1 + R_s,t)     [I_0 = 100.0, Jan 1, 2015]
-```
-
-> **Zero Lookahead Guarantee**: Weights $w_{i,t-1}$ are lagged to market close $t-1$. Share counts $Q_i$ are fixed at the base date and only modified upon audited corporate splits/bonuses.
+> **Zero-forward-bias free-float market-capitalization weighting:**
+> * Share counts $Q_i$ are fixed at the base date ($Q_i = rac{	ext{Base Market Cap}_0 	imes 10^7}{	ext{Base Price}_0}$) to ensure the index price action reflects pure equity price movement rather than secondary dilution.
+> * Weights $w_{i,t-1}$ are lagged to market close $t-1$, eliminating lookahead bias.
+> * Cumulative index levels are chained daily ($I_t = I_{t-1} 	imes (1 + R_{s,t})$) with $I_0 = 100.00$ starting on Jan 1, 2015.
 
 ---
 
@@ -239,17 +256,7 @@ Every Indian equity in the 1,451-stock universe belongs to **exactly one clean s
 
 ---
 
-## 👥 Quant Finance Club Core Team
-
 <div align="center">
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     COEP QUANT FINANCE CLUB  ·  EST. 2024               │
-│               Department of Mathematics & Computing / COEP Tech        │
-│          "In God we trust. All others must bring data." — W. E. Deming  │
-└─────────────────────────────────────────────────────────────────────────┘
-```
 
 [![GitHub](https://img.shields.io/badge/GitHub-COEP--Quant--Finance--Club-181717?style=for-the-badge&logo=github)](https://github.com/COEP-Quant-Finance-Club)
 [![Website](https://img.shields.io/badge/Website-Official_Portal-06B6D4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://coep-quant-finance-club.github.io/club-website/)
