@@ -95,51 +95,6 @@
 
 ---
 
-## 📊 Master 36-Sector Benchmark Leaderboard
-
-> **Base Value**: `100.00` (Jan 1, 2015) • **Audited Horizon**: 11.66 Years (2,878 Daily Trading Bars) • **Coverage**: 1,451 Stocks
-
-<!-- SECTOR_LEADERBOARD_START -->
-| 🥇  | **Electronics EMS** | `2,112.38` | **+2,012.4%** | `30.03%` | `32.46%` | `-66.8%` | **`0.79`** |
-| 🥈  | **Defence** | `1,871.56` | **+1,771.6%** | `28.68%` | `31.07%` | `-66.6%` | **`0.77`** |
-| 🥉  | **Cables And Wires** | `1,606.85` | **+1,506.8%** | `27.00%` | `29.04%` | `-54.0%` | **`0.76`** |
-| 4 | **Retail** | `1,067.11` | **+967.1%** | `22.61%` | `25.97%` | `-45.5%` | **`0.68`** |
-| 5 | **Jewellery** | `1,040.77` | **+940.8%** | `22.34%` | `24.99%` | `-46.2%` | **`0.69`** |
-| 6 | **Chemicals** | `971.72` | **+871.7%** | `21.62%` | `19.08%` | `-31.0%` | **`0.80`** |
-| 7 | **Financial Infrastructure** | `802.34` | **+702.3%** | `19.63%` | `22.37%` | `-49.8%` | **`0.64`** |
-| 8 | **Paper And Packaging** | `754.05` | **+654.1%** | `19.00%` | `24.85%` | `-54.3%` | **`0.58`** |
-| 9 | **Power And Utilities** | `671.94` | **+571.9%** | `17.82%` | `23.39%` | `-53.8%` | **`0.56`** |
-| 10 | **Infrastructure** | `668.09` | **+568.1%** | `17.76%` | `31.95%` | `-64.3%` | **`0.48`** |
-| 11 | **Metals And Mining** | `640.68` | **+540.7%** | `17.34%` | `23.60%` | `-59.8%` | **`0.54`** |
-| 12 | **Real Estate** | `620.18` | **+520.2%** | `17.01%` | `28.62%` | `-55.6%` | **`0.48`** |
-| 13 | **Capital Goods** | `611.14` | **+511.1%** | `16.86%` | `21.01%` | `-43.0%` | **`0.55`** |
-| 14 | **Logistics** | `563.91` | **+463.9%** | `16.06%` | `26.05%` | `-46.9%` | **`0.46`** |
-| 15 | **Financial Services** | `533.57` | **+433.6%** | `15.50%` | `21.76%` | `-48.2%` | **`0.49`** |
-| 16 | **Automobiles** | `518.97` | **+419.0%** | `15.23%` | `17.25%` | `-37.2%` | **`0.55`** |
-| 17 | **Plastics And Pipes** | `482.77` | **+382.8%** | `14.51%` | `22.67%` | `-53.4%` | **`0.44`** |
-| 18 | **Digital Platforms** | `460.36` | **+360.4%** | `14.05%` | `31.30%` | `-53.5%` | **`0.38`** |
-| 19 | **Building Materials** | `455.39` | **+355.4%** | `13.94%` | `20.21%` | `-67.1%` | **`0.44`** |
-| 20 | **Fertilizers And Agrochemicals** | `453.69` | **+353.7%** | `13.90%` | `19.28%` | `-35.8%` | **`0.45`** |
-| 21 | **Information Technology** | `417.44` | **+317.4%** | `13.09%` | `20.64%` | `-32.8%` | **`0.40`** |
-| 22 | **Renewable Energy** | `414.72` | **+314.7%** | `13.03%` | `43.43%` | `-88.3%` | **`0.35`** |
-| 23 | **Paints And Varnishes** | `372.63` | **+272.6%** | `11.99%` | `22.05%` | `-38.1%` | **`0.34`** |
-| 24 | **Healthcare Services** | `371.18` | **+271.2%** | `11.95%` | `16.87%` | `-35.2%` | **`0.38`** |
-| 25 | **Consumer Durables** | `366.54` | **+266.5%** | `11.83%` | `19.11%` | `-41.5%` | **`0.35`** |
-| 26 | **Breweries And Distilleries** | `362.21` | **+262.2%** | `11.72%` | `24.78%` | `-46.1%` | **`0.32`** |
-| 27 | **Consumer Staples** | `356.68` | **+256.7%** | `11.57%` | `16.81%` | `-33.1%` | **`0.36`** |
-| 28 | **Textiles Apparel** | `350.88` | **+250.9%** | `11.41%` | `24.34%` | `-57.2%` | **`0.31`** |
-| 29 | **Sugar And Bioenergy** | `332.98` | **+233.0%** | `10.91%` | `33.98%` | `-72.9%` | **`0.29`** |
-| 30 | **Footwear And Accessories** | `325.63` | **+225.6%** | `10.70%` | `22.28%` | `-46.4%` | **`0.29`** |
-| 31 | **Cement And Building Materials** | `313.68` | **+213.7%** | `10.34%` | `22.09%` | `-37.8%` | **`0.27`** |
-| 32 | **Oil Gas Utilities** | `301.98` | **+202.0%** | `9.98%` | `24.71%` | `-56.8%` | **`0.25`** |
-| 33 | **Hospitality** | `288.64` | **+188.6%** | `9.55%` | `22.78%` | `-55.7%` | **`0.24`** |
-| 34 | **Banking** | `185.49` | **+85.5%** | `5.46%` | `22.42%` | `-58.9%` | **`0.07`** |
-| 35 | **Media And Entertainment** | `134.48` | **+34.5%** | `2.58%` | `26.54%` | `-71.5%` | **`-0.01`** |
-| 36 | **Telecommunications** | `125.27` | **+25.3%** | `1.96%` | `29.71%` | `-80.4%` | **`-0.00`** |
-<!-- SECTOR_LEADERBOARD_END -->
-
----
-
 ## 📥 1-Click Open Access Quantitative Datasets
 
 All datasets are split-adjusted, audited for continuity, and available for researchers and algorithmic traders with a single click:
@@ -234,9 +189,9 @@ Dashboard]
 ## 🔬 Index Methodology
 
 > **Zero-forward-bias free-float market-capitalization weighting:**
-> * Share counts $Q_i$ are fixed at the base date ($Q_i = (	ext{Base Market Cap}_0 	imes 10^7) / 	ext{Base Price}_0$) to ensure the index price action reflects pure equity price movement rather than secondary dilution.
-> * Weights $w_{i,t-1}$ are lagged to market close $t-1$, eliminating lookahead bias.
-> * Cumulative index levels are chained daily ($I_t = I_{t-1} 	imes (1 + R_{s,t})$) with $I_0 = 100.00$ starting on Jan 1, 2015.
+> * **Fixed Share Count**: Share counts $Q_i$ are fixed at the base date to ensure the index price action reflects pure equity price movement rather than secondary dilution ($Q_i = \frac{\text{Base Market Cap}_0 \times 10^7}{\text{Base Price}_0}$).
+> * **Lagged Weights**: Weights $w_{i,t-1}$ are lagged to market close $t-1$, eliminating lookahead bias.
+> * **Chained Price Level**: Cumulative index levels are chained daily ($I_t = I_{t-1} \times (1 + R_{s,t})$) with $I_0 = 100.00$ starting on Jan 1, 2015.
 
 ---
 
