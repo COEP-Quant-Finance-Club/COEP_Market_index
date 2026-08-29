@@ -1050,24 +1050,6 @@
       "RIIL": 0.1565
     }
   },
-  "FINANCIAL_INFRASTRUCTURE": {
-    "sector": "FINANCIAL_INFRASTRUCTURE",
-    "constituents_count": 11,
-    "latest_index_value": 802.34,
-    "weights_percentage": {
-      "BSE": 43.3318,
-      "MCX": 20.8338,
-      "CRISIL": 9.5145,
-      "CDSL": 8.3385,
-      "CAMS": 5.6563,
-      "KFINTECH": 4.4366,
-      "IEX": 3.3161,
-      "CARERATING": 1.5114,
-      "ICRA": 1.3876,
-      "MSTCLTD": 1.2793,
-      "PRECAM": 0.3941
-    }
-  },
   "MEDIA_AND_ENTERTAINMENT": {
     "sector": "MEDIA_AND_ENTERTAINMENT",
     "constituents_count": 13,
@@ -1086,6 +1068,24 @@
       "FLAIR": 2.2419,
       "SIGNPOST": 1.3932,
       "JAGRAN": 1.1524
+    }
+  },
+  "FINANCIAL_INFRASTRUCTURE": {
+    "sector": "FINANCIAL_INFRASTRUCTURE",
+    "constituents_count": 11,
+    "latest_index_value": 802.34,
+    "weights_percentage": {
+      "BSE": 43.3318,
+      "MCX": 20.8338,
+      "CRISIL": 9.5145,
+      "CDSL": 8.3385,
+      "CAMS": 5.6563,
+      "KFINTECH": 4.4366,
+      "IEX": 3.3161,
+      "CARERATING": 1.5114,
+      "ICRA": 1.3876,
+      "MSTCLTD": 1.2793,
+      "PRECAM": 0.3941
     }
   },
   "REAL_ESTATE": {
@@ -1310,26 +1310,6 @@
       "GREENPOWER": 0.056
     }
   },
-  "BREWERIES_AND_DISTILLERIES": {
-    "sector": "BREWERIES_AND_DISTILLERIES",
-    "constituents_count": 13,
-    "latest_index_value": 362.21,
-    "weights_percentage": {
-      "UNITDSPR": 42.3603,
-      "RADICO": 21.7505,
-      "UBL": 14.6787,
-      "ABDL": 6.8921,
-      "TI": 4.3399,
-      "INDIAGLYCO": 3.0804,
-      "PICCADIL": 2.8845,
-      "GLOBUSSPR": 1.0163,
-      "GMBREW": 0.8202,
-      "ASALCBR": 0.6547,
-      "SDBL": 0.6015,
-      "SULA": 0.5021,
-      "BCLIND": 0.4187
-    }
-  },
   "DIGITAL_PLATFORMS": {
     "sector": "DIGITAL_PLATFORMS",
     "constituents_count": 21,
@@ -1358,6 +1338,26 @@
       "ARIS": 0.2429
     }
   },
+  "BREWERIES_AND_DISTILLERIES": {
+    "sector": "BREWERIES_AND_DISTILLERIES",
+    "constituents_count": 13,
+    "latest_index_value": 362.21,
+    "weights_percentage": {
+      "UNITDSPR": 42.3603,
+      "RADICO": 21.7505,
+      "UBL": 14.6787,
+      "ABDL": 6.8921,
+      "TI": 4.3399,
+      "INDIAGLYCO": 3.0804,
+      "PICCADIL": 2.8845,
+      "GLOBUSSPR": 1.0163,
+      "GMBREW": 0.8202,
+      "ASALCBR": 0.6547,
+      "SDBL": 0.6015,
+      "SULA": 0.5021,
+      "BCLIND": 0.4187
+    }
+  },
   "TEXTILES_APPAREL": {
     "sector": "TEXTILES_APPAREL",
     "constituents_count": 9,
@@ -1372,34 +1372,6 @@
       "RAYMONDLSL": 4.1755,
       "RAYMOND": 3.7551,
       "BIL": 0.9781
-    }
-  },
-  "ELECTRONICS_EMS": {
-    "sector": "ELECTRONICS_EMS",
-    "constituents_count": 21,
-    "latest_index_value": 2112.38,
-    "weights_percentage": {
-      "DIXON": 24.4244,
-      "CPPLUS": 12.0589,
-      "HFCL": 8.7007,
-      "STLTECH": 8.372,
-      "AMBER": 7.3954,
-      "SYRMA": 7.1738,
-      "KAYNES": 6.1484,
-      "PGEL": 4.721,
-      "APOLLO": 4.2312,
-      "AVALON": 3.36,
-      "SIGMAADV": 2.6617,
-      "EBGNG": 1.8844,
-      "CYIENTDLM": 1.5369,
-      "OPTIEMUS": 1.5365,
-      "CENTUM": 1.5317,
-      "RPTECH": 1.4841,
-      "EPACK": 0.6518,
-      "EXICOM": 0.6438,
-      "DCXINDIA": 0.5812,
-      "IKIO": 0.4571,
-      "VOEPL": 0.445
     }
   },
   "HOSPITALITY": {
@@ -1436,6 +1408,34 @@
       "EIHAHOTELS": 0.5538,
       "DELTACORP": 0.493,
       "ASIANHOTNR": 0.3821
+    }
+  },
+  "ELECTRONICS_EMS": {
+    "sector": "ELECTRONICS_EMS",
+    "constituents_count": 21,
+    "latest_index_value": 2112.38,
+    "weights_percentage": {
+      "DIXON": 24.4244,
+      "CPPLUS": 12.0589,
+      "HFCL": 8.7007,
+      "STLTECH": 8.372,
+      "AMBER": 7.3954,
+      "SYRMA": 7.1738,
+      "KAYNES": 6.1484,
+      "PGEL": 4.721,
+      "APOLLO": 4.2312,
+      "AVALON": 3.36,
+      "SIGMAADV": 2.6617,
+      "EBGNG": 1.8844,
+      "CYIENTDLM": 1.5369,
+      "OPTIEMUS": 1.5365,
+      "CENTUM": 1.5317,
+      "RPTECH": 1.4841,
+      "EPACK": 0.6518,
+      "EXICOM": 0.6438,
+      "DCXINDIA": 0.5812,
+      "IKIO": 0.4571,
+      "VOEPL": 0.445
     }
   },
   "RENEWABLE_ENERGY": {
@@ -1486,6 +1486,19 @@
       "SUYOG": 0.0625
     }
   },
+  "FOOTWEAR_AND_ACCESSORIES": {
+    "sector": "FOOTWEAR_AND_ACCESSORIES",
+    "constituents_count": 6,
+    "latest_index_value": 325.63,
+    "weights_percentage": {
+      "METROBRAND": 43.653,
+      "RELAXO": 15.7212,
+      "BATAINDIA": 13.8981,
+      "REDTAPE": 10.9833,
+      "CAMPUS": 10.3736,
+      "MAYURUNIQ": 5.3708
+    }
+  },
   "BANKING": {
     "sector": "BANKING",
     "constituents_count": 41,
@@ -1532,19 +1545,6 @@
       "FINOPB": 0.0254,
       "DHANBANK": 0.0248,
       "CAPITALSFB": 0.0243
-    }
-  },
-  "FOOTWEAR_AND_ACCESSORIES": {
-    "sector": "FOOTWEAR_AND_ACCESSORIES",
-    "constituents_count": 6,
-    "latest_index_value": 325.63,
-    "weights_percentage": {
-      "METROBRAND": 43.653,
-      "RELAXO": 15.7212,
-      "BATAINDIA": 13.8981,
-      "REDTAPE": 10.9833,
-      "CAMPUS": 10.3736,
-      "MAYURUNIQ": 5.3708
     }
   },
   "JEWELLERY": {
