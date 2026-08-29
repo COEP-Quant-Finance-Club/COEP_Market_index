@@ -100,8 +100,6 @@
 > **Base Value**: `100.00` (Jan 1, 2015) • **Audited Horizon**: 11.66 Years (2,878 Daily Trading Bars) • **Coverage**: 1,451 Stocks
 
 <!-- SECTOR_LEADERBOARD_START -->
-| Rank | Master Sector Basket | Index Level | Total Return | 11.66-Yr CAGR | Ann. Volatility | Max Drawdown | Sharpe Ratio |
-|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|
 | 🥇  | **Electronics EMS** | `2,112.38` | **+2,012.4%** | `30.03%` | `32.46%` | `-66.8%` | **`0.79`** |
 | 🥈  | **Defence** | `1,871.56` | **+1,771.6%** | `28.68%` | `31.07%` | `-66.6%` | **`0.77`** |
 | 🥉  | **Cables And Wires** | `1,606.85` | **+1,506.8%** | `27.00%` | `29.04%` | `-54.0%` | **`0.76`** |
@@ -236,7 +234,7 @@ Dashboard]
 ## 🔬 Index Methodology
 
 > **Zero-forward-bias free-float market-capitalization weighting:**
-> * Share counts $Q_i$ are fixed at the base date ($Q_i = rac{	ext{Base Market Cap}_0 	imes 10^7}{	ext{Base Price}_0}$) to ensure the index price action reflects pure equity price movement rather than secondary dilution.
+> * Share counts $Q_i$ are fixed at the base date ($Q_i = (	ext{Base Market Cap}_0 	imes 10^7) / 	ext{Base Price}_0$) to ensure the index price action reflects pure equity price movement rather than secondary dilution.
 > * Weights $w_{i,t-1}$ are lagged to market close $t-1$, eliminating lookahead bias.
 > * Cumulative index levels are chained daily ($I_t = I_{t-1} 	imes (1 + R_{s,t})$) with $I_0 = 100.00$ starting on Jan 1, 2015.
 
