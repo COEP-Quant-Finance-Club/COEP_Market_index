@@ -1024,6 +1024,22 @@
       "BCLIND": 0.4187
     }
   },
+  "TEXTILES_APPAREL": {
+    "sector": "TEXTILES_APPAREL",
+    "constituents_count": 9,
+    "latest_index_value": 366.27,
+    "weights_percentage": {
+      "PAGEIND": 43.063,
+      "VTL": 17.0548,
+      "WELSPUNLIV": 14.6716,
+      "ARVINDFASN": 5.9276,
+      "TIMEX": 5.6016,
+      "PDSL": 4.7727,
+      "RAYMONDLSL": 4.1755,
+      "RAYMOND": 3.7551,
+      "BIL": 0.9781
+    }
+  },
   "DIGITAL_PLATFORMS": {
     "sector": "DIGITAL_PLATFORMS",
     "constituents_count": 21,
@@ -1050,22 +1066,6 @@
       "GYFTR": 0.2997,
       "JARO": 0.2557,
       "ARIS": 0.2429
-    }
-  },
-  "TEXTILES_APPAREL": {
-    "sector": "TEXTILES_APPAREL",
-    "constituents_count": 9,
-    "latest_index_value": 366.27,
-    "weights_percentage": {
-      "PAGEIND": 43.063,
-      "VTL": 17.0548,
-      "WELSPUNLIV": 14.6716,
-      "ARVINDFASN": 5.9276,
-      "TIMEX": 5.6016,
-      "PDSL": 4.7727,
-      "RAYMONDLSL": 4.1755,
-      "RAYMOND": 3.7551,
-      "BIL": 0.9781
     }
   },
   "POWER_AND_UTILITIES": {
