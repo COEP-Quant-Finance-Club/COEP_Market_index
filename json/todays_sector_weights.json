@@ -607,6 +607,51 @@
       "ARROWGREEN": 0.7036
     }
   },
+  "INFRASTRUCTURE": {
+    "sector": "INFRASTRUCTURE",
+    "constituents_count": 38,
+    "latest_index_value": 606.14,
+    "weights_percentage": {
+      "ADANIENT": 58.2163,
+      "RVNL": 6.6523,
+      "NBCC": 3.6003,
+      "CEMPRO": 3.5176,
+      "IRB": 3.3656,
+      "KPIL": 3.1544,
+      "KEC": 1.7775,
+      "IRCON": 1.6849,
+      "AFCONS": 1.4944,
+      "RITES": 1.4594,
+      "NCC": 1.2231,
+      "GRINFRA": 1.196,
+      "WELENT": 1.1777,
+      "DBL": 0.9701,
+      "SIS": 0.8785,
+      "PNCINFRA": 0.8684,
+      "CEIGALL": 0.8345,
+      "HCC": 0.7977,
+      "AHLUCONT": 0.7879,
+      "QUESS": 0.627,
+      "PSPPROJECT": 0.5809,
+      "SANGHVIMOV": 0.5606,
+      "JKIL": 0.5222,
+      "HGINFRA": 0.4972,
+      "KNRCON": 0.4844,
+      "PATELENG": 0.395,
+      "RAMKY": 0.3649,
+      "SIMPLEXINF": 0.2689,
+      "VIKRAN": 0.2618,
+      "CAPACITE": 0.2558,
+      "BLUSPRING": 0.2302,
+      "GPTINFRA": 0.209,
+      "TEXINFRA": 0.2036,
+      "KAPSTON": 0.1992,
+      "JYOTISTRUC": 0.1861,
+      "BLKASHYAP": 0.1748,
+      "SRM": 0.1655,
+      "RIIL": 0.1565
+    }
+  },
   "BUILDING_MATERIALS": {
     "sector": "BUILDING_MATERIALS",
     "constituents_count": 69,
@@ -683,49 +728,22 @@
       "HIMATSEIDE": 0.1807
     }
   },
-  "INFRASTRUCTURE": {
-    "sector": "INFRASTRUCTURE",
-    "constituents_count": 38,
-    "latest_index_value": 606.14,
+  "FINANCIAL_INFRASTRUCTURE": {
+    "sector": "FINANCIAL_INFRASTRUCTURE",
+    "constituents_count": 11,
+    "latest_index_value": 739.82,
     "weights_percentage": {
-      "ADANIENT": 58.2163,
-      "RVNL": 6.6523,
-      "NBCC": 3.6003,
-      "CEMPRO": 3.5176,
-      "IRB": 3.3656,
-      "KPIL": 3.1544,
-      "KEC": 1.7775,
-      "IRCON": 1.6849,
-      "AFCONS": 1.4944,
-      "RITES": 1.4594,
-      "NCC": 1.2231,
-      "GRINFRA": 1.196,
-      "WELENT": 1.1777,
-      "DBL": 0.9701,
-      "SIS": 0.8785,
-      "PNCINFRA": 0.8684,
-      "CEIGALL": 0.8345,
-      "HCC": 0.7977,
-      "AHLUCONT": 0.7879,
-      "QUESS": 0.627,
-      "PSPPROJECT": 0.5809,
-      "SANGHVIMOV": 0.5606,
-      "JKIL": 0.5222,
-      "HGINFRA": 0.4972,
-      "KNRCON": 0.4844,
-      "PATELENG": 0.395,
-      "RAMKY": 0.3649,
-      "SIMPLEXINF": 0.2689,
-      "VIKRAN": 0.2618,
-      "CAPACITE": 0.2558,
-      "BLUSPRING": 0.2302,
-      "GPTINFRA": 0.209,
-      "TEXINFRA": 0.2036,
-      "KAPSTON": 0.1992,
-      "JYOTISTRUC": 0.1861,
-      "BLKASHYAP": 0.1748,
-      "SRM": 0.1655,
-      "RIIL": 0.1565
+      "BSE": 43.3318,
+      "MCX": 20.8338,
+      "CRISIL": 9.5145,
+      "CDSL": 8.3385,
+      "CAMS": 5.6563,
+      "KFINTECH": 4.4366,
+      "IEX": 3.3161,
+      "CARERATING": 1.5114,
+      "ICRA": 1.3876,
+      "MSTCLTD": 1.2793,
+      "PRECAM": 0.3941
     }
   },
   "MEDIA_AND_ENTERTAINMENT": {
@@ -747,6 +765,12 @@
       "SIGNPOST": 1.3932,
       "JAGRAN": 1.1524
     }
+  },
+  "CAPITAL_GOODS": {
+    "sector": "CAPITAL_GOODS",
+    "constituents_count": 0,
+    "latest_index_value": 562.04,
+    "weights_percentage": {}
   },
   "REAL_ESTATE": {
     "sector": "REAL_ESTATE",
@@ -802,50 +826,6 @@
       "ARIHANT": 0.1318
     }
   },
-  "FINANCIAL_INFRASTRUCTURE": {
-    "sector": "FINANCIAL_INFRASTRUCTURE",
-    "constituents_count": 11,
-    "latest_index_value": 739.82,
-    "weights_percentage": {
-      "BSE": 43.3318,
-      "MCX": 20.8338,
-      "CRISIL": 9.5145,
-      "CDSL": 8.3385,
-      "CAMS": 5.6563,
-      "KFINTECH": 4.4366,
-      "IEX": 3.3161,
-      "CARERATING": 1.5114,
-      "ICRA": 1.3876,
-      "MSTCLTD": 1.2793,
-      "PRECAM": 0.3941
-    }
-  },
-  "CAPITAL_GOODS": {
-    "sector": "CAPITAL_GOODS",
-    "constituents_count": 0,
-    "latest_index_value": 562.04,
-    "weights_percentage": {}
-  },
-  "BREWERIES_AND_DISTILLERIES": {
-    "sector": "BREWERIES_AND_DISTILLERIES",
-    "constituents_count": 13,
-    "latest_index_value": 319.7,
-    "weights_percentage": {
-      "UNITDSPR": 42.3603,
-      "RADICO": 21.7505,
-      "UBL": 14.6787,
-      "ABDL": 6.8921,
-      "TI": 4.3399,
-      "INDIAGLYCO": 3.0804,
-      "PICCADIL": 2.8845,
-      "GLOBUSSPR": 1.0163,
-      "GMBREW": 0.8202,
-      "ASALCBR": 0.6547,
-      "SDBL": 0.6015,
-      "SULA": 0.5021,
-      "BCLIND": 0.4187
-    }
-  },
   "TEXTILES_APPAREL": {
     "sector": "TEXTILES_APPAREL",
     "constituents_count": 9,
@@ -888,6 +868,26 @@
       "GYFTR": 0.2997,
       "JARO": 0.2557,
       "ARIS": 0.2429
+    }
+  },
+  "BREWERIES_AND_DISTILLERIES": {
+    "sector": "BREWERIES_AND_DISTILLERIES",
+    "constituents_count": 13,
+    "latest_index_value": 319.7,
+    "weights_percentage": {
+      "UNITDSPR": 42.3603,
+      "RADICO": 21.7505,
+      "UBL": 14.6787,
+      "ABDL": 6.8921,
+      "TI": 4.3399,
+      "INDIAGLYCO": 3.0804,
+      "PICCADIL": 2.8845,
+      "GLOBUSSPR": 1.0163,
+      "GMBREW": 0.8202,
+      "ASALCBR": 0.6547,
+      "SDBL": 0.6015,
+      "SULA": 0.5021,
+      "BCLIND": 0.4187
     }
   },
   "FINANCIAL_SERVICES": {
@@ -1085,6 +1085,32 @@
       "SOLEX": 0.2909
     }
   },
+  "TELECOMMUNICATIONS": {
+    "sector": "TELECOMMUNICATIONS",
+    "constituents_count": 19,
+    "latest_index_value": 111.96,
+    "weights_percentage": {
+      "BHARTIARTL": 71.2885,
+      "IDEA": 8.7662,
+      "INDUSTOWER": 6.4151,
+      "BHARTIHEXA": 4.9533,
+      "TATACOMM": 3.1181,
+      "ITI": 1.6326,
+      "ASTRAMICRO": 1.061,
+      "RAILTEL": 0.5632,
+      "TEJASNET": 0.5433,
+      "TTML": 0.4744,
+      "AVANTEL": 0.2677,
+      "KERNEX": 0.2283,
+      "NELCO": 0.1312,
+      "HATHWAY": 0.1174,
+      "MTNL": 0.1052,
+      "DLINKINDIA": 0.0989,
+      "GTLINFRA": 0.0963,
+      "STLNETWORK": 0.0767,
+      "SUYOG": 0.0625
+    }
+  },
   "ELECTRONICS_EMS": {
     "sector": "ELECTRONICS_EMS",
     "constituents_count": 21,
@@ -1111,68 +1137,6 @@
       "DCXINDIA": 0.5812,
       "IKIO": 0.4571,
       "VOEPL": 0.445
-    }
-  },
-  "HOSPITALITY": {
-    "sector": "HOSPITALITY",
-    "constituents_count": 29,
-    "latest_index_value": 283.08,
-    "weights_percentage": {
-      "INDHOTEL": 30.2667,
-      "ITCHOTELS": 9.7367,
-      "JUBLFOOD": 8.0668,
-      "EIHOTEL": 5.9663,
-      "CHALET": 5.2131,
-      "TRAVELFOOD": 4.9509,
-      "THELEELA": 4.6338,
-      "VENTIVE": 4.217,
-      "DEVYANI": 4.0471,
-      "LEMONTREE": 2.5325,
-      "WESTLIFE": 2.0928,
-      "ITDC": 1.8487,
-      "CORDELIA": 1.7064,
-      "SAPPHIRE": 1.6826,
-      "RBA": 1.3555,
-      "THOMASCOOK": 1.3453,
-      "MHRIL": 1.2925,
-      "JUNIPER": 1.2557,
-      "SAMHI": 1.1535,
-      "WONDERLA": 0.8694,
-      "IMAGICAA": 0.7718,
-      "UFBL": 0.771,
-      "PARKHOTELS": 0.7633,
-      "ORIENTHOT": 0.7039,
-      "BRIGHOTEL": 0.6679,
-      "TAJGVK": 0.6596,
-      "EIHAHOTELS": 0.5538,
-      "DELTACORP": 0.493,
-      "ASIANHOTNR": 0.3821
-    }
-  },
-  "TELECOMMUNICATIONS": {
-    "sector": "TELECOMMUNICATIONS",
-    "constituents_count": 19,
-    "latest_index_value": 111.96,
-    "weights_percentage": {
-      "BHARTIARTL": 71.2885,
-      "IDEA": 8.7662,
-      "INDUSTOWER": 6.4151,
-      "BHARTIHEXA": 4.9533,
-      "TATACOMM": 3.1181,
-      "ITI": 1.6326,
-      "ASTRAMICRO": 1.061,
-      "RAILTEL": 0.5632,
-      "TEJASNET": 0.5433,
-      "TTML": 0.4744,
-      "AVANTEL": 0.2677,
-      "KERNEX": 0.2283,
-      "NELCO": 0.1312,
-      "HATHWAY": 0.1174,
-      "MTNL": 0.1052,
-      "DLINKINDIA": 0.0989,
-      "GTLINFRA": 0.0963,
-      "STLNETWORK": 0.0767,
-      "SUYOG": 0.0625
     }
   },
   "AUTOMOBILES": {
@@ -1308,6 +1272,42 @@
       "GKSL": 0.0219
     }
   },
+  "HOSPITALITY": {
+    "sector": "HOSPITALITY",
+    "constituents_count": 29,
+    "latest_index_value": 283.08,
+    "weights_percentage": {
+      "INDHOTEL": 30.2667,
+      "ITCHOTELS": 9.7367,
+      "JUBLFOOD": 8.0668,
+      "EIHOTEL": 5.9663,
+      "CHALET": 5.2131,
+      "TRAVELFOOD": 4.9509,
+      "THELEELA": 4.6338,
+      "VENTIVE": 4.217,
+      "DEVYANI": 4.0471,
+      "LEMONTREE": 2.5325,
+      "WESTLIFE": 2.0928,
+      "ITDC": 1.8487,
+      "CORDELIA": 1.7064,
+      "SAPPHIRE": 1.6826,
+      "RBA": 1.3555,
+      "THOMASCOOK": 1.3453,
+      "MHRIL": 1.2925,
+      "JUNIPER": 1.2557,
+      "SAMHI": 1.1535,
+      "WONDERLA": 0.8694,
+      "IMAGICAA": 0.7718,
+      "UFBL": 0.771,
+      "PARKHOTELS": 0.7633,
+      "ORIENTHOT": 0.7039,
+      "BRIGHOTEL": 0.6679,
+      "TAJGVK": 0.6596,
+      "EIHAHOTELS": 0.5538,
+      "DELTACORP": 0.493,
+      "ASIANHOTNR": 0.3821
+    }
+  },
   "FOOTWEAR_AND_ACCESSORIES": {
     "sector": "FOOTWEAR_AND_ACCESSORIES",
     "constituents_count": 6,
@@ -1319,6 +1319,22 @@
       "REDTAPE": 10.9833,
       "CAMPUS": 10.3736,
       "MAYURUNIQ": 5.3708
+    }
+  },
+  "DEFENCE": {
+    "sector": "DEFENCE",
+    "constituents_count": 9,
+    "latest_index_value": 1673.49,
+    "weights_percentage": {
+      "HAL": 35.5465,
+      "BEL": 34.4062,
+      "MAZDOCK": 10.7535,
+      "BDL": 5.2954,
+      "COCHINSHIP": 4.2573,
+      "GRSE": 3.4159,
+      "DATAPATTNS": 2.9829,
+      "ZENTEC": 1.856,
+      "SWANDEF": 1.4864
     }
   },
   "JEWELLERY": {
@@ -1346,22 +1362,6 @@
       "PNGSREVA": 0.2215,
       "RGL": 0.2183,
       "LGHL": 0.1758
-    }
-  },
-  "DEFENCE": {
-    "sector": "DEFENCE",
-    "constituents_count": 9,
-    "latest_index_value": 1673.49,
-    "weights_percentage": {
-      "HAL": 35.5465,
-      "BEL": 34.4062,
-      "MAZDOCK": 10.7535,
-      "BDL": 5.2954,
-      "COCHINSHIP": 4.2573,
-      "GRSE": 3.4159,
-      "DATAPATTNS": 2.9829,
-      "ZENTEC": 1.856,
-      "SWANDEF": 1.4864
     }
   },
   "BANKING": {
