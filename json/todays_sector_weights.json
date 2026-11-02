@@ -378,7 +378,7 @@
   "INFORMATION_TECHNOLOGY": {
     "sector": "INFORMATION_TECHNOLOGY",
     "constituents_count": 85,
-    "latest_index_value": 397.67,
+    "latest_index_value": 397.71,
     "weights_percentage": {
       "TCS": 27.8315,
       "INFY": 14.4119,
@@ -728,6 +728,24 @@
       "RIIL": 0.1565
     }
   },
+  "FINANCIAL_INFRASTRUCTURE": {
+    "sector": "FINANCIAL_INFRASTRUCTURE",
+    "constituents_count": 11,
+    "latest_index_value": 738.32,
+    "weights_percentage": {
+      "BSE": 43.3318,
+      "MCX": 20.8338,
+      "CRISIL": 9.5145,
+      "CDSL": 8.3385,
+      "CAMS": 5.6563,
+      "KFINTECH": 4.4366,
+      "IEX": 3.3161,
+      "CARERATING": 1.5114,
+      "ICRA": 1.3876,
+      "MSTCLTD": 1.2793,
+      "PRECAM": 0.3941
+    }
+  },
   "MEDIA_AND_ENTERTAINMENT": {
     "sector": "MEDIA_AND_ENTERTAINMENT",
     "constituents_count": 13,
@@ -748,28 +766,16 @@
       "JAGRAN": 1.1524
     }
   },
-  "FINANCIAL_INFRASTRUCTURE": {
-    "sector": "FINANCIAL_INFRASTRUCTURE",
-    "constituents_count": 11,
-    "latest_index_value": 738.32,
-    "weights_percentage": {
-      "BSE": 43.3318,
-      "MCX": 20.8338,
-      "CRISIL": 9.5145,
-      "CDSL": 8.3385,
-      "CAMS": 5.6563,
-      "KFINTECH": 4.4366,
-      "IEX": 3.3161,
-      "CARERATING": 1.5114,
-      "ICRA": 1.3876,
-      "MSTCLTD": 1.2793,
-      "PRECAM": 0.3941
-    }
+  "CAPITAL_GOODS": {
+    "sector": "CAPITAL_GOODS",
+    "constituents_count": 0,
+    "latest_index_value": 539.82,
+    "weights_percentage": {}
   },
   "REAL_ESTATE": {
     "sector": "REAL_ESTATE",
     "constituents_count": 47,
-    "latest_index_value": 508.2,
+    "latest_index_value": 508.24,
     "weights_percentage": {
       "DLF": 20.6712,
       "LODHA": 14.7949,
@@ -820,32 +826,6 @@
       "ARIHANT": 0.1318
     }
   },
-  "CAPITAL_GOODS": {
-    "sector": "CAPITAL_GOODS",
-    "constituents_count": 0,
-    "latest_index_value": 539.81,
-    "weights_percentage": {}
-  },
-  "BREWERIES_AND_DISTILLERIES": {
-    "sector": "BREWERIES_AND_DISTILLERIES",
-    "constituents_count": 13,
-    "latest_index_value": 317.42,
-    "weights_percentage": {
-      "UNITDSPR": 42.3603,
-      "RADICO": 21.7505,
-      "UBL": 14.6787,
-      "ABDL": 6.8921,
-      "TI": 4.3399,
-      "INDIAGLYCO": 3.0804,
-      "PICCADIL": 2.8845,
-      "GLOBUSSPR": 1.0163,
-      "GMBREW": 0.8202,
-      "ASALCBR": 0.6547,
-      "SDBL": 0.6015,
-      "SULA": 0.5021,
-      "BCLIND": 0.4187
-    }
-  },
   "TEXTILES_APPAREL": {
     "sector": "TEXTILES_APPAREL",
     "constituents_count": 9,
@@ -888,6 +868,26 @@
       "GYFTR": 0.2997,
       "JARO": 0.2557,
       "ARIS": 0.2429
+    }
+  },
+  "BREWERIES_AND_DISTILLERIES": {
+    "sector": "BREWERIES_AND_DISTILLERIES",
+    "constituents_count": 13,
+    "latest_index_value": 317.42,
+    "weights_percentage": {
+      "UNITDSPR": 42.3603,
+      "RADICO": 21.7505,
+      "UBL": 14.6787,
+      "ABDL": 6.8921,
+      "TI": 4.3399,
+      "INDIAGLYCO": 3.0804,
+      "PICCADIL": 2.8845,
+      "GLOBUSSPR": 1.0163,
+      "GMBREW": 0.8202,
+      "ASALCBR": 0.6547,
+      "SDBL": 0.6015,
+      "SULA": 0.5021,
+      "BCLIND": 0.4187
     }
   },
   "FINANCIAL_SERVICES": {
@@ -981,36 +981,10 @@
       "VOEPL": 0.445
     }
   },
-  "TELECOMMUNICATIONS": {
-    "sector": "TELECOMMUNICATIONS",
-    "constituents_count": 19,
-    "latest_index_value": 107.94,
-    "weights_percentage": {
-      "BHARTIARTL": 71.2885,
-      "IDEA": 8.7662,
-      "INDUSTOWER": 6.4151,
-      "BHARTIHEXA": 4.9533,
-      "TATACOMM": 3.1181,
-      "ITI": 1.6326,
-      "ASTRAMICRO": 1.061,
-      "RAILTEL": 0.5632,
-      "TEJASNET": 0.5433,
-      "TTML": 0.4744,
-      "AVANTEL": 0.2677,
-      "KERNEX": 0.2283,
-      "NELCO": 0.1312,
-      "HATHWAY": 0.1174,
-      "MTNL": 0.1052,
-      "DLINKINDIA": 0.0989,
-      "GTLINFRA": 0.0963,
-      "STLNETWORK": 0.0767,
-      "SUYOG": 0.0625
-    }
-  },
   "AUTOMOBILES": {
     "sector": "AUTOMOBILES",
     "constituents_count": 126,
-    "latest_index_value": 387.12,
+    "latest_index_value": 386.99,
     "weights_percentage": {
       "HINDUNILVR": 10.9151,
       "MARUTI": 9.1529,
@@ -1138,6 +1112,32 @@
       "3BBLACKBIO": 0.0238,
       "MUNJALAU": 0.0225,
       "GKSL": 0.0219
+    }
+  },
+  "TELECOMMUNICATIONS": {
+    "sector": "TELECOMMUNICATIONS",
+    "constituents_count": 19,
+    "latest_index_value": 107.94,
+    "weights_percentage": {
+      "BHARTIARTL": 71.2885,
+      "IDEA": 8.7662,
+      "INDUSTOWER": 6.4151,
+      "BHARTIHEXA": 4.9533,
+      "TATACOMM": 3.1181,
+      "ITI": 1.6326,
+      "ASTRAMICRO": 1.061,
+      "RAILTEL": 0.5632,
+      "TEJASNET": 0.5433,
+      "TTML": 0.4744,
+      "AVANTEL": 0.2677,
+      "KERNEX": 0.2283,
+      "NELCO": 0.1312,
+      "HATHWAY": 0.1174,
+      "MTNL": 0.1052,
+      "DLINKINDIA": 0.0989,
+      "GTLINFRA": 0.0963,
+      "STLNETWORK": 0.0767,
+      "SUYOG": 0.0625
     }
   },
   "HOSPITALITY": {
